@@ -4,8 +4,7 @@
   "description": "trivia game generation and execution",
   "main": "index.js",
   "scripts": {
-    "start": "watchify --extension=js -o bundle.js index.js & python -m SimpleHTTPServer",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
