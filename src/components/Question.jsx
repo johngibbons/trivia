@@ -1,32 +1,29 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Answer from './Answer';
+import AnswerList from './AnswerList';
 import classNames from 'classnames';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
-  getAnswers(){
-    return this.props.answers || [];
-  },
-  setCorrect(){
-    return this.props.isMaster && this.props.chooseAnswer;
-  },
   render(){
 
     let questionClass = classNames({
-      'panel-body': true,
+      'panel': true,
+      'panel-default': true,
       'question': true,
+      'col-md-4': true,
       'correct': this.props.hasResult && this.props.isCorrect,
       'incorrect': this.props.hasResult && !this.props.isCorrect
     });
 
     return (
       <div className={questionClass} >
-        <fieldset>
-          {this.getAnswers().map((answer, i) => {
-            return <Answer text={answer} key={answer} i={i}/>
-          })}
-        </fieldset>
+        <div className="panel-heading">
+          <h3 className="panel-title">{this.props.text}</h3>
+        </div>
+        <div className="panel-body">
+          <AnswerList answers={this.props.answers} />
+        </div>
       </div>
     );
   }

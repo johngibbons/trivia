@@ -12,6 +12,7 @@ export default React.createClass({
         isCorrect={false}
         ptValue = {10}
         answers = {answers}
+        text = "Best Actor"
       />
     );
   }
