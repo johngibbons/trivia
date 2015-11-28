@@ -11,18 +11,19 @@ export default React.createClass({
       'panel': true,
       'panel-default': true,
       'question': true,
-      'col-md-4': true,
       'correct': this.props.hasResult && this.props.isCorrect,
       'incorrect': this.props.hasResult && !this.props.isCorrect
     });
 
     return (
-      <div className={questionClass} >
-        <div className="panel-heading">
-          <h3 className="panel-title">{this.props.text}</h3>
-        </div>
-        <div className="panel-body">
-          <AnswerList answers={this.props.answers} />
+      <div className="col-md-4">
+        <div className={questionClass} >
+          <div className="panel-heading">
+            <h3 className="panel-title">{this.props.text}</h3>
+          </div>
+          <div className="panel-body">
+            <AnswerList answers={this.props.answers} />
+          </div>
         </div>
       </div>
     );
