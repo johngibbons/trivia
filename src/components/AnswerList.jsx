@@ -5,13 +5,23 @@ export default React.createClass({
   getAnswers(){
     return this.props.answers || [];
   },
+  chooseAnswer(){
+    console.log("selected an answer");
+  },
   render(){
     return(
-      <fieldset>
-        {this.getAnswers().map((answer, i) => {
-          return <Answer text={answer} key={answer} i={i}/>
+      <div className="list-group">
+        {this.getAnswers().map((answer) => {
+          return (
+            <Answer
+              key={answer}
+              text={answer}
+              questionId={this.props.questionId}
+              chooseAnswer={this.chooseAnswer}
+            />
+          );
         })}
-      </fieldset>
+      </div>
     );
   }
 });

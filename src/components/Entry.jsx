@@ -6,11 +6,10 @@ export default React.createClass({
     return (
       <div>
         <div>
-          <h1>{this.props.title}</h1>
+          <h1>{this.props.title}<span className="label label-default">{this.props.rank}</span></h1>
         </div>
         <div>
           <p className="entryScore">score: {this.props.score}</p>
-          <p className="entryRank">current rank: {this.props.rank}</p>
           <QuestionList questions={this.props.questions} />
         </div>
       </div>

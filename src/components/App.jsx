@@ -6,6 +6,7 @@ export default React.createClass({
   render(){
     let questions = [
       {
+        id: 1,
         isMaster: false,
         hasResult: false,
         isCorrect: true,
@@ -19,6 +20,7 @@ export default React.createClass({
         text: 'Best Actor'
       },
       {
+        id: 2,
         isMaster: false,
         hasResult: false,
         isCorrect: true,
@@ -37,7 +39,7 @@ export default React.createClass({
       <Entry
         title="The Notorious G.I.B."
         score={125}
-        rank={2}
+        rank={"2nd"}
         questions={questions}
       />
     );

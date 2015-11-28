@@ -11,6 +11,8 @@ export default React.createClass({
         {this.props.questions.map(question => {
           return (
             <Question
+              id={question.id}
+              key={question.id}
               isMaster={question.isMaster}
               hasResult={question.hasResult}
               isCorrect={question.isCorrect}

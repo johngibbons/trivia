@@ -21,9 +21,7 @@ export default React.createClass({
           <div className="panel-heading">
             <h3 className="panel-title">{this.props.text}</h3>
           </div>
-          <div className="panel-body">
-            <AnswerList answers={this.props.answers} />
-          </div>
+          <AnswerList answers={this.props.answers} questionId={this.props.id} />
         </div>
       </div>
     );

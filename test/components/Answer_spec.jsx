@@ -19,8 +19,8 @@ describe('Answer', () => {
         chooseAnswer={chooseAnswer}
       />
     );
-    const radio = findRenderedDOMComponentWithTag(component, 'input');
-    Simulate.click(radio);
+    const option = findRenderedDOMComponentWithTag(component, 'a');
+    Simulate.click(option);
     expect(chosenAnswer).to.equal('Brad Pitt');
   });
 
