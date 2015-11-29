@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import AnswerList from './AnswerList';
+import AddAnswerForm from './AddAnswerForm';
 import classNames from 'classnames';
 
 export default React.createClass({
@@ -22,6 +23,7 @@ export default React.createClass({
             <h3 className="panel-title">{this.props.text}</h3>
           </div>
           <AnswerList answers={this.props.answers} questionId={this.props.id} />
+          <AddAnswerForm question={this.props.id} />
         </div>
       </div>
     );

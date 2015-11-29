@@ -1,17 +1,18 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import QuestionList from './QuestionList';
+import {store} from '../index';
 
 export default React.createClass({
+  mixins: [PureRenderMixin],
   render(){
     return (
       <div>
-        <div>
+        <div className="jumbotron">
           <h1>{this.props.title}<span className="label label-default">{this.props.rank}</span></h1>
-        </div>
-        <div>
           <p className="entryScore">score: {this.props.score}</p>
-          <QuestionList questions={this.props.questions} />
         </div>
+        <QuestionList questions={this.props.questions} />
       </div>
     );
   }

@@ -1,14 +1,19 @@
 import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Question from './Question';
+import AddQuestionForm from './AddQuestionForm';
 
 export default React.createClass({
+  mixins: [PureRenderMixin],
   getQuestions(){
     return this.props.questions;
   },
   render(){
-    return(
+    return (
       <div className="row">
-        {this.props.questions.map(question => {
+        <AddQuestionForm />
+        {Object.keys(this.getQuestions()).map(id => {
+          const question = this.getQuestions()[id];
           return (
             <Question
               id={question.id}
