@@ -1,9 +1,7 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Entry from './Entry';
 
 export default React.createClass({
-  mixins: [PureRenderMixin],
   getQuestions(){
     return this.props.appState.questions || {};
   },

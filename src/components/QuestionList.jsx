@@ -1,10 +1,8 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Question from './Question';
 import AddQuestionForm from './AddQuestionForm';
 
 export default React.createClass({
-  mixins: [PureRenderMixin],
   getQuestions(){
     return this.props.questions;
   },

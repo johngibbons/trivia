@@ -1,12 +1,11 @@
+import React from 'react';
 import Answer from '../../src/components/Answer';
-import React from 'react/addons';
-import {expect} from 'chai';
-
-const {
+import {
   renderIntoDocument,
   Simulate,
   findRenderedDOMComponentWithTag
-} = React.addons.TestUtils;
+} from 'react-addons-test-utils';
+import {expect} from 'chai';
 
 describe('Answer', () => {
 
@@ -23,5 +22,15 @@ describe('Answer', () => {
     Simulate.click(option);
     expect(chosenAnswer).to.equal('Brad Pitt');
   });
+
+  it('shows correct text', () => {
+    const component = renderIntoDocument(
+      <Answer
+        text="Brad Pitt"
+      />
+    );
+    const ans = findRenderedDOMComponentWithTag(component, 'a');
+    expect(ans.textContent).to.equal('Brad Pitt');
+  })
 
 });

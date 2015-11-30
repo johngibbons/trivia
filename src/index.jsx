@@ -25,6 +25,7 @@ const questions = (state = {}, action) => {
       let obj = {};
       obj[action.id] = question(undefined, action);
       return Object.assign({}, state, obj);
+    case 'REMOVE_QUESTION':
     case 'ADD_ANSWER':
       const q = state[action.question];
       const a = question(q.answers, action);

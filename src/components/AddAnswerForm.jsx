@@ -1,11 +1,9 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {store} from '../index';
 
 let nextAnswerId = 0;
 
 export default React.createClass({
-  mixins: [PureRenderMixin],
   render(){
     return(
       <div className="form-group">
