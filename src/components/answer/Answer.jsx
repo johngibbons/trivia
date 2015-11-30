@@ -5,7 +5,6 @@ export default React.createClass({
     return(
       <a href="#"
         className="list-group-item"
-        onClick={() => this.props.chooseAnswer(this.props.text)}
       >
         {this.props.text}
       </a>

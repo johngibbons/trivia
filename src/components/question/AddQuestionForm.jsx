@@ -1,5 +1,5 @@
 import React from 'react';
-import {store} from '../index';
+import {store} from '../../index';
 
 let nextQuestionId = 0;
 
@@ -21,7 +21,8 @@ export default React.createClass({
             store.dispatch({
               type: 'ADD_QUESTION',
               id: nextQuestionId++,
-              text: this.input.value
+              text: this.input.value,
+              entry: this.props.entry
             });
             this.input.value = '';
           }}

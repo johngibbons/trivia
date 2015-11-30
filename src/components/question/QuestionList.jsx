@@ -4,24 +4,25 @@ import AddQuestionForm from './AddQuestionForm';
 
 export default React.createClass({
   getQuestions(){
-    return this.props.questions;
+    return this.props.questions || [];
   },
   render(){
     return (
       <div className="row">
-        <AddQuestionForm />
-        {Object.keys(this.getQuestions()).map(id => {
-          const question = this.getQuestions()[id];
+        {this.props.isMaster && <AddQuestionForm entry={this.props.entry}/>}
+        {this.getQuestions().map(id => {
+          const question = this.props.questionsById[id];
           return (
             <Question
               id={question.id}
               key={question.id}
-              isMaster={question.isMaster}
+              text={question.text}
+              answers={question.answers}
               hasResult={question.hasResult}
               isCorrect={question.isCorrect}
               ptValue={question.ptValue}
-              answers={question.answers}
-              text={question.text}
+              isMaster={this.props.isMaster}
+              answersById={this.props.answersById}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import React from 'react';
-import AnswerList from './AnswerList';
-import AddAnswerForm from './AddAnswerForm';
+import AnswerList from '../answer/AnswerList';
+import AddAnswerForm from '../answer/AddAnswerForm';
 import classNames from 'classnames';
 
 export default React.createClass({
@@ -20,8 +20,12 @@ export default React.createClass({
           <div className="panel-heading">
             <h3 className="panel-title">{this.props.text}</h3>
           </div>
-          <AnswerList answers={this.props.answers} questionId={this.props.id} />
-          <AddAnswerForm question={this.props.id} />
+          <AnswerList
+            answers={this.props.answers}
+            answersById={this.props.answersById}
+            question={this.props.id}
+          />
+          {this.props.isMaster && <AddAnswerForm question={this.props.id} />}
         </div>
       </div>
     );

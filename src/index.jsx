@@ -3,6 +3,40 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import {createStore, combineReducers} from 'redux';
 
+const entry = (state = [], action) => {
+  switch(action.type) {
+    case 'ADD_ENTRY':
+      return {
+        id: action.id,
+        title: action.title,
+        isMaster: action.isMaster
+      };
+    case 'ADD_QUESTION':
+      return {
+        questions: [...state, action.id]
+      };
+    default:
+      return state;
+  }
+};
+
+const entriesById = (state = {}, action) => {
+  switch(action.type) {
+    case 'ADD_ENTRY':
+      let obj = {};
+      obj[action.id] = entry(undefined, action);
+      return Object.assign({}, state, obj);
+    case 'ADD_QUESTION':
+      const e = state[action.entry];
+      const q = entry(e.questions, action);
+      let nextState = {};
+      nextState[action.entry] = Object.assign({}, state[action.entry], q);
+      return Object.assign({}, state, nextState);
+    default:
+      return state;
+  }
+};
+
 const question = (state = [], action) => {
   switch(action.type) {
     case 'ADD_QUESTION':
@@ -13,13 +47,13 @@ const question = (state = [], action) => {
     case 'ADD_ANSWER':
       return {
         answers: [...state, action.id]
-      }
+      };
     default:
       return state;
   }
 };
 
-const questions = (state = {}, action) => {
+const questionsById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_QUESTION':
       let obj = {};
@@ -50,7 +84,7 @@ const answer = (state, action) => {
   }
 };
 
-const answers = (state = {}, action) => {
+const answersById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_ANSWER':
       let obj = {};
@@ -62,14 +96,20 @@ const answers = (state = {}, action) => {
 }
 
 const triviaApp = combineReducers({
-  questions,
-  answers
+  entriesById,
+  questionsById,
+  answersById
 });
 export const store = createStore(triviaApp);
 
 const render = () => {
+  const state = store.getState();
   ReactDOM.render(
-    <App appState={store.getState()} />,
+    <App
+      questionsById={state.questionsById}
+      answersById={state.answersById}
+      entriesById={state.entriesById}
+    />,
     document.getElementById('app')
   );
 };

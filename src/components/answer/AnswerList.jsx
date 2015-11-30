@@ -1,0 +1,25 @@
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Answer from './Answer';
+
+export default React.createClass({
+  getAnswers(){
+    return this.props.answers || [];
+  },
+  render(){
+    return(
+      <div className="list-group">
+        {this.getAnswers().map(id => {
+          const answer = this.props.answersById[id];
+          return (
+            <Answer
+              key={answer.id}
+              text={answer.text}
+              questionId={this.props.question}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+});
