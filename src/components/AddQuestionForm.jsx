@@ -1,9 +1,9 @@
 import React from 'react';
-import {store} from '../../index';
+import {connect} from 'react-redux';
 
 let nextQuestionId = 0;
 
-export default React.createClass({
+const AddQuestionForm = React.createClass({
   render(){
     return (
       <div className="col-md-4">
@@ -18,11 +18,12 @@ export default React.createClass({
         <button
           className="btn btn-default"
           onClick={() => {
-            store.dispatch({
+            this.props.dispatch({
               type: 'ADD_QUESTION',
               id: nextQuestionId++,
               text: this.input.value,
-              entry: this.props.entry
+              entry: this.props.entry,
+              game: this.props.game
             });
             this.input.value = '';
           }}
@@ -33,3 +34,5 @@ export default React.createClass({
     );
   }
 });
+
+export default connect()(AddQuestionForm);

@@ -1,12 +1,13 @@
 import React from 'react';
-import {store} from '../../index';
+import {connect} from 'react-redux';
 
-export default React.createClass({
+const RemoveQuestionForm = React.createClass({
   handleRemove(){
-    store.dispatch({
+    this.props.dispatch({
       type: 'REMOVE_QUESTION',
       id: this.props.id,
-      entry: this.props.entry
+      entry: this.props.entry,
+      game: this.props.game
     });
   },
   render(){
@@ -19,3 +20,5 @@ export default React.createClass({
     );
   }
 });
+
+export default connect()(RemoveQuestionForm);

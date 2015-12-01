@@ -1,15 +1,20 @@
 import React from 'react';
 import Question from './Question';
 import AddQuestionForm from './AddQuestionForm';
+import {connect} from 'react-redux';
 
-export default React.createClass({
+const QuestionList = React.createClass({
   getQuestions(){
     return this.props.questions || [];
   },
   render(){
     return (
       <div className="row">
-        {this.props.isMaster && <AddQuestionForm entry={this.props.entry}/>}
+        {this.props.isMaster &&
+          <AddQuestionForm
+            entry={this.props.entry}
+            game={this.props.game}
+          />}
         {this.getQuestions().map(id => {
           const question = this.props.questionsById[id];
           return (
@@ -24,6 +29,7 @@ export default React.createClass({
               isMaster={this.props.isMaster}
               answersById={this.props.answersById}
               entry={this.props.entry}
+              game={this.props.game}
             />
           );
         })}
@@ -31,3 +37,12 @@ export default React.createClass({
     );
   }
 });
+
+function mapStateToProps(state){
+  return {
+    questionsById: state.questionsById,
+    answersById: state.answersById
+  }
+}
+
+export default connect(mapStateToProps)(QuestionList);

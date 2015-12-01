@@ -1,27 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import EntryList from './entry/EntryList';
-import AddEntryForm from './entry/AddEntryForm';
+import AddGameForm from './AddGameForm';
+import GameList from './GameList';
 
 const App = React.createClass({
   render(){
-    const {
-      dispatch,
-      entriesById,
-      questionsById,
-      answersById
-    } = this.props;
     return(
-      <div>
-        <AddEntryForm />
-        <EntryList
-          entriesById={entriesById}
-          questionsById={questionsById}
-          answersById={answersById}
-        />
+      <div className="container">
+        <AddGameForm />
+        <GameList gamesById={this.props.gamesById} />
       </div>
     );
   }
 });
 
-export default connect(state => state)(App)
+function mapStateToProps(state){
+  return {
+    gamesById: state.gamesById
+  };
+}
+
+export default connect(mapStateToProps)(App)

@@ -1,12 +1,14 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Entry from './Entry';
 
 export default React.createClass({
+  getEntries(){
+    return this.props.entries || [];
+  },
   render(){
     return(
       <div>
-        {Object.keys(this.props.entriesById).map(id => {
+        {this.getEntries().map(id => {
           const entry = this.props.entriesById[id];
           return(
             <Entry
@@ -19,6 +21,7 @@ export default React.createClass({
               questions={entry.questions}
               questionsById={this.props.questionsById}
               answersById={this.props.answersById}
+              game={this.props.game}
             />
           );
         })}

@@ -1,9 +1,9 @@
 import React from 'react';
-import {store} from '../../index'
+import {connect} from 'react-redux';
 
-export default React.createClass({
+const Answer = React.createClass({
   handleRemove(){
-    store.dispatch({
+    this.props.dispatch({
       type: "REMOVE_ANSWER",
       id: this.props.id,
       question: this.props.question
@@ -24,3 +24,5 @@ export default React.createClass({
 
   }
 });
+
+export default connect()(Answer);

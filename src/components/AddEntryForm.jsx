@@ -1,14 +1,14 @@
 import React from 'react';
-import {store} from '../../index'
+import {connect} from 'react-redux';
 
 let nextEntryId = 0;
 
-export default React.createClass({
+const AddEntryForm = React.createClass({
   render(){
     return(
       <form>
         <div className="form-group">
-          <label for="entryTitle">Entry Title</label>
+          <label htmlFor="entryTitle">Entry Title</label>
           <input
             type="text"
             id="entryTitle"
@@ -33,11 +33,12 @@ export default React.createClass({
           className="btn btn-default"
           onClick={(e) => {
             e.preventDefault();
-            store.dispatch({
+            this.props.dispatch({
               type: 'ADD_ENTRY',
               id: nextEntryId++,
               title: this.input.value,
-              isMaster: this.isMaster.checked
+              isMaster: this.isMaster.checked,
+              game: this.props.game
             });
             this.input.value = '';
             this.isMaster.checked = false;
@@ -49,3 +50,5 @@ export default React.createClass({
     );
   }
 });
+
+export default connect(state => state)(AddEntryForm);
