@@ -23,6 +23,7 @@ export default React.createClass({
               ptValue={question.ptValue}
               isMaster={this.props.isMaster}
               answersById={this.props.answersById}
+              entry={this.props.entry}
             />
           );
         })}

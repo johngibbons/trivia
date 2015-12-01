@@ -14,8 +14,9 @@ export default React.createClass({
           return (
             <Answer
               key={answer.id}
+              id={answer.id}
               text={answer.text}
-              questionId={this.props.question}
+              question={this.props.question}
             />
           );
         })}

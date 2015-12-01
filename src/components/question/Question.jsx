@@ -1,6 +1,7 @@
 import React from 'react';
 import AnswerList from '../answer/AnswerList';
 import AddAnswerForm from '../answer/AddAnswerForm';
+import RemoveQuestionForm from './RemoveQuestionForm';
 import classNames from 'classnames';
 
 export default React.createClass({
@@ -17,8 +18,12 @@ export default React.createClass({
     return (
       <div className="col-md-4">
         <div className={questionClass} >
-          <div className="panel-heading">
-            <h3 className="panel-title">{this.props.text}</h3>
+          <div className="panel-heading clearfix">
+            <h3 className="panel-title pull-left">{this.props.text}</h3>
+            <RemoveQuestionForm
+              id={this.props.id}
+              entry={this.props.entry}
+            />
           </div>
           <AnswerList
             answers={this.props.answers}
