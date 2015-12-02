@@ -16,11 +16,6 @@
   "bugs": {
     "url": "https://github.com/johngibbons/trivia/issues"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "babel": {
     "presets": [
       "es2015",

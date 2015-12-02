@@ -1,49 +1,23 @@
-const entry = (state = [], action) => {
-  switch(action.type) {
-    case 'ADD_ENTRY':
-      return {
-        id: action.id,
-        title: action.title,
-        isMaster: action.isMaster
-      };
-    case 'ADD_QUESTION':
-      return {
-        questions: [...state, action.id]
-      };
-    case 'REMOVE_QUESTION':
-      return {
-        questions: state.filter(x => x !== action.id)
-      };
-    default:
-      return state;
-  }
-};
+import {
+  addItem,
+  removeItem,
+  addReferenceItem,
+  removeReferenceItem
+} from './core';
 
 const entriesById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_ENTRY': {
-      let obj = {};
-      obj[action.id] = entry(undefined, action);
-      return Object.assign({}, state, obj);
+      addItem(state, action);
     }
     case 'REMOVE_ENTRY': {
-      let nextState = Object.assign({}, state);
-      delete nextState[action.id];
-      return nextState;
+      removeItem(state, action);
     }
     case 'ADD_QUESTION': {
-      const e = state[action.entry];
-      const q = entry(e.questions, action);
-      let nextState = {};
-      nextState[action.entry] = Object.assign({}, state[action.entry], q);
-      return Object.assign({}, state, nextState);
+      addReferenceItem(state, action, 'entry', 'questions');
     }
     case 'REMOVE_QUESTION': {
-      const e = state[action.entry];
-      const q = entry(e.questions, action);
-      let nextState = {};
-      nextState[action.entry] = Object.assign({}, state[action.entry], q);
-      return Object.assign({}, state, nextState);
+      removeReferenceItem(state, action, 'entry', 'questions');
     }
     default:
       return state;

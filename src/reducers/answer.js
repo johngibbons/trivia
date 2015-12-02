@@ -1,22 +1,11 @@
-const answer = (state, action) => {
-  switch(action.type) {
-    case 'ADD_ANSWER':
-      return {
-        id: action.id,
-        text: action.text,
-        question: action.question
-      };
-    default:
-      return state;
-  }
-};
+import { addItem, removeItem } from './core';
 
 const answersById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_ANSWER':
-      let obj = {};
-      obj[action.id] = answer(undefined, action);
-      return Object.assign({}, state, obj);
+      return addItem(state, action);
+    case 'REMOVE_ANSWER':
+      return removeItem(state, action);
     default:
       return state;
   }

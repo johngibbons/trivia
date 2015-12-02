@@ -1,46 +1,29 @@
+import {
+  addItem,
+  removeItem,
+  addReferenceItem,
+  removeReferenceItem
+} from './core';
+
 const gamesById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_GAME': {
-      return {...state, [action.id]: {id: action.id, title: action.title}};
+      return addItem(state, action);
     }
     case 'REMOVE_GAME': {
-      let next = Object.assign({}, state);
-      delete next[action.id];
-      return next;
+      return removeItem(state, action);
     }
     case 'ADD_ENTRY': {
-      const entries = state[action.game].entries || [];
-      return {...state,
-        [action.game]: {
-          ...state[action.game],
-          entries: [...entries, action.id]
-        }
-      }
+      return addReferenceItem(state, action, 'game', 'entries');
     }
     case 'REMOVE_ENTRY': {
-      return {...state,
-        [action.game]: {
-          ...state[action.game],
-          entries: state[action.game].entries.filter(x => x !== action.id)
-        }
-      };
+      return removeReferenceItem(state, action, 'game', 'entries');
     }
     case 'ADD_QUESTION': {
-      const questions = state[action.game].questions || [];
-      return {...state,
-        [action.game]: {
-          ...state[action.game],
-          questions: [...questions, action.id]
-        }
-      }
+      return addReferenceItem(state, action, 'game', 'questions');
     }
     case 'REMOVE_QUESTION': {
-      return {...state,
-        [action.game]: {
-          ...state[action.game],
-          questions: state[action.game].questions.filter(x => x !== action.id)
-        }
-      };
+      return removeReferenceItem(state, action, 'game', 'questions');
     }
     default:
       return state;

@@ -1,29 +1,23 @@
+import {
+  addItem,
+  removeItem,
+  addReferenceItem,
+  removeReferenceItem
+} from './core';
+
 const questionsById = (state = {}, action) => {
   switch(action.type) {
     case 'ADD_QUESTION': {
-      return {...state, [action.id]: {id: action.id, text: action.text}}
+      return addItem(state, action);
     }
     case 'REMOVE_QUESTION': {
-      let next = Object.assign({}, state);
-      delete next[action.id];
-      return next;
+      return removeItem(state, action);
     }
     case 'ADD_ANSWER': {
-      const answers = state[action.question].answers || [];
-      return {...state,
-        [action.question]: {
-          ...state[action.question],
-          answers: [...answers, action.id]
-        }
-      };
+      return addReferenceItem(state, action, 'question', 'answers');
     }
     case 'REMOVE_ANSWER': {
-      return {...state,
-        [action.question]: {
-          ...state[action.question],
-          answers: state[action.question].answers.filter(x => x !== action.id)
-        }
-      };
+      return removeReferenceItem(state, action, 'question', 'answers');
     }
     default:
       return state;
