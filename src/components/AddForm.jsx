@@ -22,13 +22,13 @@ export default React.createClass({
             ref={node => this.input=node}
             onKeyPress={this.sendInput}
           />
-          <button
-            className="btn btn-default"
-            onClick={this.sendInput}
-          >
-            {this.props.btnText}
-          </button>
         </div>
+        <button
+          className="btn btn-default"
+          onClick={this.sendInput}
+        >
+          {this.props.btnText}
+        </button>
       </form>
     );
   }
