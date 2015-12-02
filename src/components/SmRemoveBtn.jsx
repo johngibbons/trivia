@@ -1,13 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const RemoveQuestionForm = React.createClass({
-  handleRemove(){
+const SmRemoveBtn = React.createClass({
+  handleRemove(e){
+    e.preventDefault();
     this.props.dispatch({
-      type: 'REMOVE_QUESTION',
-      id: this.props.id,
-      entry: this.props.entry,
-      game: this.props.game
+      ...this.props
     });
   },
   render(){
@@ -21,4 +19,4 @@ const RemoveQuestionForm = React.createClass({
   }
 });
 
-export default connect()(RemoveQuestionForm);
+export default connect()(SmRemoveBtn);

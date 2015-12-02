@@ -1,20 +1,32 @@
 import React from 'react';
 import Question from './Question';
-import AddQuestionForm from './AddQuestionForm';
+import AddForm from './AddForm';
 import {connect} from 'react-redux';
 
+let nextQuestionId = 0;
 const QuestionList = React.createClass({
+  handleAddQuestion(input){
+    this.props.dispatch({
+      type: 'ADD_QUESTION',
+      id: nextQuestionId++,
+      text: input.value,
+      entry: this.props.entry,
+      game: this.props.game
+    });
+  },
   getQuestions(){
     return this.props.questions || [];
   },
   render(){
     return (
       <div className="row">
-        {this.props.isMaster &&
-          <AddQuestionForm
-            entry={this.props.entry}
-            game={this.props.game}
-          />}
+        <AddForm
+          handleSubmit={this.handleAddQuestion}
+          label="Add Question"
+          placeholder="Add question..."
+          htmlFor="addQuestion"
+          btnText="Add Question"
+        />
         {this.getQuestions().map(id => {
           const question = this.props.questionsById[id];
           return (

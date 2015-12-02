@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AnswerList from './AnswerList';
 import AddForm from './AddForm';
-import RemoveQuestionForm from './RemoveQuestionForm';
+import SmRemoveBtn from './SmRemoveBtn';
 import classNames from 'classnames';
 
 let nextAnswerId = 0;
@@ -14,7 +14,6 @@ const Question = React.createClass({
       text: input.value,
       question: this.props.id
     });
-    input.value = '';
   },
   render(){
     let questionClass = classNames({
@@ -29,7 +28,8 @@ const Question = React.createClass({
         <div className={questionClass} >
           <div className="panel-heading clearfix">
             <h3 className="panel-title pull-left">{this.props.text}</h3>
-            <RemoveQuestionForm
+            <SmRemoveBtn
+              type='REMOVE_QUESTION'
               id={this.props.id}
               entry={this.props.entry}
               game={this.props.game}
@@ -40,12 +40,11 @@ const Question = React.createClass({
             answersById={this.props.answersById}
             question={this.props.id}
           />
-          {this.props.isMaster &&
-            <AddForm
-              placeholder="Add answer..."
-              handleSubmit={this.handleAddAnswer}
-              btnText="Add Answer"
-            />}
+          <AddForm
+            placeholder="Add answer..."
+            handleSubmit={this.handleAddAnswer}
+            btnText="Add Answer"
+          />
         </div>
       </div>
     );
