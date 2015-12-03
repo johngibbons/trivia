@@ -24,7 +24,7 @@ export default React.createClass({
           />
         </div>
         <button
-          className="btn btn-default"
+          className="btn btn-primary"
           onClick={this.sendInput}
         >
           {this.props.btnText}
