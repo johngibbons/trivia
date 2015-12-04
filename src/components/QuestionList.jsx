@@ -15,13 +15,6 @@ const QuestionList = React.createClass({
   render(){
     return (
       <div className="row">
-        <AddForm
-          handleSubmit={this.handleAddQuestion}
-          label="Add Question"
-          placeholder="Add question..."
-          htmlFor="addQuestion"
-          btnText="Add Question"
-        />
         {this.getQuestions().map(id => {
           const question = this.props.questionsById[id];
           return (

@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import App from './components/App';
 import Game from './components/Game';
-import Dashboard from './components/Dashboard';
+import Home from './components/Home';
+import NewGame from './components/NewGame'
 import Entry from './components/Entry';
+
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers/index';
@@ -32,7 +35,8 @@ const render = () => {
     <Provider store={store}>
       <Router>
         <Route path='/' component={App}>
-          <IndexRoute component={Dashboard} />
+          <IndexRoute component={Home} />
+          <Route path='games/new' component={NewGame}></Route>
           <Route path='games/:id' component={Game}></Route>
           <Route path='entries/:id' component={Entry}></Route>
         </Route>

@@ -8,6 +8,11 @@ export default React.createClass({
       this.input.value = '';
     }
   },
+  toggleSaveBtn(){
+    this.btn.style.display === "none" ?
+      this.btn.style.display = "block" :
+      this.btn.style.display = "none";
+  },
   render(){
     let input = null;
     return(
@@ -21,11 +26,15 @@ export default React.createClass({
             className="form-control"
             ref={node => this.input=node}
             onKeyPress={this.sendInput}
+            onFocus={this.toggleSaveBtn}
+            onBlur={this.toggleSaveBtn}
           />
         </div>
         <button
           className="btn btn-primary"
           onClick={this.sendInput}
+          ref={ref => this.btn = ref}
+          style={{display: "none"}}
         >
           {this.props.btnText}
         </button>
