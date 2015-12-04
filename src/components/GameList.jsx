@@ -1,9 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Game from './Game';
 import {Link} from 'react-router';
 
-const GameList = React.createClass({
+export default React.createClass({
   getGames(){
     return this.props.gamesById || {};
   },
@@ -35,6 +34,5 @@ const GameList = React.createClass({
       </table>
     );
   }
-});
 
-export default connect()(GameList);
+});

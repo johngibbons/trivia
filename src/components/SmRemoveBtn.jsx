@@ -4,9 +4,7 @@ import {connect} from 'react-redux';
 const SmRemoveBtn = React.createClass({
   handleRemove(e){
     e.preventDefault();
-    this.props.dispatch({
-      ...this.props
-    });
+    this.props.handleRemove();
   },
   render(){
     return(

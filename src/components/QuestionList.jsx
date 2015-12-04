@@ -2,17 +2,12 @@ import React from 'react';
 import Question from './Question';
 import AddForm from './AddForm';
 import {connect} from 'react-redux';
+import {addQuestion} from '../actions/index';
 
 let nextQuestionId = 0;
 const QuestionList = React.createClass({
   handleAddQuestion(input){
-    this.props.dispatch({
-      type: 'ADD_QUESTION',
-      id: nextQuestionId++,
-      text: input.value,
-      entry: this.props.entry,
-      game: this.props.game
-    });
+    this.props.dispatch(addQuestion(input, this.props));
   },
   getQuestions(){
     return this.props.questions || [];

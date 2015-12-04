@@ -1,14 +1,14 @@
-import {combineReducers} from 'redux';
-import gamesById from './game';
-import entriesById from './entry';
-import questionsById from './question';
-import answersById from './answer';
+import {fromJS, toJS, mergeDeep} from 'immutable';
 
-const rootReducer = combineReducers({
-  gamesById,
-  entriesById,
-  questionsById,
-  answersById
-});
+function setState(state, newState) {
+  return fromJS(state).mergeDeep(fromJS(newState)).toJS();
+}
 
-export default rootReducer;
+export default function(state = {}, action) {
+  switch (action.type) {
+    case 'SET_STATE': {
+      return setState(state, action.state);
+    }
+  }
+  return state;
+}

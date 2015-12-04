@@ -2,17 +2,15 @@ import React from 'react';
 import EntryList from './EntryList';
 import AddForm from './AddForm';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, History} from 'react-router';
+import {addEntry} from '../actions/index';
 
 let nextEntryId = 0;
 const Game = React.createClass({
+  mixins: [History],
   handleCreateEntry(event){
     event.preventDefault();
-    this.props.dispatch({
-      type: "ADD_ENTRY",
-      id: nextEntryId,
-      game: this.props.params.id
-    });
+    this.props.dispatch(addEntry(this.props));
     this.history.pushState(null, `entries/${nextEntryId}`);
   },
   render(){
@@ -25,7 +23,7 @@ const Game = React.createClass({
           <h1>{this.title}</h1>
           <p className="lead">Select an entry to view or&nbsp;
             <Link
-              to={`entries/${nextEntryId++}`}
+              to={`entries/${nextEntryId}`}
               onClick={this.handleCreateEntry}>
               create a new one
           </Link></p>

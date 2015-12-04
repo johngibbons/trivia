@@ -1,22 +1,21 @@
 import React from 'react';
 import QuestionList from './QuestionList';
+import EntryTitle from './EntryTitle';
 import {connect} from 'react-redux';
+import {removeEntry, updateEntry} from '../actions/index';
 
 const Entry = React.createClass({
   handleRemove(){
-    this.props.dispatch({
-      type: "REMOVE_ENTRY",
-      id: this.props.id,
-      game: this.props.game
-    });
+    this.props.dispatch(removeEntry(this.props));
+  },
+  handleUpdateEntry(input){
+    this.props.dispatch(updateEntry(input, this.props));
   },
   render(){
     return (
-      <div>
+      <div className = "container">
         <div className="jumbotron">
-          <h1>{this.props.title}
-            <span className="label label-default">{this.props.rank}</span>
-          </h1>
+          <EntryTitle title={this.props.title} />
           <p className="entryScore">score: {this.props.score}</p>
           <button
             className="btn btn-danger"

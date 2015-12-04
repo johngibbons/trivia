@@ -1,8 +1,11 @@
 import React from 'react';
 import SmRemoveBtn from './SmRemoveBtn';
-import {connect} from 'react-redux';
+import {removeAnswer} from '../actions/index';
 
-const Answer = React.createClass({
+export default React.createClass({
+  handleRemoveAnswer(){
+    removeAnswer(this.props);
+  },
   render(){
     return(
       <a href="#"
@@ -10,14 +13,10 @@ const Answer = React.createClass({
       >
         {this.props.text}
         <SmRemoveBtn
-          type="REMOVE_ANSWER"
-          id={this.props.id}
-          question={this.props.question}
+          handleRemove={this.handleRemoveAnswer}
         />
       </a>
     );
 
   }
 });
-
-export default connect()(Answer);

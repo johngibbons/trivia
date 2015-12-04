@@ -3,27 +3,20 @@ import AddForm from './AddForm';
 import GameList from './GameList';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import {addGame} from '../actions/index';
 
 let nextGameId = 0;
 const Dashboard = React.createClass({
   handleAddGame(input){
-    this.props.dispatch({
-      type: 'ADD_GAME',
-      id: nextGameId++,
-      title: input.value
-    });
+    this.props.dispatch(addGame(input));
   },
   render(){
     return(
       <div className="container">
         <div className="page-header">
-          <h1>Welcome to Trivial</h1>
-          <p className="lead">select a game below or&nbsp;
-            <Link
-              to={`games/${nextGameId}`}
-              onClick={this.handleCreateEntry}>
-              create a new one
-          </Link> to begin</p>
+          <h1>Welcome to Trvia</h1>
+          <p className="lead">select a game below or create a new one to
+            begin</p>
         </div>
         <AddForm
           label="Create A New Game"
@@ -39,6 +32,7 @@ const Dashboard = React.createClass({
 });
 
 function mapStateToProps(state){
+  console.log('state', state);
   return {
     gamesById: state.gamesById
   };

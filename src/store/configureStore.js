@@ -1,7 +1,7 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import rootReducer from '../reducers/index';
+import remoteActionMiddleware from '../remote_action_middleware';
+import io from 'socket.io-client';
+import {store} from '../index';
+import {setState} from '../actions/index';
 
-export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState);
-  return store;
-}
