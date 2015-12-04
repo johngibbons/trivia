@@ -1,14 +1,11 @@
-import {fromJS, toJS, mergeDeep} from 'immutable';
+import remoteState from './state';
+import gamesById from './game';
+import reduceReducers from 'reduce-reducers';
 
-function setState(state, newState) {
-  return fromJS(state).mergeDeep(fromJS(newState)).toJS();
-}
+const combined = reduceReducers(
+  remoteState,
+  gamesById
+);
 
-export default function(state = {}, action) {
-  switch (action.type) {
-    case 'SET_STATE': {
-      return setState(state, action.state);
-    }
-  }
-  return state;
-}
+export default combined;
+

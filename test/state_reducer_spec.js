@@ -1,8 +1,8 @@
 import {expect} from 'chai';
 
-import rootReducer from '../src/reducers/index';
+import remoteState from '../src/reducers/state';
 
-describe('reducer', () => {
+describe('remote state reducer', () => {
 
   it('handles SET_STATE', () => {
     const initialState = {};
@@ -10,7 +10,7 @@ describe('reducer', () => {
     const action = {
       type: 'SET_STATE',
       state: {
-        games: {
+        gamesById: {
           0: {
             id: 0,
             title: "First Game",
@@ -20,10 +20,10 @@ describe('reducer', () => {
       }
     };
 
-    const nextState = rootReducer(initialState, action);
+    const nextState = remoteState(initialState, action);
 
     expect(nextState).to.eql({
-      games: {
+      gamesById: {
         0: {
           id: 0,
           title: "First Game",
@@ -38,7 +38,7 @@ describe('reducer', () => {
     const action = {
       type: 'SET_STATE',
       state: {
-        games: {
+        gamesById: {
           0: {
             id: 0,
             title: "First Game",
@@ -48,10 +48,10 @@ describe('reducer', () => {
       }
     };
 
-    const nextState = rootReducer(undefined, action);
+    const nextState = remoteState(undefined, action);
 
     expect(nextState).to.eql({
-      games: {
+      gamesById: {
         0: {
           id: 0,
           title: "First Game",
@@ -63,7 +63,7 @@ describe('reducer', () => {
 
   it('handles SET_STATE overriding previous data', () => {
     const initialState = {
-      games: {
+      gamesById: {
         0: {
           id: 0,
           title: "Initial Name",
@@ -75,7 +75,7 @@ describe('reducer', () => {
     const action = {
       type: "SET_STATE",
       state: {
-        games: {
+        gamesById: {
           0: {
             title: "New Name",
             entries: [1,2,6]
@@ -84,9 +84,9 @@ describe('reducer', () => {
       }
     };
 
-    const nextState = rootReducer(initialState, action);
+    const nextState = remoteState(initialState, action);
     expect(nextState).to.eql({
-      games: {
+      gamesById: {
         0: {
           id: 0,
           title: "New Name",

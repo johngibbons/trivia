@@ -3,8 +3,8 @@ import EditableText from './EditableText';
 import addQuestion from '../actions/index';
 
 export default React.createClass({
-  saveTitle(){
-    addQuestion()
+  saveTitle(input){
+    console.log('title saved');
   },
   render(){
     return(

@@ -1,22 +1,26 @@
 import React from 'react';
+import SaveOrDeleteBtns from './SaveOrDeleteBtns';
+import classNames from 'classnames';
 
 export default React.createClass({
+  showBtn(){
+    !this.props.editing && this.props.toggleEditing();
+  },
   saveInput(e){
     if (e.key === 'Enter' || !e.key) {
       this.input.blur();
       this.props.saveInput(this.input.value);
-      this.btn.style.display = "none";
+      this.props.toggleEditing();
     }
   },
-  checkIfEmpty(){
-    if (this.input.value.length === 0) {
-      this.btn.style.display = "none";
-    }
-  },
-  showBtn(){
-    this.btn.style.display = "block";
+  cancelEdit(){
+    this.input.value = '';
+    this.props.toggleEditing();
   },
   render(){
+    const btnsClasses = classNames({
+      'hidden': !this.props.editing
+    });
     return(
       <div>
         <input
@@ -25,20 +29,14 @@ export default React.createClass({
           placeholder={this.props.placeholder}
           ref={el => this.input = el}
           onKeyDown={this.saveInput}
-          onBlur={this.checkIfEmpty}
           onFocus={this.showBtn}
         />
-        <button
-          className="btn btn-primary m-t"
-          style={{
-            display: "none",
-            marginTop: "1rem"
-          }}
-          ref={el => this.btn = el}
-          onClick={this.saveInput}
-        >
-          Save
-        </button>
+        <SaveOrDeleteBtns
+          ref={el => this.btns = el}
+          className={btnsClasses}
+          cancelEdit={this.cancelEdit}
+          save={this.saveInput}
+        />
       </div>
     );
   }

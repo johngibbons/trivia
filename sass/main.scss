@@ -7,3 +7,30 @@
 .no-margin {
   margin: 0;
 }
+
+.cancel {
+  font-size: 16px;
+  color: $brand-danger;
+  font-weight: 300;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: darken($brand-danger, 15%);
+  }
+}
+
+$hover-dark-bg: #f9f9f9;
+
+.hover-dark-bg {
+  transition: all 0.3s ease;
+  background-color: $hover-dark-bg;
+  cursor: pointer;
+  color: darken($hover-dark-bg, 25%);
+
+  &:hover {
+    background-color: darken($hover-dark-bg, 5%);
+  }
+
+}

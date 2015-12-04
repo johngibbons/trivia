@@ -3,10 +3,15 @@ import AddForm from './AddForm';
 import {connect} from 'react-redux';
 import {addGame} from '../actions/index';
 import {Link} from 'react-router';
+import shortid from 'shortid';
 
-let nextGameId = 0;
-const Dashboard = React.createClass({
+const Home = React.createClass({
+  handleNewGame(){
+    this.props.dispatch(addGame(this.newId));
+    this.props.history.pushState(null, `games/${this.newId}/edit`);
+  },
   render(){
+    this.newId = shortid.generate();
     return(
       <div>
         <div className="jumbotron text-center">
@@ -16,9 +21,10 @@ const Dashboard = React.createClass({
           </div>
           <div className="container">
             <div className="col-md-6 col-md-offset-3">
-              <Link to="/games/new">
-                <button className="btn btn-primary btn-lg">Create A Game</button>
-              </Link>
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={this.handleNewGame}
+              >Create A Game</button>
             </div>
           </div>
         </div>
@@ -38,11 +44,4 @@ const Dashboard = React.createClass({
   }
 });
 
-function mapStateToProps(state){
-  console.log('state', state);
-  return {
-    gamesById: state.gamesById
-  };
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default connect()(Home);

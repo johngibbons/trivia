@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 export function setState(state) {
   return {
     type: 'SET_STATE',
@@ -5,24 +7,30 @@ export function setState(state) {
   };
 }
 
-let nextGameId = 0;
-export function addGame(input) {
+export function addGame(id) {
   return {
     type: 'ADD_GAME',
     payload: {
-      id: nextGameId++,
-      title: input.value
+      id
     },
     meta: {remote: true}
   };
 }
 
-let nextEntryId = 0;
+export function toggleGameEditing(id) {
+  return {
+    type: 'TOGGLE_GAME_EDITING',
+    payload: {
+      id
+    }
+  }
+}
+
 export function addEntry(props) {
   return {
     type: 'ADD_ENTRY',
     payload: {
-      id: nextEntryId++,
+      id: shortid.generate(),
       game: props.params.id
     },
     meta: {remote: true}
@@ -51,14 +59,13 @@ export function removeEntry(props) {
   };
 }
 
-let nextQuestionId = 0;
 export function addQuestion(input, props) {
   return {
     type: 'ADD_QUESTION',
     payload: {
-      id: nextQuestionId++,
+      id: shortid.generate(),
       text: input.value,
-      entry: props.entry
+      game: props.game
     },
     meta: {remote: true}
   }
@@ -75,12 +82,11 @@ export function removeQuestion(props) {
   }
 }
 
-let nextAnswerId = 0;
 export function addAnswer(input, props) {
   return {
     type: 'ADD_ANSWER',
     payload: {
-      id: nextAnswerId++,
+      id: shortid.generate(),
       text: input.value,
       question: props.id
     },
