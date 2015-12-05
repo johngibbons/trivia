@@ -60,13 +60,13 @@ export function removeEntry(props) {
   };
 }
 
-export function addQuestion(input, props) {
+export function addQuestion(input, game) {
   return {
     type: 'ADD_QUESTION',
     payload: {
       id: shortid.generate(),
       text: input.value,
-      game: props.game
+      game
     },
     meta: {remote: true}
   }

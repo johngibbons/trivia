@@ -9,13 +9,11 @@ const QuestionList = React.createClass({
   handleAddQuestion(input){
     this.props.dispatch(addQuestion(input, this.props));
   },
-  getQuestions(){
-    return this.props.questions || [];
-  },
   render(){
+    const questions = this.props.questions || [];
     return (
-      <div className="row">
-        {this.getQuestions().map(id => {
+      <span>
+        {questions.map(id => {
           const question = this.props.questionsById[id];
           return (
             <Question
@@ -33,12 +31,13 @@ const QuestionList = React.createClass({
             />
           );
         })}
-      </div>
+      </span>
     );
   }
 });
 
 function mapStateToProps(state){
+  console.log(state);
   return {
     questionsById: state.questionsById,
     answersById: state.answersById

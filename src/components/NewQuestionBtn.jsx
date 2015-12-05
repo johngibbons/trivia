@@ -8,6 +8,14 @@ export default React.createClass({
     this.input.focus();
     this.props.toggleQuestionForm();
   },
+  cancel(){
+    this.input.value = '';
+    this.props.toggleQuestionForm();
+  },
+  save(){
+    this.props.save(this.input);
+    this.props.toggleQuestionForm();
+  },
   render(){
     const formClass = classNames({
       'hidden': !this.props.questionFormVisible,
@@ -45,7 +53,10 @@ export default React.createClass({
                 placeholder="Enter question..."
                 ref={el => this.input = el}
               />
-              <SaveOrDeleteBtns />
+              <SaveOrDeleteBtns
+                cancelEdit={this.cancel}
+                save={this.save}
+              />
             </form>
           </div>
         </div>

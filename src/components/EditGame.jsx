@@ -3,7 +3,7 @@ import EditableText from './EditableText';
 import NewQuestionBtn from './NewQuestionBtn';
 import QuestionList from './QuestionList';
 import {connect} from 'react-redux';
-import {updateAttr} from '../actions/index';
+import {updateAttr, addQuestion} from '../actions/index';
 
 const EditGame = React.createClass({
 
@@ -12,6 +12,12 @@ const EditGame = React.createClass({
       updateAttr(
         {id: this.props.params.id, title: text}
       )
+    );
+  },
+
+  saveQuestion(input){
+    this.props.dispatch(
+      addQuestion(input, this.props.params.id)
     );
   },
 
@@ -63,6 +69,7 @@ const EditGame = React.createClass({
           <NewQuestionBtn
             toggleQuestionForm={this.toggleQuestionForm}
             questionFormVisible={this.questionFormVisible}
+            save={this.saveQuestion}
           />
         </div>
       </div>
