@@ -3,51 +3,75 @@ import EditableText from './EditableText';
 import NewQuestionBtn from './NewQuestionBtn';
 import QuestionList from './QuestionList';
 import {connect} from 'react-redux';
-import {toggleGameEditing} from '../actions/index';
+import {updateAttr} from '../actions/index';
 
 const EditGame = React.createClass({
-  saveTitle(){
-    console.log("Title saved!");
+
+  saveTitle(text){
+    this.props.dispatch(
+      updateAttr(
+        {id: this.props.params.id, title: text}
+      )
+    );
   },
-  getCurrentGame(){
-    return this.props.gamesById[this.props.params.id] || {};
+
+  toggleTitleForm(){
+    this.props.dispatch(
+      updateAttr(
+        {
+          id: this.props.params.id,
+          titleFormVisible: !this.titleFormVisible
+        }
+      )
+    );
   },
-  getGameQuestions(){
-    return this.getCurrentGame().questions || [];
+
+  toggleQuestionForm(){
+    this.props.dispatch(
+      updateAttr(
+        {
+          id: this.props.params.id,
+          questionFormVisible: !this.questionFormVisible
+        }
+      )
+    );
   },
-  getEditing(){
-    return this.getCurrentGame().editing || false;
-  },
-  toggleEditing(){
-    this.props.dispatch(toggleGameEditing(this.props.params.id));
-  },
+
   render(){
+
+    this.game = this.props.gamesById[this.props.params.id] || {};
+    this.questions = this.game.questions || [];
+    this.titleFormVisible = this.game.titleFormVisible;
+    this.questionFormVisible = this.game.questionFormVisible;
+
     return(
       <div className="container">
         <div className="page-header">
           <h1>
             <EditableText
               placeholder="Enter a name for your game..."
-              editing={this.getEditing()}
-              toggleEditing={this.toggleEditing}
+              titleFormVisible={this.titleFormVisible}
+              toggleTitleForm={this.toggleTitleForm}
               saveInput={this.saveTitle}
             />
           </h1>
         </div>
         <div className="row">
           <QuestionList
-            questions={this.getGameQuestions()}
+            questions={this.questions}
           />
           <NewQuestionBtn
+            toggleQuestionForm={this.toggleQuestionForm}
+            questionFormVisible={this.questionFormVisible}
           />
         </div>
       </div>
     );
+
   }
 });
 
 function mapStateToProps(state) {
-  console.log("state:", state);
   return {
     gamesById: state.gamesById
   }

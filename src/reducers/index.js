@@ -8,4 +8,3 @@ const combined = reduceReducers(
 );
 
 export default combined;
-

@@ -1,22 +1,52 @@
 import React from 'react';
-
+import classNames from 'classnames';
+import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import addQuestion from '../actions/index';
 
 export default React.createClass({
-  saveTitle(input){
-    console.log('saved question');
+  toggleInput(e){
+    this.input.focus();
+    this.props.toggleQuestionForm();
   },
   render(){
+    const formClass = classNames({
+      'hidden': !this.props.questionFormVisible,
+      'panel': true,
+      'panel-default': true,
+      'clearfix': true
+    });
+    const btnClass = classNames({
+      'hidden': this.props.questionFormVisible,
+      'panel': true,
+      'panel-default': true,
+      'clearfix': true,
+      'hover-dark-bg': true
+    });
     return(
       <div className="col-md-4">
         <div
-          className="panel panel-default clearfix hover-dark-bg"
-          onClick={this.saveTitle}
+          className={btnClass}
+          onClick={this.toggleInput}
         >
           <div className="panel-body">
             <h4 className="no-margin">
               Add a question...
             </h4>
+          </div>
+        </div>
+        <div
+          className={formClass}
+        >
+          <div className="panel-body">
+            <form>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter question..."
+                ref={el => this.input = el}
+              />
+              <SaveOrDeleteBtns />
+            </form>
           </div>
         </div>
       </div>

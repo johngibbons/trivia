@@ -17,12 +17,13 @@ export function addGame(id) {
   };
 }
 
-export function toggleGameEditing(id) {
+export function updateAttr(obj) {
   return {
-    type: 'TOGGLE_GAME_EDITING',
+    type: 'UPDATE_ATTRIBUTE',
     payload: {
-      id
-    }
+      ...obj
+    },
+    meta: {remote: true}
   }
 }
 

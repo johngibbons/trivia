@@ -2,10 +2,10 @@ import React from 'react';
 
 export default React.createClass({
   handleSave(e){
+    e.preventDefault();
     this.props.save(e);
   },
   handleCancel(){
-    console.log("clicked");
     this.props.cancelEdit();
   },
   render(){

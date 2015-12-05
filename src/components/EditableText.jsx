@@ -4,22 +4,23 @@ import classNames from 'classnames';
 
 export default React.createClass({
   showBtn(){
-    !this.props.editing && this.props.toggleEditing();
+    !this.props.titleFormVisible &&
+      this.props.toggleTitleForm();
   },
   saveInput(e){
     if (e.key === 'Enter' || !e.key) {
       this.input.blur();
       this.props.saveInput(this.input.value);
-      this.props.toggleEditing();
+      this.props.toggleTitleForm();
     }
   },
   cancelEdit(){
     this.input.value = '';
-    this.props.toggleEditing();
+    this.props.toggleTitleForm();
   },
   render(){
     const btnsClasses = classNames({
-      'hidden': !this.props.editing
+      'hidden': !this.props.titleFormVisible
     });
     return(
       <div>

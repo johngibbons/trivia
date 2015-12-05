@@ -19,7 +19,6 @@ import io from 'socket.io-client';
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 socket.on('state', state => {
-    console.log('remote state:', state);
     store.dispatch(setState(state));
   }
 );
