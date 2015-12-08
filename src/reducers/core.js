@@ -1,7 +1,7 @@
 import {fromJS, toJS, mergeDeep} from 'immutable';
 
 export function mergeStates(state, newState) {
-  return fromJS(state).mergeDeep(fromJS(newState)).toJS();
+  return fromJS(state).merge(fromJS(newState)).toJS();
 }
 
 export function updateItem(state, payload) {

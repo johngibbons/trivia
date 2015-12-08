@@ -61,24 +61,25 @@ describe('remote state reducer', () => {
     });
   });
 
-  it('handles SET_STATE overriding previous data', () => {
+  it('handles SET_STATE removing nested data if diff', () => {
     const initialState = {
       gamesById: {
         0: {
           id: 0,
-          title: "Initial Name",
-          entries: [1,2,5]
+          title: 'some title',
+          questions: [1]
         }
       }
-    };
+    }
 
     const action = {
-      type: "SET_STATE",
+      type: 'SET_STATE',
       state: {
         gamesById: {
           0: {
-            title: "New Name",
-            entries: [1,2,6]
+            id: 0,
+            title: 'some title',
+            questions: []
           }
         }
       }
@@ -89,8 +90,8 @@ describe('remote state reducer', () => {
       gamesById: {
         0: {
           id: 0,
-          title: "New Name",
-          entries: [1,2,6]
+          title: 'some title',
+          questions: []
         }
       }
     });

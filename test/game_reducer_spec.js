@@ -4,7 +4,7 @@ import gamesById from '../src/reducers/game';
 
 describe('gamesById reducer', () => {
 
-  it('handles TOGGLE_GAME_EDITING', () => {
+  it('handles UPDATE_ATTRIBUTE', () => {
     const initialState = {
       gamesById: {
         0: {
@@ -15,9 +15,10 @@ describe('gamesById reducer', () => {
     };
 
     const action = {
-      type: 'TOGGLE_GAME_EDITING',
+      type: 'UPDATE_ATTRIBUTE',
       payload: {
-        id: 0
+        id: 0,
+        editing: true
       }
     };
 
@@ -32,7 +33,7 @@ describe('gamesById reducer', () => {
     });
   });
 
-  it('handles TOGGLE_GAME_EDITING when initially true', () => {
+  it('handles UPDATE_ATTRIBUTE when initially true', () => {
     const initialState = {
       gamesById: {
         0: {
@@ -43,9 +44,10 @@ describe('gamesById reducer', () => {
     };
 
     const action = {
-      type: 'TOGGLE_GAME_EDITING',
+      type: 'UPDATE_ATTRIBUTE',
       payload: {
-        id: 0
+        id: 0,
+        editing: false
       }
     };
 
@@ -60,7 +62,7 @@ describe('gamesById reducer', () => {
     });
   });
 
-  it('handles TOGGLE_GAME_EDITING when initially empty', () => {
+  it('handles UPDATE_ATTRIBUTE when initially empty', () => {
     const initialState = {
       gamesById: {
         0: {
@@ -70,9 +72,10 @@ describe('gamesById reducer', () => {
     };
 
     const action = {
-      type: 'TOGGLE_GAME_EDITING',
+      type: 'UPDATE_ATTRIBUTE',
       payload: {
-        id: 0
+        id: 0,
+        editing: true
       }
     };
 

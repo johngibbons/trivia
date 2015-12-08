@@ -77,7 +77,7 @@ export function removeQuestion(props) {
     type: 'REMOVE_QUESTION',
     payload: {
       id: props.id,
-      entry: props.entry
+      game: props.game
     },
     meta: {remote: true}
   }

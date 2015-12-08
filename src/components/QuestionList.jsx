@@ -1,19 +1,17 @@
 import React from 'react';
 import Question from './Question';
 import AddForm from './AddForm';
-import {connect} from 'react-redux';
-import {addQuestion} from '../actions/index';
 
 let nextQuestionId = 0;
-const QuestionList = React.createClass({
-  handleAddQuestion(input){
-    this.props.dispatch(addQuestion(input, this.props));
-  },
+export default React.createClass({
   render(){
     const questions = this.props.questions || [];
+    console.log(questions);
     return (
       <span>
         {questions.map(id => {
+          console.log('id', id);
+          console.log('questionsbyid', this.props.questionsById);
           const question = this.props.questionsById[id];
           return (
             <Question
@@ -28,6 +26,8 @@ const QuestionList = React.createClass({
               answersById={this.props.answersById}
               entry={this.props.entry}
               game={this.props.game}
+              removeQuestion={this.props.removeQuestion}
+              addAnswer={this.props.addAnswer}
             />
           );
         })}
@@ -35,13 +35,3 @@ const QuestionList = React.createClass({
     );
   }
 });
-
-function mapStateToProps(state){
-  console.log(state);
-  return {
-    questionsById: state.questionsById,
-    answersById: state.answersById
-  }
-}
-
-export default connect(mapStateToProps)(QuestionList);

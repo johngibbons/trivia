@@ -1,10 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
-const SmRemoveBtn = React.createClass({
+export default React.createClass({
   handleRemove(e){
     e.preventDefault();
-    this.props.handleRemove();
+    this.props.handleRemove(this.props);
   },
   render(){
     return(
@@ -16,5 +15,3 @@ const SmRemoveBtn = React.createClass({
     );
   }
 });
-
-export default connect()(SmRemoveBtn);

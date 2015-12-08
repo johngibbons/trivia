@@ -3,11 +3,11 @@ import EditableText from './EditableText';
 import NewQuestionBtn from './NewQuestionBtn';
 import QuestionList from './QuestionList';
 import {connect} from 'react-redux';
-import {updateAttr, addQuestion} from '../actions/index';
+import {updateAttr, addQuestion, removeQuestion, addAnswer} from '../actions/index';
 
 const EditGame = React.createClass({
 
-  saveTitle(text){
+  saveTitle(text) {
     this.props.dispatch(
       updateAttr(
         {id: this.props.params.id, title: text}
@@ -15,13 +15,21 @@ const EditGame = React.createClass({
     );
   },
 
-  saveQuestion(input){
+  saveQuestion(input) {
     this.props.dispatch(
       addQuestion(input, this.props.params.id)
     );
   },
 
-  toggleTitleForm(){
+  removeQuestion(props) {
+    this.props.dispatch(removeQuestion(props));
+  },
+
+  addAnswer(input) {
+    this.props.dispatch(addAnswer(input, this.props));
+  },
+
+  toggleTitleForm() {
     this.props.dispatch(
       updateAttr(
         {
@@ -32,7 +40,7 @@ const EditGame = React.createClass({
     );
   },
 
-  toggleQuestionForm(){
+  toggleQuestionForm() {
     this.props.dispatch(
       updateAttr(
         {
@@ -43,7 +51,7 @@ const EditGame = React.createClass({
     );
   },
 
-  render(){
+  render() {
 
     this.game = this.props.gamesById[this.props.params.id] || {};
     this.questions = this.game.questions || [];
@@ -64,7 +72,12 @@ const EditGame = React.createClass({
         </div>
         <div className="row">
           <QuestionList
+            questionsById={this.props.questionsById}
             questions={this.questions}
+            answersById={this.props.answersById}
+            game={this.props.params.id}
+            addAnswer={this.addAnswer}
+            removeQuestion={this.removeQuestion}
           />
           <NewQuestionBtn
             toggleQuestionForm={this.toggleQuestionForm}
@@ -79,8 +92,11 @@ const EditGame = React.createClass({
 });
 
 function mapStateToProps(state) {
+  console.log('state is:', state);
   return {
-    gamesById: state.gamesById
+    gamesById: state.gamesById,
+    questionsById: state.questionsById,
+    answersById: state.answersById
   }
 }
 
