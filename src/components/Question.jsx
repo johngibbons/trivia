@@ -1,11 +1,18 @@
 import React from 'react';
 import AnswerList from './AnswerList';
-import AddForm from './AddForm';
+import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import SmRemoveBtn from './SmRemoveBtn';
 import classNames from 'classnames';
 
 let nextAnswerId = 0;
 export default React.createClass({
+  handleSaveAnswer() {
+    this.props.addAnswer(this.input, this.props);
+    this.input.value = '';
+  },
+  cancel() {
+    this.input.blur();
+  },
   render(){
     let questionClass = classNames({
       'panel': true,
@@ -31,11 +38,18 @@ export default React.createClass({
               answersById={this.props.answersById}
               question={this.props.id}
             />
-            <AddForm
-              placeholder="Add answer..."
-              handleSubmit={this.props.addAnswer}
-              btnText="Add Answer"
-            />
+            <form>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter answer..."
+                ref={el => this.input = el}
+              />
+              <SaveOrDeleteBtns
+                cancelEdit={this.cancel}
+                save={this.handleSaveAnswer}
+              />
+            </form>
           </div>
         </div>
       </div>

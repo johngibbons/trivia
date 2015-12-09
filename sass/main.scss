@@ -2,6 +2,7 @@
   width: 100%;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .no-margin {
@@ -33,4 +34,41 @@ $hover-dark-bg: #f9f9f9;
     background-color: darken($hover-dark-bg, 5%);
   }
 
+}
+
+.question {
+  .panel-heading {
+    &:hover {
+      &>.remove {
+        opacity: 1;
+      }
+    }
+  }
+  .list-group-item {
+    border: none;
+    border-radius: 0;
+    &:hover {
+      .remove {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.remove {
+  opacity: 0;
+  color: $brand-danger;
+  cursor: pointer;
+
+  &:hover {
+    color: darken($brand-danger, 15%);
+  }
+}
+
+.collapsed {
+  height: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  transition: all 0.3s ease;
 }

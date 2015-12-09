@@ -1,14 +1,14 @@
 import React from 'react';
 
 export default React.createClass({
-  handleSave(e){
+  handleSave(e) {
     e.preventDefault();
     this.props.save(e);
   },
-  handleCancel(){
+  handleCancel() {
     this.props.cancelEdit();
   },
-  render(){
+  render() {
     return(
       <div
         className={this.props.className}

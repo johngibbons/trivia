@@ -1,24 +1,23 @@
 import React from 'react';
-import classNames from 'classnames';
 import SaveOrDeleteBtns from './SaveOrDeleteBtns';
-import addQuestion from '../actions/index';
+import classNames from 'classnames';
 
 export default React.createClass({
-  toggleInput(e){
-    this.input.focus();
+  toggleInput(e) {
     this.props.toggleQuestionForm();
+    this.input.focus();
   },
-  cancel(){
+  cancel() {
     this.input.value = '';
     this.props.toggleQuestionForm();
   },
-  save(){
+  save() {
     this.props.save(this.input);
-    this.props.toggleQuestionForm();
+    this.input.value = '';
   },
-  render(){
+  render() {
     const formClass = classNames({
-      'hidden': !this.props.questionFormVisible,
+      'collapsed': !this.props.questionFormVisible,
       'panel': true,
       'panel-default': true,
       'clearfix': true
@@ -45,13 +44,14 @@ export default React.createClass({
         <div
           className={formClass}
         >
-          <div className="panel-body">
+          <div className='panel-body'>
             <form>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Enter question..."
                 ref={el => this.input = el}
+                onBlur={this.props.toggleQuestionForm}
               />
               <SaveOrDeleteBtns
                 cancelEdit={this.cancel}

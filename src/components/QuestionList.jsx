@@ -6,12 +6,9 @@ let nextQuestionId = 0;
 export default React.createClass({
   render(){
     const questions = this.props.questions || [];
-    console.log(questions);
     return (
       <span>
         {questions.map(id => {
-          console.log('id', id);
-          console.log('questionsbyid', this.props.questionsById);
           const question = this.props.questionsById[id];
           return (
             <Question

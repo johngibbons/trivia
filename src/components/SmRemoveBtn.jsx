@@ -7,11 +7,12 @@ export default React.createClass({
   },
   render(){
     return(
-      <button
-        type="button"
-        className="btn btn-danger btn-xs pull-right"
+      <span
+        className='remove pull-right'
         onClick={this.handleRemove}
-      >x</button>
+      >
+        x
+      </span>
     );
   }
 });

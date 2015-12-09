@@ -25,8 +25,8 @@ const EditGame = React.createClass({
     this.props.dispatch(removeQuestion(props));
   },
 
-  addAnswer(input) {
-    this.props.dispatch(addAnswer(input, this.props));
+  addAnswer(input, props) {
+    this.props.dispatch(addAnswer(input, props));
   },
 
   toggleTitleForm() {
@@ -63,6 +63,7 @@ const EditGame = React.createClass({
         <div className="page-header">
           <h1>
             <EditableText
+              className='editable-title'
               placeholder="Enter a name for your game..."
               titleFormVisible={this.titleFormVisible}
               toggleTitleForm={this.toggleTitleForm}
@@ -78,6 +79,7 @@ const EditGame = React.createClass({
             game={this.props.params.id}
             addAnswer={this.addAnswer}
             removeQuestion={this.removeQuestion}
+            toggleQuestionForm={this.toggleQuestionForm}
           />
           <NewQuestionBtn
             toggleQuestionForm={this.toggleQuestionForm}
