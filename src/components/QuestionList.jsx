@@ -1,9 +1,7 @@
 import React from 'react';
 import Question from './Question';
-import AddForm from './AddForm';
 
-let nextQuestionId = 0;
-export default React.createClass({
+export default class extends React.Component {
   render(){
     const questions = this.props.questions || [];
     return (
@@ -12,23 +10,18 @@ export default React.createClass({
           const question = this.props.questionsById[id];
           return (
             <Question
-              id={question.id}
-              key={question.id}
+              id={id}
+              key={id}
               text={question.text}
               answers={question.answers}
-              hasResult={question.hasResult}
-              isCorrect={question.isCorrect}
               ptValue={question.ptValue}
-              isMaster={this.props.isMaster}
-              answersById={this.props.answersById}
-              entry={this.props.entry}
-              game={this.props.game}
+              game={question.game}
               removeQuestion={this.props.removeQuestion}
-              addAnswer={this.props.addAnswer}
+              updateTitle={this.props.updateTitle}
             />
           );
         })}
       </span>
     );
   }
-});
+}

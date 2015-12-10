@@ -1,0 +1,18 @@
+.question {
+  .panel-heading {
+    &:hover {
+      &>.remove {
+        display: block;
+      }
+    }
+  }
+  .list-group-item {
+    border: none;
+    border-radius: 0;
+    &:hover {
+      .remove {
+        display: block;
+      }
+    }
+  }
+}

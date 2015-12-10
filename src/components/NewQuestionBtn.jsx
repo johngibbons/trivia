@@ -3,13 +3,16 @@ import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import classNames from 'classnames';
 
 export default React.createClass({
+  getInitialState() {
+    return {editing: false};
+  },
   toggleInput(e) {
-    this.props.toggleQuestionForm();
+    this.setState({editing: true});
     this.input.focus();
   },
   cancel() {
     this.input.value = '';
-    this.props.toggleQuestionForm();
+    this.setState({editing: false});
   },
   save() {
     this.props.save(this.input);
@@ -17,13 +20,13 @@ export default React.createClass({
   },
   render() {
     const formClass = classNames({
-      'collapsed': !this.props.questionFormVisible,
+      'collapsed': !this.state.editing,
       'panel': true,
       'panel-default': true,
       'clearfix': true
     });
     const btnClass = classNames({
-      'hidden': this.props.questionFormVisible,
+      'hidden': this.state.editing,
       'panel': true,
       'panel-default': true,
       'clearfix': true,
@@ -51,7 +54,6 @@ export default React.createClass({
                 className="form-control"
                 placeholder="Enter question..."
                 ref={el => this.input = el}
-                onBlur={this.props.toggleQuestionForm}
               />
               <SaveOrDeleteBtns
                 cancelEdit={this.cancel}

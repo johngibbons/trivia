@@ -1,19 +1,13 @@
 import React from 'react';
 import AnswerList from './AnswerList';
+import EditableText from './EditableText';
 import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import SmRemoveBtn from './SmRemoveBtn';
 import classNames from 'classnames';
 
-let nextAnswerId = 0;
-export default React.createClass({
-  handleSaveAnswer() {
-    this.props.addAnswer(this.input, this.props);
-    this.input.value = '';
-  },
-  cancel() {
-    this.input.blur();
-  },
-  render(){
+export default class extends React.Component {
+
+  render() {
     let questionClass = classNames({
       'panel': true,
       'panel-default': true,
@@ -25,7 +19,14 @@ export default React.createClass({
       <div className="col-md-4">
         <div className={questionClass} >
           <div className="panel-heading clearfix">
-            <h3 className="panel-title pull-left">{this.props.text}</h3>
+            <h3 className="no-margin">
+              <EditableText
+                className={'panel-title'}
+                placeholder="Enter a question..."
+                text={this.props.text}
+                saveInput={this.updateTitle.bind(this)}
+              />
+            </h3>
             <SmRemoveBtn
               handleRemove={this.props.removeQuestion}
               id={this.props.id}
@@ -47,7 +48,7 @@ export default React.createClass({
               />
               <SaveOrDeleteBtns
                 cancelEdit={this.cancel}
-                save={this.handleSaveAnswer}
+                save={this.handleSaveAnswer.bind(this)}
               />
             </form>
           </div>
@@ -55,4 +56,20 @@ export default React.createClass({
       </div>
     );
   }
-});
+
+  updateTitle(text) {
+    console.log('text', text);
+    console.log('id', this.props.id);
+    this.props.updateTitle(text, this.props.id);
+  }
+
+  handleSaveAnswer() {
+    this.props.addAnswer(this.input, this.props);
+    this.input.value = '';
+  }
+
+  cancel() {
+    this.input.blur();
+  }
+
+};

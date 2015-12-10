@@ -17,9 +17,9 @@ export function addGame(id) {
   };
 }
 
-export function updateAttr(obj) {
+export function updateGameAttr(obj) {
   return {
-    type: 'UPDATE_ATTRIBUTE',
+    type: 'UPDATE_GAME_ATTRIBUTE',
     payload: {
       ...obj
     },
@@ -67,6 +67,16 @@ export function addQuestion(input, game) {
       id: shortid.generate(),
       text: input.value,
       game
+    },
+    meta: {remote: true}
+  }
+}
+
+export function updateQuestionAttr(obj) {
+  return {
+    type: 'UPDATE_QUESTION_ATTRIBUTE',
+    payload: {
+      ...obj
     },
     meta: {remote: true}
   }

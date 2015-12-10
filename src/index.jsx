@@ -1,33 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
-import Game from './components/Game';
+import App from './containers/App';
+import GameEditDashboardContainer from './containers/GameEditDashboardContainer';
 import Home from './components/Home';
-import EditGame from './components/EditGame'
-import Entry from './components/Entry';
 
 import {Provider} from 'react-redux';
-import {applyMiddleware, createStore} from 'redux';
-import rootReducer from './reducers/index';
-import configureStore from './store/configureStore';
-import {Router, Route, Link, IndexRoute} from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import remoteActionMiddleware from './remote_action_middleware';
-import {setState} from './actions/index';
-import io from 'socket.io-client';
-
-const socket = io(`${location.protocol}//${location.hostname}:8090`);
-socket.on('state', state => {
-    store.dispatch(setState(state));
-  }
-);
-
-const createStoreWithMiddleware = applyMiddleware(
-    remoteActionMiddleware(socket)
-  )(createStore);
-const store = createStoreWithMiddleware(rootReducer);
-
+import {Router, Route, IndexRoute} from 'react-router';
+import {store} from './store/configureStore';
 
 const render = () => {
 
@@ -36,9 +16,8 @@ const render = () => {
       <Router>
         <Route path='/' component={App}>
           <IndexRoute component={Home} />
-          <Route path='games/:id/edit' component={EditGame}></Route>
-          <Route path='games/:id' component={Game}></Route>
-          <Route path='entries/:id' component={Entry}></Route>
+          <Route path='games/:id/edit' component={GameEditDashboardContainer}>
+          </Route>
         </Route>
       </Router>
     </Provider>,

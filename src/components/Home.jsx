@@ -1,16 +1,10 @@
 import React from 'react';
-import AddForm from './AddForm';
 import {connect} from 'react-redux';
 import {addGame} from '../actions/index';
-import {Link} from 'react-router';
 import shortid from 'shortid';
 
-const Home = React.createClass({
-  handleNewGame(){
-    this.props.dispatch(addGame(this.newId));
-    this.props.history.pushState(null, `games/${this.newId}/edit`);
-  },
-  render(){
+class Home extends React.Component {
+  render() {
     this.newId = shortid.generate();
     return(
       <div>
@@ -23,7 +17,7 @@ const Home = React.createClass({
             <div className="col-md-6 col-md-offset-3">
               <button
                 className="btn btn-primary btn-lg"
-                onClick={this.handleNewGame}
+                onClick={this.handleNewGame.bind(this)}
               >Create A Game</button>
             </div>
           </div>
@@ -42,6 +36,12 @@ const Home = React.createClass({
       </div>
     );
   }
-});
+
+  handleNewGame(){
+    this.props.dispatch(addGame(this.newId));
+    this.props.history.pushState(null, `games/${this.newId}/edit`);
+  }
+
+}
 
 export default connect()(Home);
