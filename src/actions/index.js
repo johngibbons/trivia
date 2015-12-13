@@ -94,6 +94,7 @@ export function removeQuestion(props) {
 }
 
 export function addAnswer(input, props) {
+  console.log('props', props);
   return {
     type: 'ADD_ANSWER',
     payload: {

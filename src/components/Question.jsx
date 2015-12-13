@@ -8,12 +8,11 @@ import classNames from 'classnames';
 export default class extends React.Component {
 
   render() {
+    const question = this.props.question;
     let questionClass = classNames({
       'panel': true,
       'panel-default': true,
-      'question': true,
-      'correct': this.props.hasResult && this.props.isCorrect,
-      'incorrect': this.props.hasResult && !this.props.isCorrect
+      'question': true
     });
     return (
       <div className="col-md-4">
@@ -23,21 +22,21 @@ export default class extends React.Component {
               <EditableText
                 className={'panel-title'}
                 placeholder="Enter a question..."
-                text={this.props.text}
+                text={question.text}
                 saveInput={this.updateTitle.bind(this)}
               />
             </h3>
             <SmRemoveBtn
               handleRemove={this.props.removeQuestion}
-              id={this.props.id}
-              game={this.props.game}
+              id={question.id}
+              game={question.game}
             />
           </div>
           <div className="panel-body">
             <AnswerList
-              answers={this.props.answers}
+              answers={question.answers}
               answersById={this.props.answersById}
-              question={this.props.id}
+              question={question.id}
             />
             <form>
               <input
@@ -58,13 +57,11 @@ export default class extends React.Component {
   }
 
   updateTitle(text) {
-    console.log('text', text);
-    console.log('id', this.props.id);
     this.props.updateTitle(text, this.props.id);
   }
 
   handleSaveAnswer() {
-    this.props.addAnswer(this.input, this.props);
+    this.props.addAnswer(this.input, this.props.question);
     this.input.value = '';
   }
 

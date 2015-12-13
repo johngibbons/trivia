@@ -25,8 +25,9 @@ class QuestionListContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('(questionsById) state is:', state);
   return {
-    questionsById: state.questionsById
+    questionsById: state.questionsById,
   }
 }
 

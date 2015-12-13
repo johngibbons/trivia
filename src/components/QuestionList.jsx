@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from './Question';
+import QuestionContainer from '../containers/QuestionContainer';
 
 export default class extends React.Component {
   render(){
@@ -9,13 +9,10 @@ export default class extends React.Component {
         {questions.map(id => {
           const question = this.props.questionsById[id];
           return (
-            <Question
-              id={id}
+            <QuestionContainer
               key={id}
-              text={question.text}
-              answers={question.answers}
-              ptValue={question.ptValue}
-              game={question.game}
+              question={question}
+              answersById={this.props.answersById}
               removeQuestion={this.props.removeQuestion}
               updateTitle={this.props.updateTitle}
             />

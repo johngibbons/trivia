@@ -3,9 +3,9 @@ import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import classNames from 'classnames';
 
 export default class extends React.Component {
-  constructor() {
-    super();
-    this.state = {editing: false};
+  constructor(props) {
+    super(props);
+    this.state = this.props.showInput ? {editing: true} : {editing: false};
   }
 
   render() {

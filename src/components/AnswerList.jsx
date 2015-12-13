@@ -2,13 +2,12 @@ import React from 'react';
 import Answer from './Answer';
 
 export default React.createClass({
-  getAnswers(){
-    return this.props.answers || [];
-  },
   render(){
+    const answers = this.props.answers || [];
+
     return(
       <div className="list-group">
-        {this.getAnswers().map(id => {
+        {answers.map(id => {
           const answer = this.props.answersById[id];
           return (
             <Answer

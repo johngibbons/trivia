@@ -32,7 +32,7 @@ class GameEditDashboardContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state is:', state);
+  console.log('(gamesById) state is:', state);
   return {
     gamesById: state.gamesById
   }

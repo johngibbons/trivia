@@ -15,6 +15,7 @@ export default class extends React.Component {
               placeholder="Enter a name for your game..."
               text={this.props.title}
               saveInput={this.props.updateTitle}
+              showInput={true}
             />
           </h1>
         </div>
