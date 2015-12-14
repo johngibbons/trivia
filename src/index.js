@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './containers/App';
-import GameEditDashboardContainer from './containers/GameEditDashboardContainer';
-import Home from './components/Home';
+import GameEditContainer from './containers/GameEditContainer';
+import Home from './containers/Home';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
@@ -14,7 +14,7 @@ ReactDOM.render(
     <Router>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
-        <Route path='games/:id/edit' component={GameEditDashboardContainer}>
+        <Route path='games/:id/edit' component={GameEditContainer}>
         </Route>
       </Route>
     </Router>

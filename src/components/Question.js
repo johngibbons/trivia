@@ -1,10 +1,7 @@
 import React from 'react';
 import AnswerList from './AnswerList';
 import EditableText from './EditableText';
-import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import SmRemoveBtn from './SmRemoveBtn';
-import classNames from 'classnames';
-
 
 export default ({
   onRemove,

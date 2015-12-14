@@ -16,7 +16,7 @@ export default React.createClass({
       >
         <button
           className="btn btn-primary m-t"
-          onClick={this.handleSave}
+          onMouseDown={this.handleSave}
         >
           Save
         </button>
@@ -25,7 +25,7 @@ export default React.createClass({
           style={{
             marginLeft: "1em"
           }}
-          onClick={this.handleCancel}
+          onMouseDown={this.handleCancel}
         >
         </span>
       </div>

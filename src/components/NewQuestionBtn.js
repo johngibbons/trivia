@@ -10,11 +10,16 @@ export default React.createClass({
     this.setState({editing: true});
     this.input.focus();
   },
+  handleBlur(e) {
+    e.preventDefault();
+    this.setState({editing: false});
+  },
   cancel() {
     this.input.value = '';
     this.setState({editing: false});
   },
-  save() {
+  save(e) {
+    e.preventDefault();
     this.props.save(this.input);
     this.input.value = '';
   },
@@ -48,12 +53,13 @@ export default React.createClass({
           className={formClass}
         >
           <div className='panel-body'>
-            <form>
+            <form onSubmit={this.save}>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Enter question..."
                 ref={el => this.input = el}
+                onBlur={this.handleBlur}
               />
               <SaveOrDeleteBtns
                 cancelEdit={this.cancel}

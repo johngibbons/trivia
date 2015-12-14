@@ -1,22 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import GameEditDashboard from '../components/GameEditDashboard';
+import GameEdit from '../components/GameEdit';
 import {updateGameAttr, addQuestion} from '../actions/index';
 
-class GameEditDashboardContainer extends React.Component {
+class GameEditContainer extends React.Component {
   render() {
     const game = this.props.gamesById[this.props.params.id] || {};
-    const title = game.title;
-    const id = game.id;
-    const questions = game.questions;
 
     return(
-      <GameEditDashboard
-        id={id}
-        title={title}
-        questions={questions}
-        updateTitle={this.updateTitle.bind(this)}
-        saveQuestion={this.saveQuestion.bind(this)}
+      <GameEdit
+        {...game}
+        onUpdateTitle={this.updateTitle.bind(this)}
+        onAddQuestion={this.addQuestion.bind(this)}
       />
     );
   }
@@ -25,7 +20,7 @@ class GameEditDashboardContainer extends React.Component {
     this.props.dispatch(updateGameAttr({id: this.props.params.id, title: text}));
   }
 
-  saveQuestion(input) {
+  addQuestion(input) {
     this.props.dispatch(addQuestion(input, this.props.params.id))
   }
 
@@ -38,4 +33,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(GameEditDashboardContainer);
+export default connect(mapStateToProps)(GameEditContainer);
