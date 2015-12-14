@@ -12,7 +12,6 @@ export default class extends React.Component {
             <QuestionContainer
               key={id}
               question={question}
-              answersById={this.props.answersById}
               removeQuestion={this.props.removeQuestion}
               updateTitle={this.props.updateTitle}
             />

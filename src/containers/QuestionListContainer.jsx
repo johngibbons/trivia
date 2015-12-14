@@ -10,7 +10,7 @@ class QuestionListContainer extends React.Component {
         questionsById={this.props.questionsById}
         questions={this.props.questions}
         removeQuestion={this.removeQuestion.bind(this)}
-        updateTitle={this.updateTitle.bind(this)}
+        updateTitle={this.props.updateTitle}
       />
     );
   }
@@ -27,7 +27,7 @@ class QuestionListContainer extends React.Component {
 function mapStateToProps(state) {
   console.log('(questionsById) state is:', state);
   return {
-    questionsById: state.questionsById,
+    questionsById: state.questionsById
   }
 }
 

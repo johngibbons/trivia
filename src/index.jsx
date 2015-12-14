@@ -9,21 +9,15 @@ import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
 import {store} from './store/configureStore';
 
-const render = () => {
-
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router>
-        <Route path='/' component={App}>
-          <IndexRoute component={Home} />
-          <Route path='games/:id/edit' component={GameEditDashboardContainer}>
-          </Route>
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <Route path='/' component={App}>
+        <IndexRoute component={Home} />
+        <Route path='games/:id/edit' component={GameEditDashboardContainer}>
         </Route>
-      </Router>
-    </Provider>,
-    document.getElementById('app')
-  );
-};
-
-store.subscribe(render);
-render();
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('app')
+);
