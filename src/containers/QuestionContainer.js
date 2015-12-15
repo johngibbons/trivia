@@ -1,23 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Question from '../components/Question';
-import {addAnswer} from '../actions/index';
+import {addAnswer, updateQuestionAttr} from '../actions/index';
 
 
 class QuestionContainer extends React.Component {
   render() {
     return(
       <Question
-        {...this.props.question}
-        answersById={this.props.answersById}
-        onRemove={this.props.removeQuestion}
-        onUpdateText={this.updateTitle.bind(this)}
+        {...this.props}
+        onUpdateText={this.updateText.bind(this)}
+        onUpdatePtValue={this.updatePtValue.bind(this)}
       />
     );
   }
 
-  updateTitle(text) {
-    this.props.updateTitle(text, this.props.id);
+  updateText(text) {
+    this.props.dispatch(updateQuestionAttr({id: this.props.id, text: text}));
+  }
+
+  updatePtValue(value) {
+    this.props.dispatch(updateQuestionAttr({id: this.props.id, ptValue: value}));
   }
 
   handleSaveAnswer(input) {
@@ -31,7 +34,6 @@ class QuestionContainer extends React.Component {
 };
 
 function mapStateToProps(state) {
-  console.log('(answersById) state is:', state);
   return {
     answersById: state.answersById
   }

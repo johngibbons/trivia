@@ -1,8 +1,19 @@
 .question {
   .panel-heading {
+    position: relative;
+    h4 {
+      display: inline-block;
+      width: calc(100% - 1.5rem);
+    }
+    .remove {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
     &:hover {
       &>.remove {
-        display: block;
+        display: inline-block;
+        margin-left: 1rem;
       }
     }
   }

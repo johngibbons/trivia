@@ -1,17 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import GameEdit from '../components/GameEdit';
-import {updateGameAttr, addQuestion} from '../actions/index';
+import {updateGameAttr, addQuestion, removeQuestion} from '../actions/index';
 
 class GameEditContainer extends React.Component {
   render() {
     const game = this.props.gamesById[this.props.params.id] || {};
+    console.log(game);
 
     return(
       <GameEdit
         {...game}
         onUpdateTitle={this.updateTitle.bind(this)}
         onAddQuestion={this.addQuestion.bind(this)}
+        onRemoveQuestion={this.removeQuestion.bind(this)}
       />
     );
   }
@@ -24,10 +26,13 @@ class GameEditContainer extends React.Component {
     this.props.dispatch(addQuestion(input, this.props.params.id))
   }
 
+  removeQuestion(props) {
+    this.props.dispatch(removeQuestion(props));
+  }
+
 }
 
 function mapStateToProps(state) {
-  console.log('(gamesById) state is:', state);
   return {
     gamesById: state.gamesById
   }

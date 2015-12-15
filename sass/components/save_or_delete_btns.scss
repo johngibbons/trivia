@@ -1,9 +1,0 @@
-.remove {
-  display: none;
-  color: $brand-danger;
-  cursor: pointer;
-
-  &:hover {
-    color: darken($brand-danger, 15%);
-  }
-}

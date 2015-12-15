@@ -8,10 +8,10 @@ export default React.createClass({
   render(){
     return(
       <span
-        className='remove pull-right'
+        className='glyphicon glyphicon-trash remove'
+        aria-label='Delete'
         onClick={this.handleRemove}
       >
-        x
       </span>
     );
   }
