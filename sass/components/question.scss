@@ -11,6 +11,21 @@
       right: 1rem;
       color: white;
     }
+    .btn-primary {
+      background-color: $gray-lighter;
+      border-color: $gray-light;
+
+      &:hover {
+        background-color: darken($gray-lighter, 5%);
+        border-color: darken($gray-light, 5%);
+      }
+    }
+    .cancel {
+      color: white;
+      &:hover {
+        color: $gray-lightest;
+      }
+    }
     &:hover {
       &>.remove {
         visibility: visible;

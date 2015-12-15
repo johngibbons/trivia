@@ -5,7 +5,8 @@ import classNames from 'classnames';
 export default ({
   answers,
   answersById,
-  question
+  question,
+  editable
 }) => {
   const listClass = classNames({
     'hidden': answers.length ? false : true,
@@ -20,6 +21,7 @@ export default ({
             key={answer.id}
             {...answer}
             question={question}
+            editable={editable}
           />
         );
       })}

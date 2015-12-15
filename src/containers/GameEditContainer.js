@@ -6,7 +6,6 @@ import {updateGameAttr, addQuestion, removeQuestion} from '../actions/index';
 class GameEditContainer extends React.Component {
   render() {
     const game = this.props.gamesById[this.props.params.id] || {};
-    console.log(game);
 
     return(
       <GameEdit

@@ -10,6 +10,7 @@ export default ({
   ptValue,
   answers,
   game,
+  editable,
   onRemove,
   onUpdateText,
   onUpdatePtValue,
@@ -20,35 +21,44 @@ export default ({
       <div className="panel panel-primary question">
         <div className="panel-heading clearfix">
           <h4>
-            <EditableTextContainer
-              type='text'
-              value={text}
-              placeholder='Add a question...'
-              save={onUpdateText}
-            />
+            { editable ?
+              <EditableTextContainer
+                type='text'
+                value={text}
+                placeholder='Add a question...'
+                save={onUpdateText}
+              /> : text
+            }
           </h4>
           <h5>
-            <EditableTextContainer
-              type='number'
-              value={`${ptValue} pts`}
-              placeholder='point value...'
-              save={onUpdatePtValue}
-              showInput={true}
-            />
+            { editable ?
+              <EditableTextContainer
+                type='number'
+                value={`${ptValue} pts`}
+                placeholder='point value...'
+                save={onUpdatePtValue}
+                showInput={true}
+              /> : `${ptValue} pts`
+            }
           </h5>
-          <SmRemoveBtn
-            handleRemove={onRemove}
-            id={id}
-            game={game}
-          />
+          { editable &&
+            <SmRemoveBtn
+              handleRemove={onRemove}
+              id={id}
+              game={game}
+            />
+          }
         </div>
         <AnswerListContainer
           answers={answers || []}
           question={id}
+          editable={editable}
         />
-        <PanelFooterBtn
-          onClick={onAddAnswer}
-        >Add answer...</PanelFooterBtn>
+        { editable &&
+          <PanelFooterBtn
+            onClick={onAddAnswer}
+          >Add answer...</PanelFooterBtn>
+        }
       </div>
     </div>
   );

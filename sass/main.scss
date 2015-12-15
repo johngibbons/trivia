@@ -30,6 +30,15 @@
   transition: $base-transition;
 }
 
+.table-hover{
+  tbody {
+    tr {
+      transition: $base-transition;
+      cursor: pointer;
+    }
+  }
+}
+
 .hover-dark-bg {
   transition: all 0.3s ease;
   background-color: $gray-lightest;

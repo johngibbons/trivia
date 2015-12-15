@@ -27,12 +27,12 @@ export function updateGameAttr(obj) {
   }
 }
 
-export function addEntry(props) {
+export function addEntry(id, game) {
   return {
     type: 'ADD_ENTRY',
     payload: {
-      id: shortid.generate(),
-      game: props.params.id
+      id,
+      game
     },
     meta: {remote: true}
   }

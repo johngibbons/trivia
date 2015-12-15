@@ -4,7 +4,8 @@ import QuestionContainer from '../containers/QuestionContainer';
 export default ({
   questions,
   questionsById,
-  onRemove
+  onRemove,
+  editable
 }) => (
   <span>
     {questions.map(id => {
@@ -13,6 +14,7 @@ export default ({
         <QuestionContainer
           key={id}
           {...question}
+          editable={editable}
           onRemove={onRemove}
         />
       );

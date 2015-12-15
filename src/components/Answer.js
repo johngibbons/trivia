@@ -5,6 +5,7 @@ import {removeAnswer} from '../actions/index';
 
 export default ({
   text,
+  editable,
   onUpdateText,
   onRemoveAnswer
 }) => (
@@ -12,14 +13,18 @@ export default ({
     className="answer list-group-item"
     onClick={(e) => e.preventDefault()}
   >
+  {editable ?
     <EditableTextContainer
       placeholder="Enter an answer..."
       value={text}
       save={onUpdateText}
       showInput={true}
-    />
+    /> : text
+  }
+  {editable &&
     <SmRemoveBtn
       handleRemove={onRemoveAnswer}
     />
+  }
   </a>
 );
