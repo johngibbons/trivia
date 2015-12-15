@@ -23,14 +23,14 @@ export default ({
               type='text'
               value={text}
               placeholder='Add a question...'
-              saveEdit={onUpdateText}
+              save={onUpdateText}
             />
           </h4>
           <EditableTextContainer
             type='number'
             value={`${ptValue} pts`}
             placeholder='e.g. 5'
-            saveEdit={onUpdatePtValue}
+            save={onUpdatePtValue}
             showInput={true}
           />
           <SmRemoveBtn

@@ -25,30 +25,25 @@ export default class extends React.Component {
         textClasses={textClasses}
         btnsClasses={btnsClasses}
         formClasses={formClasses}
-        formValue={this.state.formValue}
         startEdit={this.startEdit.bind(this)}
         cancelEdit={this.cancelEdit.bind(this)}
-        updateForm={this.updateForm.bind(this)}
         saveEdit={this.saveEdit.bind(this)}
         {...this.props}
       />
     );
   }
 
-  startEdit() {
+  startEdit(input) {
     this.setState({editing: true});
+    input.value = this.props.value;
+    input.setSelectionRange(0, input.value.length);
   }
 
-  updateForm(e) {
-    this.setState({formValue: e.target.value});
-  }
-
-  saveEdit(e) {
-    console.log('event:', e);
-    if (e.key === 'Enter') {
-      this.props.save(e.target.value);
+  saveEdit(e, input) {
+    console.log('e', e);
+    if (e.key === 'Enter' || !e.key) {
+      this.props.save(input.value);
       this.setState({editing: false});
-      e.target.blur();
     }
   }
 

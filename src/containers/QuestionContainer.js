@@ -16,6 +16,7 @@ class QuestionContainer extends React.Component {
   }
 
   updateText(text) {
+    console.log('here');
     this.props.dispatch(updateQuestionAttr({id: this.props.id, text: text}));
   }
 

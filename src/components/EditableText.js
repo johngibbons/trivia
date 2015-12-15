@@ -3,35 +3,36 @@ import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 
 export default ({
   textClasses,
-  btnsClasses,
   formClasses,
-  value,
-  formValue,
+  btnsClasses,
   type,
+  value,
   placeholder,
   startEdit,
   saveEdit,
-  updateForm,
   cancelEdit
 }) => {
+  let input;
+
   return (
     <div>
-      <span className={textClasses} onClick={startEdit}>{value}</span>
+      <span className={textClasses} onClick={() => {startEdit(input)}}>{value}</span>
       <input
         type={type}
-        value={formValue}
         className={formClasses}
         placeholder={placeholder}
-        onChange={updateForm}
-        onKeyDown={saveEdit}
+        ref={el => input = el}
+        onKeyPress={(e) => {
+          e.persist();
+          saveEdit(e, input);
+        }}
         autoFocus
       />
       <SaveOrDeleteBtns
         className={btnsClasses}
         cancelEdit={cancelEdit}
-        save={saveEdit}
+        save={(e) => {saveEdit(e, input)}}
       />
     </div>
   );
 }
-
