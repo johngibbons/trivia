@@ -1,7 +1,9 @@
 .remove {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   color: $brand-danger;
   cursor: pointer;
+  transition: $base-transition;
 
   &:hover {
     color: darken($brand-danger, 15%);

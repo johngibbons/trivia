@@ -9,20 +9,22 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
+      color: white;
     }
     &:hover {
       &>.remove {
-        display: inline-block;
+        visibility: visible;
+        opacity: 1;
         margin-left: 1rem;
       }
     }
   }
   .list-group-item {
-    border: none;
-    border-radius: 0;
+    border-color: $gray-lightest;
     &:hover {
       .remove {
-        display: block;
+        visibility: visible;
+        opacity: 1;
       }
     }
   }

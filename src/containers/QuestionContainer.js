@@ -11,12 +11,12 @@ class QuestionContainer extends React.Component {
         {...this.props}
         onUpdateText={this.updateText.bind(this)}
         onUpdatePtValue={this.updatePtValue.bind(this)}
+        onAddAnswer={this.handleAddAnswer.bind(this)}
       />
     );
   }
 
   updateText(text) {
-    console.log('here');
     this.props.dispatch(updateQuestionAttr({id: this.props.id, text: text}));
   }
 
@@ -24,9 +24,8 @@ class QuestionContainer extends React.Component {
     this.props.dispatch(updateQuestionAttr({id: this.props.id, ptValue: value}));
   }
 
-  handleSaveAnswer(input) {
-    addAnswer(input, this.props.question);
-    input.value = '';
+  handleAddAnswer() {
+    this.props.dispatch(addAnswer('', this.props.id));
   }
 
   cancel() {
@@ -34,10 +33,4 @@ class QuestionContainer extends React.Component {
   }
 };
 
-function mapStateToProps(state) {
-  return {
-    answersById: state.answersById
-  }
-}
-
-export default connect(mapStateToProps)(QuestionContainer);
+export default connect()(QuestionContainer);

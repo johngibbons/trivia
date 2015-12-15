@@ -1,20 +1,25 @@
 import React from 'react';
 import SmRemoveBtn from './SmRemoveBtn';
+import EditableTextContainer from '../containers/EditableTextContainer';
 import {removeAnswer} from '../actions/index';
 
 export default ({
   text,
-  onUpdateText
+  onUpdateText,
+  onRemoveAnswer
 }) => (
   <a href="#"
-    className="list-group-item"
+    className="answer list-group-item"
+    onClick={(e) => e.preventDefault()}
   >
-    <EditableText
+    <EditableTextContainer
       placeholder="Enter an answer..."
-      text={text}
-      saveInput={onUpdateText}
+      value={text}
+      save={onUpdateText}
+      showInput={true}
     />
     <SmRemoveBtn
+      handleRemove={onRemoveAnswer}
     />
   </a>
 );

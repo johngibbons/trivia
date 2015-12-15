@@ -40,7 +40,6 @@ export default class extends React.Component {
   }
 
   saveEdit(e, input) {
-    console.log('e', e);
     if (e.key === 'Enter' || !e.key) {
       this.props.save(input.value);
       this.setState({editing: false});

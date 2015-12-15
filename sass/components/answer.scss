@@ -1,0 +1,11 @@
+.answer {
+  position: relative;
+  .remove {
+    position: absolute;
+    right: 1rem;
+    top: 1.25rem;
+  }
+  &>div {
+    width: calc(100% - 1em);
+  }
+}

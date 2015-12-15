@@ -1,6 +1,7 @@
 import React from 'react';
-import AnswerList from './AnswerList';
 import EditableTextContainer from '../containers/EditableTextContainer';
+import AnswerListContainer from '../containers/AnswerListContainer';
+import PanelFooterBtn from './PanelFooterBtn';
 import SmRemoveBtn from './SmRemoveBtn';
 
 export default ({
@@ -9,14 +10,14 @@ export default ({
   ptValue,
   answers,
   game,
-  answersById,
   onRemove,
   onUpdateText,
-  onUpdatePtValue
+  onUpdatePtValue,
+  onAddAnswer
 }) => {
   return (
     <div className="col-md-4">
-      <div className="panel panel-default question">
+      <div className="panel panel-primary question">
         <div className="panel-heading clearfix">
           <h4>
             <EditableTextContainer
@@ -26,26 +27,28 @@ export default ({
               save={onUpdateText}
             />
           </h4>
-          <EditableTextContainer
-            type='number'
-            value={`${ptValue} pts`}
-            placeholder='e.g. 5'
-            save={onUpdatePtValue}
-            showInput={true}
-          />
+          <h5>
+            <EditableTextContainer
+              type='number'
+              value={`${ptValue} pts`}
+              placeholder='point value...'
+              save={onUpdatePtValue}
+              showInput={true}
+            />
+          </h5>
           <SmRemoveBtn
             handleRemove={onRemove}
             id={id}
             game={game}
           />
         </div>
-        <div className="panel-body">
-          <AnswerList
-            answers={answers || []}
-            answersById={answersById}
-            question={id}
-          />
-        </div>
+        <AnswerListContainer
+          answers={answers || []}
+          question={id}
+        />
+        <PanelFooterBtn
+          onClick={onAddAnswer}
+        >Add answer...</PanelFooterBtn>
       </div>
     </div>
   );

@@ -1,10 +1,16 @@
 @import 'components/editable_text';
 @import 'components/save_or_delete_btns';
 @import 'components/sm_remove_btn';
+@import 'components/panel_footer_btn';
 @import 'components/question';
+@import 'components/answer';
 
 .no-margin {
   margin: 0;
+}
+
+.btn {
+  transition: $base-transition;
 }
 
 .cancel {
@@ -13,23 +19,25 @@
   font-weight: 300;
   cursor: pointer;
   vertical-align: middle;
-  transition: all 0.3s ease;
+  transition: $base-transition;
 
   &:hover {
     color: darken($gray-lighter, 30%);
   }
 }
 
-$hover-dark-bg: #f9f9f9;
+.list-group-item {
+  transition: $base-transition;
+}
 
 .hover-dark-bg {
   transition: all 0.3s ease;
-  background-color: $hover-dark-bg;
+  background-color: $gray-lightest;
   cursor: pointer;
-  color: darken($hover-dark-bg, 25%);
+  color: $gray-lighter;
 
   &:hover {
-    background-color: darken($hover-dark-bg, 5%);
+    background-color: darken($gray-lightest, 5%);
   }
 
 }

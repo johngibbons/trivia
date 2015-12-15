@@ -7,13 +7,19 @@ class AnswerContainer extends React.Component {
   render() {
     return(
       <Answer
-        {...props}
+        {...this.props}
+        onUpdateText={this.updateText.bind(this)}
+        onRemoveAnswer={this.removeAnswer.bind(this)}
       />
     );
   }
 
-  onUpdateText(input) {
+  updateText(input) {
     this.props.dispatch(updateAnswerAttr({ id: this.props.id, text: input }));
+  }
+
+  removeAnswer() {
+    this.props.dispatch(removeAnswer(this.props.id, this.props.question));
   }
 
 }

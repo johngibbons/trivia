@@ -1,0 +1,10 @@
+.panel-footer-btn {
+  background-color: white;
+  color: $gray-lighter;
+  cursor: pointer;
+  transition: $base-transition;
+
+  &:hover {
+    background-color: darken(white, 5%);
+  }
+}

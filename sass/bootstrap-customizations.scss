@@ -5,3 +5,8 @@ $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 $btn-primary-bg: $brand-primary;
 $btn-primary-border: darken($btn-primary-bg, 5%);
+$gray-lightest: $gray-lighter;
+$gray-lighter: lighten($gray-base, 69%);
+$base-transition: all 0.3s ease;
+$panel-primary-heading-bg: $brand-primary;
+$panel-primary-border: $brand-primary;

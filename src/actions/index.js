@@ -93,25 +93,34 @@ export function removeQuestion(props) {
   }
 }
 
-export function addAnswer(input, props) {
-  console.log('props', props);
+export function addAnswer(text, question) {
   return {
     type: 'ADD_ANSWER',
     payload: {
       id: shortid.generate(),
-      text: input.value,
-      question: props.id
+      text,
+      question
     },
     meta: {remote: true}
   }
 }
 
-export function removeAnswer(props) {
+export function updateAnswerAttr(obj) {
+  return {
+    type: 'UPDATE_ANSWER_ATTRIBUTE',
+    payload: {
+      ...obj
+    },
+    meta: {remote: true}
+  }
+}
+
+export function removeAnswer(id, question) {
   return {
     type: 'REMOVE_ANSWER',
     payload: {
-      id: props.id,
-      question: props.question
+      id,
+      question
     },
     meta: {remote: true}
   }
