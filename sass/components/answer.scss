@@ -1,24 +1,34 @@
 .answer {
   border-top: none;
   position: relative;
-  .glyphicon {
+
+  .right-centered {
     position: absolute;
     right: 1rem;
     top: 1.25rem;
   }
+
   .glyphicon-record {
     color: $brand-primary;
   }
+
   &>div {
     width: calc(100% - 1em);
   }
 
   &.selected, &.list-group-item:focus {
+    color: $brand-primary;
     background-color: lighten($brand-primary, 40%);
-    padding: 15px 15px;
+  }
 
-    .glyphicon {
-      top: 1.75rem;
+  &.selected {
+    font-weight: 700;
+    font-size: $font-size-large;
+    color: $brand-primary;
+    padding: 20px 15px;
+
+    .right-centered {
+      top: 2.25rem;
     }
   }
 

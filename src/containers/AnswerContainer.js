@@ -51,7 +51,7 @@ class AnswerContainer extends React.Component {
         />
       );
     } else if (this.getSelectedAnswer()) {
-      return <span className="glyphicon glyphicon-record"></span>;
+      return <span className="glyphicon glyphicon-record right-centered"></span>;
     }
   }
 

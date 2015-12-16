@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import SmRemoveBtn from './SmRemoveBtn';
 import EditableTextContainer from '../containers/EditableTextContainer';
 
 export default ({

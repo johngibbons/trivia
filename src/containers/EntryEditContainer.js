@@ -11,10 +11,9 @@ class EntryEditContainer extends React.Component {
     console.log('entry', entry);
     return(
       <EntryEdit
-        {...game}
-        entry={this.props.params.entry}
+        entry={entry}
+        game={game}
         onUpdateName={this.updateName.bind(this)}
-        name={entry.name}
       />
     );
   }

@@ -4,6 +4,8 @@ import EntriesList from './EntriesList';
 
 export default ({
   title,
+  entries,
+  entriesById,
   handleNewEntry
 }) => {
   return (
@@ -16,7 +18,10 @@ export default ({
         onClick={handleNewEntry}
       >New Entry</button>
       <h3>Scoreboard</h3>
-      <EntriesList />
+      <EntriesList
+        entries={entries || []}
+        entriesById={entriesById}
+      />
     </div>
   );
 }

@@ -12,6 +12,7 @@ class GameContainer extends React.Component {
     return(
       <Game
         {...game}
+        entriesById={this.props.entriesById}
         handleNewEntry={this.addEntry.bind(this)}
       />
     );
@@ -26,7 +27,8 @@ class GameContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    gamesById: state.gamesById
+    gamesById: state.gamesById,
+    entriesById: state.entriesById
   }
 }
 

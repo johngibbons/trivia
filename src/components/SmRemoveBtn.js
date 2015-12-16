@@ -8,7 +8,7 @@ export default React.createClass({
   render(){
     return(
       <span
-        className='glyphicon glyphicon-trash remove'
+        className='glyphicon glyphicon-trash remove right-centered'
         aria-label='Delete'
         onClick={this.handleRemove}
       >

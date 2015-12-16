@@ -4,27 +4,27 @@ import QuestionListContainer from '../containers/QuestionListContainer';
 import EditableTextContainer from '../containers/EditableTextContainer';
 
 export default ({
-  questions,
+  game,
   entry,
-  name,
   onUpdateName
 }) => {
   return (
     <div className="container">
       <div className="page-header">
         <h1>
+          <small>{game.title}</small>
           <EditableTextContainer
             placeholder="Enter a name for your entry..."
-            value={name}
+            value={entry.name}
             save={onUpdateName}
             showInput={true}
           />
         </h1>
       </div>
       <QuestionListContainer
-        questions={questions}
+        questions={game.questions}
         editable={false}
-        entry={entry}
+        entry={entry.id}
       />
     </div>
   );
