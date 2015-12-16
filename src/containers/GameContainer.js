@@ -7,11 +7,10 @@ import Game from '../components/Game';
 
 class GameContainer extends React.Component {
   render() {
-    console.log(this.props);
     const game = this.props.gamesById[this.props.params.id];
     return(
       <Game
-        {...game}
+        game={game}
         entriesById={this.props.entriesById}
         handleNewEntry={this.addEntry.bind(this)}
       />

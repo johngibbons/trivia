@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 import QuestionListContainer from '../containers/QuestionListContainer';
 import EditableTextContainer from '../containers/EditableTextContainer';
@@ -20,6 +21,7 @@ export default ({
             showInput={true}
           />
         </h1>
+        <Link to={`/games/${game.id}`}>Save And Finish</Link>
       </div>
       <QuestionListContainer
         questions={game.questions}

@@ -1,11 +1,12 @@
 import React from 'react';
 
 export default ({
-  entries,
+  game,
   entriesById
 }) => {
   let rank = 1;
   let prevScore = 0;
+  const entries = game.entries || [];
   return(
     <table className="table table-hover">
       <thead>
@@ -22,7 +23,7 @@ export default ({
             <tr key={id}>
               <td>{rank}</td>
               <td>{entry.name}</td>
-              <td>{entry.score}</td>
+              <td>{entry.score} / {game.possiblePts}</td>
             </tr>
           )
         })}
