@@ -40,7 +40,17 @@ export function addEntry(id, game) {
 
 export function updateEntryAttr(obj) {
   return {
-    type: 'ADD_SELECTION',
+    type: 'UPDATE_ENTRY_ATTRIBUTE',
+    payload: {
+      ...obj
+    },
+    meta: {remote: true}
+  }
+}
+
+export function addOrUpdateSelection(obj) {
+  return {
+    type: 'ADD_OR_UPDATE_SELECTION',
     payload: {
       ...obj
     },

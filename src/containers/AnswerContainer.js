@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {removeAnswer, updateAnswerAttr, updateEntryAttr} from '../actions/index';
+import {removeAnswer, updateAnswerAttr, addOrUpdateSelection} from '../actions/index';
 
 import Answer from '../components/Answer';
 import SmRemoveBtn from '../components/SmRemoveBtn';
@@ -28,21 +28,18 @@ class AnswerContainer extends React.Component {
   }
 
   selectAnswer() {
-    this.props.dispatch(updateEntryAttr({
-      id: this.props.entry,
-      selections: {
-        [this.props.question]: {
-          selected: this.props.id
-        }
-      }
+    this.props.dispatch(addOrUpdateSelection({
+      entry: this.props.entry,
+      question: this.props.question,
+      selection: this.props.id
     }));
   }
 
   getSelectedAnswer() {
     if (this.props.entriesById[this.props.entry]) {
       const entryById = this.props.entriesById[this.props.entry];
-      const question = entryById.selections && entryById.selections[this.props.question];
-      return question ? question.selected === this.props.id : false;
+      const selection = entryById.selections && entryById.selections[this.props.question];
+      return selection ? selection === this.props.id : false;
     }
   }
 
