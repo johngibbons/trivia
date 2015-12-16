@@ -6,7 +6,9 @@ export default ({
   answers,
   answersById,
   question,
-  editable
+  editable,
+  entry,
+  entriesById
 }) => {
   const listClass = classNames({
     'hidden': answers.length ? false : true,
@@ -20,7 +22,8 @@ export default ({
           <AnswerContainer
             key={answer.id}
             {...answer}
-            question={question}
+            entriesById={entriesById}
+            entry={entry}
             editable={editable}
           />
         );

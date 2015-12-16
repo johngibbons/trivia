@@ -11,6 +11,7 @@ export default ({
   answers,
   game,
   editable,
+  entry,
   onRemove,
   onUpdateText,
   onUpdatePtValue,
@@ -53,6 +54,7 @@ export default ({
           answers={answers || []}
           question={id}
           editable={editable}
+          entry={entry}
         />
         { editable &&
           <PanelFooterBtn

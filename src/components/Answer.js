@@ -1,30 +1,41 @@
 import React from 'react';
+import classNames from 'classnames';
+
 import SmRemoveBtn from './SmRemoveBtn';
 import EditableTextContainer from '../containers/EditableTextContainer';
-import {removeAnswer} from '../actions/index';
 
 export default ({
+  id,
   text,
   editable,
+  selected,
   onUpdateText,
-  onRemoveAnswer
-}) => (
-  <a href="#"
-    className="answer list-group-item"
-    onClick={(e) => e.preventDefault()}
-  >
-  {editable ?
-    <EditableTextContainer
-      placeholder="Enter an answer..."
-      value={text}
-      save={onUpdateText}
-      showInput={true}
-    /> : text
-  }
-  {editable &&
-    <SmRemoveBtn
-      handleRemove={onRemoveAnswer}
-    />
-  }
-  </a>
-);
+  onRemoveAnswer,
+  onSelectAnswer,
+  getContextualIcon
+}) => {
+  const answerClasses = classNames({
+    'selected': selected,
+    'answer': true,
+    'list-group-item': true
+  });
+  return (
+    <a href="#"
+      className={answerClasses}
+      onClick={(e) => {
+        e.preventDefault();
+        !editable && onSelectAnswer();
+      }}
+    >
+    {editable ?
+      <EditableTextContainer
+        placeholder="Enter an answer..."
+        value={text}
+        save={onUpdateText}
+        showInput={true}
+      /> : text
+    }
+    {getContextualIcon()}
+    </a>
+  );
+}

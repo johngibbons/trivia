@@ -38,12 +38,11 @@ export function addEntry(id, game) {
   }
 }
 
-export function updateEntry(input, props) {
+export function updateEntryAttr(obj) {
   return {
-    type: 'UPDATE_ENTRY',
+    type: 'ADD_SELECTION',
     payload: {
-      id: props.id,
-      title: input.value
+      ...obj
     },
     meta: {remote: true}
   }

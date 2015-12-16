@@ -13,7 +13,7 @@ const createStoreWithMiddleware = applyMiddleware(
 export const store = createStoreWithMiddleware(rootReducer);
 
 socket.on('state', state => {
+    console.log('merging states');
     store.dispatch(setState(state));
   }
 );
-

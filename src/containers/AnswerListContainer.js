@@ -14,7 +14,8 @@ class AnswerListContainer extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    answersById: state.answersById
+    answersById: state.answersById,
+    entriesById: state.entriesById
   }
 }
 
