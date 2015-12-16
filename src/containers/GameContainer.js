@@ -13,6 +13,7 @@ class GameContainer extends React.Component {
         game={game}
         entriesById={this.props.entriesById}
         handleNewEntry={this.addEntry.bind(this)}
+        handleClickEntry={this.goToEntry.bind(this)}
       />
     );
   }
@@ -21,6 +22,10 @@ class GameContainer extends React.Component {
     const newId = shortid.generate();
     this.props.dispatch(addEntry(newId, this.props.params.id));
     this.props.history.pushState(null, `games/${this.props.params.id}/entries/${newId}/edit`);
+  }
+
+  goToEntry(entry) {
+    this.props.history.pushState(null, `games/${this.props.params.id}/entries/${entry}/edit`);
   }
 }
 

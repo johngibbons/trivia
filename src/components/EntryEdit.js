@@ -18,7 +18,7 @@ export default ({
             placeholder="Enter a name for your entry..."
             value={entry.name}
             save={onUpdateName}
-            showInput={true}
+            showInput={!entry.name}
           />
         </h1>
         <Link to={`/games/${game.id}`}>Save And Finish</Link>

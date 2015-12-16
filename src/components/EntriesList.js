@@ -2,7 +2,8 @@ import React from 'react';
 
 export default ({
   game,
-  entriesById
+  entriesById,
+  onClickEntry
 }) => {
   let rank = 1;
   let prevScore = 0;
@@ -20,7 +21,7 @@ export default ({
         {entries.map(id => {
           const entry = entriesById[id];
           return (
-            <tr key={id}>
+            <tr key={id} onClick={() => onClickEntry(id)}>
               <td>{rank}</td>
               <td>{entry.name}</td>
               <td>{entry.score} / {game.possiblePts}</td>

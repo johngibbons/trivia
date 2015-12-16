@@ -5,7 +5,8 @@ import EntriesList from './EntriesList';
 export default ({
   game,
   entriesById,
-  handleNewEntry
+  handleNewEntry,
+  handleClickEntry
 }) => {
   return (
     <div className="container">
@@ -20,6 +21,7 @@ export default ({
       <EntriesList
         game={game}
         entriesById={entriesById}
+        onClickEntry={handleClickEntry}
       />
     </div>
   );
