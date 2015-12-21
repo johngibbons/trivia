@@ -1,38 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addEntry} from '../actions/index';
-import shortid from 'shortid';
 
-import Game from '../components/Game';
+import Game from '../components/Game.js';
 
 class GameContainer extends React.Component {
   render() {
-    const game = this.props.gamesById[this.props.params.id];
-    return(
-      <Game
-        game={game}
-        entriesById={this.props.entriesById}
-        handleNewEntry={this.addEntry.bind(this)}
-        handleClickEntry={this.goToEntry.bind(this)}
-      />
+    const {gamesById, questionsById, params, children} = this.props;
+    const game = gamesById[params.game] || {};
+    game.questions = game.questions && game.questions.map(id => questionsById[id]) || [];
+
+    return (
+      <Game game={game} children={children} />
     );
-  }
-
-  addEntry() {
-    const newId = shortid.generate();
-    this.props.dispatch(addEntry(newId, this.props.params.id));
-    this.props.history.pushState(null, `games/${this.props.params.id}/entries/${newId}/edit`);
-  }
-
-  goToEntry(entry) {
-    this.props.history.pushState(null, `games/${this.props.params.id}/entries/${entry}/edit`);
   }
 }
 
 function mapStateToProps(state) {
+  console.log('state at game container:', state);
   return {
     gamesById: state.gamesById,
-    entriesById: state.entriesById
+    questionsById: state.questionsById
   }
 }
 

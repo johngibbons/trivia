@@ -14,6 +14,7 @@ class EntryEditContainer extends React.Component {
         entry={entry}
         game={game}
         onUpdateName={this.updateName.bind(this)}
+        onSelectAnswer={this.selectAnswer.bind(this)}
       />
     );
   }
@@ -22,6 +23,14 @@ class EntryEditContainer extends React.Component {
     this.props.dispatch(updateEntryAttr({
       id: this.props.params.entry,
       name: text
+    }));
+  }
+
+  selectAnswer(selection, question) {
+    this.props.dispatch(addOrUpdateSelection({
+      entry: this.props.params.entry,
+      question,
+      selection
     }));
   }
 }

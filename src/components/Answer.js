@@ -3,18 +3,18 @@ import classNames from 'classnames';
 
 import EditableTextContainer from '../containers/EditableTextContainer';
 
-export default ({
+const Answer = ({
   id,
   text,
-  editable,
-  selected,
-  onUpdateText,
+  isEditable,
+  isSelected,
+  onUpdate,
   onRemoveAnswer,
   onSelectAnswer,
   getContextualIcon
 }) => {
   const answerClasses = classNames({
-    'selected': selected,
+    'selected': isSelected,
     'answer': true,
     'list-group-item': true
   });
@@ -23,18 +23,35 @@ export default ({
       className={answerClasses}
       onClick={(e) => {
         e.preventDefault();
-        !editable && onSelectAnswer();
+        !isEditable && onSelectAnswer();
       }}
     >
-    {editable ?
+    {isEditable ?
       <EditableTextContainer
         placeholder="Enter an answer..."
         value={text}
-        save={onUpdateText}
+        save={onUpdate}
         showInput={true}
       /> : text
     }
     {getContextualIcon()}
     </a>
   );
-}
+};
+
+Answer.defaultProps = {
+  isSelected: false
+};
+
+Answer.PropTypes = {
+  key: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string.isRequired,
+  isEditable: React.PropTypes.bool.isRequired,
+  isSelected: React.PropTypes.bool,
+  onUpdate: React.PropTypes.func,
+  onRemove: React.PropTypes.func,
+  onSelect: React.PropTypes.func
+};
+
+export default Answer

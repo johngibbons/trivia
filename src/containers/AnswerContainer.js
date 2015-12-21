@@ -12,8 +12,8 @@ class AnswerContainer extends React.Component {
         {...this.props}
         selected={this.getSelectedAnswer.call(this)}
         onUpdateText={this.updateText.bind(this)}
-        onRemoveAnswer={this.removeAnswer.bind(this)}
-        onSelectAnswer={this.selectAnswer.bind(this)}
+        onRemoveAnswer={this.props.onRemoveAnswer(this.props.id)}
+        onSelectAnswer={this.props.onSelectAnswer(this.props.id, this.props.question)}
         getContextualIcon={this.getContextualIcon.bind(this)}
       />
     );
@@ -21,18 +21,6 @@ class AnswerContainer extends React.Component {
 
   updateText(input) {
     this.props.dispatch(updateAnswerAttr({ id: this.props.id, text: input }));
-  }
-
-  removeAnswer() {
-    this.props.dispatch(removeAnswer(this.props.id, this.props.question));
-  }
-
-  selectAnswer() {
-    this.props.dispatch(addOrUpdateSelection({
-      entry: this.props.entry,
-      question: this.props.question,
-      selection: this.props.id
-    }));
   }
 
   getSelectedAnswer() {

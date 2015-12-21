@@ -58,12 +58,12 @@ export function addOrUpdateSelection(obj) {
   }
 }
 
-export function removeEntry(props) {
+export function removeEntry(id, game) {
   return {
     type: 'REMOVE_ENTRY',
     payload: {
-      id: props.id,
-      game: props.game
+      id,
+      game
     },
     meta: {remote: true}
   };
@@ -91,12 +91,12 @@ export function updateQuestionAttr(obj) {
   }
 }
 
-export function removeQuestion(props) {
+export function removeQuestion(id, game) {
   return {
     type: 'REMOVE_QUESTION',
     payload: {
-      id: props.id,
-      game: props.game
+      id,
+      game
     },
     meta: {remote: true}
   }

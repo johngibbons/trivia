@@ -2,7 +2,7 @@ import React from 'react';
 import EditableText from '../components/EditableText';
 import classNames from 'classnames';
 
-export default class extends React.Component {
+class EditableTextContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.showInput ? {editing: true} : {editing: false};
@@ -41,7 +41,7 @@ export default class extends React.Component {
 
   saveEdit(e, input) {
     if (e.key === 'Enter' || !e.key) {
-      this.props.save(input.value);
+      this.props.save(this.props.id, this.props.attr, input.value);
       this.setState({editing: false});
     }
   }
@@ -50,3 +50,21 @@ export default class extends React.Component {
     this.setState({editing: false});
   }
 };
+
+EditableTextContainer.defaultProps = {
+  type: 'text'
+};
+
+EditableTextContainer.PropTypes = {
+  id: React.PropTypes.string.isRequired,
+  attr: React.PropTypes.string.isRequired,
+  type: React.PropTypes.oneOf['text', 'number'],
+  value: React.PropTypes.oneOfType([
+    'string',
+    'number'
+  ]),
+  placeholder: React.PropTypes.string,
+  save: React.PropTypes.func.isRequired
+};
+
+export default EditableTextContainer

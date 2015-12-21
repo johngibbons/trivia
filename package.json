@@ -42,6 +42,7 @@
     "reduce-reducers": "^0.1.1",
     "redux": "^3.0.4",
     "redux-router": "^0.1.0",
+    "redux-simple-router": "^1.0.1",
     "sass-loader": "^3.1.2",
     "shortid": "^2.2.4",
     "socket.io-client": "^1.3.7",

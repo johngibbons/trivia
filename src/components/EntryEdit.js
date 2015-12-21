@@ -1,13 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-import QuestionListContainer from '../containers/QuestionListContainer';
+import QuestionList from './QuestionList';
 import EditableTextContainer from '../containers/EditableTextContainer';
 
 export default ({
   game,
   entry,
-  onUpdateName
+  onUpdateName,
+  onSelectAnswer
 }) => {
   return (
     <div className="container">
@@ -23,10 +24,11 @@ export default ({
         </h1>
         <Link to={`/games/${game.id}`}>Save And Finish</Link>
       </div>
-      <QuestionListContainer
+      <QuestionList
         questions={game.questions}
         editable={false}
         entry={entry.id}
+        onSelectAnswer={onSelectAnswer}
       />
     </div>
   );

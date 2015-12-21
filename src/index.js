@@ -3,22 +3,32 @@ import ReactDOM from 'react-dom';
 
 import App from './containers/App';
 import Home from './containers/Home';
-import GameEditContainer from './containers/GameEditContainer';
 import GameContainer from './containers/GameContainer';
+import GameShowContainer from './containers/GameShowContainer';
+import GameAdminContainer from './containers/GameAdminContainer';
+import GameEditContainer from './containers/GameEditContainer';
+import GameRunContainer from './containers/GameRunContainer';
 import EntryEditContainer from './containers/EntryEditContainer';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
+
+const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router history={history}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
-        <Route path='games/:id/edit' component={GameEditContainer} />
-        <Route path='games/:id' component={GameContainer} />
-        <Route path='games/:id/entries/:entry/edit' component={EntryEditContainer} />
+        <Route path='games/:game' component={GameContainer}>
+          <IndexRoute component={GameShowContainer} />
+          <Route path='edit' component={GameEditContainer} />
+          <Route path='run' component={GameRunContainer} />
+        </Route>
+        <Route path='games/:game/entries/:entry/edit'
+          component={EntryEditContainer} />
       </Route>
     </Router>
   </Provider>,

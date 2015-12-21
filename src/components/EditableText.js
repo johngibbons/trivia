@@ -1,7 +1,7 @@
 import React from 'react';
 import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 
-export default ({
+const EditableText = ({
   textClasses,
   formClasses,
   btnsClasses,
@@ -36,3 +36,17 @@ export default ({
     </div>
   );
 }
+
+EditableText.PropTypes = {
+  textClasses: React.PropTypes.string.isRequired,
+  formClasses: React.PropTypes.string.isRequired,
+  btnsClasses: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired,
+  value: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
+  startEdit: React.PropTypes.func.isRequired,
+  saveEdit: React.PropTypes.func.isRequired,
+  cancelEdit: React.PropTypes.func.isRequired
+}
+
+export default EditableText

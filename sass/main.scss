@@ -5,6 +5,10 @@
 @import 'components/question';
 @import 'components/answer';
 
+body {
+  padding-top: 70px;
+}
+
 .no-margin {
   margin: 0;
 }

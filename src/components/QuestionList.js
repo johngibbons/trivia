@@ -1,27 +1,53 @@
 import React from 'react';
-import QuestionContainer from '../containers/QuestionContainer';
+import Question from './Question';
 
-export default ({
+ const QuestionList = ({
   questions,
-  questionsById,
+  isEditable,
+  entry,
   onRemove,
-  editable,
-  entry
+  onUpdate,
+  onAddAnswer,
+  onRemoveAnswer,
+  onUpdateAnswer,
+  onSelectAnswer
 }) => {
   return (
     <span>
-      {questions.map(id => {
-        const question = questionsById[id];
+      {questions.map(question => {
         return (
-          <QuestionContainer
-            key={id}
+          <Question
+            key={question.id}
             {...question}
-            editable={editable}
+            isEditable={isEditable}
             entry={entry}
             onRemove={onRemove}
+            onUpdate={onUpdate}
+            onAddAnswer={onAddAnswer}
+            onRemoveAnswer={onRemoveAnswer}
+            onUpdateAnswer={onUpdateAnswer}
+            onSelectAnswer={onSelectAnswer}
           />
         );
       })}
     </span>
   );
-}
+};
+
+QuestionList.defaultProps = {
+  isEditable: false
+};
+
+QuestionList.PropTypes = {
+  questions: React.PropTypes.array.isRequired,
+  isEditable: React.PropTypes.bool.isRequired,
+  entry: React.PropTypes.string,
+  onRemove: React.PropTypes.func,
+  onUpdate: React.PropTypes.func,
+  onAddAnswer: React.PropTypes.func,
+  onRemoveAnswer: React.PropTypes.func,
+  onUpdateAnswer: React.PropTypes.func,
+  onSelectAnswer: React.PropTypes.func
+};
+
+export default QuestionList
