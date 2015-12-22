@@ -16,6 +16,7 @@ class GameEditContainer extends React.Component {
     return(
       <GameEdit
         {...this.props.game}
+        answersById={this.props.answersById}
         onUpdate={this.update.bind(this)}
         onAddQuestion={this.addQuestion.bind(this)}
         onRemoveQuestion={this.removeQuestion.bind(this)}
@@ -36,7 +37,6 @@ class GameEditContainer extends React.Component {
   }
 
   removeQuestion(question) {
-    console.log('question', question);
     this.props.dispatch(removeQuestion(question, this.props.game.id));
   }
 
@@ -44,16 +44,18 @@ class GameEditContainer extends React.Component {
     this.props.dispatch(updateQuestionAttr({id: question, [attr]: value}));
   }
 
-  addAnswer(input, question) {
-    this.props.dispatch(addAnswer(input, question));
+  addAnswer(question) {
+    this.props.dispatch(addAnswer(question));
   }
 
-  removeAnswer(answer, question) {
+  removeAnswer(question, answer) {
+    console.log('answer', answer);
+    console.log('question', question);
     this.props.dispatch(removeAnswer(answer, question));
   }
 
-  updateAnswer() {
-    this.props.dispatch(updateAnswerAttr({id: question, [attr]: value}));
+  updateAnswer(answer, attr, value) {
+    this.props.dispatch(updateAnswerAttr({id: answer, [attr]: value}));
   }
 
 }

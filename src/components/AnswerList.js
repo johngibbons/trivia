@@ -1,36 +1,63 @@
 import React from 'react';
-import AnswerContainer from '../containers/AnswerContainer';
+import Answer from './Answer';
+import AnswerEditable from './AnswerEditable';
+import AnswerSelectable from './AnswerSelectable';
 import classNames from 'classnames';
 
 const AnswerList = ({
   answers,
   question,
   isEditable,
+  isSelected,
   entry,
   entriesById,
   onRemoveAnswer,
   onUpdateAnswer,
   onSelectAnswer
 }) => {
+
   const listClass = classNames({
     'hidden': answers.length ? false : true,
     'list-group': true
   });
+
+  const getAnswerForContext = (answer) => {
+    if (isEditable) {
+      return (
+        <AnswerEditable
+          key={answer.id}
+          id={answer.id}
+          text={answer.text}
+          onUpdate={onUpdateAnswer}
+          onRemove={onRemoveAnswer}
+        />
+      );
+    } else if (isSelectable) {
+      return (
+        <AnswerSelectable
+          key={answer.id}
+          id={answer.id}
+          text={answer.text}
+          isSelected={isSelected}
+          onSelect={onSelectAnswer}
+        />
+      );
+    } else {
+      return (
+        <Answer
+          key={answer.id}
+          id={answer.id}
+          text={answer.text}
+          isSelected={isSelected}
+        />
+      );
+    }
+  }
+
   return(
     <div className={listClass}>
       {answers.map(answer => {
-        return (
-          <Answer
-            key={answer.id}
-            {...answer}
-            entriesById={entriesById}
-            entry={entry}
-            isEditable={isEditable}
-            onRemove={onRemoveAnswer}
-            onUpdate={onUpdateAnswer}
-            onSelect={onSelectAnswer}
-          />
-        );
+        return getAnswerForContext(answer);
       })}
     </div>
   );

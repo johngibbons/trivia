@@ -5,6 +5,7 @@ import Question from './Question';
   questions,
   isEditable,
   entry,
+  answersById,
   onRemove,
   onUpdate,
   onAddAnswer,
@@ -12,9 +13,16 @@ import Question from './Question';
   onUpdateAnswer,
   onSelectAnswer
 }) => {
+  const getAnswers = (answers) => {
+    if (answers) {
+      return answers.map(id => answersById[id]);
+    }
+    return [];
+  };
   return (
     <span>
       {questions.map(question => {
+        question.answers = getAnswers(question.answers);
         return (
           <Question
             key={question.id}
@@ -24,7 +32,7 @@ import Question from './Question';
             onRemove={onRemove}
             onUpdate={onUpdate}
             onAddAnswer={onAddAnswer}
-            onRemoveAnswer={onRemoveAnswer}
+            onRemoveAnswer={onRemoveAnswer.bind(null, question.id)}
             onUpdateAnswer={onUpdateAnswer}
             onSelectAnswer={onSelectAnswer}
           />

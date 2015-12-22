@@ -51,7 +51,6 @@ const Question = ({
           { isEditable &&
             <SmRemoveBtn
               id={id}
-              game={game}
               handleRemove={onRemove}
             />
           }
@@ -67,7 +66,7 @@ const Question = ({
         />
         { isEditable &&
           <PanelFooterBtn
-            onClick={onAddAnswer}
+            onClick={() => onAddAnswer(id)}
           >Add answer...</PanelFooterBtn>
         }
       </div>

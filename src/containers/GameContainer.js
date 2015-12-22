@@ -5,12 +5,12 @@ import Game from '../components/Game.js';
 
 class GameContainer extends React.Component {
   render() {
-    const {gamesById, questionsById, params, children} = this.props;
+    const {gamesById, questionsById, answersById, params, children} = this.props;
     const game = gamesById[params.game] || {};
     game.questions = game.questions && game.questions.map(id => questionsById[id]) || [];
 
     return (
-      <Game game={game} children={children} />
+      <Game game={game} answersById={answersById} children={children} />
     );
   }
 }
@@ -19,7 +19,8 @@ function mapStateToProps(state) {
   console.log('state at game container:', state);
   return {
     gamesById: state.gamesById,
-    questionsById: state.questionsById
+    questionsById: state.questionsById,
+    answersById: state.answersById
   }
 }
 

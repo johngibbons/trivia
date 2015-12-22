@@ -9,6 +9,7 @@ const GameEdit = ({
   id,
   title,
   questions,
+  answersById,
   onUpdate,
   onAddQuestion,
   onRemoveQuestion,
@@ -32,6 +33,7 @@ const GameEdit = ({
       </div>
       <QuestionList
         questions={questions}
+        answersById={answersById}
         onRemove={onRemoveQuestion}
         onUpdate={onUpdateQuestion}
         onAddAnswer={onAddAnswer}

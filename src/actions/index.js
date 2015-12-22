@@ -102,12 +102,11 @@ export function removeQuestion(id, game) {
   }
 }
 
-export function addAnswer(text, question) {
+export function addAnswer(question) {
   return {
     type: 'ADD_ANSWER',
     payload: {
       id: shortid.generate(),
-      text,
       question
     },
     meta: {remote: true}
