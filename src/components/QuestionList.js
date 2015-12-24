@@ -4,6 +4,7 @@ import Question from './Question';
  const QuestionList = ({
   questions,
   isEditable,
+  isSelectable,
   entry,
   answersById,
   onRemove,
@@ -13,6 +14,7 @@ import Question from './Question';
   onUpdateAnswer,
   onSelectAnswer
 }) => {
+  console.log('questions', questions);
   const getAnswers = (answers) => {
     if (answers) {
       return answers.map(id => answersById[id]);
@@ -22,17 +24,18 @@ import Question from './Question';
   return (
     <span>
       {questions.map(question => {
-        question.answers = getAnswers(question.answers);
         return (
           <Question
             key={question.id}
             {...question}
+            answers = {getAnswers(question.answers)}
             isEditable={isEditable}
+            isSelectable={isSelectable}
             entry={entry}
             onRemove={onRemove}
             onUpdate={onUpdate}
             onAddAnswer={onAddAnswer}
-            onRemoveAnswer={onRemoveAnswer.bind(null, question.id)}
+            onRemoveAnswer={onRemoveAnswer && onRemoveAnswer.bind(null, question.id)}
             onUpdateAnswer={onUpdateAnswer}
             onSelectAnswer={onSelectAnswer}
           />
@@ -43,12 +46,15 @@ import Question from './Question';
 };
 
 QuestionList.defaultProps = {
-  isEditable: false
+  isEditable: false,
+  isSelectable: false,
+  questions: []
 };
 
 QuestionList.PropTypes = {
   questions: React.PropTypes.array.isRequired,
-  isEditable: React.PropTypes.bool.isRequired,
+  isEditable: React.PropTypes.bool,
+  isSelectable: React.PropTypes.bool,
   entry: React.PropTypes.string,
   onRemove: React.PropTypes.func,
   onUpdate: React.PropTypes.func,

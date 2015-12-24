@@ -30,6 +30,7 @@ const GameEdit = ({
             save={onUpdate}
           />
         </h1>
+        <Link to={`/games/${id}`}>Save and Finish</Link>
       </div>
       <QuestionList
         questions={questions}

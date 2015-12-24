@@ -8,7 +8,7 @@ const AnswerList = ({
   answers,
   question,
   isEditable,
-  isSelected,
+  isSelectable,
   entry,
   entriesById,
   onRemoveAnswer,
@@ -20,6 +20,13 @@ const AnswerList = ({
     'hidden': answers.length ? false : true,
     'list-group': true
   });
+
+  function isSelected(answer) {
+    if (entry.selections) {
+      return entry.selections[question] === answer.id;
+    }
+    return false;
+  }
 
   const getAnswerForContext = (answer) => {
     if (isEditable) {
@@ -37,8 +44,9 @@ const AnswerList = ({
         <AnswerSelectable
           key={answer.id}
           id={answer.id}
+          question={answer.question}
           text={answer.text}
-          isSelected={isSelected}
+          isSelected={isSelected(answer)}
           onSelect={onSelectAnswer}
         />
       );
@@ -48,7 +56,7 @@ const AnswerList = ({
           key={answer.id}
           id={answer.id}
           text={answer.text}
-          isSelected={isSelected}
+          isSelected={answer.selected}
         />
       );
     }
@@ -66,8 +74,9 @@ const AnswerList = ({
 AnswerList.PropTypes = {
   answers: React.PropTypes.array.isRequired,
   question: React.PropTypes.string.isRequired,
+  entry: React.PropTypes.object,
   isEditable: React.PropTypes.bool.isRequired,
-  entry: React.PropTypes.string,
+  isSelectable: React.PropTypes.bool.isRequired,
   onRemoveAnswer: React.PropTypes.func,
   onUpdateAnswer: React.PropTypes.func,
   onSelectAnswer: React.PropTypes.func

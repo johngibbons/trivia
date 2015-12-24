@@ -5,3 +5,5 @@ const SelectedIcon = () => {
     <span className='glyphicon glyphicon-record right-centered'></span>
   );
 };
+
+export default SelectedIcon;

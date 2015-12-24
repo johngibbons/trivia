@@ -6,6 +6,7 @@ import SelectedIcon from './SelectedIcon';
 const AnswerSelectable = ({
   id,
   text,
+  question,
   isSelected,
   onSelect
 }) => {
@@ -21,11 +22,11 @@ const AnswerSelectable = ({
       className={answerClasses}
       onClick={(e) => {
         e.preventDefault();
-        onSelect();
+        onSelect(id, question);
       }}
     >
       {text}
-      isSelected && <SelectedIcon />
+      {isSelected && <SelectedIcon />}
     </a>
   );
 };
@@ -34,7 +35,9 @@ AnswerSelectable.PropTypes = {
   key: React.PropTypes.string.isRequired,
   id: React.PropTypes.string.isRequired,
   text: React.PropTypes.string.isRequired,
+  question: React.PropTypes.string.isRequired,
+  isSelected: React.PropTypes.bool.isRequired,
   onSelect: React.PropTypes.func.isRequired
-}
+};
 
 export default AnswerSelectable

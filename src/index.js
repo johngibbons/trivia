@@ -26,9 +26,9 @@ ReactDOM.render(
           <IndexRoute component={GameShowContainer} />
           <Route path='edit' component={GameEditContainer} />
           <Route path='run' component={GameRunContainer} />
+          <Route path='/entries/:entry/edit'
+            component={EntryEditContainer} />
         </Route>
-        <Route path='games/:game/entries/:entry/edit'
-          component={EntryEditContainer} />
       </Route>
     </Router>
   </Provider>,

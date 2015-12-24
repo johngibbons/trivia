@@ -7,10 +7,10 @@ class GameContainer extends React.Component {
   render() {
     const {gamesById, questionsById, answersById, params, children} = this.props;
     const game = gamesById[params.game] || {};
-    game.questions = game.questions && game.questions.map(id => questionsById[id]) || [];
+    const questions = game.questions && game.questions.map(id => questionsById[id]) || [];
 
     return (
-      <Game game={game} answersById={answersById} children={children} />
+      <Game game={game} questions={questions} answersById={answersById} children={children} />
     );
   }
 }

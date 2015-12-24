@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {addEntry} from '../actions/index';
 import shortid from 'shortid';
 
-import Game from '../components/Game';
+import GameShow from '../components/GameShow';
 
 class GameShowContainer extends React.Component {
   render() {
-    const game = this.props.gamesById[this.props.params.id];
+    const game = this.props.gamesById[this.props.params.game];
     return(
-      <Game
+      <GameShow
         game={game}
         entriesById={this.props.entriesById}
         handleNewEntry={this.addEntry.bind(this)}
@@ -20,12 +20,12 @@ class GameShowContainer extends React.Component {
 
   addEntry() {
     const newId = shortid.generate();
-    this.props.dispatch(addEntry(newId, this.props.params.id));
-    this.props.history.pushState(null, `games/${this.props.params.id}/entries/${newId}/edit`);
+    this.props.dispatch(addEntry(newId, this.props.params.game));
+    this.props.history.pushState(null, `/entries/${newId}/edit`);
   }
 
   goToEntry(entry) {
-    this.props.history.pushState(null, `games/${this.props.params.id}/entries/${entry}/edit`);
+    this.props.history.pushState(null, `/entries/${entry}/edit`);
   }
 }
 

@@ -10,8 +10,9 @@ const Question = ({
   ptValue,
   answers,
   game,
-  isEditable,
   entry,
+  isEditable,
+  isSelectable,
   onRemove,
   onUpdate,
   onAddAnswer,
@@ -58,8 +59,9 @@ const Question = ({
         <AnswerList
           answers={answers}
           question={id}
-          isEditable={isEditable}
           entry={entry}
+          isEditable={isEditable}
+          isSelectable={isSelectable}
           onRemoveAnswer={onRemoveAnswer}
           onUpdateAnswer={onUpdateAnswer}
           onSelectAnswer={onSelectAnswer}
@@ -85,8 +87,9 @@ Question.PropTypes = {
   ptValue: React.PropTypes.number,
   answers: React.PropTypes.array,
   game: React.PropTypes.string.isRequired,
+  entry: React.PropTypes.object,
   isEditable: React.PropTypes.bool.isRequired,
-  entry: React.PropTypes.string,
+  isSelectable: React.PropTypes.bool.isRequired,
   onRemove: React.PropTypes.func,
   onUpdate: React.PropTypes.func,
   onAddAnswer: React.PropTypes.func,

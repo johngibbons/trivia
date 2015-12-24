@@ -1,28 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateEntryAttr} from '../actions/index';
+import {updateEntryAttr, addOrUpdateSelection} from '../actions/index';
 
 import EntryEdit from '../components/EntryEdit'
 
 class EntryEditContainer extends React.Component {
   render(){
-    const game = this.props.gamesById[this.props.params.id];
     const entry = this.props.entriesById[this.props.params.entry] || {};
-    console.log('entry', entry);
+    const game = entry.game ? this.props.gamesById[entry.game] : {};
+    const questions = this.mapQuestionListToObjects(game);
+    console.log('game', game);
+    console.log('gamesById', this.props.gamesById);
     return(
       <EntryEdit
         entry={entry}
         game={game}
+        questions={questions}
+        answersById={this.props.answersById}
         onUpdateName={this.updateName.bind(this)}
         onSelectAnswer={this.selectAnswer.bind(this)}
       />
     );
   }
 
-  updateName(text) {
+  updateName(id, attr, name) {
     this.props.dispatch(updateEntryAttr({
       id: this.props.params.entry,
-      name: text
+      [attr]: name
     }));
   }
 
@@ -33,12 +37,24 @@ class EntryEditContainer extends React.Component {
       selection
     }));
   }
+
+  mapQuestionListToObjects(game) {
+    const questions = game && game.questions;
+
+    if (questions && this.props.questionsById) {
+      return questions.map(id => this.props.questionsById[id]);
+    }
+    return [];
+  }
 }
+
 
 function mapStateToProps(state, props) {
   return {
     gamesById: state.gamesById,
-    entriesById: state.entriesById
+    entriesById: state.entriesById,
+    questionsById: state.questionsById,
+    answersById: state.answersById
   }
 }
 
