@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default () => (
-  <div></div>
-)
+import GameRun from '../components/GameRun';
+
+export default () => {
+  return (
+    <GameRun />
+  );
+};
