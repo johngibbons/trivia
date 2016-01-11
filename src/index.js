@@ -14,8 +14,10 @@ import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
+import {startFirebaseListeners} from './actions/index';
 
 const history = createBrowserHistory();
+store.dispatch(startFirebaseListeners());
 
 ReactDOM.render(
   <Provider store={store}>

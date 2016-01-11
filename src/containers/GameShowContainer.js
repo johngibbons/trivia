@@ -7,7 +7,7 @@ import GameShow from '../components/GameShow';
 
 class GameShowContainer extends React.Component {
   render() {
-    const game = this.props.gamesById[this.props.params.game];
+    const game = this.props.gamesById[this.props.params.game] || {};
     return(
       <GameShow
         game={game}

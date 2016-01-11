@@ -1,5 +1,6 @@
 import shortid from 'shortid';
 import {
+  ROOT_REF,
   COMBINE_STATES,
   ADD_GAME,
   UPDATE_GAME,
@@ -14,6 +15,15 @@ import {
   UPDATE_ANSWER,
   REMOVE_ANSWER
 } from '../constants';
+
+export function startFirebaseListeners() {
+  return function(dispatch, getState) {
+    ROOT_REF.on('value', function(remoteState) {
+      const newState = remoteState.val().state;
+      dispatch(combineStates(newState));
+    });
+  };
+}
 
 export function combineStates(state) {
   return {
