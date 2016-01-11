@@ -12,7 +12,6 @@ const EntryEdit = ({
   onUpdateName,
   onSelectAnswer
 }) => {
-  console.log('Entry Edit questions', questions);
   return (
     <div className="container">
       <div className="page-header">
@@ -38,7 +37,7 @@ const EntryEdit = ({
       />
     </div>
   );
-}
+};
 
 EntryEdit.defaultProps = {
   entry: {},
@@ -56,4 +55,4 @@ EntryEdit.PropTypes = {
   onSelectAnswer: React.PropTypes.func.isRequired
 };
 
-export default EntryEdit
+export default EntryEdit;

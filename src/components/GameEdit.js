@@ -44,7 +44,7 @@ const GameEdit = ({
       />
       <NewQuestionBtn save={onAddQuestion}/>
     </div>
-)};
+);};
 
 GameEdit.defaultProps = {
   questions: []
@@ -63,4 +63,4 @@ GameEdit.PropTypes = {
   onUpdateAnswer: React.PropTypes.func.isRequired
 };
 
-export default GameEdit
+export default GameEdit;

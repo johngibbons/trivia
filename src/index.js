@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './containers/App';
 import Home from './containers/Home';
 import GameContainer from './containers/GameContainer';
-import GameShowContainer from './containers/GameShowContainer';
-import GameAdminContainer from './containers/GameAdminContainer';
-import GameEditContainer from './containers/GameEditContainer';
-import GameRunContainer from './containers/GameRunContainer';
+import GameShow from './components/GameShow';
+import GameEdit from './components/GameEdit';
+import GameRun from './components/GameRun';
 import EntryEditContainer from './containers/EntryEditContainer';
 
 import {Provider} from 'react-redux';
@@ -25,9 +24,9 @@ ReactDOM.render(
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='games/:game' component={GameContainer}>
-          <IndexRoute component={GameShowContainer} />
-          <Route path='edit' component={GameEditContainer} />
-          <Route path='run' component={GameRunContainer} />
+          <IndexRoute component={GameShow} />
+          <Route path='edit' component={GameEdit} />
+          <Route path='run' component={GameRun} />
           <Route path='/entries/:entry/edit'
             component={EntryEditContainer} />
         </Route>

@@ -1,9 +1,12 @@
 import React from 'react';
 
-const GameRun = () => {
-  console.log('here');
+const GameRun = ({
+  game,
+  questions,
+  answersById
+}) => {
   return (
-    <div>something</div>
+    <div></div>
   );
 };
 
