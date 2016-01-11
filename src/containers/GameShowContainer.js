@@ -33,7 +33,7 @@ function mapStateToProps(state) {
   return {
     gamesById: state.gamesById,
     entriesById: state.entriesById
-  }
+  };
 }
 
 export default connect(mapStateToProps)(GameShowContainer);

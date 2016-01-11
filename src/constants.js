@@ -2,6 +2,8 @@ import Firebase from 'firebase';
 
 export const ROOT_REF = new Firebase('https://flickering-torch-250.firebaseio.com');
 
+export const COMBINE_STATES = 'COMBINE_STATE';
+
 export const ADD_GAME = 'ADD_GAME';
 export const REMOVE_GAME = 'REMOVE_GAME';
 export const UPDATE_GAME = 'UPDATE_GAME';

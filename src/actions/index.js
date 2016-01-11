@@ -1,5 +1,6 @@
 import shortid from 'shortid';
 import {
+  COMBINE_STATES,
   ADD_GAME,
   UPDATE_GAME,
   ADD_ENTRY,
@@ -13,6 +14,13 @@ import {
   UPDATE_ANSWER,
   REMOVE_ANSWER
 } from '../constants';
+
+export function combineStates(state) {
+  return {
+    type: COMBINE_STATES,
+    state
+  };
+}
 
 export function addGame(id) {
   return {

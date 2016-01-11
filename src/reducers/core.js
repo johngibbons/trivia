@@ -1,3 +1,9 @@
+import {fromJS, toJS, mergeDeep} from 'immutable';
+
+export function mergeStates(state, remoteState) {
+  return fromJS(state).merge(fromJS(remoteState)).toJS();
+}
+
 export function addOrUpdateItem(state, action) {
   return {...state, [action.id]: {...state[action.id], ...action}};
 }

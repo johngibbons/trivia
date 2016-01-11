@@ -21,7 +21,7 @@ function mapStateToProps(state) {
     gamesById: state.gamesById,
     questionsById: state.questionsById,
     answersById: state.answersById
-  }
+  };
 }
 
 export default connect(mapStateToProps)(GameContainer);
