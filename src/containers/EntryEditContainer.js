@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateEntryAttr, addOrUpdateSelection} from '../actions/index';
+import calculateScore from '../helpers/calculate_score';
+import calculateLeader from '../helpers/calculate_leader';
+import calculateTotalPossible from '../helpers/calculate_total_possible';
+import calculateCurrentPossible from '../helpers/calculate_current_possible';
 
 import EntryEdit from '../components/EntryEdit';
 
@@ -9,11 +13,16 @@ class EntryEditContainer extends React.Component {
     const entry = this.props.entriesById[this.props.params.entry] || {};
     const game = entry.game ? this.props.gamesById[entry.game] : {};
     const questions = this.mapQuestionListToObjects(game);
+    const leader = calculateLeader(game, this.props.entriesById, this.props.questionsById);
     return(
       <EntryEdit
         entry={entry}
         game={game}
         questions={questions}
+        correct={calculateScore(entry, this.props.questionsById)}
+        leader={leader}
+        totalPossible={calculateTotalPossible(game, this.props.questionsById)}
+        currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
         answersById={this.props.answersById}
         onUpdateName={this.updateName.bind(this)}
         onSelectAnswer={this.selectAnswer.bind(this)}

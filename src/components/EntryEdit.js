@@ -3,12 +3,17 @@ import {Link} from 'react-router';
 
 import QuestionList from './QuestionList';
 import EditableTextContainer from '../containers/EditableTextContainer';
+import ScoreBar from './ScoreBar';
 
 const EntryEdit = ({
   entry,
   game,
   questions,
   answersById,
+  correct,
+  leader,
+  currentPossible,
+  totalPossible,
   onUpdateName,
   onSelectAnswer
 }) => {
@@ -27,6 +32,12 @@ const EntryEdit = ({
           />
         </h1>
         <Link to={`/games/${game.id}`}>Save And Finish</Link>
+        <ScoreBar
+          correct={correct}
+          leader={leader}
+          currentPossible={currentPossible}
+          totalPossible={totalPossible}
+        />
       </div>
       <QuestionList
         questions={questions}

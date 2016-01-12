@@ -16,6 +16,7 @@ import {
 import Game from '../components/Game.js';
 
 class GameContainer extends React.Component {
+
   render() {
     const {
       gamesById,
@@ -98,15 +99,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-      updateGameAttr,
-      addQuestion,
-      removeQuestion,
-      updateQuestionAttr,
-      addAnswer,
-      removeAnswer,
-      updateAnswerAttr,
-      addEntry
-    }, dispatch);
+    updateGameAttr,
+    addQuestion,
+    removeQuestion,
+    updateQuestionAttr,
+    addAnswer,
+    removeAnswer,
+    updateAnswerAttr,
+    addEntry
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);

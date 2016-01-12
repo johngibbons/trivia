@@ -1,0 +1,36 @@
+.score-bar-labels {
+
+  width: 100%;
+  text-align: center;
+
+  &.table > thead > tr > th {
+    width: 25%;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  td {
+    width: 25%;
+  }
+
+  .correct {
+    color: $brand-success;
+  }
+
+  .leader {
+    color: $brand-primary;
+  }
+
+  .current-possible {
+    color: $brand-warning;
+  }
+
+  .total-possible {
+  }
+
+}
+
+.progress {
+  height: 5px;
+  border-radius: 0;
+}
