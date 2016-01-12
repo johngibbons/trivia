@@ -8,6 +8,7 @@ const Question = ({
   id,
   text,
   ptValue,
+  correctAnswer,
   answers,
   game,
   entry,
@@ -59,6 +60,7 @@ const Question = ({
         <AnswerList
           answers={answers}
           question={id}
+          correctAnswer={correctAnswer}
           entry={entry}
           isEditable={isEditable}
           isSelectable={isSelectable}
@@ -78,7 +80,7 @@ const Question = ({
 
 Question.defaultProps = {
   answers: []
-}
+};
 
 Question.PropTypes = {
   key: React.PropTypes.string.isRequired,
@@ -98,4 +100,4 @@ Question.PropTypes = {
   onSelectAnswer: React.PropTypes.func
 };
 
-export default Question
+export default Question;

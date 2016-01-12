@@ -1,7 +1,7 @@
 import React from 'react';
 import Question from './Question';
 
- const QuestionList = ({
+const QuestionList = ({
   questions,
   isEditable,
   isSelectable,
@@ -14,13 +14,14 @@ import Question from './Question';
   onUpdateAnswer,
   onSelectAnswer
 }) => {
-  console.log('questions', questions);
+
   const getAnswers = (answers) => {
     if (answers) {
       return answers.map(id => answersById[id]);
     }
     return [];
   };
+
   return (
     <span>
       {questions.map(question => {
@@ -43,6 +44,7 @@ import Question from './Question';
       })}
     </span>
   );
+
 };
 
 QuestionList.defaultProps = {
@@ -64,4 +66,4 @@ QuestionList.PropTypes = {
   onSelectAnswer: React.PropTypes.func
 };
 
-export default QuestionList
+export default QuestionList;

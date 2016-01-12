@@ -1,6 +1,7 @@
 .answer {
   border-top: none;
   position: relative;
+  transition: all 0.3s ease;
 
   .right-centered {
     position: absolute;
@@ -10,6 +11,14 @@
 
   .glyphicon-record {
     color: $brand-primary;
+  }
+
+  .glyphicon-ok {
+    color: $brand-success;
+  }
+
+  .glyphicon-remove {
+    color: $brand-danger;
   }
 
   &>div {
@@ -29,6 +38,16 @@
 
     .right-centered {
       top: 2.25rem;
+    }
+
+    &.correct {
+      color: $brand-success;
+      background-color: lighten($brand-success, 35%);
+    }
+
+    &.incorrect {
+      color: $brand-danger;
+      background-color: lighten($brand-danger, 35%);
     }
   }
 

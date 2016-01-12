@@ -13,7 +13,7 @@ const EntryEdit = ({
   onSelectAnswer
 }) => {
   return (
-    <div className="container">
+    <div>
       <div className="page-header">
         <h1>
           <small>{game.title}</small>

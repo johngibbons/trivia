@@ -25,7 +25,7 @@ const AnswerEditable = ({
       />
     </div>
   );
-}
+};
 
 AnswerEditable.defaultProps = {
   isSelected: false
@@ -38,4 +38,4 @@ AnswerEditable.PropTypes = {
   isSelected: React.PropTypes.bool
 };
 
-export default AnswerEditable
+export default AnswerEditable;

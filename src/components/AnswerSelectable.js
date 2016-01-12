@@ -1,20 +1,28 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import SelectedIcon from './SelectedIcon';
+import AnswerIcon from './AnswerIcon';
 
 const AnswerSelectable = ({
   id,
   text,
   question,
+  correctAnswer,
   isSelected,
   onSelect
 }) => {
-
   const answerClasses = classNames({
     'selected': isSelected,
+    'correct': isSelected && correctAnswer && correctAnswer === id,
+    'incorrect': isSelected && correctAnswer && correctAnswer !== id,
     'answer': true,
     'list-group-item': true
+  });
+
+  const answerIconClasses = classNames({
+    'glyphicon-record': !correctAnswer && isSelected,
+    'glyphicon-ok': isSelected && correctAnswer && correctAnswer === id,
+    'glyphicon-remove': isSelected && correctAnswer && correctAnswer !== id
   });
 
   return (
@@ -22,11 +30,15 @@ const AnswerSelectable = ({
       className={answerClasses}
       onClick={(e) => {
         e.preventDefault();
-        onSelect(id, question);
+        if (isSelected) {
+          onSelect(question, 'correctAnswer', null);
+        } else {
+          onSelect(question, 'correctAnswer', id);
+        }
       }}
     >
       {text}
-      {isSelected && <SelectedIcon />}
+      {isSelected && <AnswerIcon iconClass={answerIconClasses} />}
     </a>
   );
 };
@@ -40,4 +52,4 @@ AnswerSelectable.PropTypes = {
   onSelect: React.PropTypes.func.isRequired
 };
 
-export default AnswerSelectable
+export default AnswerSelectable;

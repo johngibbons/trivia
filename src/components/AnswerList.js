@@ -7,6 +7,7 @@ import classNames from 'classnames';
 const AnswerList = ({
   answers,
   question,
+  correctAnswer,
   isEditable,
   isSelectable,
   entry,
@@ -22,8 +23,10 @@ const AnswerList = ({
   });
 
   function isSelected(answer) {
-    if (entry.selections) {
+    if (entry && entry.selections) {
       return entry.selections[question] === answer.id;
+    } else if (!entry && correctAnswer) {
+      return correctAnswer === answer.id;
     }
     return false;
   }
@@ -45,6 +48,7 @@ const AnswerList = ({
           key={answer.id}
           id={answer.id}
           question={answer.question}
+          correctAnswer={correctAnswer}
           text={answer.text}
           isSelected={isSelected(answer)}
           onSelect={onSelectAnswer}
@@ -56,11 +60,12 @@ const AnswerList = ({
           key={answer.id}
           id={answer.id}
           text={answer.text}
+          correctAnswer={correctAnswer}
           isSelected={answer.selected}
         />
       );
     }
-  }
+  };
 
   return(
     <div className={listClass}>
@@ -82,4 +87,4 @@ AnswerList.PropTypes = {
   onSelectAnswer: React.PropTypes.func
 };
 
-export default AnswerList
+export default AnswerList;

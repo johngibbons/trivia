@@ -49,7 +49,7 @@ class EditableTextContainer extends React.Component {
   cancelEdit() {
     this.setState({editing: false});
   }
-};
+}
 
 EditableTextContainer.defaultProps = {
   type: 'text'
@@ -67,4 +67,4 @@ EditableTextContainer.PropTypes = {
   save: React.PropTypes.func.isRequired
 };
 
-export default EditableTextContainer
+export default EditableTextContainer;

@@ -2,15 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {updateEntryAttr, addOrUpdateSelection} from '../actions/index';
 
-import EntryEdit from '../components/EntryEdit'
+import EntryEdit from '../components/EntryEdit';
 
 class EntryEditContainer extends React.Component {
   render(){
     const entry = this.props.entriesById[this.props.params.entry] || {};
     const game = entry.game ? this.props.gamesById[entry.game] : {};
     const questions = this.mapQuestionListToObjects(game);
-    console.log('game', game);
-    console.log('gamesById', this.props.gamesById);
     return(
       <EntryEdit
         entry={entry}
@@ -30,7 +28,7 @@ class EntryEditContainer extends React.Component {
     }));
   }
 
-  selectAnswer(selection, question) {
+  selectAnswer(question, _, selection) {
     this.props.dispatch(addOrUpdateSelection({
       entry: this.props.params.entry,
       question,
@@ -55,7 +53,7 @@ function mapStateToProps(state, props) {
     entriesById: state.entriesById,
     questionsById: state.questionsById,
     answersById: state.answersById
-  }
+  };
 }
 
 export default connect(mapStateToProps)(EntryEditContainer);
