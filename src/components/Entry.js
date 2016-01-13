@@ -5,7 +5,7 @@ import QuestionList from './QuestionList';
 import EditableTextContainer from '../containers/EditableTextContainer';
 import ScoreBar from './ScoreBar';
 
-const EntryEdit = ({
+const Entry = ({
   entry,
   game,
   questions,
@@ -50,14 +50,14 @@ const EntryEdit = ({
   );
 };
 
-EntryEdit.defaultProps = {
+Entry.defaultProps = {
   entry: {},
   game: {},
   questions: [],
   answersById: []
 };
 
-EntryEdit.PropTypes = {
+Entry.PropTypes = {
   entry: React.PropTypes.object.isRequired,
   game: React.PropTypes.object.isRequired,
   questions: React.PropTypes.array.isRequired,
@@ -66,4 +66,4 @@ EntryEdit.PropTypes = {
   onSelectAnswer: React.PropTypes.func.isRequired
 };
 
-export default EntryEdit;
+export default Entry;

@@ -26,7 +26,7 @@ const GameEdit = ({
             id={id}
             attr={'title'}
             value={title}
-            showInput={!title && true}
+            showInput={!title}
             save={onUpdate}
           />
         </h1>

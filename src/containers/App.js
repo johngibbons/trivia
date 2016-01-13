@@ -6,6 +6,7 @@ import {combineStates} from '../actions/index';
 import TopNav from '../components/TopNav';
 
 class App extends React.Component{
+
   render() {
     return (
       <div>

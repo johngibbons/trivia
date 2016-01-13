@@ -7,7 +7,7 @@ import GameContainer from './containers/GameContainer';
 import GameShow from './components/GameShow';
 import GameEdit from './components/GameEdit';
 import GameRun from './components/GameRun';
-import EntryEditContainer from './containers/EntryEditContainer';
+import EntryContainer from './containers/EntryContainer';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
@@ -27,8 +27,8 @@ ReactDOM.render(
           <IndexRoute component={GameShow} />
           <Route path='edit' component={GameEdit} />
           <Route path='run' component={GameRun} />
-          <Route path='/entries/:entry/edit'
-            component={EntryEditContainer} />
+          <Route path='/entries/:entry'
+            component={EntryContainer} />
         </Route>
       </Route>
     </Router>

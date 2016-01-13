@@ -1,13 +1,17 @@
 import React from 'react';
+import calculateScore from '../helpers/calculate_score';
 
 export default ({
-  game,
+  entries,
   entriesById,
+  questionsById,
+  totalPossible,
+  currentPossible,
   onClickEntry
 }) => {
   let rank = 1;
   let prevScore = 0;
-  const entries = game.entries || [];
+  entries = entries || [];
   return(
     <table className="table table-hover">
       <thead>
@@ -24,11 +28,11 @@ export default ({
             <tr key={id} onClick={() => onClickEntry(id)}>
               <td>{rank}</td>
               <td>{entry.name}</td>
-              <td>{entry.score} / {game.possiblePts}</td>
+              <td>{calculateScore(entry, questionsById)} / {currentPossible} (out of {totalPossible} total)</td>
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
   );
-}
+};

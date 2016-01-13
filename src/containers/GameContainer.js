@@ -2,6 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import shortid from 'shortid';
+import calculateLeader from '../helpers/calculate_leader';
+import calculateTotalPossible from '../helpers/calculate_total_possible';
+import calculateCurrentPossible from '../helpers/calculate_current_possible';
 import {
   updateGameAttr,
   addQuestion,
@@ -28,14 +31,19 @@ class GameContainer extends React.Component {
     } = this.props;
     const game = gamesById[params.game] || {};
     const questions = game.questions && game.questions.map(id => questionsById[id]) || [];
+    const leader = calculateLeader(game, entriesById, questionsById);
 
     return (
       <Game
-        game={game}
+        {...game}
         questions={questions}
         answersById={answersById}
+        questionsById={questionsById}
         entriesById={entriesById}
         children={children}
+        leader={leader}
+        totalPossible={calculateTotalPossible(game, this.props.questionsById)}
+        currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
         onUpdate={this.update.bind(this)}
         onAddQuestion={this.addQuestion.bind(this)}
         onRemoveQuestion={this.removeQuestion.bind(this)}
@@ -80,11 +88,11 @@ class GameContainer extends React.Component {
   addEntry() {
     const newId = shortid.generate();
     this.props.addEntry(newId, this.props.params.game);
-    this.props.history.pushState(null, `/entries/${newId}/edit`);
+    this.props.history.pushState(null, `/entries/${newId}`);
   }
 
   goToEntry(entry) {
-    this.props.history.pushState(null, `/entries/${entry}/edit`);
+    this.props.history.pushState(null, `/entries/${entry}`);
   }
 }
 

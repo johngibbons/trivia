@@ -3,15 +3,19 @@ import React from 'react';
 import EntriesList from './EntriesList';
 
 export default ({
-  game,
+  title,
+  entries,
   entriesById,
+  questionsById,
+  totalPossible,
+  currentPossible,
   handleNewEntry,
   handleClickEntry
 }) => {
   return (
     <div>
       <div className="page-header">
-        <h1>{game.title}</h1>
+        <h1>{title}</h1>
       </div>
       <button
         className="btn btn-primary"
@@ -19,8 +23,11 @@ export default ({
       >New Entry</button>
       <h3>Scoreboard</h3>
       <EntriesList
-        game={game}
+        entries={entries}
         entriesById={entriesById}
+        questionsById={questionsById}
+        totalPossible={totalPossible}
+        currentPossible={currentPossible}
         onClickEntry={handleClickEntry}
       />
     </div>

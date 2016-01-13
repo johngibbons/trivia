@@ -8,6 +8,10 @@ class EditableTextContainer extends React.Component {
     this.state = this.props.showInput ? {editing: true} : {editing: false};
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.state = this.props.showInput ? {editing: true} : {editing: false};
+  }
+
   render() {
     const btnsClasses = classNames({
       'hidden': !this.state.editing
