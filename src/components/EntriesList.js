@@ -10,16 +10,6 @@ export default ({
   onClickEntry
 }) => {
   entries = entries || [];
-  entries.sort((a,b) => {
-    let entryA = entriesById[a];
-    let entryB = entriesById[b];
-
-    return (calculateScore(entryB, questionsById) -
-      calculateScore(entryA, questionsById));
-  });
-
-  let rank = 1;
-  let prevScore;
 
   return(
     <table className="table table-hover">
@@ -31,16 +21,12 @@ export default ({
         </tr>
       </thead>
       <tbody>
-        {entries.map((id, index) => {
-          const entry = entriesById[id];
-          const score = calculateScore(entry, questionsById);
-          rank = score < prevScore ? index + 1 : rank;
-          prevScore = score;
+        {entries.map((entry, index) => {
           return (
-            <tr key={id} onClick={() => onClickEntry(id)}>
-              <td>{rank}</td>
+            <tr key={entry.id} onClick={() => onClickEntry(entry.id)}>
+              <td>{entry.rank}</td>
               <td>{entry.name}</td>
-              <td>{score} / {currentPossible} (out of {totalPossible} total)</td>
+              <td>{entry.score} / {currentPossible} (out of {totalPossible} total)</td>
             </tr>
           );
         })}

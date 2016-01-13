@@ -7,7 +7,8 @@ import ScoreBar from './ScoreBar';
 
 const Entry = ({
   entry,
-  game,
+  gameId,
+  gameTitle,
   questions,
   answersById,
   correct,
@@ -21,7 +22,7 @@ const Entry = ({
     <div>
       <div className="page-header">
         <h1>
-          <small>{game.title}</small>
+          <small>{gameTitle}</small>
           <EditableTextContainer
             id={entry.id}
             attr="name"
@@ -30,8 +31,9 @@ const Entry = ({
             save={onUpdateName}
             showInput={!entry.name}
           />
+           (Rank {entry.rank})
         </h1>
-        <Link to={`/games/${game.id}`}>Save And Finish</Link>
+        <Link to={`/games/${gameId}`}>Save And Finish</Link>
         <ScoreBar
           correct={correct}
           leader={leader}

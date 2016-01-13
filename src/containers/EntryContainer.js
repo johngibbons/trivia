@@ -1,28 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateEntryAttr, addOrUpdateSelection} from '../actions/index';
-import calculateScore from '../helpers/calculate_score';
-import calculateLeader from '../helpers/calculate_leader';
-import calculateTotalPossible from '../helpers/calculate_total_possible';
-import calculateCurrentPossible from '../helpers/calculate_current_possible';
 
 import Entry from '../components/Entry';
 
 class EntryContainer extends React.Component {
   render(){
-    const entry = this.props.entriesById[this.props.params.entry] || {};
-    const game = entry.game ? this.props.gamesById[entry.game] : {};
-    const questions = this.mapQuestionListToObjects(game);
-    const leader = calculateLeader(game, this.props.entriesById, this.props.questionsById);
+    let entry = this.props.entries.filter((entry) => {
+      return entry.id === this.props.params.entry;
+    });
+    entry = entry[0] || {};
     return(
       <Entry
         entry={entry}
-        game={game}
-        questions={questions}
-        correct={calculateScore(entry, this.props.questionsById)}
-        leader={leader}
-        totalPossible={calculateTotalPossible(game, this.props.questionsById)}
-        currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
+        gameId={this.props.id}
+        gameTitle={this.props.title}
+        questions={this.props.questions}
+        correct={entry.score}
+        leader={this.props.leader}
+        totalPossible={this.props.totalPossible}
+        currentPossible={this.props.currentPossible}
         answersById={this.props.answersById}
         onUpdateName={this.updateName.bind(this)}
         onSelectAnswer={this.selectAnswer.bind(this)}
@@ -43,15 +40,6 @@ class EntryContainer extends React.Component {
       question,
       selection
     }));
-  }
-
-  mapQuestionListToObjects(game) {
-    const questions = game && game.questions;
-
-    if (questions && this.props.questionsById) {
-      return questions.map(id => this.props.questionsById[id]);
-    }
-    return [];
   }
 }
 
