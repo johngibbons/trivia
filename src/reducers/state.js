@@ -5,7 +5,10 @@ export default function(state = {}, action) {
   switch (action.type) {
 
   case COMBINE_STATES: {
-    return mergeStates(state, action.state);
+    const mergedRemote = mergeStates(state.remote, action.state.remote);
+    const mergedClient = mergeStates(state.client, action.state.client);
+    const newState = {client: mergedClient, remote: mergedRemote};
+    return mergeStates(state, newState);
   }
 
   }

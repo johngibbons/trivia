@@ -1,7 +1,11 @@
 import React from 'react';
 import {ROOT_REF} from '../constants';
 import {connect} from 'react-redux';
-import {logInUser, setFlash} from '../actions/index';
+import {
+  logInUser,
+  logOutUser,
+  setFlash
+} from '../actions/index';
 
 import LoginModal from '../components/LoginModal';
 import Alert from '../components/Alert';
@@ -35,6 +39,10 @@ class LoginContainer extends React.Component {
     });
   }
 
+  handleLogout() {
+    this.props.dispatch(logOutUser());
+  }
+
   showModal() {
     this.setState({
       modalShowing: true
@@ -57,10 +65,16 @@ class LoginContainer extends React.Component {
           padding: '15px'
         }}
       >
-        <a
-          href='#'
-          onClick={this.showModal.bind(this)}
-        >Login</a>
+        {this.props.currentUser.username ?
+          <a
+            href='#'
+            onClick={this.handleLogout.bind(this)}
+          >Log Out</a> :
+          <a
+            href='#'
+            onClick={this.showModal.bind(this)}
+          >Log In</a>
+        }
         <LoginModal
           modalShowing={this.state.modalShowing}
           onClickClose={this.hideModal.bind(this)}
@@ -73,7 +87,10 @@ class LoginContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  const clientState = state.client || {};
+  return {
+    currentUser: clientState.currentUser
+  };
 };
 
 export default connect(mapStateToProps)(LoginContainer);

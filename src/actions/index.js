@@ -16,14 +16,28 @@ import {
   ADD_ANSWER,
   UPDATE_ANSWER,
   REMOVE_ANSWER,
-  LOG_IN_USER
+  LOG_IN_USER,
+  LOG_OUT_USER
 } from '../constants';
 
 export function startFirebaseListeners() {
   return function(dispatch, getState) {
     ROOT_REF.on('value', function(remoteState) {
       const newState = remoteState.val().remoteState;
-      dispatch(combineStates(newState));
+      dispatch(combineStates({remote: newState}));
+    });
+    ROOT_REF.onAuth((authData) => {
+      let name, id, token, avatarURL, username;
+
+      if (authData.facebook) {
+        name = authData.facebook.displayName;
+        id = authData.uid;
+        token = authData.token;
+        avatarURL = authData.facebook.profileImageURL;
+        username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
+      }
+
+      dispatch(logInUser({name,id,token,avatarURL,username}));
     });
   };
 }
@@ -49,6 +63,12 @@ export function logInUser(userData) {
     type: LOG_IN_USER,
     payload: {...userData},
     meta: {remote: true}
+  };
+}
+
+export function logOutUser() {
+  return {
+    type: LOG_OUT_USER
   };
 }
 
