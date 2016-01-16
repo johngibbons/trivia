@@ -1,22 +1,35 @@
+import flash from './flash';
+import currentUser from './current_user';
+import usersById from './user';
 import gamesById from './game';
 import entriesById from './entry';
 import questionsById from './question';
 import answersById from './answer';
-import remoteState from './state';
+import rState from './state';
 import {COMBINE_STATES} from '../constants';
 
 const combined = (state = {}, action) => {
   if (action.type === COMBINE_STATES){
-    return remoteState(state, action);
+    return rState(state, action);
   }
 
+  const remoteState = state.remote || {};
+  const clientState = state.client || {};
+
   return {
-    gamesById: gamesById(state.gamesById, action),
-    entriesById: entriesById(state.entriesById, action),
-    questionsById: questionsById(state.questionsById, action),
-    answersById: answersById(state.answersById, action)
+    client: {
+      flash: flash(clientState.flash, action),
+      currentUser: currentUser(clientState.currentUser, action)
+    },
+    remote: {
+      usersById: usersById(remoteState.usersById, action),
+      gamesById: gamesById(remoteState.gamesById, action),
+      entriesById: entriesById(remoteState.entriesById, action),
+      questionsById: questionsById(remoteState.questionsById, action),
+      answersById: answersById(remoteState.answersById, action)
+    }
   };
 
-}
+};
 
 export default combined;

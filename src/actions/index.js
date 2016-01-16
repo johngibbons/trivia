@@ -2,6 +2,8 @@ import shortid from 'shortid';
 import {
   ROOT_REF,
   COMBINE_STATES,
+  SET_FLASH,
+  CLEAR_FLASH,
   ADD_GAME,
   UPDATE_GAME,
   ADD_ENTRY,
@@ -13,15 +15,40 @@ import {
   REMOVE_QUESTION,
   ADD_ANSWER,
   UPDATE_ANSWER,
-  REMOVE_ANSWER
+  REMOVE_ANSWER,
+  LOG_IN_USER
 } from '../constants';
 
 export function startFirebaseListeners() {
   return function(dispatch, getState) {
     ROOT_REF.on('value', function(remoteState) {
-      const newState = remoteState.val().state;
+      const newState = remoteState.val().remoteState;
       dispatch(combineStates(newState));
     });
+  };
+}
+
+export function setFlash(type, message) {
+  return {
+    type: SET_FLASH,
+    payload: {
+      type,
+      message
+    }
+  };
+}
+
+export function clearFlash() {
+  return {
+    type: CLEAR_FLASH
+  };
+}
+
+export function logInUser(userData) {
+  return {
+    type: LOG_IN_USER,
+    payload: {...userData},
+    meta: {remote: true}
   };
 }
 

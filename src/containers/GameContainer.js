@@ -140,11 +140,12 @@ class GameContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const remoteState = state.remote || {};
   return {
-    gamesById: state.gamesById,
-    questionsById: state.questionsById,
-    answersById: state.answersById,
-    entriesById: state.entriesById
+    gamesById: remoteState.gamesById,
+    questionsById: remoteState.questionsById,
+    answersById: remoteState.answersById,
+    entriesById: remoteState.entriesById
   };
 }
 

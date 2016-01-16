@@ -4,6 +4,9 @@ export const ROOT_REF = new Firebase('https://flickering-torch-250.firebaseio.co
 
 export const COMBINE_STATES = 'COMBINE_STATE';
 
+export const SET_FLASH = 'SET_FLASH';
+export const CLEAR_FLASH = 'CLEAR_FLASH';
+
 export const ADD_GAME = 'ADD_GAME';
 export const REMOVE_GAME = 'REMOVE_GAME';
 export const UPDATE_GAME = 'UPDATE_GAME';
@@ -21,3 +24,6 @@ export const REMOVE_ANSWER = 'REMOVE_ANSWER';
 export const UPDATE_ANSWER = 'UPDATE_ANSWER';
 
 export const ADD_OR_UPDATE_SELECTION = 'ADD_OR_UPDATE_SELECTION';
+
+export const LOG_IN_USER = 'LOG_IN_USER';
+export const LOG_OUT_USER = 'LOG_OUT_USER';

@@ -1,0 +1,29 @@
+.btn {
+  &.btn-facebook {
+    background-color: #3b5999;
+    border: 1px solid darken(#3b5999, 20%);
+    color: white;
+
+    &:hover {
+      background-color: lighten(#3b5999, 10%);
+    }
+
+    &:active {
+      background-color: darken(#3b5999, 10%);
+    }
+  }
+
+  &.btn-google {
+    background-color: #d32f2f;
+    border: 1px solid darken(#d32f2f, 20%);
+    color: white;
+
+    &:hover {
+      background-color: lighten(#d32f2f, 10%);
+    }
+
+    &:active {
+      background-color: darken(#d32f2f, 10%);
+    }
+  }
+}

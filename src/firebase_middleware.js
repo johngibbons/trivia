@@ -8,8 +8,8 @@ export default store => next => action => {
     let result = next(action);
     console.log('next state', store.getState());
     console.groupEnd(action.type);
-    let state = store.getState();
-    ROOT_REF.set({state});
+    let remoteState = store.getState().remote;
+    ROOT_REF.set({remoteState});
     return result;
   } else {
     console.group(action.type);

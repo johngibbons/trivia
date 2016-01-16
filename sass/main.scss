@@ -5,6 +5,7 @@
 @import 'components/question';
 @import 'components/answer';
 @import 'components/score_bar';
+@import 'components/button';
 
 body {
   padding-top: 70px;
@@ -12,6 +13,10 @@ body {
 
 .no-margin {
   margin: 0;
+}
+
+button {
+  outline: none;
 }
 
 .btn {

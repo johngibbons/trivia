@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+import LoginContainer from '../containers/LoginContainer';
+
 export default ({gameTitle}) => {
   return(
     <nav className='navbar navbar-default navbar-fixed-top'>
@@ -12,9 +14,10 @@ export default ({gameTitle}) => {
             <span className='icon-bar'></span>
             <span className='icon-bar'></span>
           </button>
-          <Link to='/' className='navbar-brand'>Trvia</Link>
+          <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
         </div>
+        <LoginContainer />
       </div>
     </nav>
   );
-}
+};

@@ -45,11 +45,12 @@ class EntryContainer extends React.Component {
 
 
 function mapStateToProps(state, props) {
+  const remoteState = state.remote || {};
   return {
-    gamesById: state.gamesById,
-    entriesById: state.entriesById,
-    questionsById: state.questionsById,
-    answersById: state.answersById
+    gamesById: remoteState.gamesById,
+    entriesById: remoteState.entriesById,
+    questionsById: remoteState.questionsById,
+    answersById: remoteState.answersById
   };
 }
 
