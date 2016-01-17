@@ -4,6 +4,8 @@ import EntriesList from './EntriesList';
 import Button from './Button';
 
 export default ({
+  currentUser,
+  toggleLoginModal,
   title,
   entries,
   entriesById,
@@ -20,7 +22,7 @@ export default ({
       </div>
       <button
         className="btn btn-primary"
-        onClick={handleNewEntry}
+        onClick={currentUser.username ? handleNewEntry : toggleLoginModal}
       >New Entry</button>
       <h3>Scoreboard</h3>
       <EntriesList

@@ -41,7 +41,7 @@ class Home extends React.Component {
   }
 
   handleNewGame(){
-    this.props.dispatch(addGame(this.newId));
+    this.props.dispatch(addGame(this.newId, this.props.currentUser.id));
     this.props.history.pushState(null, `games/${this.newId}/edit`);
   }
 

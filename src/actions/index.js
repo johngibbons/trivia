@@ -102,11 +102,12 @@ export function combineStates(state) {
   };
 }
 
-export function addGame(id) {
+export function addGame(id, user) {
   return {
     type: ADD_GAME,
     payload: {
-      id
+      id,
+      user
     },
     meta: {remote: true}
   };
@@ -122,12 +123,13 @@ export function updateGameAttr(obj) {
   };
 }
 
-export function addEntry(id, game) {
+export function addEntry(id, game, user) {
   return {
     type: ADD_ENTRY,
     payload: {
       id,
-      game
+      game,
+      user
     },
     meta: {remote: true}
   };
@@ -153,7 +155,7 @@ export function addOrUpdateSelection(obj) {
   };
 }
 
-export function removeEntry(id, game) {
+export function removeEntry(id, game, user) {
   return {
     type: REMOVE_ENTRY,
     payload: {

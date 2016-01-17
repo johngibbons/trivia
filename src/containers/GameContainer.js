@@ -52,6 +52,8 @@ class GameContainer extends React.Component {
   render() {
 
     const {
+      currentUser,
+      toggleLoginModal,
       gamesById,
       questionsById,
       answersById,
@@ -76,6 +78,8 @@ class GameContainer extends React.Component {
 
     return (
       <Game
+        currentUser={currentUser}
+        toggleLoginModal={toggleLoginModal}
         id = {game.id}
         title = {game.title}
         questions={questions}
@@ -130,7 +134,7 @@ class GameContainer extends React.Component {
 
   addEntry() {
     const newId = shortid.generate();
-    this.props.addEntry(newId, this.props.params.game);
+    this.props.addEntry(newId, this.props.params.game, this.props.currentUser.id);
     this.props.history.pushState(null, `/entries/${newId}`);
   }
 
@@ -142,6 +146,7 @@ class GameContainer extends React.Component {
 function mapStateToProps(state) {
   const remoteState = state.remote || {};
   return {
+    currentUser: state.client.currentUser,
     gamesById: remoteState.gamesById,
     questionsById: remoteState.questionsById,
     answersById: remoteState.answersById,
