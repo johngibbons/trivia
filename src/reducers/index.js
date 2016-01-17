@@ -19,8 +19,8 @@ const combined = (state = {}, action) => {
   const clientState = state.client || {};
 
   return {
-    routing: routeReducer,
     client: {
+      routing: routeReducer,
       flash: flash(clientState.flash, action),
       currentUser: currentUser(clientState.currentUser, action),
       modal: modal(clientState.modal, action)

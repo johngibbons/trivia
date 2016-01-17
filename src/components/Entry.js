@@ -6,6 +6,7 @@ import EditableTextContainer from '../containers/EditableTextContainer';
 import ScoreBar from './ScoreBar';
 
 const Entry = ({
+  currentUser,
   entry,
   gameId,
   gameTitle,
@@ -60,6 +61,7 @@ Entry.defaultProps = {
 };
 
 Entry.PropTypes = {
+  currentUser: React.PropTypes.object,
   entry: React.PropTypes.object.isRequired,
   game: React.PropTypes.object.isRequired,
   questions: React.PropTypes.array.isRequired,

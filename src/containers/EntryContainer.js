@@ -12,6 +12,7 @@ class EntryContainer extends React.Component {
     entry = entry[0] || {};
     return(
       <Entry
+        currentUser={this.props.currentUser}
         entry={entry}
         gameId={this.props.id}
         gameTitle={this.props.title}
@@ -43,15 +44,4 @@ class EntryContainer extends React.Component {
   }
 }
 
-
-function mapStateToProps(state, props) {
-  const remoteState = state.remote || {};
-  return {
-    gamesById: remoteState.gamesById,
-    entriesById: remoteState.entriesById,
-    questionsById: remoteState.questionsById,
-    answersById: remoteState.answersById
-  };
-}
-
-export default connect(mapStateToProps)(EntryContainer);
+export default connect()(EntryContainer);

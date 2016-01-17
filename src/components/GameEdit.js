@@ -25,6 +25,7 @@ const GameEdit = ({
           <EditableTextContainer
             id={id}
             attr={'title'}
+            placeholder='Enter a name for your game...'
             value={title}
             showInput={!title}
             save={onUpdate}

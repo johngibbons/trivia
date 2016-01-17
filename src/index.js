@@ -19,7 +19,6 @@ import {startFirebaseListeners, setLocation} from './actions/index';
 const history = createBrowserHistory();
 store.dispatch(startFirebaseListeners());
 
-syncReduxAndRouter(history, store);
 
 ReactDOM.render(
   <Provider store={store}>
