@@ -25,19 +25,20 @@ export function startFirebaseListeners() {
     ROOT_REF.on('value', function(remoteState) {
       const newState = remoteState.val().remoteState;
       dispatch(combineStates({remote: newState}));
-    });
-    ROOT_REF.onAuth((authData) => {
-      let name, id, token, avatarURL, username;
 
-      if (authData.facebook) {
-        name = authData.facebook.displayName;
-        id = authData.uid;
-        token = authData.token;
-        avatarURL = authData.facebook.profileImageURL;
-        username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
-      }
+      ROOT_REF.onAuth((authData) => {
+        let name, id, token, avatarURL, username;
 
-      dispatch(logInUser({name,id,token,avatarURL,username}));
+        if (authData.facebook) {
+          name = authData.facebook.displayName;
+          id = authData.uid;
+          token = authData.token;
+          avatarURL = authData.facebook.profileImageURL;
+          username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
+        }
+
+        dispatch(logInUser({name,id,token,avatarURL,username}));
+      });
     });
   };
 }
