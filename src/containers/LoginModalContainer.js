@@ -10,26 +10,26 @@ import LoginModal from '../components/LoginModal';
 
 class LoginModalContainer extends React.Component {
 
-  handleFacebookLogin(e) {
+  handleOAuthLogin(provider, e) {
     e.preventDefault();
-    this.props.toggleModal();
-    ROOT_REF.authWithOAuthPopup('facebook', (error, authData) => {
+    ROOT_REF.authWithOAuthPopup(provider, (error, authData) => {
       if (error) {
         if (error.code === 'TRANSPORT_UNAVAILABLE') {
-          ROOT_REF.authWithOAuthRedirect('facebook', (error) => {
+          ROOT_REF.authWithOAuthRedirect(provider, (error) => {
             this.props.dispatch(setFlash('danger', error.message));
           });
         }
       } else if (authData) {
-        const name = authData.facebook.displayName;
+        const name = authData[provider].displayName;
         const id = authData.uid;
         const token = authData.token;
-        const avatarURL = authData.facebook.profileImageURL;
-        const username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
+        const avatarURL = authData[provider].profileImageURL;
+        const username = authData[provider].displayName.toLowerCase().replace(/\s/, '');
         this.props.dispatch(logInUser({name,id,token,avatarURL,username}));
         this.props.dispatch(setFlash('success', `${username}, you have been successfully logged in`));
       }
     });
+    this.props.toggleModal();
   }
 
   render() {
@@ -37,7 +37,8 @@ class LoginModalContainer extends React.Component {
       <LoginModal
         isShowing={this.props.isModalShowing}
         onClickClose={this.props.onClickClose}
-        onClickFacebook={this.handleFacebookLogin.bind(this)}
+        onClickFacebook={this.handleOAuthLogin.bind(this, 'facebook')}
+        onClickGoogle={this.handleOAuthLogin.bind(this, 'google')}
       />
     );
   }

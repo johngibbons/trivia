@@ -8,7 +8,8 @@ import ModalBody from './ModalBody';
 const LoginModal = ({
   isShowing,
   onClickClose,
-  onClickFacebook
+  onClickFacebook,
+  onClickGoogle
 }) => {
   return (
     <Modal isShowing={isShowing}>
@@ -34,6 +35,7 @@ const LoginModal = ({
             <button
               className='btn btn-google'
               style={{width: '100%'}}
+              onClick={onClickGoogle}
             >
               Log In With Google
             </button>

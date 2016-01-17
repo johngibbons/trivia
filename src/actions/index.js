@@ -38,6 +38,12 @@ export function startFirebaseListeners() {
             token = authData.token;
             avatarURL = authData.facebook.profileImageURL;
             username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
+          } else if (authData.google) {
+            name = authData.google.displayName;
+            id = authData.uid;
+            token = authData.token;
+            avatarURL = authData.google.profileImageURL;
+            username = authData.google.displayName.toLowerCase().replace(/\s/, '');
           }
 
           dispatch(logInUser({name,id,token,avatarURL,username}));
