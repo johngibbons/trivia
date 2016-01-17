@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Alert = ({type, children, onClear}) => {
+
+  setTimeout(() => {
+    onClear();
+  }, 3000);
+
   return (
     <div className={`alert alert-${type}`} role='alert'>
       <button

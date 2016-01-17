@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 import AvatarSmall from './AvatarSmall';
 import UserDropdown from './UserDropdown';
-import LoginModal from './LoginModal';
 
 const AccountDropdownMenu = ({
   currentUser,
@@ -62,11 +61,6 @@ const AccountDropdownMenu = ({
             >Log In</a>
           </p>
         }
-      <LoginModal
-        isModalShowing={isModalShowing}
-        onClickClose={toggleModal}
-        onClickFacebook={handleFacebookLogin}
-      />
     </div>
   );
 };

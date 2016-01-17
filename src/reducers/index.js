@@ -6,6 +6,7 @@ import entriesById from './entry';
 import questionsById from './question';
 import answersById from './answer';
 import rState from './state';
+import modal from './modal';
 import {COMBINE_STATES} from '../constants';
 
 const combined = (state = {}, action) => {
@@ -19,7 +20,8 @@ const combined = (state = {}, action) => {
   return {
     client: {
       flash: flash(clientState.flash, action),
-      currentUser: currentUser(clientState.currentUser, action)
+      currentUser: currentUser(clientState.currentUser, action),
+      modal: modal(clientState.modal, action)
     },
     remote: {
       usersById: usersById(remoteState.usersById, action),

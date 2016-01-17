@@ -1,22 +1,18 @@
 import React from 'react';
-import {ROOT_REF} from '../constants';
 import {connect} from 'react-redux';
 import {
-  logInUser,
-  logOutUser,
-  setFlash
+  setFlash,
+  logInUser
 } from '../actions/index';
+import {ROOT_REF} from '../constants';
 
-class AccountDropdownMenuContainer extends React.Component {
+import LoginModal from '../components/LoginModal';
 
-  constructor() {
-    super();
-    this.state = {modalShowing: false};
-  }
+class LoginModalContainer extends React.Component {
 
   handleFacebookLogin(e) {
     e.preventDefault();
-    this.hideModal();
+    this.props.toggleModal();
     ROOT_REF.authWithOAuthPopup('facebook', (error, authData) => {
       if (error) {
         if (error.code === 'TRANSPORT_UNAVAILABLE') {
@@ -36,39 +32,16 @@ class AccountDropdownMenuContainer extends React.Component {
     });
   }
 
-  handleLogout() {
-    this.props.dispatch(logOutUser());
-  }
-
-  showModal() {
-    this.setState({
-      modalShowing: true
-    });
-  }
-
-  hideModal() {
-    this.setState({
-      modalShowing: false
-    });
-  }
-
-  toggleDropdown() {
-
-  }
-
   render() {
     return (
-      <AccountDropdownMenu />
+      <LoginModal
+        isShowing={this.props.isModalShowing}
+        onClickClose={this.props.onClickClose}
+        onClickFacebook={this.handleFacebookLogin.bind(this)}
+      />
     );
   }
 
 }
 
-const mapStateToProps = (state) => {
-  const clientState = state.client || {};
-  return {
-    currentUser: clientState.currentUser
-  };
-};
-
-export default connect(mapStateToProps)(LoginContainer);
+export default connect()(LoginModalContainer);

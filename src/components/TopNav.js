@@ -3,7 +3,10 @@ import {Link} from 'react-router';
 
 import AccountDropdownMenuContainer from '../containers/AccountDropdownMenuContainer';
 
-const TopNav = ({gameTitle}) => {
+const TopNav = ({
+  gameTitle,
+  toggleLoginModal
+}) => {
   return(
     <nav className='navbar navbar-default navbar-fixed-top'>
       <div className='container'>
@@ -16,7 +19,9 @@ const TopNav = ({gameTitle}) => {
           </button>
           <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
         </div>
-        <AccountDropdownMenuContainer />
+        <AccountDropdownMenuContainer
+          toggleLoginModal={toggleLoginModal}
+        />
       </div>
     </nav>
   );

@@ -6,12 +6,12 @@ import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
 const LoginModal = ({
-  isModalShowing,
+  isShowing,
   onClickClose,
   onClickFacebook
 }) => {
   return (
-    <Modal isShowing={isModalShowing}>
+    <Modal isShowing={isShowing}>
       <ModalHeader onClickClose={onClickClose}>Log In</ModalHeader>
       <ModalBody>
         <div

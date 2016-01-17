@@ -4,6 +4,7 @@ import {
   COMBINE_STATES,
   SET_FLASH,
   CLEAR_FLASH,
+  TOGGLE_MODAL,
   ADD_GAME,
   UPDATE_GAME,
   ADD_ENTRY,
@@ -56,6 +57,15 @@ export function setFlash(type, message) {
 export function clearFlash() {
   return {
     type: CLEAR_FLASH
+  };
+}
+
+export function toggleModal(name) {
+  return {
+    type: TOGGLE_MODAL,
+    payload: {
+      name
+    }
   };
 }
 

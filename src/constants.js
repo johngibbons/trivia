@@ -7,6 +7,8 @@ export const COMBINE_STATES = 'COMBINE_STATES';
 export const SET_FLASH = 'SET_FLASH';
 export const CLEAR_FLASH = 'CLEAR_FLASH';
 
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+
 export const ADD_GAME = 'ADD_GAME';
 export const REMOVE_GAME = 'REMOVE_GAME';
 export const UPDATE_GAME = 'UPDATE_GAME';
