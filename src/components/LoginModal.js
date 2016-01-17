@@ -5,13 +5,13 @@ import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
-export default ({
-  modalShowing,
+const LoginModal = ({
+  isModalShowing,
   onClickClose,
   onClickFacebook
 }) => {
   return (
-    <Modal isShowing={modalShowing}>
+    <Modal isShowing={isModalShowing}>
       <ModalHeader onClickClose={onClickClose}>Log In</ModalHeader>
       <ModalBody>
         <div
@@ -43,3 +43,5 @@ export default ({
     </Modal>
   );
 };
+
+export default LoginModal;

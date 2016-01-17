@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-import LoginContainer from '../containers/LoginContainer';
+import AccountDropdownMenuContainer from '../containers/AccountDropdownMenuContainer';
 
-export default ({gameTitle}) => {
+const TopNav = ({gameTitle}) => {
   return(
     <nav className='navbar navbar-default navbar-fixed-top'>
       <div className='container'>
@@ -16,8 +16,10 @@ export default ({gameTitle}) => {
           </button>
           <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
         </div>
-        <LoginContainer />
+        <AccountDropdownMenuContainer />
       </div>
     </nav>
   );
 };
+
+export default TopNav;

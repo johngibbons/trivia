@@ -7,16 +7,28 @@ import {
   setFlash
 } from '../actions/index';
 
+import AccountDropdownMenu from '../components/AccountDropdownMenu';
+
 class AccountDropdownMenuContainer extends React.Component {
 
   constructor() {
     super();
-    this.state = {modalShowing: false};
+    this.state = {
+      isModalShowing: false,
+      isDropdownShowing: false
+    };
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      isModalShowing: false,
+      isDropdownShowing: false
+    });
   }
 
   handleFacebookLogin(e) {
     e.preventDefault();
-    this.hideModal();
+    this.toggleModal();
     ROOT_REF.authWithOAuthPopup('facebook', (error, authData) => {
       if (error) {
         if (error.code === 'TRANSPORT_UNAVAILABLE') {
@@ -40,25 +52,29 @@ class AccountDropdownMenuContainer extends React.Component {
     this.props.dispatch(logOutUser());
   }
 
-  showModal() {
+  toggleModal() {
     this.setState({
-      modalShowing: true
-    });
-  }
-
-  hideModal() {
-    this.setState({
-      modalShowing: false
+      isModalShowing: !this.state.isModalShowing
     });
   }
 
   toggleDropdown() {
-
+    this.setState({
+      isDropdownShowing: !this.state.isDropdownShowing
+    });
   }
 
   render() {
     return (
-      <AccountDropdownMenu />
+      <AccountDropdownMenu
+        currentUser={this.props.currentUser}
+        handleFacebookLogin={this.handleFacebookLogin.bind(this)}
+        handleLogout={this.handleLogout.bind(this)}
+        toggleDropdown={this.toggleDropdown.bind(this)}
+        isDropdownShowing={this.state.isDropdownShowing}
+        toggleModal={this.toggleModal.bind(this)}
+        isModalShowing={this.state.isModalShowing}
+      />
     );
   }
 
@@ -71,4 +87,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(LoginContainer);
+export default connect(mapStateToProps)(AccountDropdownMenuContainer);
