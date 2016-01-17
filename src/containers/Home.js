@@ -17,7 +17,10 @@ class Home extends React.Component {
             <div className="col-md-6 col-md-offset-3">
               <button
                 className="btn btn-primary btn-lg"
-                onClick={this.handleNewGame.bind(this)}
+                onClick={this.props.currentUser.username ?
+                  this.handleNewGame.bind(this) :
+                    this.props.toggleLoginModal
+                }
               >Create A Game</button>
             </div>
           </div>
@@ -44,4 +47,10 @@ class Home extends React.Component {
 
 }
 
-export default connect()(Home);
+function mapStateToProps(state) {
+  return {
+    currentUser: state.client.currentUser
+  };
+}
+
+export default connect(mapStateToProps)(Home);

@@ -14,14 +14,12 @@ class AccountDropdownMenuContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      isModalShowing: false,
       isDropdownShowing: false
     };
   }
 
   componentWillReceiveProps() {
     this.setState({
-      isModalShowing: false,
       isDropdownShowing: false
     });
   }
@@ -32,7 +30,8 @@ class AccountDropdownMenuContainer extends React.Component {
     ROOT_REF.unauth();
   }
 
-  toggleDropdown() {
+  toggleDropdown(e) {
+    e.preventDefault();
     this.setState({
       isDropdownShowing: !this.state.isDropdownShowing
     });

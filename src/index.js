@@ -11,12 +11,15 @@ import EntryContainer from './containers/EntryContainer';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
+import {syncReduxAndRouter} from 'redux-simple-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
-import {startFirebaseListeners} from './actions/index';
+import {startFirebaseListeners, setLocation} from './actions/index';
 
 const history = createBrowserHistory();
 store.dispatch(startFirebaseListeners());
+
+syncReduxAndRouter(history, store);
 
 ReactDOM.render(
   <Provider store={store}>

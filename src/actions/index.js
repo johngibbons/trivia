@@ -2,6 +2,7 @@ import shortid from 'shortid';
 import {
   ROOT_REF,
   COMBINE_STATES,
+  SET_ROUTE,
   SET_FLASH,
   CLEAR_FLASH,
   TOGGLE_MODAL,
@@ -30,17 +31,28 @@ export function startFirebaseListeners() {
       ROOT_REF.onAuth((authData) => {
         let name, id, token, avatarURL, username;
 
-        if (authData.facebook) {
-          name = authData.facebook.displayName;
-          id = authData.uid;
-          token = authData.token;
-          avatarURL = authData.facebook.profileImageURL;
-          username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
-        }
+        if (authData) {
+          if (authData.facebook) {
+            name = authData.facebook.displayName;
+            id = authData.uid;
+            token = authData.token;
+            avatarURL = authData.facebook.profileImageURL;
+            username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
+          }
 
-        dispatch(logInUser({name,id,token,avatarURL,username}));
+          dispatch(logInUser({name,id,token,avatarURL,username}));
+        }
       });
     });
+  };
+}
+
+export function setRoute(url) {
+  return {
+    type: SET_ROUTE,
+    payload: {
+      url
+    }
   };
 }
 

@@ -36,7 +36,9 @@ class App extends React.Component{
             {this.props.message}
           </Alert>
         }
-        {this.props.children}
+          {React.cloneElement(this.props.children, {
+            toggleLoginModal: this.toggleLoginModal.bind(this)
+          })}
         <LoginModalContainer
           isModalShowing={this.props.modal === 'login'}
           onClickClose={this.toggleLoginModal.bind(this)}
