@@ -10,6 +10,7 @@ const Entry = ({
   entry,
   gameId,
   gameTitle,
+  hasGameStarted,
   questions,
   answersById,
   correct,
@@ -32,9 +33,11 @@ const Entry = ({
             save={onUpdateName}
             showInput={!entry.name}
           />
-           (Rank {entry.rank})
         </h1>
-        <Link to={`/games/${gameId}`}>Save And Finish</Link>
+        (Rank {entry.rank})
+        {!hasGameStarted &&
+          <Link to={`/games/${gameId}`}>Save And Finish</Link>
+        }
         <ScoreBar
           correct={correct}
           leader={leader}
@@ -46,7 +49,7 @@ const Entry = ({
         questions={questions}
         answersById={answersById}
         entry={entry}
-        isSelectable={true}
+        isSelectable={!hasGameStarted}
         onSelectAnswer={onSelectAnswer}
       />
     </div>

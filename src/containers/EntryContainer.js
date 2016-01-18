@@ -16,6 +16,7 @@ class EntryContainer extends React.Component {
         entry={entry}
         gameId={this.props.id}
         gameTitle={this.props.title}
+        hasGameStarted={this.props.hasGameStarted}
         questions={this.props.questions}
         correct={entry.score}
         leader={this.props.leader}

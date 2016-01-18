@@ -61,7 +61,7 @@ const AnswerList = ({
           id={answer.id}
           text={answer.text}
           correctAnswer={correctAnswer}
-          isSelected={answer.selected}
+          isSelected={isSelected(answer)}
         />
       );
     }

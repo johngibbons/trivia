@@ -75,6 +75,8 @@ class GameContainer extends React.Component {
     let entries = this.getEntries(game.id);
     entries = this.addScoreToEntries(entries);
     entries = this.addRankToEntries(entries);
+    let totalPossible = calculateTotalPossible(game, this.props.questionsById);
+    let currentPossible = calculateCurrentPossible(game, this.props.questionsById);
 
     return (
       <Game
@@ -82,6 +84,7 @@ class GameContainer extends React.Component {
         toggleLoginModal={toggleLoginModal}
         id = {game.id}
         title = {game.title}
+        hasGameStarted={currentPossible > 0}
         questions={questions}
         answersById={answersById}
         questionsById={questionsById}
