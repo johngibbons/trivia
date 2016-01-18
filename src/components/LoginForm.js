@@ -3,9 +3,12 @@ import React from 'react';
 import InputValidated from './InputValidated';
 
 const LoginForm = ({
+  isSignup,
   onChange,
   onBlur,
   onSubmit,
+  usernameValue,
+  usernameValidation,
   emailValue,
   emailValidation,
   passwordValue,
@@ -14,6 +17,19 @@ const LoginForm = ({
 
   return (
     <form>
+      {isSignup &&
+        <InputValidated
+          id='signupUsername'
+          type='text'
+          label='Username'
+          value={usernameValue}
+          placeholder='Username'
+          validation={usernameValidation}
+          errorMessage='Username is taken'
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      }
       <InputValidated
         id='loginEmail'
         type='email'

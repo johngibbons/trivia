@@ -1,0 +1,21 @@
+.tab-link {
+  padding-bottom: 5px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: $gray-light;
+  transition: color 0.3s ease;
+
+  &:hover {
+    text-decoration: none;
+    color: darken($gray, 20%);
+  }
+
+  &:active, &:focus {
+    text-decoration: none;
+    color: $gray-light;
+  }
+
+  &.isSelected {
+    border-bottom: 3px solid $brand-primary;
+  }
+}

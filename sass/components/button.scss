@@ -5,11 +5,11 @@
     color: white;
 
     &:hover {
-      background-color: lighten(#3b5999, 10%);
+      background-color: darken(#3b5999, 10%);
     }
 
     &:active {
-      background-color: darken(#3b5999, 10%);
+      background-color: darken(#3b5999, 20%);
     }
   }
 
@@ -19,11 +19,11 @@
     color: white;
 
     &:hover {
-      background-color: lighten(#d32f2f, 10%);
+      background-color: darken(#d32f2f, 10%);
     }
 
     &:active {
-      background-color: darken(#d32f2f, 10%);
+      background-color: darken(#d32f2f, 20%);
     }
   }
 }

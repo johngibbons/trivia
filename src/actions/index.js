@@ -4,6 +4,7 @@ import {
   COMBINE_STATES,
   SET_ROUTE,
   SET_FLASH,
+  SET_CURRENT_USER,
   CLEAR_FLASH,
   TOGGLE_MODAL,
   ADD_GAME,
@@ -44,9 +45,16 @@ export function startFirebaseListeners() {
             token = authData.token;
             avatarURL = authData.google.profileImageURL;
             username = authData.google.displayName.toLowerCase().replace(/\s/, '');
+          } else if (authData.password) {
+            name = authData.password.displayName;
+            id = authData.uid;
+            token = authData.token;
+            avatarURL = authData.password.profileImageURL;
+            username = getState().remote.usersById[authData.uid] &&
+              getState().remote.usersById[authData.uid].username;
           }
 
-          dispatch(logInUser({name,id,token,avatarURL,username}));
+          dispatch(setCurrentUser({name, id, token, avatarURL, username}));
         }
       });
     });
@@ -84,6 +92,13 @@ export function toggleModal(name) {
     payload: {
       name
     }
+  };
+}
+
+export function setCurrentUser(userData) {
+  return {
+    type: SET_CURRENT_USER,
+    payload: {...userData}
   };
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import EntriesList from './EntriesList';
-import Button from './Button';
 
 export default ({
   currentUser,
