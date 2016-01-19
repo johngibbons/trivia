@@ -35,7 +35,7 @@ const EditableText = ({
       />
     </div>
   );
-}
+};
 
 EditableText.PropTypes = {
   textClasses: React.PropTypes.string.isRequired,

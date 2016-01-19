@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ScoreBar = ({
+  isOwnScore,
+  entry,
   correct,
   leader,
   currentPossible,
@@ -19,7 +21,7 @@ const ScoreBar = ({
       <table className='table score-bar-labels'>
         <thead>
           <tr>
-            <th className='correct'>You</th>
+            <th className='correct'>{isOwnScore ? 'You' : entry.name}</th>
             <th className='leader'>Leader</th>
             <th className='current-possible'>Current Possible</th>
             <th className='total-possible'>Total Possible</th>

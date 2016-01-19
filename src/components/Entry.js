@@ -25,33 +25,46 @@ const Entry = ({
       <div className="page-header">
         <h1>
           <small>{gameTitle}</small>
-          <EditableTextContainer
-            id={entry.id}
-            attr="name"
-            placeholder="Enter a name for your entry..."
-            value={entry.name}
-            save={onUpdateName}
-            showInput={!entry.name}
-          />
+          {!hasGameStarted && currentUser.id === entry.user ?
+            <EditableTextContainer
+              id={entry.id}
+              attr="name"
+              placeholder="Enter a name for your entry..."
+              value={entry.name}
+              save={onUpdateName}
+              showInput={!entry.name}
+            /> :
+            <div>{entry.name}</div>
+          }
         </h1>
-        (Rank {entry.rank})
-        {!hasGameStarted &&
-          <Link to={`/games/${gameId}`}>Save And Finish</Link>
+        {hasGameStarted &&
+          `(Rank ${entry.rank})`
+        }
+        {!hasGameStarted && currentUser.id === entry.user &&
+          <div>
+            <Link to={`/games/${gameId}`}>Save And Finish</Link>
+          </div>
         }
         <ScoreBar
+          isOwnScore={currentUser.id === entry.user}
+          entry={entry}
           correct={correct}
           leader={leader}
           currentPossible={currentPossible}
           totalPossible={totalPossible}
         />
       </div>
-      <QuestionList
-        questions={questions}
-        answersById={answersById}
-        entry={entry}
-        isSelectable={!hasGameStarted}
-        onSelectAnswer={onSelectAnswer}
-      />
+      {hasGameStarted || currentUser.id == entry.user ?
+        <QuestionList
+          questions={questions}
+          answersById={answersById}
+          entry={entry}
+          isSelectable={!hasGameStarted && currentUser.id === entry.user}
+          onSelectAnswer={onSelectAnswer}
+        />
+        :
+        <p>Answers hidden until the game starts.</p>
+      }
     </div>
   );
 };
