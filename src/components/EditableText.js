@@ -15,7 +15,11 @@ const EditableText = ({
   let input;
 
   return (
-    <div>
+    <div style={{
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    }}>
       <span className={textClasses} onClick={() => {startEdit(input)}}>{value}</span>
       <input
         type={type}
@@ -47,6 +51,6 @@ EditableText.PropTypes = {
   startEdit: React.PropTypes.func.isRequired,
   saveEdit: React.PropTypes.func.isRequired,
   cancelEdit: React.PropTypes.func.isRequired
-}
+};
 
-export default EditableText
+export default EditableText;

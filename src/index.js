@@ -8,6 +8,7 @@ import GameShow from './components/GameShow';
 import GameEdit from './components/GameEdit';
 import GameRun from './components/GameRun';
 import EntryContainer from './containers/EntryContainer';
+import UserContainer from './containers/UserContainer';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
@@ -48,6 +49,8 @@ ReactDOM.render(
           <Route path='run' component={GameRun} onEnter={requireGameOwner} />
           <Route path='/entries/:entry'
             component={EntryContainer} />
+        </Route>
+        <Route path='users/:user' component={UserContainer}>
         </Route>
       </Route>
     </Router>

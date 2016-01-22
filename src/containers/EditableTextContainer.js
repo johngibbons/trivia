@@ -40,10 +40,15 @@ class EditableTextContainer extends React.Component {
   startEdit(input) {
     this.setState({editing: true});
     input.value = this.props.value;
-    input.setSelectionRange(0, input.value.length);
+    if (this.props.type === 'text') {
+      input.setSelectionRange(0, input.value.length);
+    }
   }
 
   saveEdit(e, input) {
+    if (!e.key) {
+      e.preventDefault();
+    }
     if (e.key === 'Enter' || !e.key) {
       this.props.save(this.props.id, this.props.attr, input.value);
       this.setState({editing: false});
@@ -62,7 +67,7 @@ EditableTextContainer.defaultProps = {
 EditableTextContainer.PropTypes = {
   id: React.PropTypes.string.isRequired,
   attr: React.PropTypes.string.isRequired,
-  type: React.PropTypes.oneOf['text', 'number'],
+  type: React.PropTypes.oneOf['text', 'number', 'email', 'password'],
   value: React.PropTypes.oneOfType([
     'string',
     'number'

@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default (props) => {
+const Game = (props) => {
   return (
     <div className="container">
       {React.cloneElement(props.children, {...props})}
     </div>
   );
 };
+
+export default Game;

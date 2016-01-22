@@ -45,6 +45,7 @@ const AccountDropdownMenu = ({
                 />
               </a>
               <UserDropdown
+                currentUser={currentUser}
                 isDropdownShowing={isDropdownShowing}
                 onLogout={handleLogout}
               />

@@ -20,7 +20,8 @@ import {
   UPDATE_ANSWER,
   REMOVE_ANSWER,
   LOG_IN_USER,
-  LOG_OUT_USER
+  LOG_OUT_USER,
+  UPDATE_USER
 } from '../constants';
 
 export function startFirebaseListeners() {
@@ -30,32 +31,16 @@ export function startFirebaseListeners() {
       dispatch(combineStates({remote: newState}));
 
       ROOT_REF.onAuth((authData) => {
-        let name, id, token, avatarURL, username;
-
-        if (authData) {
-          if (authData.facebook) {
-            name = authData.facebook.displayName;
-            id = authData.uid;
-            token = authData.token;
-            avatarURL = authData.facebook.profileImageURL;
-            username = authData.facebook.displayName.toLowerCase().replace(/\s/, '');
-          } else if (authData.google) {
-            name = authData.google.displayName;
-            id = authData.uid;
-            token = authData.token;
-            avatarURL = authData.google.profileImageURL;
-            username = authData.google.displayName.toLowerCase().replace(/\s/, '');
-          } else if (authData.password) {
-            name = authData.password.displayName;
-            id = authData.uid;
-            token = authData.token;
-            avatarURL = authData.password.profileImageURL;
-            username = getState().remote.usersById[authData.uid] &&
-              getState().remote.usersById[authData.uid].username;
-          }
-
-          dispatch(setCurrentUser({name, id, token, avatarURL, username}));
+        const dbUser = newState.usersById[authData.uid] || {};
+        let currentUser = {
+          id: authData.uid,
+          name: dbUser.name || '',
+          email: authData[authData.provider].email,
+          provider: authData.provider,
+          avatarURL: dbUser.avatarURL || authData[authData.provider].profileImageURL,
+          username: dbUser.username || authData[authData.provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
         }
+        dispatch(setCurrentUser(currentUser));
       });
     });
   };
@@ -113,6 +98,16 @@ export function logInUser(userData) {
 export function logOutUser() {
   return {
     type: LOG_OUT_USER
+  };
+}
+
+export function updateUser(obj) {
+  return {
+    type: UPDATE_USER,
+    payload: {
+      ...obj
+    },
+    meta: {remote: true}
   };
 }
 

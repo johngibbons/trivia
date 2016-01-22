@@ -7,6 +7,7 @@ import {
 
 import {
   LOG_IN_USER,
+  UPDATE_USER,
   ADD_GAME,
   ADD_ENTRY,
   REMOVE_ENTRY
@@ -16,6 +17,10 @@ const usersById = (state = {}, action) => {
   switch(action.type) {
 
   case LOG_IN_USER: {
+    return addOrUpdateItem(state, action.payload);
+  }
+
+  case UPDATE_USER: {
     return addOrUpdateItem(state, action.payload);
   }
 

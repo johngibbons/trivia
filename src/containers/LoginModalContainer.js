@@ -36,23 +36,24 @@ class LoginModalContainer extends React.Component {
           });
         }
       } else if (authData) {
-        const name = authData[provider].displayName;
-        const email = authData[provider].email;
-        const id = authData.uid;
-        const token = authData.token;
-        const avatarURL = authData[provider].profileImageURL;
-        const username =
-          authData[provider]
-          .displayName
-          .toLowerCase()
-          .replace(/\s/, '');
-        this.props.dispatch(logInUser({name,id,token,avatarURL,username}));
+        const dbUser = this.props.usersById && this.props.usersById[authData.uid] || {};
+        const user = {
+          id: authData.uid,
+          name: dbUser.name || authData[provider].displayName,
+          email: authData[provider].email,
+          provider: authData.provider,
+          avatarURL: dbUser.avatarURL || authData[provider].profileImageURL,
+          username: dbUser.username || authData[provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
+        };
+
+        this.props.dispatch(logInUser(user));
         this.props.dispatch(setFlash(
           'success',
-          `you have been successfully logged in as ${username}`
+          `you have been successfully logged in as ${user.username}`
         ));
+
       }
-    });
+    }, {scope: 'email'});
     this.props.toggleModal();
   }
 
@@ -64,18 +65,20 @@ class LoginModalContainer extends React.Component {
       if (error) {
         this.props.dispatch(setFlash('danger', 'Login Error: ' + error.message));
       } else {
-        const name = '';
-        const email = authData.password.email;
-        const id = authData.uid;
-        const token = authData.token;
-        const avatarURL = authData.password.profileImageURL;
-        const emailUsername = email.split('@')[0];
-        const username = authData.username || emailUsername;
-        this.props.dispatch(logInUser({name, id, token, avatarURL, username}));
+        const dbUser = this.props.usersById && this.props.usersById[authData.uid] || {};
+        const user = {
+          id: authData.uid,
+          name: dbUser.name || '',
+          email: authData.password.email,
+          provider: authData.provider,
+          avatarURL: dbUser.avatarURL || authData.password.profileImageURL,
+          username: dbUser.username || authData.password.email.split('@')[0].replace(/[\.\_\+]/g, '')
+        };
+        this.props.dispatch(logInUser(user));
         if (this.state.isSignupSelected) {
-          this.props.dispatch(setFlash('success', `Signup Successful.  Welcome to Trvia, ${username}!`));
+          this.props.dispatch(setFlash('success', `Signup Successful.  Welcome to Trvia, ${user.username}!`));
         } else {
-          this.props.dispatch(setFlash('success', `you have been successfully logged in as ${username}`));
+          this.props.dispatch(setFlash('success', `you have been successfully logged in as ${user.username}`));
         }
       }
     });
@@ -213,4 +216,11 @@ class LoginModalContainer extends React.Component {
 
 }
 
-export default connect()(LoginModalContainer);
+function mapStateToProps(state) {
+  const remoteState = state.remote || {};
+  return {
+    usersById: remoteState.usersById
+  };
+}
+
+export default connect(mapStateToProps)(LoginModalContainer);
