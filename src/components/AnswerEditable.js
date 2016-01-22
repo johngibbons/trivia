@@ -6,8 +6,10 @@ import SmRemoveBtn from './SmRemoveBtn';
 const AnswerEditable = ({
   id,
   text,
+  onAdd,
   onUpdate,
-  onRemove
+  onRemove,
+  isLast
 }) => {
   return (
     <div className='answer list-group-item is-clickable'>
@@ -17,7 +19,10 @@ const AnswerEditable = ({
         placeholder="Enter an answer..."
         value={text}
         save={onUpdate}
-        showInput={!text && true}
+        showInput={!text}
+        isLast={isLast}
+        onAdd={onAdd}
+        onRemove={onRemove}
       />
       <SmRemoveBtn
         id={id}

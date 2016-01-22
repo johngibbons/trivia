@@ -46,7 +46,7 @@ const Question = ({
                 value={`${ptValue} pts`}
                 placeholder='point value...'
                 save={onUpdate}
-                showInput={!ptValue && true}
+                showInput={!ptValue}
               /> : `${ptValue} pts`
             }
           </h5>
@@ -64,6 +64,7 @@ const Question = ({
           entry={entry}
           isEditable={isEditable}
           isSelectable={isSelectable}
+          onAddAnswer={onAddAnswer}
           onRemoveAnswer={onRemoveAnswer}
           onUpdateAnswer={onUpdateAnswer}
           onSelectAnswer={onSelectAnswer}

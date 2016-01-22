@@ -12,6 +12,7 @@ const AnswerList = ({
   isSelectable,
   entry,
   entriesById,
+  onAddAnswer,
   onRemoveAnswer,
   onUpdateAnswer,
   onSelectAnswer
@@ -31,15 +32,17 @@ const AnswerList = ({
     return false;
   }
 
-  const getAnswerForContext = (answer) => {
+  const getAnswerForContext = (answer, isLast) => {
     if (isEditable) {
       return (
         <AnswerEditable
           key={answer.id}
           id={answer.id}
           text={answer.text}
+          onAdd={() => onAddAnswer(answer.question)}
           onUpdate={onUpdateAnswer}
           onRemove={onRemoveAnswer}
+          isLast={isLast}
         />
       );
     } else if (isSelectable) {
@@ -69,7 +72,10 @@ const AnswerList = ({
 
   return(
     <div className={listClass}>
-      {answers.map(answer => {
+      {answers.map((answer, i) => {
+        if (i === answers.length - 1) {
+          return getAnswerForContext(answer, true);
+        }
         return getAnswerForContext(answer);
       })}
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({
+const PanelFooterBtn = ({
   onClick,
   children
 }) => {
@@ -9,4 +9,6 @@ export default ({
       onClick={onClick}
     >{children}</div>
   );
-}
+};
+
+export default PanelFooterBtn;

@@ -16,4 +16,4 @@ SmRemoveBtn.PropTypes = {
   handleRemove: React.PropTypes.func.isRequired
 };
 
-export default SmRemoveBtn
+export default SmRemoveBtn;

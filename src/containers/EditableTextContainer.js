@@ -49,14 +49,20 @@ class EditableTextContainer extends React.Component {
     if (!e.key) {
       e.preventDefault();
     }
-    if (e.key === 'Enter' || !e.key) {
+    if (e.key === 'Enter' || !e.key && input.value > 0) {
       this.props.save(this.props.id, this.props.attr, input.value);
       this.setState({editing: false});
+      if (this.props.isLast) {
+        this.props.onAdd();
+      }
     }
   }
 
   cancelEdit() {
     this.setState({editing: false});
+    if (this.props.isLast) {
+      this.props.onRemove(this.props.id);
+    }
   }
 }
 
