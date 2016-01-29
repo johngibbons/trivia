@@ -26,7 +26,7 @@ const GameShow = ({
           {title || <span style={{color: colors.grayLight}}>untitled</span>}
         </h1>
         {isCurrentUser && <Link to={`/games/${id}/edit`}>edit</Link>}
-        {' | '}
+        {isCurrentUser && ' | '}
         {isCurrentUser && <Link to={`/games/${id}/run`}>run</Link>}
       </div>
       <button

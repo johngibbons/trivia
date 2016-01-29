@@ -17,7 +17,8 @@ class UserContainer extends React.Component {
       <User
         user={this.props.usersById[this.props.params.user] || {}}
         currentUser={this.props.currentUser}
-        games={this.props.games}
+        gamesOwned={this.props.gamesOwned}
+        gamesPlaying={this.props.gamesPlaying}
         onUpdate={this.handleUpdate.bind(this)}
         onPasswordSubmit={this.handlePasswordRequiredUpdate.bind(this)}
         isPasswordRequired={this.state.isPasswordRequired}
@@ -60,11 +61,20 @@ class UserContainer extends React.Component {
 
 }
 
-function getUserGames(user, allGames) {
+function getGamesOwned(user, allGames) {
   return Object.keys(allGames).filter((id) => {
     return allGames[id].user === user.id;
   }).map((id) => {
     return allGames[id];
+  });
+}
+
+function getGamesPlaying(user, allGames, allEntries) {
+  return Object.keys(allEntries).filter((id) => {
+    return allEntries[id].user === user.id;
+  }).map((id) => {
+    const gameId = allEntries[id].game;
+    return allGames[gameId];
   });
 }
 
@@ -73,7 +83,12 @@ function mapStateToProps(state) {
     currentUser: state.client.currentUser,
     usersById: state.remote.usersById,
     questionsById: state.remote.questionsById,
-    games: getUserGames(state.client.currentUser, state.remote.gamesById)
+    gamesOwned: getGamesOwned(state.client.currentUser, state.remote.gamesById),
+    gamesPlaying: getGamesPlaying(
+      state.client.currentUser,
+      state.remote.gamesById,
+      state.remote.entriesById
+    )
   };
 }
 
