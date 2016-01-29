@@ -11,14 +11,18 @@ class UserContainer extends React.Component {
     super();
     this.state = {isPasswordRequired: false};
   }
+
   render() {
     return (
       <User
         user={this.props.usersById[this.props.params.user] || {}}
         currentUser={this.props.currentUser}
+        games={this.props.games}
         onUpdate={this.handleUpdate.bind(this)}
         onPasswordSubmit={this.handlePasswordRequiredUpdate.bind(this)}
         isPasswordRequired={this.state.isPasswordRequired}
+        onClickGame={this.handleClickGame}
+        children={this.props.children}
       />
     );
   }
@@ -48,12 +52,26 @@ class UserContainer extends React.Component {
       });
     }
   }
+
+  handleClickGame(game) {
+    location.href = `/games/${game}`;
+  }
+
+}
+
+function getUserGames(user, allGames) {
+  return Object.keys(allGames).filter((id) => {
+    return allGames[id].user === user.id;
+  }).map((id) => {
+    return allGames[id];
+  });
 }
 
 function mapStateToProps(state) {
   return {
     currentUser: state.client.currentUser,
-    usersById: state.remote.usersById
+    usersById: state.remote.usersById,
+    games: getUserGames(state.client.currentUser, state.remote.gamesById)
   };
 }
 

@@ -36,5 +36,8 @@ export const LOG_OUT_USER = 'LOG_OUT_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 
 export const colors = {
-  primary: '#ba9c37'
+  primary: '#ba9c37',
+  grayBase: '#000',
+  gray: '#777',
+  grayLight: 'lighten(#000, 46.7%)'
 };

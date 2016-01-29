@@ -11,7 +11,7 @@ const UserDropdown = ({
   return (
     <Dropdown>
       <DropdownLink
-        url='#'
+        url={`/users/${currentUser.id}/games`}
       >
         My Games
       </DropdownLink>

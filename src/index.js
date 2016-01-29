@@ -9,6 +9,8 @@ import GameEdit from './components/GameEdit';
 import GameRun from './components/GameRun';
 import EntryContainer from './containers/EntryContainer';
 import UserContainer from './containers/UserContainer';
+import UserProfile from './components/UserProfile';
+import UserGames from './components/UserGames';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
@@ -51,6 +53,8 @@ ReactDOM.render(
             component={EntryContainer} />
         </Route>
         <Route path='users/:user' component={UserContainer}>
+          <IndexRoute component={UserProfile} />
+          <Route path='games' component={UserGames}/>
         </Route>
       </Route>
     </Router>
