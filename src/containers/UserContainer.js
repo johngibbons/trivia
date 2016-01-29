@@ -21,6 +21,7 @@ class UserContainer extends React.Component {
         onUpdate={this.handleUpdate.bind(this)}
         onPasswordSubmit={this.handlePasswordRequiredUpdate.bind(this)}
         isPasswordRequired={this.state.isPasswordRequired}
+        questionsById={this.props.questionsById}
         onClickGame={this.handleClickGame}
         children={this.props.children}
       />
@@ -71,6 +72,7 @@ function mapStateToProps(state) {
   return {
     currentUser: state.client.currentUser,
     usersById: state.remote.usersById,
+    questionsById: state.remote.questionsById,
     games: getUserGames(state.client.currentUser, state.remote.gamesById)
   };
 }

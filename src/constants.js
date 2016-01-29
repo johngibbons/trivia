@@ -37,7 +37,9 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 export const colors = {
   primary: '#ba9c37',
+  success: '#5cb85c',
+  danger: '#d9534f',
   grayBase: '#000',
   gray: '#777',
-  grayLight: 'lighten(#000, 46.7%)'
+  grayLight: '#e7e7e7'
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {colors} from '../constants';
 
 import QuestionList from './QuestionList';
 
@@ -13,7 +14,9 @@ const GameRun = ({
   return (
     <div>
       <div className="page-header">
-        <h1>{title}</h1>
+        <h1>
+          {title || <span style={{color: colors.grayLight}}>untitled</span>}
+        </h1>
         <Link to={`/games/${id}`}>View Leaderboard</Link>
       </div>
       <QuestionList

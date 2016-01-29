@@ -1,5 +1,6 @@
 import React from 'react';
 import SaveOrDeleteBtns from './SaveOrDeleteBtns';
+import {colors} from '../constants';
 
 const EditableText = ({
   textClasses,
@@ -20,7 +21,12 @@ const EditableText = ({
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis'
     }}>
-      <span className={textClasses} onClick={() => {startEdit(input)}}>{value}</span>
+    <span
+      className={textClasses}
+      onClick={() => startEdit(input)}
+    >
+      {value || <span style={{color: colors.grayLight}}>untitled</span>}
+    </span>
       <input
         type={type}
         className={formClasses}
@@ -35,7 +41,7 @@ const EditableText = ({
       <SaveOrDeleteBtns
         className={btnsClasses}
         cancelEdit={cancelEdit}
-        save={(e) => {saveEdit(e, input)}}
+        save={(e) => saveEdit(e, input)}
       />
     </div>
   );

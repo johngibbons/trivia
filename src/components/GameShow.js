@@ -1,23 +1,33 @@
 import React from 'react';
+import {Link} from 'react-router';
+import {colors} from '../constants';
 
 import EntriesList from './EntriesList';
 
-export default ({
-  currentUser,
-  toggleLoginModal,
+const GameShow = ({
+  id,
   title,
+  user,
   entries,
   entriesById,
   questionsById,
   totalPossible,
   currentPossible,
+  currentUser,
+  toggleLoginModal,
   handleNewEntry,
   handleClickEntry
 }) => {
+  const isCurrentUser = currentUser.id === user;
   return (
     <div>
       <div className="page-header">
-        <h1>{title}</h1>
+        <h1>
+          {title || <span style={{color: colors.grayLight}}>untitled</span>}
+        </h1>
+        {isCurrentUser && <Link to={`/games/${id}/edit`}>edit</Link>}
+        {' | '}
+        {isCurrentUser && <Link to={`/games/${id}/run`}>run</Link>}
       </div>
       <button
         className="btn btn-primary"
@@ -35,3 +45,5 @@ export default ({
     </div>
   );
 };
+
+export default GameShow;
