@@ -14,7 +14,6 @@ import UserGames from './components/UserGames';
 
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
-import {syncReduxAndRouter} from 'redux-simple-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
 import {startFirebaseListeners, setFlash} from './actions/index';

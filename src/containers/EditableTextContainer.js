@@ -13,25 +13,12 @@ class EditableTextContainer extends React.Component {
   }
 
   render() {
-    const btnsClasses = classNames({
-      'hidden': !this.state.editing
-    });
-    const textClasses = classNames({
-      'hidden': this.state.editing,
-      'editable': true
-    });
-    const formClasses = classNames({
-      'hidden': !this.state.editing,
-      'form-control': true
-    });
     return(
       <EditableText
-        textClasses={textClasses}
-        btnsClasses={btnsClasses}
-        formClasses={formClasses}
         startEdit={this.startEdit.bind(this)}
         cancelEdit={this.cancelEdit.bind(this)}
         saveEdit={this.saveEdit.bind(this)}
+        hidden={!this.state.editing}
         {...this.props}
       />
     );
@@ -49,7 +36,7 @@ class EditableTextContainer extends React.Component {
     if (!e.key) {
       e.preventDefault();
     }
-    if (e.key === 'Enter' || !e.key && input.value > 0) {
+    if (e.key === 'Enter' || !e.key && input.value.length > 0) {
       this.props.save(this.props.id, this.props.attr, input.value);
       this.setState({editing: false});
       if (this.props.isLast) {

@@ -3,9 +3,7 @@ import SaveOrDeleteBtns from './SaveOrDeleteBtns';
 import {colors} from '../constants';
 
 const EditableText = ({
-  textClasses,
-  formClasses,
-  btnsClasses,
+  hidden,
   type,
   value,
   placeholder,
@@ -21,27 +19,30 @@ const EditableText = ({
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis'
     }}>
-    <span
-      className={textClasses}
-      onClick={() => startEdit(input)}
-    >
-      {value || <span style={{color: colors.grayLight}}>untitled</span>}
-    </span>
+      <span
+        className='editable'
+        style={{cursor: 'pointer'}}
+        hidden={!hidden}
+        onClick={() => startEdit(input)}
+      >
+        {value || <span style={{color: colors.grayLight}}>untitled</span>}
+      </span>
       <input
         type={type}
-        className={formClasses}
+        className='form-control'
         placeholder={placeholder}
         ref={el => input = el}
         onKeyPress={(e) => {
           e.persist();
           saveEdit(e, input);
         }}
+        hidden={hidden}
         autoFocus
       />
       <SaveOrDeleteBtns
-        className={btnsClasses}
         cancelEdit={cancelEdit}
         save={(e) => saveEdit(e, input)}
+        hidden={hidden}
       />
     </div>
   );

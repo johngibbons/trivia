@@ -1,11 +1,13 @@
-.panel-footer-btn {
+.hover-dark-bg {
+  transition: all 0.3s ease;
   background-color: white;
-  color: $gray-base;
   cursor: pointer;
-  transition: $base-transition;
+  color: $gray-base;
 
   &:hover {
     background-color: $gray-lightest;
     color: white;
   }
+
 }
+

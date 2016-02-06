@@ -9,10 +9,8 @@ class Home extends React.Component {
     return(
       <div>
         <div className="jumbotron text-center">
-          <div className="page-header">
-            <h1>Welcome to Trvia</h1>
-            <p className="lead">click below to get started</p>
-          </div>
+          <h1 className='display-3'>Welcome to Trvia</h1>
+          <p className="lead">click below to get started</p>
           <div className="container">
             <div className="col-md-6 col-md-offset-3">
               <button
@@ -26,14 +24,16 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="container">
-          <div className="col-md-4">
-            <img src="http://placehold.it/350x250" className="img-rounded" />
-          </div>
-          <div className="col-md-4">
-            <img src="http://placehold.it/350x250" className="img-rounded" />
-          </div>
-          <div className="col-md-4">
-            <img src="http://placehold.it/350x250" className="img-rounded" />
+          <div className='row'>
+            <div className="col-md-4">
+              <img src="http://placehold.it/350x250" className="img-rounded" />
+            </div>
+            <div className="col-md-4">
+              <img src="http://placehold.it/350x250" className="img-rounded" />
+            </div>
+            <div className="col-md-4">
+              <img src="http://placehold.it/350x250" className="img-rounded" />
+            </div>
           </div>
         </div>
       </div>

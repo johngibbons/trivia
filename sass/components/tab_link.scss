@@ -7,7 +7,7 @@
 
   &:hover {
     text-decoration: none;
-    color: darken($gray, 20%);
+    color: darken($gray-base, 20%);
   }
 
   &:active, &:focus {

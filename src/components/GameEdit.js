@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 
 import EditableTextContainer from '../containers/EditableTextContainer';
 import QuestionList from './QuestionList';
-import NewQuestionBtn from '../components/NewQuestionBtn';
 
 const GameEdit = ({
   id,
@@ -20,30 +19,20 @@ const GameEdit = ({
 }) => {
   return(
     <div>
-      <div className="page-header col-md-12">
-        <h1>
-          <EditableTextContainer
-            id={id}
-            attr='title'
-            placeholder='Enter a name for your game...'
-            value={title}
-            showInput={!title}
-            save={onUpdate}
-          />
-        </h1>
-        <Link to={`/games/${id}`}>Save and Finish</Link>
+      <Link to={`/games/${id}`}>Save and Finish</Link>
+      <div className='container'>
+        <QuestionList
+          questions={questions}
+          answersById={answersById}
+          onAdd={onAddQuestion}
+          onRemove={onRemoveQuestion}
+          onUpdate={onUpdateQuestion}
+          onAddAnswer={onAddAnswer}
+          onRemoveAnswer={onRemoveAnswer}
+          onUpdateAnswer={onUpdateAnswer}
+          isEditable={true}
+        />
       </div>
-      <QuestionList
-        questions={questions}
-        answersById={answersById}
-        onRemove={onRemoveQuestion}
-        onUpdate={onUpdateQuestion}
-        onAddAnswer={onAddAnswer}
-        onRemoveAnswer={onRemoveAnswer}
-        onUpdateAnswer={onUpdateAnswer}
-        isEditable={true}
-      />
-      <NewQuestionBtn save={onAddQuestion}/>
     </div>
 );};
 

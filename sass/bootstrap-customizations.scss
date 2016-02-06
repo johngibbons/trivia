@@ -1,12 +1,30 @@
 $font-family-sans-serif: 'Work Sans', sans-serif;
 $font-family-base: $font-family-sans-serif;
+$font-size-large: 1.5rem;
+
 $brand-primary: #ba9c37;
+$brand-success: #A1D490;
+$brand-danger: #DB6B6B;
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 $btn-primary-bg: $brand-primary;
 $btn-primary-border: darken($btn-primary-bg, 5%);
-$gray-lightest: $gray-lighter;
-$gray-lighter: lighten($gray-base, 69%);
+
+$gray-base: rgb(115, 125, 135);
+$gray-darkest: darken($gray-base, 30%);
+$gray-darker: darken($gray-base, 20%);
+$gray-dark: darken($gray-base, 10%);
+$gray-light: lighten($gray-base, 20%);
+$gray-lighter: lighten($gray-base, 30%);
+$gray-lightest: lighten($gray-base, 45%);
 $base-transition: all 0.3s ease;
 $panel-primary-heading-bg: $brand-primary;
 $panel-primary-border: $brand-primary;
+
+$border-radius: .15rem;
+$border-radius-lg: .2rem;
+$border-radius-sm: .1rem;
+
+$btn-border-radius: $border-radius;
+$btn-border-radius-lg: $border-radius-lg;
+$btn-border-radius-sm: $border-radius-sm;

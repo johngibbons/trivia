@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Dropdown = ({isShowing, children}) => {
+const Dropdown = ({isShowing, children, style}) => {
   return (
-    <ul className='dropdown-menu' >
+    <div className='dropdown-menu' style={style} >
       {children}
-    </ul>
+    </div>
   );
 };
 

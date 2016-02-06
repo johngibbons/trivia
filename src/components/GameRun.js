@@ -13,18 +13,14 @@ const GameRun = ({
 }) => {
   return (
     <div>
-      <div className="page-header">
-        <h1>
-          {title || <span style={{color: colors.grayLight}}>untitled</span>}
-        </h1>
-        <Link to={`/games/${id}`}>View Leaderboard</Link>
+      <Link to={`/games/${id}`}>View Leaderboard</Link>
+      <div className='container'>
+        <QuestionList questions={questions}
+          answersById={answersById}
+          isSelectable={true}
+          onSelectAnswer={onUpdateQuestion}
+        />
       </div>
-      <QuestionList
-        questions={questions}
-        answersById={answersById}
-        isSelectable={true}
-        onSelectAnswer={onUpdateQuestion}
-      />
     </div>
   );
 };

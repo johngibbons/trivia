@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import EditableTextContainer from '../containers/EditableTextContainer';
-import AnswerIcon from './AnswerIcon';
+import Icon from './Icon';
 
 const Answer = ({
   id,
@@ -19,16 +19,21 @@ const Answer = ({
     'list-group-item': true
   });
 
-  const answerIconClasses = classNames({
-    'glyphicon-record': !correctAnswer && isSelected,
-    'glyphicon-ok': isSelected && correctAnswer && correctAnswer === id,
-    'glyphicon-remove': isSelected && correctAnswer && correctAnswer !== id
-  });
+  let iconType;
+  let iconClass;
+
+  if (!correctAnswer && isSelected) {
+    iconType = 'selected';
+  } else if (isSelected && correctAnswer && correctAnswer === id) {
+    iconType = 'correct';
+  } else if (isSelected && correctAnswer && correctAnswer !== id) {
+    iconType = 'incorrect';
+  }
 
   return (
     <div className={answerClasses}>
       {text}
-      {isSelected && <AnswerIcon iconClass={answerIconClasses} />}
+      {isSelected && <Icon type={iconType} className={`answer-icon icon-${iconType}`} />}
     </div>
   );
 };

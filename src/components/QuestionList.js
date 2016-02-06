@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './Question';
+import NewQuestionBtn from './NewQuestionBtn';
 
 const QuestionList = ({
   questions,
@@ -7,6 +8,7 @@ const QuestionList = ({
   isSelectable,
   entry,
   answersById,
+  onAdd,
   onRemove,
   onUpdate,
   onAddAnswer,
@@ -23,7 +25,7 @@ const QuestionList = ({
   };
 
   return (
-    <span>
+    <div className='card-deck'>
       {questions.map(question => {
         return (
           <Question
@@ -42,7 +44,19 @@ const QuestionList = ({
           />
         );
       })}
-    </span>
+      {isEditable &&
+        <NewQuestionBtn save={onAdd}/>
+      }
+      {questions.length % 3 === 1 &&
+        <div
+          className='card'
+          style={{
+            flexBasis: '30%',
+            border: 'none'
+          }}
+        ></div>
+      }
+    </div>
   );
 
 };

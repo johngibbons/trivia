@@ -4,12 +4,7 @@ const AvatarSmall = ({url, style}) => {
   return (
     <img
       src={url}
-      style={{
-        width: '35px',
-        height: '35px',
-        borderRadius: '100%',
-        ...style
-      }}
+      className='avatar-small'
     />
   );
 };

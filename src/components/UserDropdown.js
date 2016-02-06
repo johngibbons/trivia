@@ -9,7 +9,12 @@ const UserDropdown = ({
   onLogout
 }) => {
   return (
-    <Dropdown>
+    <Dropdown
+      style={{
+        right: '1rem',
+        left: 'auto'
+      }}
+    >
       <DropdownLink
         url={`/users/${currentUser.id}/games`}
       >

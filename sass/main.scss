@@ -7,9 +7,17 @@
 @import 'components/score_bar';
 @import 'components/button';
 @import 'components/tab_link';
+@import 'components/title_bar';
+@import 'components/media_object';
+@import 'components/navbar';
+@import 'components/score_dashboard';
+@import 'components/avatar_small';
+@import 'components/new_question_btn';
+@import 'components/game_nav';
 
 body {
-  padding-top: 70px;
+  font-family: $font-family-base;
+  color: $gray-darker;
 }
 
 .no-margin {
@@ -20,20 +28,24 @@ button {
   outline: none;
 }
 
+.icon {
+  fill: currentColor;
+}
+
 .btn {
   transition: $base-transition;
 }
 
 .cancel {
   font-size: 16px;
-  color: darken($gray-lighter, 15%);
+  color: darken($gray-light, 15%);
   font-weight: 300;
   cursor: pointer;
   vertical-align: middle;
   transition: $base-transition;
 
   &:hover {
-    color: darken($gray-lighter, 30%);
+    color: darken($gray-light, 30%);
   }
 }
 
@@ -50,22 +62,22 @@ button {
   }
 }
 
-.hover-dark-bg {
-  transition: all 0.3s ease;
-  background-color: $gray-lightest;
-  cursor: pointer;
-  color: $gray-lighter;
-
-  &:hover {
-    background-color: darken($gray-lightest, 5%);
-  }
-
-}
-
 .collapsed {
   height: 0;
   overflow: hidden;
   box-shadow: none;
   border: none;
   transition: all 0.3s ease;
+}
+
+.page-header {
+  margin-bottom: 4rem;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover, &:active, &:visited, &:link {
+    text-decoration: none;
+  }
 }

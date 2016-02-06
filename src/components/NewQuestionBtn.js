@@ -26,33 +26,21 @@ export default React.createClass({
   render() {
     const formClass = classNames({
       'collapsed': !this.state.editing,
-      'panel': true,
-      'panel-default': true,
+      'card': true,
       'clearfix': true
     });
     const btnClass = classNames({
-      'hidden': this.state.editing,
-      'panel': true,
-      'panel-default': true,
+      'card': true,
       'clearfix': true,
       'hover-dark-bg': true
     });
     return(
-      <div className="col-md-4">
-        <div
-          className={btnClass}
-          onClick={this.toggleInput}
-        >
-          <div className="panel-body">
-            <h4 className="no-margin">
-              Add a question...
-            </h4>
-          </div>
-        </div>
+      this.state.editing ?
         <div
           className={formClass}
+          style={{flexBasis: '30%'}}
         >
-          <div className='panel-body'>
+          <div className='card-block'>
             <form onSubmit={this.save}>
               <input
                 type="text"
@@ -68,7 +56,18 @@ export default React.createClass({
             </form>
           </div>
         </div>
-      </div>
+        :
+        <div
+          className={btnClass}
+          style={{flexBasis: '30%'}}
+          onClick={this.toggleInput}
+        >
+          <div className="card-block">
+            <h4 className="no-margin">
+              Add a question...
+            </h4>
+          </div>
+        </div>
     );
   }
 });

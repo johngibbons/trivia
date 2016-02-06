@@ -1,13 +1,15 @@
 import React from 'react';
+import Icon from './Icon';
 
 const SmRemoveBtn = ({id, handleRemove}) => {
   return (
-    <span
-      className='glyphicon glyphicon-trash remove right-centered'
+    <Icon
+      className='remove right-centered'
+      type='delete'
       aria-label='Delete'
       onClick={() => handleRemove(id)}
     >
-    </span>
+    </Icon>
   );
 };
 

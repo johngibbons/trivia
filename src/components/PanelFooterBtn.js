@@ -5,7 +5,9 @@ const PanelFooterBtn = ({
   children
 }) => {
   return(
-    <div className="panel-footer panel-footer-btn"
+    <div
+      className="card-footer panel-footer-btn"
+      style={{borderTop: 'none'}}
       onClick={onClick}
     >{children}</div>
   );

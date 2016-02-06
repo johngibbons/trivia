@@ -1,29 +1,42 @@
+.card-deck {
+  .question {
+    flex-basis: 30%;
+    margin: 1rem;
+  }
+}
 .question {
-  .panel-heading {
+
+  .card-header {
     position: relative;
-    h4 {
+
+    h5 {
+      margin-bottom: 1.5rem;
+    }
+
+    h6 {
       display: inline-block;
       width: calc(100% - 1.5rem);
     }
+
     .remove {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      color: white;
     }
+
     .btn-primary {
-      background-color: $gray-lighter;
-      border-color: $gray-light;
+      background-color: $gray-base;
+      border-color: $gray-dark;
 
       &:hover {
-        background-color: darken($gray-lighter, 5%);
-        border-color: darken($gray-light, 5%);
+        background-color: darken($gray-base, 5%);
+        border-color: darken($gray-dark, 5%);
       }
     }
     .cancel {
       color: white;
       &:hover {
-        color: $gray-lightest;
+        color: $gray-lighter;
       }
     }
     &:hover {
@@ -35,7 +48,6 @@
     }
   }
   .list-group-item {
-    border-color: $gray-lightest;
     &:hover {
       .remove {
         visibility: visible;

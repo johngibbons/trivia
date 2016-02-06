@@ -3,11 +3,13 @@ import {Link} from 'react-router';
 import {colors} from '../constants';
 
 import EntriesList from './EntriesList';
+import ScoreDashboard from './ScoreDashboard';
 
 const GameShow = ({
   id,
   title,
-  user,
+  isOwner,
+  hasEntry,
   entries,
   entriesById,
   questionsById,
@@ -15,33 +17,32 @@ const GameShow = ({
   currentPossible,
   currentUser,
   toggleLoginModal,
-  handleNewEntry,
-  handleClickEntry
+  onClickEntry
 }) => {
-  const isCurrentUser = currentUser.id === user;
   return (
     <div>
-      <div className="page-header">
-        <h1>
-          {title || <span style={{color: colors.grayLight}}>untitled</span>}
-        </h1>
-        {isCurrentUser && <Link to={`/games/${id}/edit`}>edit</Link>}
-        {isCurrentUser && ' | '}
-        {isCurrentUser && <Link to={`/games/${id}/run`}>run</Link>}
-      </div>
-      <button
-        className="btn btn-primary"
-        onClick={currentUser.username ? handleNewEntry : toggleLoginModal}
-      >New Entry</button>
-      <h3>Scoreboard</h3>
-      <EntriesList
+      <ScoreDashboard
         entries={entries}
         entriesById={entriesById}
         questionsById={questionsById}
         totalPossible={totalPossible}
         currentPossible={currentPossible}
-        onClickEntry={handleClickEntry}
+        onClickEntry={onClickEntry}
       />
+      {isOwner && <Link to={`/games/${id}/edit`}>edit</Link>}
+      {isOwner && ' | '}
+      {isOwner && <Link to={`/games/${id}/run`}>run</Link>}
+      <h3>Leaderboard</h3>
+      <div className='container'>
+        <EntriesList
+          entries={entries}
+          entriesById={entriesById}
+          questionsById={questionsById}
+          totalPossible={totalPossible}
+          currentPossible={currentPossible}
+          onClickEntry={onClickEntry}
+        />
+      </div>
     </div>
   );
 };

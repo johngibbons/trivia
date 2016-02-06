@@ -24,7 +24,6 @@ const Entry = ({
     <div>
       <div className="page-header">
         <h1>
-          <small>{gameTitle}</small>
           {!hasGameStarted && currentUser.id === entry.user ?
             <EditableTextContainer
               id={entry.id}

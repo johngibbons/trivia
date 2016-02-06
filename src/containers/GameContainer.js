@@ -27,6 +27,12 @@ class GameContainer extends React.Component {
     });
   }
 
+  currentUserEntry(entries, currentUser) {
+    return entries.filter((entry) => {
+      return entry.user === currentUser.id;
+    })[0];
+  }
+
   addScoreToEntries(entries) {
     return entries.map((id, index) => {
       const entry = this.props.entriesById[id];
@@ -52,6 +58,7 @@ class GameContainer extends React.Component {
   render() {
 
     const {
+      location,
       currentUser,
       toggleLoginModal,
       gamesById,
@@ -77,14 +84,14 @@ class GameContainer extends React.Component {
     entries = this.addRankToEntries(entries);
     let totalPossible = calculateTotalPossible(game, this.props.questionsById);
     let currentPossible = calculateCurrentPossible(game, this.props.questionsById);
-
     return (
       <Game
         currentUser={currentUser}
         toggleLoginModal={toggleLoginModal}
         id={game.id}
         title={game.title}
-        user={game.user}
+        isOwner={currentUser.id === game.user}
+        currentUserEntry={this.currentUserEntry(entries, currentUser)}
         hasGameStarted={currentPossible > 0}
         questions={questions}
         answersById={answersById}
@@ -93,6 +100,7 @@ class GameContainer extends React.Component {
         entries={entries}
         children={children}
         leader={leader}
+        isEditable={location.pathname.includes('edit')}
         totalPossible={calculateTotalPossible(game, this.props.questionsById)}
         currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
         onUpdate={this.update.bind(this)}
@@ -102,8 +110,8 @@ class GameContainer extends React.Component {
         onAddAnswer={this.addAnswer.bind(this)}
         onRemoveAnswer={this.removeAnswer.bind(this)}
         onUpdateAnswer={this.updateAnswer.bind(this)}
-        handleNewEntry={this.addEntry.bind(this)}
-        handleClickEntry={this.goToEntry.bind(this)}
+        onAddEntry={this.addEntry.bind(this)}
+        onClickEntry={this.goToEntry.bind(this)}
       />
     );
   }

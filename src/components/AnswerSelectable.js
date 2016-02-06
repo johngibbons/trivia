@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import AnswerIcon from './AnswerIcon';
+import Icon from './Icon';
 
 const AnswerSelectable = ({
   id,
@@ -19,11 +19,15 @@ const AnswerSelectable = ({
     'list-group-item': true
   });
 
-  const answerIconClasses = classNames({
-    'glyphicon-record': !correctAnswer && isSelected,
-    'glyphicon-ok': isSelected && correctAnswer && correctAnswer === id,
-    'glyphicon-remove': isSelected && correctAnswer && correctAnswer !== id
-  });
+  let iconType;
+
+  if (!correctAnswer && isSelected) {
+    iconType = 'selected';
+  } else if (isSelected && correctAnswer && correctAnswer === id) {
+    iconType = 'correct';
+  } else if (isSelected && correctAnswer && correctAnswer !== id) {
+    iconType = 'incorrect';
+  }
 
   return (
     <a href="#"
@@ -38,7 +42,7 @@ const AnswerSelectable = ({
       }}
     >
       {text}
-      {isSelected && <AnswerIcon iconClass={answerIconClasses} />}
+      {isSelected && <Icon type={iconType} />}
     </a>
   );
 };

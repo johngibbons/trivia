@@ -1,0 +1,10 @@
+.dropdown-link {
+  font-size: 0.8em;
+  color: $gray-base;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: darken($gray-base, 20%);
+  }
+}

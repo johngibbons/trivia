@@ -8,17 +8,9 @@ const TopNav = ({
   toggleLoginModal
 }) => {
   return(
-    <nav className='navbar navbar-default navbar-fixed-top'>
-      <div className='container'>
-        <div className='navbar-header'>
-          <button type='button' className='navbar-toggle collapsed'>
-            <span className='sr-only'>Toggle Navigation</span>
-            <span className='icon-bar'></span>
-            <span className='icon-bar'></span>
-            <span className='icon-bar'></span>
-          </button>
-          <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
-        </div>
+    <nav className='navbar navbar-light navbar-full'>
+      <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
+      <div className='nav navbar-nav'>
         <AccountDropdownMenuContainer
           toggleLoginModal={toggleLoginModal}
         />

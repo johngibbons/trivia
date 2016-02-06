@@ -1,7 +1,10 @@
 import React from 'react';
 
-export default ({
+import Icon from './Icon';
+
+const SaveOrDeleteBtns = ({
   className,
+  hidden,
   input,
   save,
   cancelEdit
@@ -9,23 +12,25 @@ export default ({
   <div
     className={className}
     style={{marginTop: "1em"}}
+    hidden={hidden}
   >
     <button
       className="btn btn-primary m-t"
-      onClick={(e) => {
-        e.persist();
-        save(e);
-      }}
+      onClick={save}
     >
       Save
     </button>
-    <span
-      className="glyphicon glyphicon-remove cancel"
+    <Icon
       style={{
-        marginLeft: "1em"
+        marginLeft: "1em",
+        height: '24px',
+        width: '24px',
+        cursor: 'pointer'
       }}
+      type='close'
       onMouseDown={cancelEdit}
-    >
-    </span>
+    />
   </div>
 );
+
+export default SaveOrDeleteBtns;
