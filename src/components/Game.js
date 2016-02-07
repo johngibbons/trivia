@@ -1,11 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {colors} from '../constants';
 
 import TitleBar from './TitleBar';
 import EditableTextContainer from '../containers/EditableTextContainer';
-import {colors} from '../constants';
+import NavLink from './NavLink';
+import Dropdown from './Dropdown';
+import DropdownToggle from './DropdownToggle';
+import DropdownLink from './DropdownLink';
+import DropdownMenu from './DropdownMenu';
 
 const Game = (props) => {
+
   return (
     <div>
       <TitleBar>
@@ -24,38 +30,37 @@ const Game = (props) => {
       <nav className='game-nav navbar navbar-light'>
         <div className='nav navbar-nav'>
           {props.currentUserEntry ?
-            <Link
-              to={`/entries/${props.currentUserEntry.id}`}
-              className='nav-item nav-link'
-            >Your Entry</Link>
+            <NavLink
+              active={TrviaContext === 'entry'}
+              url={`/entries/${props.currentUserEntry.id}`}
+            >Your Entry</NavLink>
           :
-            <a
-              href='#'
-              className='nav-item nav-link'
+            <NavLink
               onClick={props.onAddEntry}
-            >Create Your Entry</a>
+            >Create Your Entry</NavLink>
           }
-          <Link
-            to={`/games/${props.id}`}
-            className='nav-item nav-link'
-          >Leaderboard</Link>
+          <NavLink
+            active={TrviaContext === 'gameLeaderboard'}
+            url={`/games/${props.id}`}
+          >Leaderboard</NavLink>
         {props.isOwner &&
-          <div className='dropdown nav-item'>
-            <a
-              href='#'
-              className='dropdown-toggle nav-link'
-            >Game Admin</a>
-            <div className='dropdown-menu'>
-              <Link
-                to={`/games/${props.id}/edit`}
-                className='dropdown-item'
-              >Edit Game</Link>
-              <Link
-                to={`/games/${props.id}/run`}
-                className='dropdown-item'
-                >Enter Answers</Link>
-            </div>
-          </div>
+          <Dropdown className='nav-item'>
+            <DropdownToggle className='nav-link'>
+              Game Admin
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownLink
+                url={`/games/${props.id}/edit`}
+              >
+                Edit Game
+              </DropdownLink>
+              <DropdownLink
+                url={`/games/${props.id}/run`}
+              >
+                Enter Answers
+              </DropdownLink>
+            </DropdownMenu>
+          </Dropdown>
         }
         </div>
       </nav>

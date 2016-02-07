@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Dropdown from './Dropdown';
 import DropdownLink from './DropdownLink';
+import DropdownMenu from './DropdownMenu';
 
 const UserDropdown = ({
   currentUser,
@@ -9,7 +9,7 @@ const UserDropdown = ({
   onLogout
 }) => {
   return (
-    <Dropdown
+    <DropdownMenu
       style={{
         right: '1rem',
         left: 'auto'
@@ -32,7 +32,7 @@ const UserDropdown = ({
       >
         Log Out
       </DropdownLink>
-    </Dropdown>
+    </DropdownMenu>
   );
 };
 

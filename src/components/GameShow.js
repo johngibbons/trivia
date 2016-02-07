@@ -9,7 +9,7 @@ const GameShow = ({
   id,
   title,
   isOwner,
-  hasEntry,
+  currentUserEntry,
   entries,
   entriesById,
   questionsById,
@@ -29,14 +29,11 @@ const GameShow = ({
         currentPossible={currentPossible}
         onClickEntry={onClickEntry}
       />
-      {isOwner && <Link to={`/games/${id}/edit`}>edit</Link>}
-      {isOwner && ' | '}
-      {isOwner && <Link to={`/games/${id}/run`}>run</Link>}
-      <h3>Leaderboard</h3>
       <div className='container'>
         <EntriesList
           entries={entries}
           entriesById={entriesById}
+          currentUserEntry={currentUserEntry}
           questionsById={questionsById}
           totalPossible={totalPossible}
           currentPossible={currentPossible}

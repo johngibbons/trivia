@@ -56,7 +56,6 @@ class GameContainer extends React.Component {
   }
 
   render() {
-
     const {
       location,
       currentUser,

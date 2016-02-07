@@ -39,17 +39,28 @@ function requireGameOwner(nextState, replace, callback) {
   });
 }
 
+function setContext(context, nextState, replace, callback) {
+  window.TrviaContext = context;
+
+  if (context === 'gameEdit' || context === 'gameRun') {
+    return requireGameOwner(nextState, replace, callback);
+  }
+  callback();
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='games/:game' component={GameContainer}>
-          <IndexRoute component={GameShow} />
-          <Route path='edit' component={GameEdit} onEnter={requireGameOwner} />
-          <Route path='run' component={GameRun} onEnter={requireGameOwner} />
+          <IndexRoute component={GameShow} onEnter={setContext.bind(null, 'gameLeaderboard')} />
+          <Route path='edit' component={GameEdit} onEnter={setContext.bind(null, 'gameEdit')} />
+          <Route path='run' component={GameRun} onEnter={setContext.bind(null, 'gameRun')} />
           <Route path='/entries/:entry'
-            component={EntryContainer} />
+            component={EntryContainer}
+            onEnter={setContext.bind(null, 'entry')}
+          />
         </Route>
         <Route path='users/:user' component={UserContainer}>
           <IndexRoute component={UserProfile} />

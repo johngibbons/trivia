@@ -1,0 +1,10 @@
+.entries-list {
+  .owner {
+    background-color: lighten($brand-primary, 50%);
+    color: $brand-primary;
+
+    &:hover {
+      background-color: lighten($brand-primary, 40%);
+    }
+  }
+}

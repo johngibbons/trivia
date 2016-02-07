@@ -1,18 +1,20 @@
 import React from 'react';
 import calculateScore from '../helpers/calculate_score';
 
-export default ({
+const EntriesList = ({
   entries,
   entriesById,
+  currentUserEntry,
   questionsById,
   totalPossible,
   currentPossible,
   onClickEntry
 }) => {
   entries = entries || [];
+  currentUserEntry = currentUserEntry || {};
 
   return(
-    <table className="table table-hover">
+    <table className="entries-list table table-hover">
       <thead>
         <tr>
           <th>Rank</th>
@@ -23,7 +25,11 @@ export default ({
       <tbody>
         {entries.map((entry, index) => {
           return (
-            <tr key={entry.id} onClick={() => onClickEntry(entry.id)}>
+            <tr
+              className={currentUserEntry.id === entry.id ? 'owner' : ''}
+              key={entry.id}
+              onClick={() => onClickEntry(entry.id)}
+            >
               <td>{entry.rank}</td>
               <td>{entry.name}</td>
               <td>{entry.score} / {currentPossible} (out of {totalPossible} total)</td>
@@ -34,3 +40,5 @@ export default ({
     </table>
   );
 };
+
+export default EntriesList;

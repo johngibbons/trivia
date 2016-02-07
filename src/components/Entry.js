@@ -21,7 +21,7 @@ const Entry = ({
   onSelectAnswer
 }) => {
   return (
-    <div>
+    <div className='container'>
       <div className="page-header">
         <h1>
           {!hasGameStarted && currentUser.id === entry.user ?
