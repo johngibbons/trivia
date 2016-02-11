@@ -21,7 +21,7 @@ const Entry = ({
   onSelectAnswer
 }) => {
   return (
-    <div className='container'>
+    <div className='container entry'>
       <div className="page-header">
         <h1>
           {!hasGameStarted && currentUser.id === entry.user ?
@@ -38,11 +38,6 @@ const Entry = ({
         </h1>
         {hasGameStarted &&
           `(Rank ${entry.rank})`
-        }
-        {!hasGameStarted && currentUser.id === entry.user &&
-          <div>
-            <Link to={`/games/${gameId}`}>Save And Finish</Link>
-          </div>
         }
         <ScoreBar
           isOwnScore={currentUser.id === entry.user}

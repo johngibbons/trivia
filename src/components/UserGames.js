@@ -3,6 +3,8 @@ import {colors} from '../constants';
 import calculateTotalPossible from '../helpers/calculate_total_possible';
 import calculateCurrentPossible from '../helpers/calculate_current_possible';
 
+import TitleBar from './TitleBar';
+
 const UserGames = ({
   user,
   currentUser,
@@ -13,8 +15,8 @@ const UserGames = ({
 }) => {
   return (
     <div>
-      <h1>Games You Own</h1>
-      <table className="table table-hover">
+      <TitleBar>Games You Own</TitleBar>
+      <table className="table table-hover" style={{marginBottom: '5rem'}}>
         <thead>
           <tr>
             <th>Name</th>
@@ -67,7 +69,7 @@ const UserGames = ({
           })}
         </tbody>
       </table>
-      <h1>Games You're PLaying</h1>
+      <TitleBar>Games You Are Participating In</TitleBar>
       <table className="table table-hover">
         <thead>
           <tr>

@@ -21,85 +21,49 @@ import Game from '../components/Game.js';
 
 class GameContainer extends React.Component {
 
-  getEntries(game) {
-    return Object.keys(this.props.entriesById).filter((id) => {
-      return this.props.entriesById[id].game === game;
-    });
-  }
 
-  currentUserEntry(entries, currentUser) {
-    return entries.filter((entry) => {
-      return entry.user === currentUser.id;
-    })[0];
-  }
-
-  addScoreToEntries(entries) {
-    return entries.map((id, index) => {
-      const entry = this.props.entriesById[id];
-      const score = calculateScore(entry, this.props.questionsById);
-      return Object.assign({}, this.props.entriesById[id], {score: score});
-    });
-  }
-
-  addRankToEntries(entries) {
-    let rank = 1;
-    let prevScore;
-    entries.sort((a,b) => {
-      return (b.score - a.score);
-    });
-
-    return entries.map((entry, index) => {
-      rank = entry.score < prevScore ? index + 1 : rank;
-      prevScore = entry.score;
-      return Object.assign({}, entry, {rank: rank});
-    });
-  }
 
   render() {
     const {
-      location,
       currentUser,
+      location,
+      currentUserEntry,
       toggleLoginModal,
+      game,
       gamesById,
       questionsById,
       answersById,
-      entriesById,
+      entries,
+      entry,
+      leader,
+      isOwner,
+      totalPossible,
+      currentPossible,
+      usersById,
       params,
       children
     } = this.props;
 
-    let game;
-    if (params.game) {
-      game = gamesById[params.game] || {};
-    } else if (params.entry) {
-      const entry = entriesById[params.entry] || {};
-      game = gamesById[entry.game] || {};
-    }
     const questions = game.questions && game.questions.map(id => questionsById[id]) || [];
-    const leader = calculateLeader(game, entriesById, questionsById);
 
-    let entries = this.getEntries(game.id);
-    entries = this.addScoreToEntries(entries);
-    entries = this.addRankToEntries(entries);
-    let totalPossible = calculateTotalPossible(game, this.props.questionsById);
-    let currentPossible = calculateCurrentPossible(game, this.props.questionsById);
     return (
       <Game
         currentUser={currentUser}
+        currentUserEntry={currentUserEntry}
         toggleLoginModal={toggleLoginModal}
         id={game.id}
         title={game.title}
-        isOwner={currentUser.id === game.user}
-        currentUserEntry={this.currentUserEntry(entries, currentUser)}
         hasGameStarted={currentPossible > 0}
         questions={questions}
         answersById={answersById}
         questionsById={questionsById}
-        entriesById={entriesById}
+        usersById={usersById}
         entries={entries}
+        entry={entry}
         children={children}
         leader={leader}
         isEditable={location.pathname.includes('edit')}
+        isOwner={isOwner}
         totalPossible={calculateTotalPossible(game, this.props.questionsById)}
         currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
         onUpdate={this.update.bind(this)}
@@ -154,14 +118,68 @@ class GameContainer extends React.Component {
   }
 }
 
+function setGameEntries(gameId, entriesById, questionsById) {
+  let rank = 1;
+  let prevScore;
+  return Object.keys(entriesById).filter((id) => {
+    return entriesById[id].game === gameId;
+  }).map((id) => {
+    const entry = entriesById[id];
+    const score = calculateScore(entry, questionsById);
+    return {...entry, score: score};
+  }).sort((a,b) => {
+    return (b.score - a.score);
+  }).map((entry, index) => {
+    rank = entry.score < prevScore ? index + 1 : rank;
+    prevScore = entry.score;
+    return Object.assign({}, entry, {rank: rank});
+  });
+}
+
+function setGame(params, gamesById, entriesById) {
+  if (params.game) {
+    return gamesById[params.game] || {};
+  } else if (params.entry) {
+    const entry = entriesById[params.entry] || {};
+    return gamesById[entry.game] || {};
+  }
+}
+
+function currentUserEntry(entries, currentUser) {
+  return entries.filter((entry) => {
+    return entry.user === currentUser.id;
+  })[0] || {};
+}
+
 function mapStateToProps(state) {
+
   const remoteState = state.remote || {};
+  const clientState = state.client || {};
+  const game = setGame(
+    clientState.router.params,
+    remoteState.gamesById,
+    remoteState.entriesById
+  ) || {};
+  const entries = setGameEntries(
+    game.id,
+    remoteState.entriesById,
+    remoteState.questionsById
+  ) || [];
+
   return {
-    currentUser: state.client.currentUser,
-    gamesById: remoteState.gamesById,
+    currentUser: clientState.currentUser,
+    currentUserEntry: currentUserEntry(entries, clientState.currentUser),
+    game: game,
+    leader: calculateLeader(game, remoteState.entriesById, remoteState.questionsById),
+    totalPossible: calculateTotalPossible(game, remoteState.questionsById),
+    currentPossible: calculateCurrentPossible(game, remoteState.questionsById),
+    isOwner: clientState.currentUser.id === game.user,
     questionsById: remoteState.questionsById,
     answersById: remoteState.answersById,
-    entriesById: remoteState.entriesById
+    entries: entries,
+    entry: clientState.router.params.entry &&
+      remoteState.entriesById[clientState.router.params.entry],
+    usersById: remoteState.usersById
   };
 }
 

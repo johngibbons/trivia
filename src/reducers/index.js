@@ -7,7 +7,7 @@ import questionsById from './question';
 import answersById from './answer';
 import rState from './state';
 import modal from './modal';
-import {routeReducer} from 'redux-simple-router';
+import router from './router';
 import {COMBINE_STATES} from '../constants';
 
 const combined = (state = {}, action) => {
@@ -20,7 +20,7 @@ const combined = (state = {}, action) => {
 
   return {
     client: {
-      routing: routeReducer,
+      router: router(clientState.router, action),
       flash: flash(clientState.flash, action),
       currentUser: currentUser(clientState.currentUser, action),
       modal: modal(clientState.modal, action)

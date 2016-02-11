@@ -16,7 +16,7 @@ import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
-import {startFirebaseListeners, setFlash} from './actions/index';
+import {startFirebaseListeners, setFlash, setRouter} from './actions/index';
 
 import {ROOT_REF} from './constants';
 
@@ -41,6 +41,7 @@ function requireGameOwner(nextState, replace, callback) {
 
 function setContext(context, nextState, replace, callback) {
   window.TrviaContext = context;
+  store.dispatch(setRouter(nextState.params, nextState.location.pathname));
 
   if (context === 'gameEdit' || context === 'gameRun') {
     return requireGameOwner(nextState, replace, callback);

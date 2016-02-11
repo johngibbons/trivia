@@ -1,19 +1,49 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const Dropdown = ({isShowing, children, style, className}) => {
+class Dropdown extends React.Component {
 
-  const combinedClasses = className ?
-    'dropdown '.concat(' ', className) :
-      'dropdown';
+  constructor(props) {
+    super(props);
+    this.state = {isOpen: false};
+  }
 
-  return (
-    <div
-      className={combinedClasses}
-      style={style}
-    >
-      {children}
-    </div>
-  );
+  handleToggleDropdown(e) {
+    e.preventDefault();
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  render() {
+    const combinedClasses = this.props.className ?
+      classNames({
+        dropdown: true,
+        open: this.state.isOpen
+      }).concat(' ', this.props.className)
+      :
+      classNames({
+        dropdown: true,
+        open: this.state.isOpen
+      });
+
+    return (
+      <div
+        className={combinedClasses}
+        style={this.props.style}
+      >
+      {this.props.children.map((childNode, index) => {
+        return (
+          React.cloneElement(childNode, {
+            key: index,
+            onClickToggle: this.handleToggleDropdown.bind(this),
+            isOpen: this.state.isOpen
+          })
+        );
+      })}
+      </div>
+    );
+  }
 };
 
 export default Dropdown;

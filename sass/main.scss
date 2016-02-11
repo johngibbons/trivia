@@ -15,6 +15,7 @@
 @import 'components/new_question_btn';
 @import 'components/game_nav';
 @import 'components/entries_list';
+@import 'components/charts';
 
 body {
   font-family: $font-family-base;
@@ -63,6 +64,12 @@ button {
   }
 }
 
+.table {
+  td {
+    vertical-align: middle;
+  }
+}
+
 .collapsed {
   height: 0;
   overflow: hidden;
@@ -81,4 +88,8 @@ a {
   &:hover, &:active, &:visited, &:link {
     text-decoration: none;
   }
+}
+
+.container {
+  margin-top: 3rem;
 }

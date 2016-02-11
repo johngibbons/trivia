@@ -31,9 +31,9 @@ const Game = (props) => {
         <div className='nav navbar-nav'>
           {props.currentUserEntry ?
             <NavLink
-              active={TrviaContext === 'entry'}
+              active={props.entry && props.currentUserEntry.id === props.entry.id}
               url={`/entries/${props.currentUserEntry.id}`}
-            >Your Entry</NavLink>
+            >{props.currentUserEntry.name}</NavLink>
           :
             <NavLink
               onClick={props.onAddEntry}
@@ -44,7 +44,7 @@ const Game = (props) => {
             url={`/games/${props.id}`}
           >Leaderboard</NavLink>
         {props.isOwner &&
-          <Dropdown className='nav-item'>
+          <Dropdown className={`nav-item ${(TrviaContext === 'gameEdit' || TrviaContext === 'gameRun') && 'active'}`}>
             <DropdownToggle className='nav-link'>
               Game Admin
             </DropdownToggle>

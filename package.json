@@ -29,6 +29,7 @@
     "bootstrap-loader": "^1.0.3",
     "classnames": "^2.2.1",
     "css-loader": "^0.23.1",
+    "d3": "^3.5.14",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "firebase": "^2.3.2",

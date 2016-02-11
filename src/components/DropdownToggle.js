@@ -6,7 +6,6 @@ const DropdownToggle = ({
   children,
   onClickToggle
 }) => {
-
   const combinedClasses = className ?
     'dropdown-toggle '.concat(className) :
       'dropdown-toggle';

@@ -18,21 +18,18 @@ const GameEdit = ({
   onUpdateAnswer
 }) => {
   return(
-    <div>
-      <Link to={`/games/${id}`}>Save and Finish</Link>
-      <div className='container'>
-        <QuestionList
-          questions={questions}
-          answersById={answersById}
-          onAdd={onAddQuestion}
-          onRemove={onRemoveQuestion}
-          onUpdate={onUpdateQuestion}
-          onAddAnswer={onAddAnswer}
-          onRemoveAnswer={onRemoveAnswer}
-          onUpdateAnswer={onUpdateAnswer}
-          isEditable={true}
-        />
-      </div>
+    <div className='container game-edit'>
+      <QuestionList
+        questions={questions}
+        answersById={answersById}
+        onAdd={onAddQuestion}
+        onRemove={onRemoveQuestion}
+        onUpdate={onUpdateQuestion}
+        onAddAnswer={onAddAnswer}
+        onRemoveAnswer={onRemoveAnswer}
+        onUpdateAnswer={onUpdateAnswer}
+        isEditable={true}
+      />
     </div>
 );};
 

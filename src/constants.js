@@ -4,7 +4,7 @@ export const ROOT_REF = new Firebase('https://flickering-torch-250.firebaseio.co
 
 export const COMBINE_STATES = 'COMBINE_STATES';
 
-export const SET_ROUTE = 'SET_ROUTE';
+export const SET_ROUTER = 'SET_ROUTER';
 
 export const SET_FLASH = 'SET_FLASH';
 export const CLEAR_FLASH = 'CLEAR_FLASH';

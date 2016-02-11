@@ -9,13 +9,12 @@ const GameShow = ({
   id,
   title,
   isOwner,
+  usersById,
   currentUserEntry,
   entries,
-  entriesById,
   questionsById,
   totalPossible,
   currentPossible,
-  currentUser,
   toggleLoginModal,
   onClickEntry
 }) => {
@@ -23,18 +22,17 @@ const GameShow = ({
     <div>
       <ScoreDashboard
         entries={entries}
-        entriesById={entriesById}
         questionsById={questionsById}
         totalPossible={totalPossible}
         currentPossible={currentPossible}
         onClickEntry={onClickEntry}
       />
-      <div className='container'>
+      <div className='container game-show'>
         <EntriesList
           entries={entries}
-          entriesById={entriesById}
           currentUserEntry={currentUserEntry}
           questionsById={questionsById}
+          usersById={usersById}
           totalPossible={totalPossible}
           currentPossible={currentPossible}
           onClickEntry={onClickEntry}

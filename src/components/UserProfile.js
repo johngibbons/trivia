@@ -18,14 +18,14 @@ const UserProfile = ({
   }
 
   return (
-    <div className='col-md-4 col-md-offset-4'>
+    <div className='col-md-12'>
       <div style={{
         display: 'inline-block',
         marginBottom: '10px',
         width: '60px',
         height: '60px'
       }}>
-        <img src={user.avatarURL} className='img-responsive img-rounded' />
+        <img src={user.avatarURL} className='img-fluid img-rounded' />
       </div>
         {isCurrentUser &&
           <div className='form-group'>

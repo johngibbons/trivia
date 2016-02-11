@@ -2,7 +2,7 @@ import shortid from 'shortid';
 import {
   ROOT_REF,
   COMBINE_STATES,
-  SET_ROUTE,
+  SET_ROUTER,
   SET_FLASH,
   SET_CURRENT_USER,
   CLEAR_FLASH,
@@ -39,18 +39,19 @@ export function startFirebaseListeners() {
           provider: authData.provider,
           avatarURL: dbUser.avatarURL || authData[authData.provider].profileImageURL,
           username: dbUser.username || authData[authData.provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
-        }
+        };
         dispatch(setCurrentUser(currentUser));
       });
     });
   };
 }
 
-export function setRoute(url) {
+export function setRouter(params, path) {
   return {
-    type: SET_ROUTE,
+    type: SET_ROUTER,
     payload: {
-      url
+      params,
+      path
     }
   };
 }

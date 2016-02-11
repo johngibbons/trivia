@@ -13,8 +13,7 @@ const GameRun = ({
 }) => {
   return (
     <div>
-      <Link to={`/games/${id}`}>View Leaderboard</Link>
-      <div className='container'>
+      <div className='container game-run'>
         <QuestionList questions={questions}
           answersById={answersById}
           isSelectable={true}
