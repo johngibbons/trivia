@@ -1,13 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export default ({isShowing, children}) => {
+export default ({isShowing, className, children}) => {
 
   let modalClasses = classNames({
     'modal': true,
     'fade': true,
     'in': isShowing
   });
+
+  modalClasses = className ? modalClasses.concat(` ${className}`) : modalClasses;
 
   let dialogClasses = classNames({
     'modal-dialog': true,

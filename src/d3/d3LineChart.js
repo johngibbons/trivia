@@ -46,15 +46,16 @@ d3Chart.drawPoints = function(el, scales, data) {
 
 d3Chart.drawLine = function(el, scales, data) {
 
-  let line = d3.svg.line()
+  let area = d3.svg.area()
     .x(d => scales.x(d.x))
-    .y(d => scales.y(d.y));
+    .y0(d => scales.y(0))
+    .y1(d => scales.y(d.y));
 
   let g = d3.select(el).select('.d3-path')
     .datum(data)
     .transition()
     .duration(500)
-    .attr('d', line);
+    .attr('d', area);
 };
 
 d3Chart.scales = function(el, domain) {

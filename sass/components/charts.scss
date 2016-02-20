@@ -1,15 +1,15 @@
 .d3 {
 
   .d3-path {
-    stroke: green;
+    stroke: rgb(0, 255, 255);
     stroke-opacity: 0.7;
     stroke-width: 2px;
-    fill: none;
+    fill: rgb(0, 255, 255);
+    fill-opacity: 0.3;
   }
 
   .d3-point {
-    fill: none;
-    stroke: green;
+    fill: rgb(0, 255, 255);
     stroke-width: 3px;
   }
 }

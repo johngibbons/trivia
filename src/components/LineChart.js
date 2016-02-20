@@ -1,20 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import d3LineChart from '../d3/d3LineChart';
 
 class LineChart extends React.Component {
 
   componentDidMount() {
-    const el = ReactDOM.findDOMNode(this);
-    d3LineChart.create(el, {
+    d3LineChart.create(this.props.parent, {
       width: '100%',
       height: '18rem'
     }, this.getChartState());
   }
 
   componentDidUpdate() {
-    const el = ReactDOM.findDOMNode(this);
-    d3LineChart.update(el, this.getChartState());
+    d3LineChart.update(this.props.parent, this.getChartState());
   }
 
   getChartState() {
@@ -25,12 +22,13 @@ class LineChart extends React.Component {
   }
 
   componentWillUnmount() {
-    const el = ReactDOM.findDOMNode(this);
-    d3LineChart.destroy(el);
+    d3LineChart.destroy(this.props.parent);
   }
 
   render() {
-    return (<div className='line-chart' />);
+    return (
+      <span className='line-chart' />
+    );
   }
 }
 

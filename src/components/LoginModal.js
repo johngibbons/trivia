@@ -25,7 +25,10 @@ const LoginModal = ({
   onSubmit
 }) => {
   return (
-    <Modal isShowing={isShowing}>
+    <Modal
+      isShowing={isShowing}
+      className='login-modal'
+    >
       <ModalHeader onClickClose={onClickClose}>
         <TabLinkUnderline
           style={{fontSize: '14px'}}
@@ -43,9 +46,7 @@ const LoginModal = ({
           className='row'
           style={{padding: '35px'}}
         >
-          <div
-            className='col-md-6 col-md-offset-3'
-          >
+          <div>
             <button
               className='btn btn-facebook'
               style={{

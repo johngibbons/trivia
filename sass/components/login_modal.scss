@@ -1,0 +1,16 @@
+.login-modal {
+
+  .modal-dialog {
+
+    @include media-breakpoint-up(md) {
+      width: 435px;
+      max-width: 100%;
+    }
+  }
+
+  .modal-body {
+    .row {
+      justify-content: center;
+    }
+  }
+}
