@@ -10,11 +10,9 @@ const TopNav = ({
   return(
     <nav className='navbar navbar-light navbar-full'>
       <Link to='/' className='navbar-brand pull-left'>Trvia</Link>
-      <div className='nav navbar-nav'>
-        <AccountDropdownMenuContainer
-          toggleLoginModal={toggleLoginModal}
-        />
-      </div>
+      <AccountDropdownMenuContainer
+        toggleLoginModal={toggleLoginModal}
+      />
     </nav>
   );
 };

@@ -22,9 +22,8 @@ const AccountDropdownMenu = ({
   });
 
   return (
-    <div className='pull-xs-right'>
-    {currentUser.username ?
-      <div className={dropdownClasses}>
+    currentUser.username ?
+      <div className={`${dropdownClasses} navbar-right`}>
         <a
           className='dropdown-toggle media'
           href='#'
@@ -57,8 +56,6 @@ const AccountDropdownMenu = ({
           onClick={toggleModal}
         >Log In</a>
       </p>
-    }
-    </div>
   );
 };
 
