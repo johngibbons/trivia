@@ -18,7 +18,6 @@ class UserContainer extends React.Component {
       <User
         user={this.props.usersById[this.props.params.user] || {}}
         currentUser={this.props.currentUser}
-        gamesOwned={this.props.gamesOwned}
         gamesPlaying={this.props.gamesPlaying}
         onUpdate={this.handleUpdate.bind(this)}
         onPasswordSubmit={this.handlePasswordRequiredUpdate.bind(this)}

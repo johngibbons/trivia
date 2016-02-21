@@ -13,13 +13,13 @@ const EntriesList = ({
   onClickEntry
 }) => {
   return(
-    <div className="entries-list">
+    <div className="entries-list flex-table">
       <div className='heading table-row'>
-        <div className='spacer' />
-        <div className='heading-row flex-row'>
-          <span>Score</span>
-          <span>Out of</span>
-          <span>Total Possible</span>
+        <div className='spacer table-cell' />
+        <div className='table-sub-row table-cell'>
+          <span className='table-cell'>Score</span>
+          <span className='table-cell'>Out of</span>
+          <span className='table-cell'>Total Possible</span>
         </div>
       </div>
       <div>
@@ -27,26 +27,26 @@ const EntriesList = ({
           const entryUser = usersById[entry.user];
           return (
             <div
-              className={currentUserEntry.id === entry.id ? 'owner table-row' : 'table-row'}
+              className={currentUserEntry.id === entry.id ? 'highlighted table-row' : 'table-row'}
               key={entry.id}
               onClick={() => onClickEntry(entry.id)}
             >
-              <div className='media'>
-                <span className='rank'>{entry.rank}</span>
+              <div className='media table-cell'>
+                <span className='rank emphasized'>{entry.rank}</span>
                 <img
                   src={entryUser.avatarURL}
                   className='avatar-small img-fluid img-rounded media-figure'
                   style={{marginRight: '1rem'}}
                 />
                 <span className='media-body'>
-                  <div className='entry-name'>{entry.name || <span style={{color: colors.grayLight}}>No Name</span>}</div>
+                  <div className='entry-name emphasized '>{entry.name || <span style={{color: colors.grayLight}}>No Name</span>}</div>
                   <div className='username'>{entryUser.name || 'anonymous'}</div>
                 </span>
               </div>
-              <div className='entry-stats flex-row'>
-                <span className='entry-score'>{entry.score}</span>
-                <span>{currentPossible}</span>
-                <span>{totalPossible}</span>
+              <div className='secondary-text table-sub-row table-cell'>
+                <span className='entry-score table-cell'>{entry.score}</span>
+                <span className='table-cell'>{currentPossible}</span>
+                <span className='table-cell'>{totalPossible}</span>
               </div>
             </div>
           );

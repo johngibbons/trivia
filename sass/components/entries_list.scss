@@ -1,4 +1,22 @@
-.entries-list {
+.legend {
+  display:flex;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  .color-square {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 0.5rem;
+  }
+
+  .text {
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+}
+
+.flex-table {
 
   .table-row {
     padding: 0.5rem;
@@ -6,7 +24,30 @@
     cursor: pointer;
     transition: all 0.5s ease;
 
-    &.owner {
+    &:hover {
+      background-color: $gray-lightest;
+    }
+
+    &.heading {
+      cursor: default;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: $gray;
+      border-bottom: 3px solid $gray-lightest;
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      align-items: center;
+    }
+
+    &.highlighted {
+
       position: relative;
       background: linear-gradient(to right, white, lighten($brand-primary, 35%));
       color: $brand-primary;
@@ -32,69 +73,42 @@
       }
     }
 
-    &:hover {
-      background-color: $gray-lightest;
-    }
-
-    &.heading {
-      cursor: default;
-
-      &:hover {
-        background: none;
-      }
-    }
-
-    @include media-breakpoint-up(sm) {
-
+    .table-sub-row {
       display: flex;
-
-      .media, .entry-stats, .spacer, .heading-row {
-        flex: 1;
-      }
     }
-  }
 
-  .flex-row {
-    display: flex;
-
-    span {
+    .table-cell {
       flex: 1;
     }
-  }
 
-  .heading {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: $gray;
-    border-bottom: 3px solid $gray-lightest;
-  }
+    .emphasized {
+      font-weight: 700;
+    }
 
+    .secondary-text {
 
-  .entry-name {
-    font-weight: 700;
+      font-size: 0.8rem;
+      color: $gray-light;
+      padding-top: 0.75rem;
+
+      @include media-breakpoint-up(sm) {
+        font-size: 1rem;
+        padding-top: 0;
+      }
+
+      .entry-score {
+        color: $gray-dark;
+      }
+
+    }
   }
+}
+
+.entries-list {
 
   .username {
     font-size: 0.8rem;
     color: $gray-light;
-  }
-
-
-  .entry-stats {
-
-    font-size: 0.8rem;
-    color: $gray-light;
-    padding-top: 0.75rem;
-
-    @include media-breakpoint-up(sm) {
-      font-size: 1rem;
-    }
-
-    .entry-score {
-      color: $gray-dark;
-    }
-
   }
 
   .rank {

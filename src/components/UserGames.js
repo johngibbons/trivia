@@ -2,6 +2,7 @@ import React from 'react';
 import {colors} from '../constants';
 import calculateTotalPossible from '../helpers/calculate_total_possible';
 import calculateCurrentPossible from '../helpers/calculate_current_possible';
+import classNames from 'ClassNames';
 
 import TitleBar from './TitleBar';
 
@@ -15,72 +16,28 @@ const UserGames = ({
 }) => {
   return (
     <div>
-      <TitleBar>Games You Own</TitleBar>
-      <table className="table table-hover" style={{marginBottom: '5rem'}}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>No. Entries</th>
-            <th>No. Questions</th>
-            <th>Started?</th>
-            <th>Complete?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {gamesOwned.map((game, index) => {
-
-            let totalPossible = calculateTotalPossible(
-              game,
-              questionsById
-            );
-            let currentPossible = calculateCurrentPossible(
-              game,
-              questionsById
-            );
-
-            return (
-              <tr key={game.id + index} onClick={() => onClickGame(game.id)}>
-                <td>
-                  {game.title ||
-                    <span style={{color: colors.grayLight}}>untitled</span>}
-                </td>
-                <td>
-                  {game.entries ? game.entries.length : 0}
-                </td>
-                <td>
-                  {game.questions ? game.questions.length : 0}
-                </td>
-                <td style={{
-                  color: currentPossible > 0 ?
-                    colors.success :
-                      colors.danger
-                }}>
-                  {currentPossible > 0 ? 'Yes' : 'No'}
-                </td>
-                <td style={{
-                  color: currentPossible === totalPossible ?
-                    colors.success :
-                      colors.danger
-                }}>
-                  {currentPossible === totalPossible ? 'Yes' : 'No'}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <TitleBar>Games You Are Participating In</TitleBar>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>No. Entries</th>
-            <th>No. Questions</th>
-            <th>Started?</th>
-            <th>Complete?</th>
-          </tr>
-        </thead>
-        <tbody>
+      <TitleBar>Your Games</TitleBar>
+      <div className='legend'>
+        <span
+          className='color-square'
+          style={{backgroundColor: colors.primary}}
+        ></span>
+        <span
+          className='text'
+          style={{color: colors.primary}}
+        >admin</span>
+      </div>
+      <div className="flex-table" style={{marginBottom: '5rem'}}>
+        <div className='heading table-row'>
+          <div className='spacer table-cell' />
+          <div className='table-sub-row table-cell'>
+            <span className='table-cell'>No. Entries</span>
+            <span className='table-cell'>No. Questions</span>
+            <span className='table-cell'>Started?</span>
+            <span className='table-cell'>Complete?</span>
+          </div>
+        </div>
+        <div>
           {gamesPlaying.map((game, index) => {
 
             let totalPossible = calculateTotalPossible(
@@ -91,38 +48,55 @@ const UserGames = ({
               game,
               questionsById
             );
+            const isOwner = game.user === currentUser.id;
+            const rowClasses = classNames({
+              'table-row': true,
+              'highlighted': isOwner
+            });
 
             return (
-              <tr key={game.id + index} onClick={() => onClickGame(game.id)}>
-                <td>
+              <div
+                key={game.id + index}
+                className={rowClasses}
+                onClick={() => onClickGame(game.id)}
+              >
+                <div className='table-cell emphasized'>
                   {game.title ||
                     <span style={{color: colors.grayLight}}>untitled</span>}
-                </td>
-                <td>
-                  {game.entries ? game.entries.length : 0}
-                </td>
-                <td>
-                  {game.questions ? game.questions.length : 0}
-                </td>
-                <td style={{
-                  color: currentPossible > 0 ?
-                    colors.success :
+                </div>
+                <div className='secondary-text table-sub-row table-cell'>
+                  <div className='table-cell'>
+                    {game.entries ? game.entries.length : 0}
+                  </div>
+                  <div className='table-cell'>
+                    {game.questions ? game.questions.length : 0}
+                  </div>
+                  <div
+                    className='table-cell'
+                    style={{
+                      color: currentPossible > 0 ?
+                      colors.success :
                       colors.danger
-                }}>
-                  {currentPossible > 0 ? 'Yes' : 'No'}
-                </td>
-                <td style={{
-                  color: currentPossible === totalPossible ?
-                    colors.success :
-                      colors.danger
-                }}>
-                  {currentPossible === totalPossible ? 'Yes' : 'No'}
-                </td>
-              </tr>
+                    }}
+                  >
+                    {currentPossible > 0 ? 'Yes' : 'No'}
+                  </div>
+                  <div
+                    className='table-cell'
+                    style={{
+                      color: currentPossible === totalPossible ?
+                      colors.success :
+                        colors.danger
+                    }}
+                  >
+                    {currentPossible === totalPossible ? 'Yes' : 'No'}
+                  </div>
+                </div>
+              </div>
             );
           })}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 };
