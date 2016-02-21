@@ -97,3 +97,7 @@ a {
 .container {
   margin-top: 3rem;
 }
+
+.alert-info {
+  background: linear-gradient(to bottom right, white, lighten($brand-primary, 35%));
+}

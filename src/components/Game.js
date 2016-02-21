@@ -60,6 +60,7 @@ const Game = (props) => {
             >{props.currentUserEntry.name}</NavLink>
           :
             <NavLink
+              className='create-entry'
               onClick={props.onAddEntry}
             >Create Your Entry</NavLink>
           }

@@ -5,28 +5,31 @@ import classNames from 'classnames';
 const NavLink = ({
   url,
   active,
+  className,
   onClick,
   children
 }) => {
 
-  const className = classNames({
+  const defaultClasses = classNames({
     'nav-item': true,
     'nav-link': true,
     active: active
   });
 
+  const navClasses = className ? defaultClasses.concat(` ${className}`) : defaultClasses;
+
   if (url) {
     return (
       <Link
         to={url}
-        className={className}
+        className={navClasses}
       >{children}</Link>
     );
   } else {
     return (
       <a
         href='#'
-        className={className}
+        className={navClasses}
         onClick={onClick}
       >{children}</a>
     );
