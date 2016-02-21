@@ -11,7 +11,6 @@ import DropdownLink from './DropdownLink';
 import DropdownMenu from './DropdownMenu';
 
 const Game = (props) => {
-
   return (
     <div>
       <TitleBar>
@@ -29,7 +28,7 @@ const Game = (props) => {
       </TitleBar>
       <nav className='game-nav navbar navbar-light'>
         <div className='nav navbar-nav'>
-          {props.currentUserEntry ?
+          {Object.keys(props.currentUserEntry).length ?
             <NavLink
               active={props.entry && props.currentUserEntry.id === props.entry.id}
               url={`/entries/${props.currentUserEntry.id}`}
