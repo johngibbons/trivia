@@ -23,30 +23,16 @@ const Entry = ({
   return (
     <div className='container entry'>
       <div className="page-header">
-        <h1>
-          {!hasGameStarted && currentUser.id === entry.user ?
-            <EditableTextContainer
-              id={entry.id}
-              attr="name"
-              placeholder="Enter a name for your entry..."
-              value={entry.name}
-              save={onUpdateName}
-              showInput={!entry.name}
-            /> :
-            <div>{entry.name}</div>
-          }
-        </h1>
         {hasGameStarted &&
-          `(Rank ${entry.rank})`
+          <ScoreBar
+            isOwnScore={currentUser.id === entry.user}
+            entry={entry}
+            correct={correct}
+            leader={leader}
+            currentPossible={currentPossible}
+            totalPossible={totalPossible}
+          />
         }
-        <ScoreBar
-          isOwnScore={currentUser.id === entry.user}
-          entry={entry}
-          correct={correct}
-          leader={leader}
-          currentPossible={currentPossible}
-          totalPossible={totalPossible}
-        />
       </div>
       {hasGameStarted || currentUser.id == entry.user ?
         <QuestionList

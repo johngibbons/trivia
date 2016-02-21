@@ -23,22 +23,6 @@ import {ROOT_REF} from './constants';
 const history = createBrowserHistory();
 store.dispatch(startFirebaseListeners());
 
-function requireGameOwner(nextState, replace, callback) {
-  ROOT_REF.once('value', (remote) => {
-    const remoteState = remote.val().remoteState;
-    const authData = ROOT_REF.getAuth();
-    if (authData && remoteState.gamesById[nextState.params.game].user === authData.uid) {
-      callback();
-    } else {
-      store.dispatch(
-        setFlash('danger', 'Sorry, you are not authorized')
-      );
-      replace('/', '', '');
-      callback();
-    }
-  });
-}
-
 function setContext(nextState, replace, callback) {
   store.dispatch(setRouter(nextState.params, nextState.location.pathname));
 

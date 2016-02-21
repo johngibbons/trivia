@@ -39,16 +39,19 @@ class NewQuestionBtn extends React.Component {
     });
 
     const btnClass = classNames({
-      'card': true,
+      card: true,
       'clearfix': true,
       'hover-dark-bg': true
     });
 
     return(
-      <div>
+      <div
+        className='card question'
+        style={{ border: 'none' }}
+      >
         <div
           className={formClass}
-          style={{flexBasis: '30%'}}
+          style={{display: !this.state.editing && 'none'}}
         >
           <div className='card-block'>
             <form onSubmit={this.save.bind(this)}>
@@ -69,7 +72,7 @@ class NewQuestionBtn extends React.Component {
       {!this.state.editing &&
         <div
           className={btnClass}
-          style={{flexBasis: '30%'}}
+          style={{margin: '0'}}
           onClick={this.toggleInput.bind(this)}
         >
           <div className="card-block">
@@ -82,6 +85,6 @@ class NewQuestionBtn extends React.Component {
     </div>
     );
   }
-};
+}
 
 export default NewQuestionBtn;

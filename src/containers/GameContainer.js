@@ -14,14 +14,14 @@ import {
   addAnswer,
   removeAnswer,
   updateAnswerAttr,
-  addEntry
+  addEntry,
+  updateEntryAttr,
+  setFlash
 } from '../actions/index';
 
 import Game from '../components/Game.js';
 
 class GameContainer extends React.Component {
-
-
 
   render() {
     const {
@@ -76,7 +76,9 @@ class GameContainer extends React.Component {
         onRemoveAnswer={this.removeAnswer.bind(this)}
         onUpdateAnswer={this.updateAnswer.bind(this)}
         onAddEntry={this.addEntry.bind(this)}
+        onUpdateEntry={this.handleUpdateEntry.bind(this)}
         onClickEntry={this.goToEntry.bind(this)}
+        setFlash={setFlash}
       />
     );
   }
@@ -107,6 +109,13 @@ class GameContainer extends React.Component {
 
   updateAnswer(answer, attr, value) {
     this.props.updateAnswerAttr({id: answer, [attr]: value});
+  }
+
+  handleUpdateEntry(id, attr, value) {
+    this.props.dispatch(updateEntryAttr({
+      id: id,
+      [attr]: value
+    }));
   }
 
   addEntry() {
@@ -211,7 +220,8 @@ function mapDispatchToProps(dispatch) {
     addAnswer,
     removeAnswer,
     updateAnswerAttr,
-    addEntry
+    addEntry,
+    setFlash
   }, dispatch);
 }
 

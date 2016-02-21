@@ -24,6 +24,28 @@ const QuestionList = ({
     return [];
   };
 
+  const getBlankCards = () => {
+    const numLeft = questions.length % 3;
+
+    if (isEditable) {
+      if (numLeft === 2) {
+        return [];
+      } else if (numLeft === 1) {
+        return [''];
+      } else {
+        return (['', '']);
+      }
+    } else {
+      if (numLeft === 2) {
+        return [''];
+      } else if (numLeft === 1) {
+        return ['', ''];
+      } else {
+        return ([]);
+      }
+    }
+  };
+
   return (
     <div className='card-deck'>
       {questions.map(question => {
@@ -47,14 +69,17 @@ const QuestionList = ({
       {isEditable &&
         <NewQuestionBtn save={onAdd}/>
       }
-      {questions.length % 3 === 1 &&
-        <div
-          className='card'
-          style={{
-            flexBasis: '30%',
-            border: 'none'
-          }}
-        ></div>
+      {getBlankCards().map((_, i) => {
+        return (
+          <div
+            className='card question'
+            style={{
+              flexBasis: '30%',
+              border: 'none'
+            }}
+          />
+        );
+      })
       }
     </div>
   );

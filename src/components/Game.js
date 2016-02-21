@@ -11,20 +11,45 @@ import DropdownLink from './DropdownLink';
 import DropdownMenu from './DropdownMenu';
 
 const Game = (props) => {
+
+  const getTitleBarText = () => {
+    if (props.entry && props.context === 'entry') {
+      if (!props.hasGameStarted && props.currentUser.id === props.entry.user) {
+        return (
+          <EditableTextContainer
+            id={props.entry.id}
+            attr="name"
+            placeholder="Enter a name for your entry..."
+            value={props.entry.name}
+            save={props.onUpdateEntry}
+            showInput={!props.entry.name}
+          />
+        );
+      } else {
+        return props.entry.name;
+      }
+    } else {
+      if (props.isEditable) {
+        return (
+          <EditableTextContainer
+            id={props.id}
+            attr='title'
+            placeholder='Enter a name for your game...'
+            value={props.title}
+            showInput={!props.title}
+            save={props.onUpdate}
+          />
+        );
+      } else {
+        return props.title || <span style={{color: colors.grayLight}}>untitled</span>;
+      }
+    }
+  };
+
   return (
     <div>
       <TitleBar>
-      {props.isEditable ?
-        <EditableTextContainer
-          id={props.id}
-          attr='title'
-          placeholder='Enter a name for your game...'
-          value={props.title}
-          showInput={!props.title}
-          save={props.onUpdate}
-        />
-        :
-        props.title || <span style={{color: colors.grayLight}}>untitled</span>}
+        {getTitleBarText()}
       </TitleBar>
       <nav className='game-nav navbar navbar-light'>
         <div className='nav navbar-nav'>

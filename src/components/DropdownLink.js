@@ -10,11 +10,7 @@ const DropdownLink = ({
     <Link
       className='dropdown-item'
       to={url}
-      onClick={(e) => {
-        if (onClick) {
-          onClick(e);
-        }
-      }}
+      onClick={onClick}
     >{children}</Link>
   );
 };

@@ -9,14 +9,22 @@ const GameEdit = ({
   title,
   questions,
   answersById,
+  isOwner,
+  history,
   onUpdate,
   onAddQuestion,
   onRemoveQuestion,
   onUpdateQuestion,
   onAddAnswer,
   onRemoveAnswer,
-  onUpdateAnswer
+  onUpdateAnswer,
+  setFlash
 }) => {
+
+  if (!isOwner) {
+    history.replace('/');
+  }
+
   return(
     <div className='container game-edit'>
       <QuestionList
