@@ -4,14 +4,31 @@
     padding: 0.5rem;
     border-bottom: 1px solid $gray-lightest;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 
     &.owner {
-      background-color: lighten($brand-primary, 50%);
+      position: relative;
+      background: linear-gradient(to right, white, lighten($brand-primary, 35%));
       color: $brand-primary;
+      z-index: 0;
+
+      &:before {
+        transition: all 0.5s ease;
+        content: '';
+        opacity: 0;
+        position: absolute;
+        background: linear-gradient(to top right, lighten($brand-primary, 35%), lighten($brand-primary, 35%));
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+      }
 
       &:hover {
-        background-color: lighten($brand-primary, 40%);
+        &:before {
+          opacity: 1;
+        }
       }
     }
 
@@ -69,6 +86,10 @@
     font-size: 0.8rem;
     color: $gray-light;
     padding-top: 0.75rem;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 1rem;
+    }
 
     .entry-score {
       color: $gray-dark;

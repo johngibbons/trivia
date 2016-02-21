@@ -39,7 +39,7 @@ const UserGames = ({
             );
 
             return (
-              <tr key={game.id} onClick={() => onClickGame(game.id)}>
+              <tr key={game.id + index} onClick={() => onClickGame(game.id)}>
                 <td>
                   {game.title ||
                     <span style={{color: colors.grayLight}}>untitled</span>}
@@ -93,7 +93,7 @@ const UserGames = ({
             );
 
             return (
-              <tr key={game.id} onClick={() => onClickGame(game.id)}>
+              <tr key={game.id + index} onClick={() => onClickGame(game.id)}>
                 <td>
                   {game.title ||
                     <span style={{color: colors.grayLight}}>untitled</span>}

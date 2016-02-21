@@ -26,25 +26,6 @@ import {
 
 export function startFirebaseListeners() {
   return function(dispatch, getState) {
-    ROOT_REF.on('value', function(remoteState) {
-      const newState = remoteState.val().remoteState;
-      dispatch(combineStates({remote: newState}));
-
-      ROOT_REF.onAuth((authData) => {
-        if (authData) {
-          const dbUser = newState.usersById[authData.uid] || {};
-          let currentUser = {
-            id: authData.uid,
-            name: dbUser.name || '',
-            email: authData[authData.provider].email,
-            provider: authData.provider,
-            avatarURL: dbUser.avatarURL || authData[authData.provider].profileImageURL,
-            username: dbUser.username || authData[authData.provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
-          };
-          dispatch(setCurrentUser(currentUser));
-        }
-      });
-    });
   };
 }
 

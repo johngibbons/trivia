@@ -21,10 +21,6 @@ const GameEdit = ({
   setFlash
 }) => {
 
-  if (!isOwner) {
-    history.replace('/');
-  }
-
   return(
     <div className='container game-edit'>
       <QuestionList
@@ -36,7 +32,7 @@ const GameEdit = ({
         onAddAnswer={onAddAnswer}
         onRemoveAnswer={onRemoveAnswer}
         onUpdateAnswer={onUpdateAnswer}
-        isEditable={true}
+        isEditable={isOwner}
       />
     </div>
 );};

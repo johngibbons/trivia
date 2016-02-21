@@ -53,7 +53,7 @@ class LoginModalContainer extends React.Component {
         ));
 
       }
-    }, {scope: 'email'});
+    }, {scope: 'email', remember: 'sessionOnly'});
     this.props.toggleModal();
   }
 

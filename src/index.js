@@ -16,12 +16,29 @@ import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute} from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {store} from './store/configureStore';
-import {startFirebaseListeners, setFlash, setRouter} from './actions/index';
+import {
+  startFirebaseListeners,
+  setFlash,
+  setRouter,
+  setCurrentUser
+} from './actions/index';
 
 import {ROOT_REF} from './constants';
 
 const history = createBrowserHistory();
 store.dispatch(startFirebaseListeners());
+
+const authData = ROOT_REF.getAuth();
+if (authData) {
+  let currentUser = {
+    id: authData.uid,
+    email: authData[authData.provider].email,
+    provider: authData.provider,
+    avatarURL: authData[authData.provider].profileImageURL,
+    username: authData[authData.provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
+  };
+  store.dispatch(setCurrentUser(currentUser));
+}
 
 function setContext(nextState, replace, callback) {
   store.dispatch(setRouter(nextState.params, nextState.location.pathname));

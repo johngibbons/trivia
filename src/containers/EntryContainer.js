@@ -23,17 +23,9 @@ class EntryContainer extends React.Component {
         totalPossible={this.props.totalPossible}
         currentPossible={this.props.currentPossible}
         answersById={this.props.answersById}
-        onUpdateName={this.updateName.bind(this)}
         onSelectAnswer={this.selectAnswer.bind(this)}
       />
     );
-  }
-
-  updateName(id, attr, name) {
-    this.props.dispatch(updateEntryAttr({
-      id: this.props.params.entry,
-      [attr]: name
-    }));
   }
 
   selectAnswer(question, _, selection) {

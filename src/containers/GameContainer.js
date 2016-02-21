@@ -65,7 +65,7 @@ class GameContainer extends React.Component {
         children={children}
         leader={leader}
         isEditable={location.pathname.includes('edit')}
-        isOwner={isOwner}
+        isOwner={currentUser && currentUser.id === game.user}
         totalPossible={calculateTotalPossible(game, this.props.questionsById)}
         currentPossible={calculateCurrentPossible(game, this.props.questionsById)}
         onUpdate={this.update.bind(this)}
@@ -195,13 +195,11 @@ function mapStateToProps(state) {
 
   return {
     context: setContext(clientState.router.path),
-    currentUser: clientState.currentUser,
     currentUserEntry: currentUserEntry(entries, clientState.currentUser),
     game: game,
     leader: calculateLeader(game, remoteState.entriesById, remoteState.questionsById),
     totalPossible: calculateTotalPossible(game, remoteState.questionsById),
     currentPossible: calculateCurrentPossible(game, remoteState.questionsById),
-    isOwner: clientState.currentUser.id === game.user,
     questionsById: remoteState.questionsById,
     answersById: remoteState.answersById,
     entries: entries,

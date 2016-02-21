@@ -26,17 +26,10 @@ const Game = (props) => {
           />
         );
       } else {
-        return (
-          <div>
-            {props.entry.name}
-            <span className='subtitle'>
-              {props.title || <span style={{color: colors.grayLight}}>untitled</span>}
-            </span>
-          </div>
-        );
+        return props.entry.name;
       }
     } else {
-      if (props.isEditable) {
+      if (props.isEditable && props.isOwner) {
         return (
           <EditableTextContainer
             id={props.id}
