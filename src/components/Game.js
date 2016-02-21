@@ -19,14 +19,21 @@ const Game = (props) => {
           <EditableTextContainer
             id={props.entry.id}
             attr="name"
-            placeholder="Enter a name for your entry..."
+            placeholder="Entry name..."
             value={props.entry.name}
             save={props.onUpdateEntry}
             showInput={!props.entry.name}
           />
         );
       } else {
-        return props.entry.name;
+        return (
+          <div>
+            {props.entry.name}
+            <span className='subtitle'>
+              {props.title || <span style={{color: colors.grayLight}}>untitled</span>}
+            </span>
+          </div>
+        );
       }
     } else {
       if (props.isEditable) {

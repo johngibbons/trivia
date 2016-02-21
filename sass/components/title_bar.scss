@@ -8,4 +8,16 @@
   border-bottom: 1px solid lighten($gray-lighter, 10%);
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+
+  .subtitle {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: $gray-light;
+    margin-left: 0.5em;
+  }
+
+  .form-control {
+    width: auto;
+    margin: 0 auto;
+  }
 }

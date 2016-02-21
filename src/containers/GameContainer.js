@@ -112,10 +112,10 @@ class GameContainer extends React.Component {
   }
 
   handleUpdateEntry(id, attr, value) {
-    this.props.dispatch(updateEntryAttr({
+    this.props.updateEntryAttr({
       id: id,
       [attr]: value
-    }));
+    });
   }
 
   addEntry() {
@@ -221,7 +221,8 @@ function mapDispatchToProps(dispatch) {
     removeAnswer,
     updateAnswerAttr,
     addEntry,
-    setFlash
+    setFlash,
+    updateEntryAttr
   }, dispatch);
 }
 

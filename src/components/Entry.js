@@ -43,7 +43,10 @@ const Entry = ({
           onSelectAnswer={onSelectAnswer}
         />
         :
-        <p>Answers hidden until the game starts.</p>
+        <p
+          style={{textAlign: 'center'}}
+          className='alert alert-info alert-game-not-started'
+        >Answers hidden until the game starts.</p>
       }
     </div>
   );

@@ -44,6 +44,7 @@ const QuestionList = ({
         return ([]);
       }
     }
+
   };
 
   return (
@@ -72,6 +73,7 @@ const QuestionList = ({
       {getBlankCards().map((_, i) => {
         return (
           <div
+            key={i}
             className='card question'
             style={{
               flexBasis: '30%',
@@ -79,8 +81,7 @@ const QuestionList = ({
             }}
           />
         );
-      })
-      }
+      })}
     </div>
   );
 
