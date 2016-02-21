@@ -40,11 +40,11 @@ const Game = (props) => {
             >Create Your Entry</NavLink>
           }
           <NavLink
-            active={TrviaContext === 'gameLeaderboard'}
+            active={props.context === 'show'}
             url={`/games/${props.id}`}
           >Leaderboard</NavLink>
         {props.isOwner &&
-          <Dropdown className={`nav-item ${(TrviaContext === 'gameEdit' || TrviaContext === 'gameRun') && 'active'}`}>
+          <Dropdown className={`nav-item ${(props.context === 'edit' || props.context === 'run') && 'active'}`}>
             <DropdownToggle className='nav-link'>
               Game Admin
             </DropdownToggle>

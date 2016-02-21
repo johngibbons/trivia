@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import User from '../components/user';
 import {ROOT_REF} from '../constants';
 import {updateUser} from '../actions/index';
+import {browserHistory} from 'react-router';
 
 class UserContainer extends React.Component {
 
@@ -23,7 +24,7 @@ class UserContainer extends React.Component {
         onPasswordSubmit={this.handlePasswordRequiredUpdate.bind(this)}
         isPasswordRequired={this.state.isPasswordRequired}
         questionsById={this.props.questionsById}
-        onClickGame={this.handleClickGame}
+        onClickGame={this.handleClickGame.bind(this)}
         children={this.props.children}
       />
     );
@@ -56,7 +57,7 @@ class UserContainer extends React.Component {
   }
 
   handleClickGame(game) {
-    location.href = `/games/${game}`;
+    this.props.history.push(`/games/${game}`);
   }
 
 }

@@ -41,6 +41,7 @@ class GameContainer extends React.Component {
       currentPossible,
       usersById,
       params,
+      context,
       children
     } = this.props;
 
@@ -48,6 +49,7 @@ class GameContainer extends React.Component {
 
     return (
       <Game
+        context={context}
         currentUser={currentUser}
         currentUserEntry={currentUserEntry}
         toggleLoginModal={toggleLoginModal}
@@ -151,6 +153,18 @@ function currentUserEntry(entries, currentUser) {
   })[0] || {};
 }
 
+function setContext(path) {
+  if (path.includes('edit')) {
+    return 'edit';
+  } else if (path.includes('run')) {
+    return 'run';
+  } else if (path.includes('entries')) {
+    return 'entry';
+  } else {
+    return 'show';
+  }
+}
+
 function mapStateToProps(state) {
 
   const remoteState = state.remote || {};
@@ -167,6 +181,7 @@ function mapStateToProps(state) {
   ) || [];
 
   return {
+    context: setContext(clientState.router.path),
     currentUser: clientState.currentUser,
     currentUserEntry: currentUserEntry(entries, clientState.currentUser),
     game: game,
