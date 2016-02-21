@@ -61,14 +61,6 @@ class UserContainer extends React.Component {
 
 }
 
-function getGamesOwned(user, allGames) {
-  return Object.keys(allGames).filter((id) => {
-    return allGames[id].user === user.id;
-  }).map((id) => {
-    return allGames[id];
-  });
-}
-
 function getGamesPlaying(user, allGames, allEntries) {
   return Object.keys(allEntries).filter((id) => {
     return allEntries[id].user === user.id;
@@ -83,7 +75,6 @@ function mapStateToProps(state) {
     currentUser: state.client.currentUser,
     usersById: state.remote.usersById,
     questionsById: state.remote.questionsById,
-    gamesOwned: getGamesOwned(state.client.currentUser, state.remote.gamesById),
     gamesPlaying: getGamesPlaying(
       state.client.currentUser,
       state.remote.gamesById,

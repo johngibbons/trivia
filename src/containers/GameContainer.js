@@ -26,7 +26,6 @@ class GameContainer extends React.Component {
   render() {
     const {
       currentUser,
-      location,
       currentUserEntry,
       toggleLoginModal,
       game,

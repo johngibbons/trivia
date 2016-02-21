@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {colors} from '../constants';
 
 import EntriesList from './EntriesList';
+import GameShareBox from './GameShareBox';
 import ScoreDashboard from './ScoreDashboard';
 
 const GameShow = ({
@@ -16,11 +17,14 @@ const GameShow = ({
   totalPossible,
   currentPossible,
   toggleLoginModal,
+  hasGameStarted,
   onClickEntry
 }) => {
   return (
     <div>
       <div className='container game-show'>
+      {!hasGameStarted &&
+        <GameShareBox url={location.href} />}
         <EntriesList
           entries={entries}
           currentUserEntry={currentUserEntry}

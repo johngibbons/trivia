@@ -2,14 +2,13 @@ import React from 'react';
 import {colors} from '../constants';
 import calculateTotalPossible from '../helpers/calculate_total_possible';
 import calculateCurrentPossible from '../helpers/calculate_current_possible';
-import classNames from 'ClassNames';
+import classNames from 'classnames';
 
 import TitleBar from './TitleBar';
 
 const UserGames = ({
   user,
   currentUser,
-  gamesOwned,
   gamesPlaying,
   onClickGame,
   questionsById
