@@ -195,6 +195,7 @@ function mapStateToProps(state) {
 
   return {
     context: setContext(clientState.router.path),
+    currentUser: clientState.currentUser,
     currentUserEntry: currentUserEntry(entries, clientState.currentUser),
     game: game,
     leader: calculateLeader(game, remoteState.entriesById, remoteState.questionsById),

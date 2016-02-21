@@ -14,30 +14,6 @@ import LoginModalContainer from './LoginModalContainer';
 
 class App extends React.Component{
 
-  constructor() {
-    super();
-    this.state = {currentUser: {}};
-  }
-
-  componentDidMount() {
-    const authData = ROOT_REF.getAuth();
-    if (authData) {
-      let currentUser = {
-        id: authData.uid,
-        email: authData[authData.provider].email,
-        provider: authData.provider,
-        avatarURL: authData[authData.provider].profileImageURL,
-        username: authData[authData.provider].email.split('@')[0].replace(/[\.\_\+]/g, '')
-      };
-      this.setState({currentUser: currentUser});
-    }
-
-    ROOT_REF.on('value', (remoteState) => {
-      const newState = remoteState.val().remoteState;
-      this.props.dispatch(combineStates({remote: newState}));
-    });
-  }
-
   clearFlash() {
     this.props.dispatch(clearFlash());
   }
@@ -62,8 +38,7 @@ class App extends React.Component{
           </Alert>
         }
           {React.cloneElement(this.props.children, {
-            toggleLoginModal: this.toggleLoginModal.bind(this),
-            currentUser: this.state.currentUser
+            toggleLoginModal: this.toggleLoginModal.bind(this)
           })}
         <LoginModalContainer
           isModalShowing={this.props.modal === 'login'}
