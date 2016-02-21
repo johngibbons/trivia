@@ -1,51 +1,61 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import d3 from 'd3';
 
-import LineChart from './LineChart';
+import {LineChart} from 'react-d3-components';
 
 const ScoreDashboard = () => {
 
   const sampleData = [
-    {id: '5fbmzmtc', x: 0, y: 0},
-    {id: 's4f8phwm', x: 1, y: 25},
-    {id: 'dpoifjpe', x: 2, y: 45},
-    {id: 'apoifjpe', x: 3, y: 55},
-    {id: 'cpoifjpe', x: 4, y: 55},
-    {id: '4fcmzmtc', x: 5, y: 60},
-    {id: 'r4j8phwm', x: 6, y: 75},
-    {id: 'lplifjpe', x: 7, y: 75},
-    {id: 'vppifjpe', x: 8, y: 85},
-    {id: 'hpcifjpe', x: 9, y: 95}
+    {x: 0, y: 0},
+    {x: 1, y: 25},
+    {x: 2, y: 45},
+    {x: 3, y: 55},
+    {x: 4, y: 55},
+    {x: 5, y: 60},
+    {x: 6, y: 75},
+    {x: 7, y: 75},
+    {x: 8, y: 85},
+    {x: 9, y: 95}
   ];
 
   const sampleData2 = [
-    {id: '5fbmzmtc', x: 0, y: 0},
-    {id: 's4f8phwm', x: 1, y: 15},
-    {id: 'dpoifjpe', x: 2, y: 35},
-    {id: 'apoifjpe', x: 3, y: 55},
-    {id: 'cpoifjpe', x: 4, y: 65},
-    {id: '4fcmzmtc', x: 5, y: 60},
-    {id: 'r4j8phwm', x: 6, y: 85},
-    {id: 'lplifjpe', x: 7, y: 85},
-    {id: 'vppifjpe', x: 8, y: 95},
-    {id: 'hpcifjpe', x: 9, y: 95}
+    {x: 0, y: 0},
+    {x: 1, y: 15},
+    {x: 2, y: 35},
+    {x: 3, y: 55},
+    {x: 4, y: 65},
+    {x: 5, y: 60},
+    {x: 6, y: 85},
+    {x: 7, y: 85},
+    {x: 8, y: 95},
+    {x: 9, y: 95}
+  ];
+
+  let data = [
+    {
+      label: 'somethingA',
+      values: sampleData
+    },
+    {
+      label: 'somethingB',
+      values: sampleData2
+    }
   ];
 
   const domain = {x: [0, 9], y: [0, 100]};
+  const margin = {top: 20, right: 20, bottom: 30, left: 40};
+  const colorScale = d3.scale.category20c();
 
   return (
     <div className='score-dashboard-container'>
       <LineChart
         key={1}
-        data={sampleData}
-        domain={domain}
-        parent={ReactDOM.findDOMNode(this)}
-      />
-      <LineChart
-        key={2}
-        data={sampleData2}
-        domain={domain}
-        parent={ReactDOM.findDOMNode(this)}
+        data={data}
+        height={290}
+        width={900}
+        margin={margin}
+        colorScale={colorScale}
       />
     </div>
   );

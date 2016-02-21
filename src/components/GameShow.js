@@ -20,13 +20,6 @@ const GameShow = ({
 }) => {
   return (
     <div>
-      <ScoreDashboard
-        entries={entries}
-        questionsById={questionsById}
-        totalPossible={totalPossible}
-        currentPossible={currentPossible}
-        onClickEntry={onClickEntry}
-      />
       <div className='container game-show'>
         <EntriesList
           entries={entries}

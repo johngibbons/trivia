@@ -1,10 +1,84 @@
 .entries-list {
-  .owner {
-    background-color: lighten($brand-primary, 50%);
-    color: $brand-primary;
+
+  .table-row {
+    padding: 0.5rem;
+    border-bottom: 1px solid $gray-lightest;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.owner {
+      background-color: lighten($brand-primary, 50%);
+      color: $brand-primary;
+
+      &:hover {
+        background-color: lighten($brand-primary, 40%);
+      }
+    }
 
     &:hover {
-      background-color: lighten($brand-primary, 40%);
+      background-color: $gray-lightest;
+    }
+
+    &.heading {
+      cursor: default;
+
+      &:hover {
+        background: none;
+      }
+    }
+
+    @include media-breakpoint-up(sm) {
+
+      display: flex;
+
+      .media, .entry-stats, .spacer, .heading-row {
+        flex: 1;
+      }
     }
   }
+
+  .flex-row {
+    display: flex;
+
+    span {
+      flex: 1;
+    }
+  }
+
+  .heading {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: $gray;
+    border-bottom: 3px solid $gray-lightest;
+  }
+
+
+  .entry-name {
+    font-weight: 700;
+  }
+
+  .username {
+    font-size: 0.8rem;
+    color: $gray-light;
+  }
+
+
+  .entry-stats {
+
+    font-size: 0.8rem;
+    color: $gray-light;
+    padding-top: 0.75rem;
+
+    .entry-score {
+      color: $gray-dark;
+    }
+
+  }
+
+  .rank {
+    margin-right: 1em;
+  }
+
 }
+
