@@ -8,20 +8,16 @@ class Home extends React.Component {
     this.newId = shortid.generate();
     return(
       <div>
-        <div className="jumbotron text-center">
+        <div className="home jumbotron">
           <h1 className='display-3'>Welcome to Trvia</h1>
           <p className="lead">click below to get started</p>
-          <div className="container">
-            <div className="col-md-6 col-md-offset-3">
-              <button
-                className="btn btn-primary btn-lg"
-                onClick={this.props.currentUser.username ?
-                  this.handleNewGame.bind(this) :
-                    this.props.toggleLoginModal
-                }
-              >Create A Game</button>
-            </div>
-          </div>
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={this.props.currentUser.username ?
+              this.handleNewGame.bind(this) :
+                this.props.toggleLoginModal
+            }
+          >Create A Game</button>
         </div>
         <div className="container">
           <div className='row'>

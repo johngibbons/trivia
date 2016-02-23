@@ -135,6 +135,7 @@ class GameContainer extends React.Component {
 function setGameEntries(gameId, entriesById, questionsById) {
   let rank = 1;
   let prevScore;
+
   return Object.keys(entriesById).filter((id) => {
     return entriesById[id].game === gameId;
   }).map((id) => {
