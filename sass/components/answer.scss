@@ -50,4 +50,9 @@
     }
   }
 
+  &.actual {
+    font-weight: 700;
+    text-decoration: line-through;
+  }
+
 }

@@ -15,6 +15,7 @@ const Answer = ({
     'selected': isSelected,
     'correct': isSelected && correctAnswer && correctAnswer === id,
     'incorrect': isSelected && correctAnswer && correctAnswer !== id,
+    'actual': correctAnswer === id && !isSelected,
     'answer': true,
     'list-group-item': true
   });
