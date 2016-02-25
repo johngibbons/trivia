@@ -2,7 +2,9 @@ import {
   addOrUpdateItem,
   removeItem,
   addReferenceItem,
-  removeReferenceItem
+  removeReferenceItem,
+  addOrUpdateArrayElement,
+  removeArrayElement
 } from './core';
 
 import {
@@ -12,7 +14,8 @@ import {
   ADD_ENTRY,
   REMOVE_ENTRY,
   ADD_QUESTION,
-  REMOVE_QUESTION
+  REMOVE_QUESTION,
+  UPDATE_ANSWERED_ORDER
 } from '../constants';
 
 const initialState = {
@@ -50,6 +53,19 @@ const gamesById = (state = {}, action) => {
 
   case REMOVE_QUESTION: {
     return removeReferenceItem(state, action.payload, 'game', 'questions');
+  }
+
+  case UPDATE_ANSWERED_ORDER: {
+    const game = state[action.payload.game];
+    const question = action.payload.question;
+    const currAnsweredOrder = game.answeredOrder || [];
+    const newAnsweredOrder = action.payload.answer ?
+      addOrUpdateArrayElement(currAnsweredOrder, question) :
+        removeArrayElement(currAnsweredOrder, question);
+    return addOrUpdateItem(state, {
+      id: action.payload.game,
+      answeredOrder: newAnsweredOrder
+    });
   }
 
   default:

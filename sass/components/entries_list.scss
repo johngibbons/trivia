@@ -113,7 +113,37 @@
 
   .rank {
     margin-right: 1em;
+    position: relative;
+
+    &.up, &.down {
+      &::before {
+        content: '';
+        position: absolute;
+        transform: translateY(-50%);
+        left: -15px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+      }
+    }
+
+    &.up {
+      &::before {
+        border-bottom: 5px solid $brand-success;
+      }
+    }
+
+    &.down {
+      &::before {
+        border-top: 5px solid $brand-danger;
+      }
+    }
+
   }
 
+  .movement-icon {
+  }
 }
 

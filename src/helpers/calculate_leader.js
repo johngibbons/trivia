@@ -1,4 +1,4 @@
-import calculateScore from '../helpers/calculate_score';
+import calculateScoreHistory from '../helpers/calculate_score_history';
 
 export default (game, entriesById, questionsById) => {
   if (game && game.questions) {
@@ -7,22 +7,25 @@ export default (game, entriesById, questionsById) => {
     });
 
     const leader = entries.reduce((prev, curr) => {
-      let score = calculateScore(entriesById[curr], questionsById);
-      if (prev[0].score === score) {
-        prev.push({entry: entriesById[curr].name, score: score});
+
+      const scoreHistory = calculateScoreHistory(entriesById[curr], questionsById);
+      const currScore = scoreHistory[scoreHistory.length - 1];
+
+      if (prev[0].currScore === currScore) {
+        prev.push({entry: entriesById[curr].name, currScore: currScore});
         return prev;
-      } else if (prev[0].score < score) {
-        return [{entry: entriesById[curr].name, score: score}];
+      } else if (prev[0].currScore < currScore) {
+        return [{entry: entriesById[curr].name, currScore: currScore}];
       } else {
         return prev;
       }
-    }, [{entry: null, score: 0}]);
+    }, [{entry: null, currScore: 0}]);
 
     if (leader.length > 1) {
-      return {entry: 'multiple', score: leader[0].score};
+      return {entry: 'multiple', currScore: leader[0].currScore};
     } else {
       return leader[0];
     }
   }
-  return {entry: null, score: 0};
+  return {entry: null, currScore: 0};
 };

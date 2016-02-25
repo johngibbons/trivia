@@ -21,7 +21,8 @@ import {
   REMOVE_ANSWER,
   LOG_IN_USER,
   LOG_OUT_USER,
-  UPDATE_USER
+  UPDATE_USER,
+  UPDATE_ANSWERED_ORDER
 } from '../constants';
 
 export function startFirebaseListeners() {
@@ -46,6 +47,18 @@ export function startFirebaseListeners() {
       });
     });
   };
+}
+
+export function updateAnsweredOrder(game, question, answer) {
+  return {
+    type: UPDATE_ANSWERED_ORDER,
+    payload: {
+      game,
+      question,
+      answer
+    },
+    meta: {remote: true}
+  }
 }
 
 export function setRouter(params, path) {

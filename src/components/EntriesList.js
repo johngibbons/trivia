@@ -1,7 +1,7 @@
 import React from 'react';
-import calculateScore from '../helpers/calculate_score';
 
 import {colors} from '../constants';
+import classNames from 'classnames';
 
 const EntriesList = ({
   entries,
@@ -24,6 +24,14 @@ const EntriesList = ({
       </div>
       <div>
         {entries.map((entry, index) => {
+          const rankClasses = classNames({
+            'rank': true,
+            'emphasized': true,
+            'up': entry.movement < 0,
+            'down': entry.movement > 0,
+            'neutral': entry.movement === 0
+          });
+
           const entryUser = usersById[entry.user];
           return (
             <div
@@ -32,7 +40,7 @@ const EntriesList = ({
               onClick={() => onClickEntry(entry.id)}
             >
               <div className='media table-cell'>
-                <span className='rank emphasized'>{entry.rank}</span>
+                <span className={rankClasses}>{entry.rank}</span>
                 <img
                   src={entryUser.avatarURL}
                   className='avatar-small img-fluid img-rounded media-figure'
@@ -44,7 +52,7 @@ const EntriesList = ({
                 </span>
               </div>
               <div className='secondary-text table-sub-row table-cell'>
-                <span className='entry-score table-cell'>{entry.score}</span>
+                <span className='entry-score table-cell'>{entry.currScore}</span>
                 <span className='table-cell'>{currentPossible}</span>
                 <span className='table-cell'>{totalPossible}</span>
               </div>

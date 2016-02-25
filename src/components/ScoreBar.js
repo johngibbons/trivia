@@ -30,7 +30,7 @@ const ScoreBar = ({
         <tbody>
           <tr>
             <td className='correct'>{correct}</td>
-            <td className='leader'>{leader.score} ({leader.entry})</td>
+            <td className='leader'>{leader.currScore} ({leader.entry})</td>
             <td className='current-possible'>{currentPossible}</td>
             <td className='total-possible'>{totalPossible}</td>
           </tr>

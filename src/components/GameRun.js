@@ -9,7 +9,7 @@ const GameRun = ({
   title,
   questions,
   answersById,
-  onUpdateQuestion
+  onSelectAnswer
 }) => {
   return (
     <div>
@@ -17,7 +17,7 @@ const GameRun = ({
         <QuestionList questions={questions}
           answersById={answersById}
           isSelectable={true}
-          onSelectAnswer={onUpdateQuestion}
+          onSelectAnswer={onSelectAnswer}
         />
       </div>
     </div>

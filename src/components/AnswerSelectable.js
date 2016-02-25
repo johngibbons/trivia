@@ -35,9 +35,9 @@ const AnswerSelectable = ({
       onClick={(e) => {
         e.preventDefault();
         if (isSelected) {
-          onSelect(question, 'correctAnswer', null);
+          onSelect(question, null);
         } else {
-          onSelect(question, 'correctAnswer', id);
+          onSelect(question, id);
         }
       }}
     >

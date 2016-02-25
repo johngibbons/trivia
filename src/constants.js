@@ -14,6 +14,7 @@ export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const ADD_GAME = 'ADD_GAME';
 export const REMOVE_GAME = 'REMOVE_GAME';
 export const UPDATE_GAME = 'UPDATE_GAME';
+export const UPDATE_ANSWERED_ORDER = 'UPDATE_ANSWERED_ORDER';
 
 export const ADD_ENTRY = 'ADD_ENTRY';
 export const UPDATE_ENTRY = 'UPDATE_ENTRY';

@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import shortid from 'shortid';
-import calculateScore from '../helpers/calculate_score';
+import calculateScoreHistory from '../helpers/calculate_score_history';
 import calculateLeader from '../helpers/calculate_leader';
 import calculateTotalPossible from '../helpers/calculate_total_possible';
 import calculateCurrentPossible from '../helpers/calculate_current_possible';
+import calculateRankHistories from '../helpers/calculate_rank_histories';
 import {
   updateGameAttr,
   addQuestion,
@@ -16,7 +17,8 @@ import {
   updateAnswerAttr,
   addEntry,
   updateEntryAttr,
-  setFlash
+  setFlash,
+  updateAnsweredOrder
 } from '../actions/index';
 
 import Game from '../components/Game.js';
@@ -77,6 +79,7 @@ class GameContainer extends React.Component {
         onAddEntry={this.addEntry.bind(this)}
         onUpdateEntry={this.handleUpdateEntry.bind(this)}
         onClickEntry={this.goToEntry.bind(this)}
+        onSelectAnswer={this.handleSelectCorrectAnswer.bind(this)}
         setFlash={setFlash}
       />
     );
@@ -110,6 +113,11 @@ class GameContainer extends React.Component {
     this.props.updateAnswerAttr({id: answer, [attr]: value});
   }
 
+  handleSelectCorrectAnswer(question, answer) {
+    this.updateQuestion(question, 'correctAnswer', answer);
+    this.props.updateAnsweredOrder(this.props.game.id, question, answer);
+  }
+
   handleUpdateEntry(id, attr, value) {
     this.props.updateEntryAttr({
       id: id,
@@ -132,22 +140,33 @@ class GameContainer extends React.Component {
   }
 }
 
-function setGameEntries(gameId, entriesById, questionsById) {
-  let rank = 1;
-  let prevScore;
+function setGameEntries(gameId, entriesById, questionsById, gamesById) {
+  const game = gamesById[gameId];
 
-  return Object.keys(entriesById).filter((id) => {
+  const entries = Object.keys(entriesById).filter((id) => {
     return entriesById[id].game === gameId;
   }).map((id) => {
     const entry = entriesById[id];
-    const score = calculateScore(entry, questionsById);
-    return {...entry, score: score};
+    const scoreHistory = calculateScoreHistory(entry, game, questionsById);
+    const currScore = scoreHistory[scoreHistory.length - 1] || 0;
+    return {...entry, scoreHistory, currScore};
   }).sort((a,b) => {
-    return (b.score - a.score);
-  }).map((entry, index) => {
-    rank = entry.score < prevScore ? index + 1 : rank;
-    prevScore = entry.score;
-    return Object.assign({}, entry, {rank: rank});
+    return (b.currScore - a.currScore);
+  });
+
+  const entriesWithRankHistories = calculateRankHistories(entries);
+
+  return entriesWithRankHistories.map((entry) => {
+    //no scores yet
+    if (!entry.rankHistory) {
+      return {...entry, movement: 0};
+    }
+
+    const currRank = entry.rankHistory[entry.rankHistory.length - 1];
+    const prevRank = entry.rankHistory.length > 1 ?
+      entry.rankHistory[entry.rankHistory.length - 2] : 1;
+
+    return {...entry, movement: currRank - prevRank, rank: currRank};
   });
 }
 
@@ -190,7 +209,8 @@ function mapStateToProps(state) {
   const entries = setGameEntries(
     game.id,
     remoteState.entriesById,
-    remoteState.questionsById
+    remoteState.questionsById,
+    remoteState.gamesById
   ) || [];
 
   return {
@@ -221,7 +241,8 @@ function mapDispatchToProps(dispatch) {
     updateAnswerAttr,
     addEntry,
     setFlash,
-    updateEntryAttr
+    updateEntryAttr,
+    updateAnsweredOrder
   }, dispatch);
 }
 

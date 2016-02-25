@@ -53,3 +53,17 @@ export function changeOrRemoveReferenceValue(
     }
   };
 }
+
+export function addOrUpdateArrayElement(arr, value) {
+  if (arr.indexOf(value) === -1) {
+    return [...arr, value];
+  } else {
+    return arr;
+  }
+}
+
+export function removeArrayElement(arr, value) {
+  return arr.filter((val) => {
+    return val !== value;
+  });
+}

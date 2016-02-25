@@ -18,7 +18,7 @@ class EntryContainer extends React.Component {
         gameTitle={this.props.title}
         hasGameStarted={this.props.hasGameStarted}
         questions={this.props.questions}
-        correct={entry.score}
+        correct={entry.currScore}
         leader={this.props.leader}
         totalPossible={this.props.totalPossible}
         currentPossible={this.props.currentPossible}
@@ -28,7 +28,7 @@ class EntryContainer extends React.Component {
     );
   }
 
-  selectAnswer(question, _, selection) {
+  selectAnswer(question, selection) {
     this.props.dispatch(addOrUpdateSelection({
       entry: this.props.params.entry,
       question,
