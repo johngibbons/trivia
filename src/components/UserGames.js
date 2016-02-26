@@ -9,7 +9,7 @@ import TitleBar from './TitleBar';
 const UserGames = ({
   user,
   currentUser,
-  gamesPlaying,
+  gamesPlayingOrOwned,
   onClickGame,
   questionsById
 }) => {
@@ -37,7 +37,7 @@ const UserGames = ({
           </div>
         </div>
         <div>
-          {gamesPlaying.map((game, index) => {
+          {gamesPlayingOrOwned.map((game, index) => {
 
             let totalPossible = calculateTotalPossible(
               game,
