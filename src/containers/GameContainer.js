@@ -201,11 +201,13 @@ function mapStateToProps(state) {
 
   const remoteState = state.remote || {};
   const clientState = state.client || {};
+
   const game = setGame(
     clientState.router.params,
     remoteState.gamesById,
     remoteState.entriesById
   ) || {};
+
   const entries = setGameEntries(
     game.id,
     remoteState.entriesById,
@@ -218,7 +220,7 @@ function mapStateToProps(state) {
     currentUser: clientState.currentUser,
     currentUserEntry: currentUserEntry(entries, clientState.currentUser),
     game: game,
-    leader: calculateLeader(game, remoteState.entriesById, remoteState.questionsById),
+    leader: entries[0] || {},
     totalPossible: calculateTotalPossible(game, remoteState.questionsById),
     currentPossible: calculateCurrentPossible(game, remoteState.questionsById),
     questionsById: remoteState.questionsById,

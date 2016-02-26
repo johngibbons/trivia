@@ -66,7 +66,7 @@ const UserProfile = ({
             style={{
               color: '#3b5999',
               fontSize: '12px',
-              fontWeight: '700',
+              fontWeight: '500',
               textTransform: 'uppercase'
             }}
           >connected through facebook account</p>
@@ -77,7 +77,7 @@ const UserProfile = ({
             style={{
               color: '#d32f2f',
               fontSize: '12px',
-              fontWeight: '700',
+              fontWeight: '500',
               textTransform: 'uppercase'
             }}
           >connected through google account</p>

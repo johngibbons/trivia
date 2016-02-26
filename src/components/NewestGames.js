@@ -1,10 +1,13 @@
 import React from 'react';
 import {colors} from '../constants';
 
-const NewestGames = ({games, onCloneGame}) => {
+import TitleBar from './TitleBar';
+
+const NewestGames = ({games, onCloneGame, onClickGame}) => {
 
   return (
     <div className='newest-games'>
+      <TitleBar>Newest Games</TitleBar>
       <div className='flex-table'>
         <div className='heading table-row'>
           <div className='spacer table-cell' />
@@ -19,6 +22,7 @@ const NewestGames = ({games, onCloneGame}) => {
           <div
             key={game.id}
             className='table-row'
+            onClick={() => onClickGame(game.id)}
           >
             <div className='table-cell emphasized'>
               {game.title ||
@@ -32,7 +36,7 @@ const NewestGames = ({games, onCloneGame}) => {
                 {game.questions ? game.questions.length : 0}
               </div>
               <div className='table-cell'>
-                <a href='#' onClick={() => onCloneGame(game)}>Clone game</a>
+                <a href='#' onClick={() => onCloneGame(game)}>clone this game</a>
               </div>
             </div>
           </div>

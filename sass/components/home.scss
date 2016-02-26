@@ -1,5 +1,39 @@
 .home {
   &.jumbotron {
-    text-align: center;
+    text-align: left;
+    background: linear-gradient(140deg, white, $gray-lightest,
+    lighten($brand-primary, 35%));
+    background-size: 600% 600%;
+
+    animation: GradientWander 15s ease infinite;
+
+    @keyframes GradientWander {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
+    @include media-breakpoint-up(md) {
+    }
+
+    .display-4 {
+      font-size: 2rem;
+
+      @include media-breakpoint-up(md) {
+        font-size: 3rem;
+      }
+    }
+
+    .container {
+      margin-top: 0;
+    }
+  }
+
+  .secondary-instructions {
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: $gray;
+    margin-top: 2rem;
   }
 }

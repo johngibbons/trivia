@@ -11,24 +11,32 @@ class Home extends React.Component {
     return(
       <div>
         <div className="home jumbotron">
-          <h1 className='display-3'>Welcome to Trvia</h1>
-          <p className="lead">click below to get started</p>
-          <button
-            className="btn btn-primary btn-lg"
-            onClick={this.props.currentUser.username ?
-              this.handleNewGame.bind(this) :
-                this.props.toggleLoginModal
-            }
-          >Create A Game</button>
+          <div className='container'>
+            <h1 className='display-4'>Welcome to Trvia</h1>
+            <p className="lead">click below to get started</p>
+            <button
+              className="btn btn-primary btn-lg"
+              onClick={this.props.currentUser.username ?
+                this.handleNewGame.bind(this) :
+                  this.props.toggleLoginModal
+              }
+            >Create A Game</button>
+            <p className='secondary-instructions'>or use one of the games below as a starting point by clicking <strong>'clone this game'</strong></p>
+          </div>
         </div>
         <div className="container">
           <NewestGames
             games={this.props.games}
             onCloneGame={this.handleCloneGame.bind(this)}
+            onClickGame={this.handleClickGame.bind(this)}
           />
         </div>
       </div>
     );
+  }
+
+  handleClickGame(game) {
+    this.props.history.push(`/games/${game}`);
   }
 
   handleNewGame() {

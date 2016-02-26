@@ -18,19 +18,33 @@
   }
 
   .leader {
-    color: $brand-primary;
-  }
-
-  .current-possible {
     color: $brand-warning;
   }
 
-  .total-possible {
+  .current-possible {
+    color: $brand-info;
   }
 
 }
 
 .progress {
-  height: 5px;
-  border-radius: 0;
+
+  .progress-bar {
+    height: 5px;
+    border-radius: 0;
+    transition: all 1s cubic-bezier(.59,.06,.16,.9);
+  }
+
+  .progress-bar-owner {
+    background-color: $brand-success;
+  }
+
+  .progress-bar-leader {
+    background-color: $brand-warning;
+  }
+
+  .progress-bar-possible {
+    background-color: $brand-info;
+  }
+
 }

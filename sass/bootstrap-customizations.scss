@@ -1,11 +1,11 @@
 $font-family-sans-serif: 'Work Sans', sans-serif;
 $font-family-base: $font-family-sans-serif;
 $font-size-large: 1.5rem;
+$font-weight-base: 300;
 
 $brand-primary: #b7a261;
 $brand-success: #A1D490;
 $brand-danger: #DB6B6B;
-$brand-info: #CCE49B;
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 $btn-primary-bg: $brand-primary;

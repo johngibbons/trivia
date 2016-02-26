@@ -26,11 +26,12 @@
 
   &.selected, &.list-group-item:focus {
     color: $brand-primary;
-    background-color: lighten($brand-primary, 45%);
+    background-color: lighten($brand-primary, 40%);
+    border-radius: 0;
   }
 
   &.selected {
-    font-weight: 700;
+    font-weight: 500;
     font-size: $font-size-large;
     color: $brand-primary;
     padding: 20px 15px;

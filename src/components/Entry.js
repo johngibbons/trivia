@@ -21,33 +21,34 @@ const Entry = ({
   onSelectAnswer
 }) => {
   return (
-    <div className='container entry'>
-      <div className="page-header">
-        {hasGameStarted &&
-          <ScoreBar
-            isOwnScore={currentUser.id === entry.user}
+    <div>
+    {(hasGameStarted || currentUser.id == entry.user) &&
+      <ScoreBar
+        isOwnScore={currentUser.id === entry.user}
+        entry={entry}
+        correct={correct}
+        leader={leader}
+        currentPossible={currentPossible}
+        totalPossible={totalPossible}
+      />}
+      <div className='container entry'>
+        <div className="page-header">
+        </div>
+        {hasGameStarted || currentUser.id == entry.user ?
+          <QuestionList
+            questions={questions}
+            answersById={answersById}
             entry={entry}
-            correct={correct}
-            leader={leader}
-            currentPossible={currentPossible}
-            totalPossible={totalPossible}
+            isSelectable={!hasGameStarted && currentUser.id === entry.user}
+            onSelectAnswer={onSelectAnswer}
           />
+          :
+          <p
+            style={{textAlign: 'center'}}
+            className='alert alert-info alert-game-not-started'
+          >Answers hidden until the game starts.</p>
         }
       </div>
-      {hasGameStarted || currentUser.id == entry.user ?
-        <QuestionList
-          questions={questions}
-          answersById={answersById}
-          entry={entry}
-          isSelectable={!hasGameStarted && currentUser.id === entry.user}
-          onSelectAnswer={onSelectAnswer}
-        />
-        :
-        <p
-          style={{textAlign: 'center'}}
-          className='alert alert-info alert-game-not-started'
-        >Answers hidden until the game starts.</p>
-      }
     </div>
   );
 };
