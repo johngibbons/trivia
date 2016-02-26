@@ -29,11 +29,13 @@ class EntryContainer extends React.Component {
   }
 
   selectAnswer(question, selection) {
-    this.props.dispatch(addOrUpdateSelection({
-      entry: this.props.params.entry,
-      question,
-      selection
-    }));
+    if (selection !== null) {
+      this.props.dispatch(addOrUpdateSelection({
+        entry: this.props.params.entry,
+        question,
+        selection
+      }));
+    }
   }
 }
 
