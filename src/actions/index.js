@@ -106,7 +106,10 @@ export function setCurrentUser(userData) {
 export function logInUser(userData) {
   return {
     type: LOG_IN_USER,
-    payload: {...userData},
+    payload: {
+      ...userData,
+      last_logged_in: new Date().getTime()
+    },
     meta: {remote: true}
   };
 }
@@ -121,7 +124,8 @@ export function updateUser(obj) {
   return {
     type: UPDATE_USER,
     payload: {
-      ...obj
+      ...obj,
+      updated_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -139,7 +143,8 @@ export function addGame(id, user) {
     type: ADD_GAME,
     payload: {
       id,
-      user
+      user,
+      created_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -149,7 +154,8 @@ export function updateGameAttr(obj) {
   return {
     type: UPDATE_GAME,
     payload: {
-      ...obj
+      ...obj,
+      updated_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -161,7 +167,8 @@ export function addEntry(id, game, user) {
     payload: {
       id,
       game,
-      user
+      user,
+      created_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -171,7 +178,8 @@ export function updateEntryAttr(obj) {
   return {
     type: UPDATE_ENTRY,
     payload: {
-      ...obj
+      ...obj,
+      updated_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -204,7 +212,8 @@ export function addQuestion(input, game) {
     payload: {
       id: shortid.generate(),
       text: input.value,
-      game
+      game,
+      created_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -214,7 +223,8 @@ export function updateQuestionAttr(obj) {
   return {
     type: UPDATE_QUESTION,
     payload: {
-      ...obj
+      ...obj,
+      updated_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -236,7 +246,8 @@ export function addAnswer(question) {
     type: ADD_ANSWER,
     payload: {
       id: shortid.generate(),
-      question
+      question,
+      created_at: new Date().getTime()
     },
     meta: {remote: true}
   };
@@ -246,7 +257,8 @@ export function updateAnswerAttr(obj) {
   return {
     type: UPDATE_ANSWER,
     payload: {
-      ...obj
+      ...obj,
+      updated_at: new Date().getTime()
     },
     meta: {remote: true}
   };
