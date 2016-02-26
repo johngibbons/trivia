@@ -14,9 +14,11 @@ import {
   REMOVE_ENTRY,
   ADD_OR_UPDATE_SELECTION,
   ADD_QUESTION,
+  ADD_QUESTIONS,
   UPDATE_QUESTION,
   REMOVE_QUESTION,
   ADD_ANSWER,
+  ADD_ANSWERS,
   UPDATE_ANSWER,
   REMOVE_ANSWER,
   LOG_IN_USER,
@@ -138,12 +140,11 @@ export function combineStates(state) {
   };
 }
 
-export function addGame(id, user) {
+export function addGame(gameObj) {
   return {
     type: ADD_GAME,
     payload: {
-      id,
-      user,
+      ...gameObj,
       created_at: new Date().getTime()
     },
     meta: {remote: true}
@@ -219,6 +220,14 @@ export function addQuestion(input, game) {
   };
 }
 
+export function addQuestions(questionsObj) {
+  return {
+    type: ADD_QUESTIONS,
+    payload: questionsObj,
+    meta: {remote: true}
+  }
+}
+
 export function updateQuestionAttr(obj) {
   return {
     type: UPDATE_QUESTION,
@@ -251,6 +260,14 @@ export function addAnswer(question) {
     },
     meta: {remote: true}
   };
+}
+
+export function addAnswers(answersObj) {
+  return {
+    type: ADD_ANSWERS,
+    payload: answersObj,
+    meta: {remote: true}
+  }
 }
 
 export function updateAnswerAttr(obj) {

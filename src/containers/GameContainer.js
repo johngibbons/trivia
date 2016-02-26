@@ -125,10 +125,10 @@ class GameContainer extends React.Component {
     });
   }
 
-  addEntry() {
+  addEntry(game) {
     if (Object.keys(this.props.currentUser).length) {
       const newId = shortid.generate();
-      this.props.addEntry(newId, this.props.params.game, this.props.currentUser.id);
+      this.props.addEntry(newId, game, this.props.currentUser.id);
       this.props.history.pushState(null, `/entries/${newId}`);
     } else {
       this.props.toggleLoginModal();

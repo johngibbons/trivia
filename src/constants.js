@@ -21,10 +21,12 @@ export const UPDATE_ENTRY = 'UPDATE_ENTRY';
 export const REMOVE_ENTRY = 'REMOVE_ENTRY';
 
 export const ADD_QUESTION = 'ADD_QUESTION';
+export const ADD_QUESTIONS = 'ADD_QUESTIONS';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 
 export const ADD_ANSWER = 'ADD_ANSWER';
+export const ADD_ANSWERS = 'ADD_ANSWERS';
 export const REMOVE_ANSWER = 'REMOVE_ANSWER';
 export const UPDATE_ANSWER = 'UPDATE_ANSWER';
 

@@ -8,6 +8,7 @@ import {
 
 import {
   ADD_QUESTION,
+  ADD_QUESTIONS,
   REMOVE_QUESTION,
   UPDATE_QUESTION,
   ADD_ANSWER,
@@ -19,6 +20,10 @@ const questionsById = (state = {}, action) => {
 
   case ADD_QUESTION: {
     return addOrUpdateItem(state, action.payload);
+  }
+
+  case ADD_QUESTIONS: {
+    return {...state, ...action.payload};
   }
 
   case REMOVE_QUESTION: {
