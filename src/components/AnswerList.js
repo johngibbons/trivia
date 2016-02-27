@@ -20,7 +20,8 @@ const AnswerList = ({
 
   const listClass = classNames({
     'hidden': answers.length ? false : true,
-    'list-group': true
+    'list-group': true,
+    'answers-container': true
   });
 
   function isSelected(answer) {

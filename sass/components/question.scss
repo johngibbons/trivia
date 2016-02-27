@@ -7,20 +7,31 @@
 .question {
 
   .card-header {
+    display: flex;
     position: relative;
+    background: white;
+    padding: 1rem 1.25rem;
 
-    h5 {
-      margin-bottom: 1.5rem;
+    .question-text {
+      display: inline-block;
+      font-weight: 300;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+      max-width: 80%;
     }
 
-    h6 {
+    .question-value {
+      color: $brand-primary;
+      font-size: 0.8rem;
+      font-weight: 500;
       display: inline-block;
-      width: calc(100% - 1.5rem);
+      margin-left: auto;
+      margin-bottom: 0;
     }
 
     .remove {
       position: absolute;
-      top: 1rem;
+      top: -1.5rem;
       right: 1rem;
     }
 

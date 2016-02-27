@@ -28,6 +28,14 @@
       background-color: $gray-lightest;
     }
 
+    &.no-hover {
+      cursor: default;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
     &.heading {
       cursor: default;
       padding: 0.5rem;
@@ -82,7 +90,7 @@
     }
 
     .emphasized {
-      font-weight: 700;
+      font-weight: 500;
     }
 
     .secondary-text {

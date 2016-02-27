@@ -62,12 +62,17 @@ const Game = (props) => {
             <NavLink
               className='create-entry'
               onClick={() => props.onAddEntry(props.id)}
-            >Create Your Entry</NavLink>
-          }
+            >Create Your Entry</NavLink>}
           <NavLink
             active={props.context === 'show'}
             url={`/games/${props.id}`}
           >Leaderboard</NavLink>
+        {!Object.keys(props.currentUserEntry).length &&
+          !props.hasGameStarted &&
+          <NavLink
+            active={props.contex === 'preview'}
+            url={`/games/${props.id}/preview`}
+          >Game Preview</NavLink>}
         {props.isOwner &&
           <Dropdown className={`nav-item ${(props.context === 'edit' || props.context === 'run') && 'active'}`}>
             <DropdownToggle className='nav-link'>

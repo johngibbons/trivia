@@ -56,6 +56,7 @@ class GameContainer extends React.Component {
         toggleLoginModal={toggleLoginModal}
         id={game.id}
         title={game.title}
+        admin={game.user}
         hasGameStarted={currentPossible > 0}
         questions={questions}
         answersById={answersById}

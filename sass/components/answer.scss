@@ -1,7 +1,22 @@
+.answers-container {
+  padding: 0.75rem 0;
+}
+
+.question > .list-group:last-child .list-group-item:last-child {
+  border-radius: 0;
+}
+
+
 .answer {
+  display: flex;
+  align-items: center;
   border-top: none;
   position: relative;
   transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: $gray-light;
+  padding: 0.5rem 1.25rem;
 
   .right-centered {
     position: absolute;
@@ -9,10 +24,9 @@
     top: 0.8rem;
   }
 
-  svg {
-    float: right;
+  .icon {
+    margin-left: auto;
     fill: currentColor;
-    margin-top: 0.25em;
   }
 
   &.list-group-item {
@@ -24,7 +38,7 @@
     width: calc(100% - 1em);
   }
 
-  &.selected, &.list-group-item:focus {
+  &.selected, &:focus, &:visited {
     color: $brand-primary;
     background-color: lighten($brand-primary, 40%);
     border-radius: 0;
@@ -32,9 +46,9 @@
 
   &.selected {
     font-weight: 500;
-    font-size: $font-size-large;
+    font-size: 1rem;;
     color: $brand-primary;
-    padding: 20px 15px;
+    padding: 1rem 1.25rem;
 
     .right-centered {
       top: 2.25rem;
@@ -52,7 +66,7 @@
   }
 
   &.actual {
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: line-through;
   }
 

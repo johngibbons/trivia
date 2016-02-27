@@ -27,7 +27,9 @@ class Home extends React.Component {
         <div className="container">
           <NewestGames
             games={this.props.games}
-            onCloneGame={this.handleCloneGame.bind(this)}
+            onCloneGame={this.props.currentUser.username ?
+                this.handleCloneGame.bind(this) :
+                  this.props.toggleLoginModal}
             onClickGame={this.handleClickGame.bind(this)}
           />
         </div>

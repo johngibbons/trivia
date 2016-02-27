@@ -4,6 +4,10 @@
   color: $brand-danger;
   cursor: pointer;
   transition: $base-transition;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-weight: 300;
 
   &:hover {
     color: darken($brand-danger, 15%);

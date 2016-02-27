@@ -1,26 +1,28 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {colors} from '../constants';
 
 import QuestionList from './QuestionList';
 
 const GameRun = ({
+  currentUser,
   id,
-  title,
   questions,
   answersById,
-  onSelectAnswer
+  onSelectAnswer,
+  admin
 }) => {
   return (
+    currentUser && currentUser.id === admin ?
     <div>
       <div className='container game-run'>
         <QuestionList questions={questions}
           answersById={answersById}
-          isSelectable={true}
+          isSelectable
           onSelectAnswer={onSelectAnswer}
         />
       </div>
     </div>
+      :
+    window.location = '/'
   );
 };
 

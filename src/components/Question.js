@@ -24,7 +24,7 @@ const Question = ({
   return (
     <div className="card question">
       <div className="card-header">
-        <h5>
+        <h5 className='question-text'>
           { isEditable ?
             <EditableTextContainer
               id={id}
@@ -36,7 +36,7 @@ const Question = ({
             /> : text
           }
         </h5>
-        <h6>
+        <h6 className='question-value'>
           { isEditable ?
             <EditableTextContainer
               id={id}

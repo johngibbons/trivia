@@ -4,7 +4,6 @@ import {colors} from '../constants';
 
 import EntriesList from './EntriesList';
 import GameShareBox from './GameShareBox';
-import ScoreDashboard from './ScoreDashboard';
 
 const GameShow = ({
   id,

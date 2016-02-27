@@ -3,13 +3,12 @@ import Icon from './Icon';
 
 const SmRemoveBtn = ({id, handleRemove}) => {
   return (
-    <Icon
-      className='remove right-centered'
-      type='delete'
-      aria-label='Delete'
+    <span
+      className='remove'
       onClick={() => handleRemove(id)}
     >
-    </Icon>
+      delete
+    </span>
   );
 };
 

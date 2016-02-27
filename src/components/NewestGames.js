@@ -21,10 +21,11 @@ const NewestGames = ({games, onCloneGame, onClickGame}) => {
         return (
           <div
             key={game.id}
-            className='table-row'
+            className='table-row no-hover'
+          >
+          <div className='table-cell emphasized is-clickable'
             onClick={() => onClickGame(game.id)}
           >
-            <div className='table-cell emphasized'>
               {game.title ||
                 <span style={{color: colors.grayLight}}>untitled</span>}
             </div>

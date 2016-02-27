@@ -7,6 +7,7 @@ import GameContainer from './containers/GameContainer';
 import GameShow from './components/GameShow';
 import GameEdit from './components/GameEdit';
 import GameRun from './components/GameRun';
+import GamePreview from './components/GamePreview';
 import EntryContainer from './containers/EntryContainer';
 import UserContainer from './containers/UserContainer';
 import UserProfile from './components/UserProfile';
@@ -43,6 +44,7 @@ ReactDOM.render(
           <IndexRoute component={GameShow} onEnter={setContext} />
           <Route path='edit' component={GameEdit} onEnter={setContext} />
           <Route path='run' component={GameRun} onEnter={setContext} />
+          <Route path='preview' component={GamePreview} onEnter={setContext} />
           <Route path='/entries/:entry'
             component={EntryContainer}
             onEnter={setContext}

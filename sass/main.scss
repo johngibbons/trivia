@@ -103,3 +103,7 @@ a {
 .alert-info {
   background: linear-gradient(to bottom right, white, lighten($brand-primary, 35%));
 }
+
+.is-clickable {
+  cursor: pointer;
+}
