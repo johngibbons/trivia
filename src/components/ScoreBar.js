@@ -49,7 +49,9 @@ const ScoreBar = ({
         <tbody>
           <tr>
             <td className='correct'>{correct}</td>
-            <td className='leader'>{leader.currScore} ({leader.name})</td>
+            <td className='leader'>{leader.currScore}
+              <div className='leader-name'>({leader.name})</div>
+            </td>
             <td className='current-possible'>{currentPossible}</td>
           </tr>
         </tbody>
