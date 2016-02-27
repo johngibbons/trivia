@@ -67,10 +67,9 @@ const Game = (props) => {
             active={props.context === 'show'}
             url={`/games/${props.id}`}
           >Leaderboard</NavLink>
-        {!Object.keys(props.currentUserEntry).length &&
-          !props.hasGameStarted &&
+        {!props.hasGameStarted && !props.isOwner &&
           <NavLink
-            active={props.contex === 'preview'}
+            active={props.context === 'preview'}
             url={`/games/${props.id}/preview`}
           >Game Preview</NavLink>}
         {props.isOwner &&

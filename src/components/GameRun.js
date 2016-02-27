@@ -8,10 +8,10 @@ const GameRun = ({
   questions,
   answersById,
   onSelectAnswer,
-  admin
+  isOwner
 }) => {
   return (
-    currentUser && currentUser.id === admin ?
+    isOwner ?
     <div>
       <div className='container game-run'>
         <QuestionList questions={questions}

@@ -37,7 +37,11 @@ const NewestGames = ({games, onCloneGame, onClickGame}) => {
                 {game.questions ? game.questions.length : 0}
               </div>
               <div className='table-cell'>
-                <a href='#' onClick={() => onCloneGame(game)}>clone this game</a>
+                <a
+                  href='#'
+                  className='action-link'
+                  onClick={() => onCloneGame(game)}
+                >clone this game</a>
               </div>
             </div>
           </div>

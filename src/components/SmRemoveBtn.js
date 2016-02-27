@@ -4,7 +4,7 @@ import Icon from './Icon';
 const SmRemoveBtn = ({id, handleRemove}) => {
   return (
     <span
-      className='remove'
+      className='remove action-link'
       onClick={() => handleRemove(id)}
     >
       delete

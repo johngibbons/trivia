@@ -17,6 +17,8 @@
   font-weight: 300;
   color: $gray-light;
   padding: 0.5rem 1.25rem;
+  background-color: white;
+  transition: $base-transition;
 
   .right-centered {
     position: absolute;
@@ -38,10 +40,15 @@
     width: calc(100% - 1em);
   }
 
-  &.selected, &:focus, &:visited {
+  &.selected, &:focus {
     color: $brand-primary;
     background-color: lighten($brand-primary, 40%);
     border-radius: 0;
+  }
+
+  &a:hover {
+    background-color: $gray-lightest;
+    color: $gray-dark;
   }
 
   &.selected {

@@ -22,6 +22,7 @@ const GameEdit = ({
 }) => {
 
   return(
+    isOwner ?
     <div className='container game-edit'>
       <QuestionList
         questions={questions}
@@ -35,6 +36,8 @@ const GameEdit = ({
         isEditable={isOwner}
       />
     </div>
+      :
+    window.location = '/'
 );};
 
 GameEdit.defaultProps = {
