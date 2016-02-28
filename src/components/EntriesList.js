@@ -23,7 +23,7 @@ const EntriesList = ({
           <span className='table-cell'>Out of</span>
           <span className='table-cell'>Total Possible</span>
         {!hasGameStarted &&
-          <span className='table-cell'>Incomplete?</span>}
+          <span className='table-cell'>Status</span>}
         </div>
       </div>
       <div>
@@ -70,7 +70,7 @@ const EntriesList = ({
                 <span className='table-cell'>{currentPossible}</span>
                 <span className='table-cell'>{totalPossible}</span>
               {!hasGameStarted &&
-                <span className={completeClasses}>{!entryComplete ? 'yes' : 'no'}</span>}
+                <span className={completeClasses}>{!entryComplete ? 'incomplete' : 'complete'}</span>}
               </div>
             </div>
           );

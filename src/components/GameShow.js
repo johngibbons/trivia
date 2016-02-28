@@ -2,6 +2,7 @@ import React from 'react';
 
 import EntriesList from './EntriesList';
 import GameShareBox from './GameShareBox';
+import GameCompleteBox from './GameCompleteBox';
 
 const GameShow = ({
   usersById,
@@ -18,6 +19,11 @@ const GameShow = ({
       <div className='container game-show'>
       {!hasGameStarted &&
         <GameShareBox url={location.href} />}
+      {currentPossible === totalPossible &&
+        <GameCompleteBox
+          entries={entries}
+          usersById={usersById}
+        />}
         <EntriesList
           hasGameStarted={hasGameStarted}
           entries={entries}
