@@ -1,21 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {colors} from '../constants';
 
 import EntriesList from './EntriesList';
 import GameShareBox from './GameShareBox';
 
 const GameShow = ({
-  id,
-  title,
-  isOwner,
   usersById,
   currentUserEntry,
   entries,
-  questionsById,
+  questions,
   totalPossible,
   currentPossible,
-  toggleLoginModal,
   hasGameStarted,
   onClickEntry
 }) => {
@@ -25,9 +19,10 @@ const GameShow = ({
       {!hasGameStarted &&
         <GameShareBox url={location.href} />}
         <EntriesList
+          hasGameStarted={hasGameStarted}
           entries={entries}
+          questions={questions}
           currentUserEntry={currentUserEntry}
-          questionsById={questionsById}
           usersById={usersById}
           totalPossible={totalPossible}
           currentPossible={currentPossible}
