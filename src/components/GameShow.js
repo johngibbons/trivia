@@ -19,7 +19,7 @@ const GameShow = ({
       <div className='container game-show'>
       {!hasGameStarted &&
         <GameShareBox url={location.href} />}
-      {currentPossible === totalPossible &&
+      {hasGameStarted && currentPossible === totalPossible &&
         <GameCompleteBox
           entries={entries}
           usersById={usersById}
