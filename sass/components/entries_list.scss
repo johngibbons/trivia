@@ -87,6 +87,14 @@
 
     .table-cell {
       flex: 1;
+
+      &.success {
+        color: $brand-success;
+      }
+
+      &.danger {
+        color: $brand-danger;
+      }
     }
 
     .emphasized {

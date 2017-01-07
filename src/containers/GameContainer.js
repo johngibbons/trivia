@@ -198,6 +198,14 @@ function setContext(path) {
   }
 }
 
+function setLeader(entries) {
+  if (entries[0]) {
+    return entries[0].currScore === entries[1].currScore ? {...entries[0], name: 'multiple'} : entries[0];
+  } else {
+    return {};
+  }
+}
+
 function mapStateToProps(state) {
 
   const remoteState = state.remote || {};
@@ -216,12 +224,14 @@ function mapStateToProps(state) {
     remoteState.gamesById
   ) || [];
 
+  const leader = setLeader(entries);
+
   return {
     context: setContext(clientState.router.path),
     currentUser: clientState.currentUser,
     currentUserEntry: currentUserEntry(entries, clientState.currentUser),
     game: game,
-    leader: entries[0] || {},
+    leader: leader,
     totalPossible: calculateTotalPossible(game, remoteState.questionsById),
     currentPossible: calculateCurrentPossible(game, remoteState.questionsById),
     questionsById: remoteState.questionsById,
