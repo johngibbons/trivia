@@ -9,12 +9,12 @@ export default (game, entriesById, questionsById) => {
     const leader = entries.reduce((prev, curr) => {
 
       const scoreHistory = calculateScoreHistory(entriesById[curr], questionsById);
-      const currScore = scoreHistory[scoreHistory.length - 1];
+      const currScore =  scoreHistory[scoreHistory.length - 1];
 
-      if (prev[0].currScore === currScore) {
+      if (prev[0] && prev[0].currScore === currScore) {
         prev.push({entry: entriesById[curr].name, currScore: currScore});
         return prev;
-      } else if (prev[0].currScore < currScore) {
+      } else if (prev[0] && prev[0].currScore < currScore) {
         return [{entry: entriesById[curr].name, currScore: currScore}];
       } else {
         return prev;
