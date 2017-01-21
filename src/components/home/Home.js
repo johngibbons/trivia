@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { PropTypes } from 'react';
 import './Home.css';
+import logo from './logo.svg';
+import { connect } from 'react-redux';
+
+import { createNewGame } from '../../actions/pending-game-actions';
+
 import RaisedButton from 'material-ui/RaisedButton';
 
-const Home = ({children}) => {
+const Home = ({
+  onClickNewGame
+}) => {
   return (
     <div className="Home">
       <div className="Home-header">
         <h2>Welcome to Trvia</h2>
         <RaisedButton
           primary
-          label={'Create a game'}
+          label='Create a game'
           labelStyle={{
             color: '#212121'
           }}
+          onClick={onClickNewGame}
         />
-        {children}
       </div>
     </div>
   )
 }
 
-export default Home;
+Home.propTypes = {
+  onClickNewGame: PropTypes.func.isRequired
+}
+
+export default connect(null, {
+  onClickNewGame: createNewGame
+})(Home);

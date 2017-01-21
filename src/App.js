@@ -16,6 +16,7 @@ const muiTheme = getMuiTheme({
 });
 
 const App = () => {
+  console.log(store.getState());
   return (
     <MuiThemeProvider muiTheme={muiTheme}>
       <Root store={store} history={history} />
