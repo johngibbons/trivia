@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react'
 import './PendingGame.css'
 
 import { connect } from 'react-redux';
-import { updatePendingGame } from '../../../actions/pending-game-actions';
-import PageHeading from '../../pageHeading/PageHeading';
+import { updatePendingGame } from '../../actions/pending-game-actions';
+import PageHeading from '../pageHeading/PageHeading';
+import AddQuestionButton from './addQuestionButton/AddQuestionButton';
 
 const PendingGame = ({
   name,
@@ -11,9 +12,9 @@ const PendingGame = ({
 }) => {
   return (
     <div className='PendingGame'>
-      <PageHeading
-        text={name}
-      />
+      <PageHeading text={name}>
+        <AddQuestionButton />
+      </PageHeading>
     </div>
   )
 }

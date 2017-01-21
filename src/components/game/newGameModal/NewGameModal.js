@@ -55,8 +55,6 @@ NewGameModal.propTypes = {
 }
 
 const mapStateToProps = ({ ui, pendingGame }) => {
-  console.log('ui', ui.toJS())
-  console.log('pendingGame', pendingGame.toJS())
   return {
     open: ui.modal === 'NEW_GAME',
     name: pendingGame.name

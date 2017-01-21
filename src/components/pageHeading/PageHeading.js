@@ -2,18 +2,21 @@ import React, { PropTypes } from 'react'
 import './PageHeading.css'
 
 const PageHeading = ({
-  text
+  text,
+  children
 }) => {
   return (
     <div className='PageHeading'>
       <h1 className='PageHeading-text'>{text}</h1>
+      {children}
       <div className='PageHeading-divider' />
     </div>
   )
 }
 
 PageHeading.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  children: PropTypes.node
 }
 
 export default PageHeading

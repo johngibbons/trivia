@@ -5,7 +5,7 @@ import Home from './components/home/Home';
 import Game from './components/game/Game';
 import NoMatch from './components/noMatch/NoMatch';
 import PageContainer from './components/pageContainer/PageContainer';
-import PendingGame from './components/game/pendingGame/PendingGame';
+import PendingGame from './components/pendingGame/PendingGame';
 
 export default (
   <Route path="/" component={PageContainer}>

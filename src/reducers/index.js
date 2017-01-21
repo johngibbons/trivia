@@ -6,6 +6,8 @@ import entries from '../reducers/entries-reducer';
 import games from '../reducers/games-reducer';
 import ui from '../reducers/ui-reducer';
 import pendingGame from '../reducers/pending-game-reducer';
+import pendingQuestion from '../reducers/pending-question-reducer';
+import pendingPossibleAnswer from '../reducers/pending-possible-answer-reducer';
 
 const rootReducer = combineReducers({
   routing,
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
   users,
   games,
   entries,
-  pendingGame
+  pendingGame,
+  pendingQuestion,
+  pendingPossibleAnswer
 });
 
 export default rootReducer;
