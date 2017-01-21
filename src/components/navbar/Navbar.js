@@ -4,8 +4,11 @@ import './Navbar.css'
 
 import AppBar from 'material-ui/AppBar';
 import LoginButton from './loginButton/LoginButton';
+import AccountDropdown from './accountDropdown/AccountDropdown';
 
-const Navbar = (props) => {
+const Navbar = ({
+  loggedIn
+}) => {
   return (
     <AppBar
       title='trvia'
@@ -17,9 +20,9 @@ const Navbar = (props) => {
         textTransform: 'uppercase'
       }}
       className='Navbar'
+      iconElementRight={loggedIn ? <AccountDropdown /> : <LoginButton />}
       showMenuIconButton={false}
       onTitleTouchTap={() => browserHistory.push('/')}
-      iconElementRight={<LoginButton />}
       iconStyleRight={{
         marginTop: 0
       }}

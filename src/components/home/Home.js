@@ -9,7 +9,11 @@ const Home = ({children}) => {
       <div className="Home-header">
         <h2>Welcome to Trvia</h2>
         <RaisedButton
+          primary
           label={'Create a game'}
+          labelStyle={{
+            color: '#212121'
+          }}
         />
         {children}
       </div>
