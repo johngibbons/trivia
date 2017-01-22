@@ -5,7 +5,8 @@ import {
   CREATE_NEW_QUESTION,
   UPDATE_PENDING_QUESTION,
   UPDATE_PENDING_POSSIBLE_ANSWER,
-  SAVE_PENDING_POSSIBLE_ANSWER
+  SAVE_PENDING_POSSIBLE_ANSWER,
+  DELETE_POSSIBLE_ANSWER
 } from './action-types';
 
 export function createNewGame() {
@@ -61,6 +62,15 @@ export function savePendingPossibleAnswer(possible_answer) {
     type: SAVE_PENDING_POSSIBLE_ANSWER,
     payload: {
       possible_answer
+    }
+  }
+}
+
+export function deletePossibleAnswer(index) {
+  return {
+    type: DELETE_POSSIBLE_ANSWER,
+    payload: {
+      index
     }
   }
 }

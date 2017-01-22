@@ -3,7 +3,7 @@ import './NewGameModal.css'
 import { connect } from 'react-redux';
 
 import { closeModal } from '../../../actions/ui-actions';
-import { updatePendingGame, savePendingGame } from '../../../actions/pending-game-actions';
+import { updatePendingGame } from '../../../actions/pending-game-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';

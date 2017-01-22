@@ -1,4 +1,3 @@
-import { List, Map } from 'immutable'
 import {
   CREATE_NEW_GAME,
   UPDATE_PENDING_GAME,
@@ -12,6 +11,7 @@ const initialState = new Game();
 const pendingGame = (state = initialState, action) => {
   switch (action.type) {
   case CREATE_NEW_GAME:
+  case SAVE_PENDING_GAME:
     return initialState;
   case UPDATE_PENDING_GAME:
     return state.merge(action.payload.pending_game);

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import './Home.css';
-import logo from './logo.svg';
 import { connect } from 'react-redux';
 
 import { createNewGame } from '../../actions/pending-game-actions';

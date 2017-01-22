@@ -1,4 +1,3 @@
-import { List, Map } from 'immutable'
 import {
   CREATE_NEW_GAME,
   CREATE_NEW_QUESTION,

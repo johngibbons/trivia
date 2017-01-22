@@ -15,6 +15,7 @@ const PossibleAnswersList = ({
         <PossibleAnswer
           key={i}
           possibleAnswer={possibleAnswer}
+          index={i}
         />
       )}
     </MuiList>

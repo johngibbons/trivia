@@ -17,7 +17,7 @@ const PageContainer = ({children}) => {
 }
 
 PageContainer.propTypes = {
-
+  children: PropTypes.node
 }
 
 export default PageContainer

@@ -11,7 +11,6 @@ export function createGame(game) {
 }
 
 export function updateGame(game) {
-  console.log(game);
   return {
     type: UPDATE_GAME,
     payload: { game }

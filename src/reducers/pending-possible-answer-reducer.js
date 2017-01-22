@@ -1,4 +1,3 @@
-import { List, Map } from 'immutable'
 import {
   UPDATE_PENDING_POSSIBLE_ANSWER,
   SAVE_PENDING_POSSIBLE_ANSWER

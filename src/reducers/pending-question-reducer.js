@@ -1,8 +1,8 @@
-import { List, Map } from 'immutable'
 import {
   CREATE_NEW_QUESTION,
   UPDATE_PENDING_QUESTION,
-  SAVE_PENDING_POSSIBLE_ANSWER
+  SAVE_PENDING_POSSIBLE_ANSWER,
+  DELETE_POSSIBLE_ANSWER
 } from '../actions/action-types';
 
 import { Question } from '../models/Question';
@@ -20,6 +20,11 @@ const pendingQuestion = (state = initialState, action) => {
     return state.set(
       'possible_answers',
       state.get('possible_answers').push(new PossibleAnswer({text: action.payload.possible_answer}))
+    );
+  case DELETE_POSSIBLE_ANSWER:
+    return state.set(
+      'possible_answers',
+      state.get('possible_answers').delete(action.payload.index)
     );
   default:
     return state;

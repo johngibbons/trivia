@@ -27,6 +27,7 @@ const NewQuestionModal = ({
     <Dialog
       open={open}
       title='Create New Question'
+      autoScrollBodyContent
     >
       <form>
         <h3>Question</h3>
@@ -83,7 +84,6 @@ const mapStateToProps = ({
   pendingQuestion,
   pendingPossibleAnswer
 }) => {
-  console.log(pendingQuestion.toJS())
   return {
     open: ui.modal === 'NEW_QUESTION',
     questionText: pendingQuestion.text,
