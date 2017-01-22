@@ -1,10 +1,32 @@
+.PendingQuestionModal-section {
+  padding: 20px 0;
+}
+
 .PendingQuestionModal-section-title {
   margin-bottom: 0;
 }
 
 .PendingQuestionModal-input {
-  width: 100% !important;
   margin-bottom: 10px;
+}
+
+.PendingQuestionModal-text {
+  width: 80% !important;
+}
+
+.PendingQuestionModal-point-value {
+  width: calc(20% - 10px) !important;
+  margin-left: 10px;
+}
+
+.PendingQuestionModal-possible-answer-input {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+.PendingQuestionModal-possible-answer-secondary-input {
+  font-size: 12px !important;
+  width: 80% !important;
 }
 
 .PendingQuestionModal-cancel-button {

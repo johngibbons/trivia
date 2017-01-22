@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './PendingQuestionModal.css'
 import { connect } from 'react-redux';
-import { List, Record } from 'immutable';
+import { Record } from 'immutable';
 
 import {
   updatePendingQuestion,
@@ -16,14 +16,11 @@ import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import PendingPossibleAnswersList from './pendingPossibleAnswersList/PendingPossibleAnswersList';
-import Divider from 'material-ui/Divider';
 
 const PendingQuestionModal = ({
   open,
-  questionText,
   pendingPossibleAnswer,
   pendingQuestion,
-  possibleAnswers,
   onChangeQuestion,
   onChangePossibleAnswer,
   onSavePossibleAnswer,
@@ -38,54 +35,66 @@ const PendingQuestionModal = ({
       onRequestClose={onClose}
     >
       <form>
-        <h3 className='PendingQuestionModal-section-title'>Question</h3>
-        <TextField
-          type='text'
-          autoFocus
-          className='PendingQuestionModal-input'
-          value={questionText}
-          floatingLabelText='Question'
-          hintText="What's the question?"
-          onChange={onChangeQuestion}
-        />
-        <Divider
-          style={{
-            marginTop: '30px',
-            marginBottom: '30px',
-            marginLeft: '-24px',
-            marginRight: '-24px'
-          }}
-        />
-        <h3 className='PendingQuestionModal-section-title'>Possible Answers</h3>
-        <PendingPossibleAnswersList possibleAnswers={possibleAnswers} />
-        <TextField
-          type='text'
-          className='PendingQuestionModal-input'
-          value={pendingPossibleAnswer}
-          floatingLabelText='Answer'
-          hintText="Enter a possible answer and hit return to save"
-          onChange={onChangePossibleAnswer}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              pendingPossibleAnswer && onSavePossibleAnswer(pendingPossibleAnswer);
-            }
-          }}
-        />
-        <Divider
-          style={{
-            marginTop: '30px',
-            marginBottom: '30px',
-            marginLeft: '-24px',
-            marginRight: '-24px'
-          }}
-        />
+        <section className='PendingQuestionModal-section'>
+          <h5 className='PendingQuestionModal-section-title'>Question</h5>
+          <TextField
+            type='text'
+            autoFocus
+            className='PendingQuestionModal-text PendingQuestionModal-input'
+            value={pendingQuestion.text}
+            floatingLabelText='Question'
+            hintText="What's the question?"
+            onChange={(e, val) => onChangeQuestion({text: val})}
+          />
+          <TextField
+            type='number'
+            className='PendingQuestionModal-point-value PendingQuestionModal-input'
+            value={pendingQuestion.point_value}
+            floatingLabelText='Point Value'
+            hintText="How much is this question worth?"
+            onChange={(e, val) => onChangeQuestion({point_value: val})}
+          />
+        </section>
+        <section className='PendingQuestionModal-section'>
+          <h5 className='PendingQuestionModal-section-title'>Possible Answers</h5>
+          <TextField
+            type='text'
+            id='PendingQuestionModal-possible-answer-input'
+            className='PendingQuestionModal-possible-answer-input PendingQuestionModal-input'
+            value={pendingPossibleAnswer.text}
+            floatingLabelText='Answer'
+            hintText="Enter a possible answer and hit return to save"
+            onChange={(e, val) => onChangePossibleAnswer({text: val})}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer);
+              }
+            }}
+          />
+          <TextField
+            type='text'
+            className='PendingQuestionModal-possible-answer-secondary-input PendingQuestionModal-input'
+            value={pendingPossibleAnswer.secondary_text}
+            floatingLabelText='Secondary Text (Optional)'
+            hintText="Enter any secondary text, like a subtitle or hint"
+            onChange={(e, val) => onChangePossibleAnswer({secondary_text: val})}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer);
+                document.getElementById('PendingQuestionModal-possible-answer-input').focus();
+              }
+            }}
+          />
+          <PendingPossibleAnswersList possibleAnswers={pendingQuestion.possible_answers} />
+        </section>
         <div>
           <RaisedButton
             primary
             type='submit'
             label='save'
-            disabled={!questionText || !possibleAnswers.size}
+            disabled={!pendingQuestion.text || !pendingQuestion.possible_answers.size || !pendingQuestion.point_value}
             onClick={(e) => {
               e.preventDefault();
               onClickSave(pendingQuestion);
@@ -104,10 +113,8 @@ const PendingQuestionModal = ({
 
 PendingQuestionModal.propTypes = {
   open: PropTypes.bool,
-  questionText: PropTypes.string,
-  possibleAnswers: PropTypes.instanceOf(List),
   pendingQuestion: PropTypes.instanceOf(Record),
-  pendingPossibleAnswer: PropTypes.string,
+  pendingPossibleAnswer: PropTypes.instanceOf(Record),
   onChangeQuestion: PropTypes.func.isRequired,
   onChangePossibleAnswer: PropTypes.func.isRequired,
   onSavePossibleAnswer: PropTypes.func.isRequired,
@@ -122,16 +129,14 @@ const mapStateToProps = ({
 }) => {
   return {
     open: ui.modal === 'NEW_QUESTION',
-    questionText: pendingQuestion.text,
-    pendingPossibleAnswer: pendingPossibleAnswer.text,
-    possibleAnswers: pendingQuestion.possible_answers,
+    pendingPossibleAnswer,
     pendingQuestion
   }
 }
 
 export default connect(mapStateToProps, {
-  onChangeQuestion: (e, val) => updatePendingQuestion({text: val}),
-  onChangePossibleAnswer: (e, val) => updatePendingPossibleAnswer({text: val}),
+  onChangeQuestion: updatePendingQuestion,
+  onChangePossibleAnswer: updatePendingPossibleAnswer,
   onSavePossibleAnswer: savePendingPossibleAnswer,
   onClickSave: savePendingQuestion,
   onClose: closeModal

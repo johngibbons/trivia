@@ -21,7 +21,7 @@ const pendingQuestion = (state = initialState, action) => {
   case SAVE_PENDING_POSSIBLE_ANSWER:
     return state.set(
       'possible_answers',
-      state.get('possible_answers').push(new PossibleAnswer({text: action.payload.possible_answer}))
+      state.get('possible_answers').push(new PossibleAnswer(action.payload.possible_answer))
     );
   case DELETE_POSSIBLE_ANSWER:
     return state.set(

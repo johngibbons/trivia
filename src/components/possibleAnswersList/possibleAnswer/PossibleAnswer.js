@@ -12,6 +12,7 @@ const PossibleAnswer = ({
     <ListItem
       disabled={disabled}
       primaryText={possibleAnswer.text}
+      secondaryText={possibleAnswer.secondary_text}
     />
   )
 }

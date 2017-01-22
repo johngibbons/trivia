@@ -20,6 +20,7 @@ const PendingPossibleAnswer = ({
       disabled
       className='PendingPossibleAnswer'
       primaryText={possibleAnswer.text}
+      secondaryText={possibleAnswer.secondary_text}
       rightIconButton={ <DeleteButton onClick={() => onDelete(index)} /> }
     />
   )

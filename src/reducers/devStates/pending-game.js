@@ -23,22 +23,52 @@ export default new Game({
         text: 'Best Actor',
         point_value: 8,
         possible_answers: List([
-          new PossibleAnswer({ text: 'Ryan Gosling' }),
-          new PossibleAnswer({ text: 'Casey Affleck' }),
-          new PossibleAnswer({ text: 'Viggo Mortenson' }),
-          new PossibleAnswer({ text: 'Andrew Garfield' }),
-          new PossibleAnswer({ text: 'Denzel Washington' }),
+          new PossibleAnswer({
+            text: 'Ryan Gosling',
+            secondary_text: 'La La Land'
+          }),
+          new PossibleAnswer({
+            text: 'Casey Affleck',
+            secondary_text: 'Manchester by the Sea'
+          }),
+          new PossibleAnswer({
+            text: 'Viggo Mortenson',
+            secondary_text: 'Captain Fantastic'
+          }),
+          new PossibleAnswer({
+            text: 'Andrew Garfield',
+            secondary_text: 'Hacksaw Ridge'
+          }),
+          new PossibleAnswer({
+            text: 'Denzel Washington',
+            secondary_text: 'Fences'
+          }),
         ])
       }),
       new Question({
         text: 'Best Actress',
         point_value: 8,
         possible_answers: List([
-          new PossibleAnswer({ text: 'Isabelle Huppert' }),
-          new PossibleAnswer({ text: 'Amy Adams' }),
-          new PossibleAnswer({ text: 'Jessica Chastain' }),
-          new PossibleAnswer({ text: 'Ruth Negga' }),
-          new PossibleAnswer({ text: 'Natalie Portman' }),
+          new PossibleAnswer({
+            text: 'Isabelle Huppert',
+            secondary_text: 'Elle'
+          }),
+          new PossibleAnswer({
+            text: 'Amy Adams',
+            secondary_text: 'Arrival'
+          }),
+          new PossibleAnswer({
+            text: 'Jessica Chastain',
+            secondary_text: 'Miss Sloane'
+          }),
+          new PossibleAnswer({
+            text: 'Ruth Negga',
+            secondary_text: 'Loving'
+          }),
+          new PossibleAnswer({
+            text: 'Natalie Portman',
+            secondary_text: 'Jackie'
+          }),
         ])
       })
     ]
