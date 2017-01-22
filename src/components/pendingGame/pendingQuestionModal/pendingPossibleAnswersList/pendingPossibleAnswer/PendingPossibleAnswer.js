@@ -1,30 +1,31 @@
 import React, { PropTypes } from 'react'
-import './PossibleAnswer.css'
+import './PendingPossibleAnswer.css'
 
 import { connect } from 'react-redux';
 
 import { Record } from 'immutable'
 
-import { deletePossibleAnswer } from '../../../../../../actions/pending-game-actions';
+import { deletePossibleAnswer } from '../../../../../actions/pending-game-actions';
 
 import { ListItem } from 'material-ui/List';
 import DeleteButton from './deleteButton/DeleteButton';
 
-const PossibleAnswer = ({
+const PendingPossibleAnswer = ({
   possibleAnswer,
   index,
   onDelete
 }) => {
   return (
     <ListItem
-      className='PossibleAnswer'
+      disabled
+      className='PendingPossibleAnswer'
       primaryText={possibleAnswer.text}
-      rightIconButton={<DeleteButton onClick={() => onDelete(index)} />}
+      rightIconButton={ <DeleteButton onClick={() => onDelete(index)} /> }
     />
   )
 }
 
-PossibleAnswer.propTypes = {
+PendingPossibleAnswer.propTypes = {
   possibleAnswer: PropTypes.instanceOf(Record).isRequired,
   index: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired
@@ -32,4 +33,4 @@ PossibleAnswer.propTypes = {
 
 export default connect(undefined, {
   onDelete: deletePossibleAnswer
-})(PossibleAnswer)
+})(PendingPossibleAnswer)

@@ -1,6 +1,7 @@
 import {
   CREATE_NEW_QUESTION,
   UPDATE_PENDING_QUESTION,
+  SAVE_PENDING_QUESTION,
   SAVE_PENDING_POSSIBLE_ANSWER,
   DELETE_POSSIBLE_ANSWER
 } from '../actions/action-types';
@@ -13,6 +14,7 @@ const initialState = new Question();
 const pendingQuestion = (state = initialState, action) => {
   switch (action.type) {
   case CREATE_NEW_QUESTION:
+  case SAVE_PENDING_QUESTION:
     return initialState;
   case UPDATE_PENDING_QUESTION:
     return state.merge(action.payload.pending_question);

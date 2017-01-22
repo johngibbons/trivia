@@ -4,6 +4,7 @@ import {
   SAVE_PENDING_GAME,
   CREATE_NEW_QUESTION,
   UPDATE_PENDING_QUESTION,
+  SAVE_PENDING_QUESTION,
   UPDATE_PENDING_POSSIBLE_ANSWER,
   SAVE_PENDING_POSSIBLE_ANSWER,
   DELETE_POSSIBLE_ANSWER
@@ -42,6 +43,15 @@ export function createNewQuestion() {
 export function updatePendingQuestion(pending_question) {
   return {
     type: UPDATE_PENDING_QUESTION,
+    payload: {
+      pending_question
+    }
+  }
+}
+
+export function savePendingQuestion(pending_question) {
+  return {
+    type: SAVE_PENDING_QUESTION,
     payload: {
       pending_question
     }

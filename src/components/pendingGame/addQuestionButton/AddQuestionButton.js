@@ -6,7 +6,7 @@ import { createNewQuestion } from '../../../actions/pending-game-actions';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PlusIcon from 'material-ui/svg-icons/content/add';
-import NewQuestionModal from './newQuestionModal/NewQuestionModal';
+import PendingQuestionModal from '../pendingQuestionModal/PendingQuestionModal';
 
 const AddQuestionButton = ({
   onClick
@@ -18,7 +18,7 @@ const AddQuestionButton = ({
       >
         <PlusIcon />
       </FloatingActionButton>
-      <NewQuestionModal />
+      <PendingQuestionModal />
     </span>
   )
 }

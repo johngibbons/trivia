@@ -9,7 +9,10 @@ const DeleteButton = ({
   onClick
 }) => {
   return (
-    <IconButton onClick={onClick} >
+    <IconButton
+      className='DeleteButton'
+      onClick={onClick}
+    >
       <DeleteIcon
         color={red50}
         hoverColor={red900}

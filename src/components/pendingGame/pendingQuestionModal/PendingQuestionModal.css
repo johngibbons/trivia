@@ -1,0 +1,12 @@
+.PendingQuestionModal-section-title {
+  margin-bottom: 0;
+}
+
+.PendingQuestionModal-input {
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+.PendingQuestionModal-cancel-button {
+  margin-left: 20px;
+}

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import './PageHeading.css'
+import Divider from 'material-ui/Divider';
 
 const PageHeading = ({
   text,
@@ -9,7 +10,7 @@ const PageHeading = ({
     <div className='PageHeading'>
       <h1 className='PageHeading-text'>{text}</h1>
       {children}
-      <div className='PageHeading-divider' />
+      <Divider />
     </div>
   )
 }

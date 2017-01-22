@@ -1,6 +1,7 @@
 import {
   CREATE_NEW_GAME,
   CREATE_NEW_QUESTION,
+  SAVE_PENDING_QUESTION,
   OPEN_MODAL,
   CLOSE_MODAL
 } from '../actions/action-types';
@@ -16,6 +17,7 @@ const ui = (state = new UI(), action) => {
   case OPEN_MODAL:
     return state.set('modal', action.payload.id);
   case CLOSE_MODAL:
+  case SAVE_PENDING_QUESTION:
     return state.delete('modal');
   default:
     return state;

@@ -1,9 +1,7 @@
-.pageHeading {
+.PageHeading {
+  display: flex;
+  align-items: center;
   padding-bottom: 20px;
 }
 
-.PageHeading-divider {
-  height: 1px;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-}
+.PageHeading-text {}
