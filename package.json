@@ -6,6 +6,9 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "firebase": "^3.6.7",
+    "firebase-tools": "^3.2.1",
+    "firebaseui": "^1.0.0",
     "immutable": "^3.8.1",
     "material-ui": "^0.16.7",
     "moviedb": "^0.2.7",

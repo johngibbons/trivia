@@ -5,7 +5,8 @@ import {
   CREATE_GAME,
   OPEN_MODAL,
   CLOSE_MODAL,
-  UPDATE_SEARCH_FIELD
+  UPDATE_SEARCH_FIELD,
+  SIGN_IN_SUCCESS
 } from '../actions/action-types';
 
 import { UI } from '../models/UI';
@@ -21,6 +22,7 @@ const ui = (state = new UI(), action) => {
   case CLOSE_MODAL:
   case CREATE_GAME:
   case SAVE_PENDING_QUESTION:
+  case SIGN_IN_SUCCESS:
     return state.delete('modal');
   case UPDATE_SEARCH_FIELD:
     return state.set('searchValue', action.payload.value);

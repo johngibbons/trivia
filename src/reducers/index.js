@@ -11,19 +11,21 @@ import pendingPossibleAnswer from '../reducers/pending-possible-answer-reducer';
 import questions from '../reducers/questions-reducer';
 import answers from '../reducers/possible-answers-reducer';
 import admin from '../reducers/admin-reducer';
+import currentUser from '../reducers/current-user-reducer';
 
 const rootReducer = combineReducers({
-  routing,
-  ui,
-  users,
-  games,
-  entries,
-  questions,
+  admin,
   answers,
+  currentUser,
+  entries,
+  games,
   pendingGame,
   pendingQuestion,
   pendingPossibleAnswer,
-  admin
+  questions,
+  routing,
+  ui,
+  users
 });
 
 export default rootReducer;

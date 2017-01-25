@@ -11,7 +11,7 @@ export function openModal(id) {
   }
 }
 
-export function closeModal(id) {
+export function closeModal() {
   return {
     type: CLOSE_MODAL
   }

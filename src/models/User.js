@@ -1,6 +1,8 @@
+import { List, Record } from 'immutable'
+
 export const User = Record({
   id: undefined,
-  avatar_url: '',
+  photoURL: '',
   email: '',
   entries: List(),
   games: List(),

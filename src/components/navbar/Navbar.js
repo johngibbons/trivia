@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { browserHistory } from 'react-router';
 import './Navbar.css'
+import { connect } from 'react-redux';
 
 import AppBar from 'material-ui/AppBar';
 import LoginButton from './loginButton/LoginButton';
@@ -31,7 +32,13 @@ const Navbar = ({
 }
 
 Navbar.propTypes = {
-
+  loggedIn: PropTypes.bool
 }
 
-export default Navbar
+const mapStateToProps = ({ currentUser }) => {
+  return {
+    loggedIn: !!currentUser.email
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)
