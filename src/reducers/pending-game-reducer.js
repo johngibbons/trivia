@@ -6,13 +6,14 @@ import {
 } from '../actions/action-types';
 
 import { Game } from '../models/Game';
-import devInitialState from './devStates/pending-game';
 
 const initialState = new Game();
+const devInitialState = new Game({id: 'a'})
 
 const pendingGame = (state = devInitialState, action) => {
   switch (action.type) {
   case CREATE_NEW_GAME:
+    return initialState.set('id', action.payload.id)
   case SAVE_PENDING_GAME:
     return initialState;
   case SAVE_PENDING_QUESTION:

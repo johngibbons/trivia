@@ -29,11 +29,9 @@ Game.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ games }, ownProps) => {
-  return {
-    title: games.getIn([ownProps.params.id, 'title'])
-  }
-}
+const mapStateToProps = ({ games }, ownProps) => ({
+  games: games.get(ownProps.params.id)
+});
 
 export default connect(mapStateToProps, {
   onCreate: createGame,

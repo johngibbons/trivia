@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import './PendingQuestionModal.css'
 import { connect } from 'react-redux';
 import { Record } from 'immutable';
+import shortid from 'shortid';
 
 import {
   updatePendingQuestion,
@@ -19,6 +20,7 @@ import PendingPossibleAnswersList from './pendingPossibleAnswersList/PendingPoss
 
 const PendingQuestionModal = ({
   open,
+  gameId,
   pendingPossibleAnswer,
   pendingQuestion,
   onChangeQuestion,
@@ -68,7 +70,7 @@ const PendingQuestionModal = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
-                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer);
+                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer.set('id', shortid.generate()));
               }
             }}
           />
@@ -82,7 +84,7 @@ const PendingQuestionModal = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
-                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer);
+                pendingPossibleAnswer.text && onSavePossibleAnswer(pendingPossibleAnswer.set('id', shortid.generate()));
                 document.getElementById('PendingQuestionModal-possible-answer-input').focus();
               }
             }}
@@ -97,7 +99,7 @@ const PendingQuestionModal = ({
             disabled={!pendingQuestion.text || !pendingQuestion.possible_answers.size || !pendingQuestion.point_value}
             onClick={(e) => {
               e.preventDefault();
-              onClickSave(pendingQuestion);
+              onClickSave(pendingQuestion.set('id', shortid.generate()), gameId);
             }}
           />
           <RaisedButton
@@ -113,6 +115,7 @@ const PendingQuestionModal = ({
 
 PendingQuestionModal.propTypes = {
   open: PropTypes.bool,
+  gameId: PropTypes.string.isRequired,
   pendingQuestion: PropTypes.instanceOf(Record),
   pendingPossibleAnswer: PropTypes.instanceOf(Record),
   onChangeQuestion: PropTypes.func.isRequired,
@@ -125,12 +128,14 @@ PendingQuestionModal.propTypes = {
 const mapStateToProps = ({
   ui,
   pendingQuestion,
-  pendingPossibleAnswer
+  pendingPossibleAnswer,
+  pendingGame
 }) => {
   return {
     open: ui.modal === 'NEW_QUESTION',
     pendingPossibleAnswer,
-    pendingQuestion
+    pendingQuestion,
+    gameId: pendingGame.id
   }
 }
 

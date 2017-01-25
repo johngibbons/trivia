@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 
 import { closeModal } from '../../../actions/ui-actions';
 import { updatePendingGame } from '../../../actions/pending-game-actions';
+import { createGame } from '../../../actions/game-actions';
+import shortid from 'shortid';
+import { Record } from 'immutable';
+import { browserHistory } from 'react-router';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
@@ -12,9 +16,10 @@ import { Link } from 'react-router';
 
 const NewGameModal = ({
   open,
-  name,
+  pendingGame,
   onChange,
-  onClose
+  onClose,
+  onClickCreate
 }) => {
   return (
     <Dialog
@@ -27,20 +32,23 @@ const NewGameModal = ({
           type='text'
           autoFocus
           className='NewGameModal-name'
-          value={name}
+          value={pendingGame.name}
           floatingLabelText='Name'
           hintText='What do you want to call your game?'
-          onChange={onChange}
+          onChange={(e, val) => onChange({name: val})}
         />
         <div>
-          <Link to='/games/new' onClick={onClose}>
-            <RaisedButton
-              primary
-              type='submit'
-              label='next'
-              disabled={!name}
-            />
-          </Link>
+          <RaisedButton
+            primary
+            type='submit'
+            label='create'
+            disabled={!pendingGame.name}
+            onClick={(e) => {
+              e.preventDefault();
+              onClickCreate({id: pendingGame.id, name: pendingGame.name})
+              browserHistory.push(`games/${pendingGame.id}/edit`)
+            }}
+          />
         </div>
       </form>
     </Dialog>
@@ -49,19 +57,21 @@ const NewGameModal = ({
 
 NewGameModal.propTypes = {
   open: PropTypes.bool,
-  name: PropTypes.string,
+  pendingGame: PropTypes.instanceOf(Record),
   onChange: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  onClickCreate: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ ui, pendingGame }) => {
   return {
     open: ui.modal === 'NEW_GAME',
-    name: pendingGame.name
+    pendingGame
   }
 }
 
 export default connect(mapStateToProps, {
-  onChange: (e, val) => updatePendingGame({name: val}),
-  onClose: closeModal
+  onChange: updatePendingGame,
+  onClose: closeModal,
+  onClickCreate: createGame
 })(NewGameModal)

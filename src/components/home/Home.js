@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createNewGame } from '../../actions/pending-game-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import shortid from 'shortid';
 
 const Home = ({
   onClickNewGame
@@ -19,7 +20,7 @@ const Home = ({
           labelStyle={{
             color: '#212121'
           }}
-          onClick={onClickNewGame}
+          onClick={() => onClickNewGame(shortid.generate())}
         />
       </div>
     </div>

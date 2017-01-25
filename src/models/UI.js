@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
 
 export const UI = Record({
-  modal: undefined
+  modal: undefined,
+  searchValue: ''
 });
 

@@ -1,5 +1,9 @@
+import { watchSearchSubmit } from './adminSaga';
+
 function* rootSaga() {
-  yield []
+  yield [
+    watchSearchSubmit()
+  ];
 }
 
 export default rootSaga

@@ -1,21 +1,3 @@
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import { routerMiddleware } from 'react-router-redux'
-import { browserHistory } from 'react-router'
-import rootReducer from './reducers'
-import rootSaga from './sagas/index'
-import MovieDB from 'moviedb'
-
-const sagaMiddleware = createSagaMiddleware()
-const routingMiddleware = routerMiddleware(browserHistory)
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware, routingMiddleware)
-)
-
-sagaMiddleware.run(rootSaga);
-
 const state = {
   games: {
     1: {
@@ -63,7 +45,7 @@ const state = {
       games: ['key3', 'key4'],
       username: 'bradv'
     }
-  },
+  }
   nomineesSets: {
     'goldenGlobes2017': {
       'bestMotionPictureDrama': {
@@ -334,7 +316,7 @@ const state = {
             title: 'hellOrHighWater'
           }
         }
-      },
+      }
       'bestAnimated': {
         id: 'bestAnimated',
         category: 'Best Motion Picture - Animated',
@@ -584,7 +566,7 @@ const state = {
             people: ['courtneyBVance']
           }
         }
-      },
+      }
       'bestActressTVDrama': {
         id: 'bestActressTVDrama',
         category: 'Best Performance by an Actress in a Television Series - Drama',
@@ -809,13 +791,6 @@ const state = {
   }
 }
 
-import { get, flatMap, uniq } from 'lodash'
+import { get } from 'lodash'
 
-const nomineesSet = state.nomineesSets['goldenGlobes2017']
-console.log(nomineesSet)
-const nominees = Object.keys(nomineesSet).map(key => nomineesSet[key].nominees);
-console.log(nominees)
-const titles = uniq(flatMap(nominees, nominee => Object.keys(nominee).map(key => nominee[key].title)));
-console.log(titles)
-
-export default store
+console.log(state.nomineesSets.map(set => set.nominees.map(nominee => nominee.title)))

@@ -1,0 +1,11 @@
+import { Game } from '../../models/Game';
+import { List } from 'immutable';
+
+
+export default Map({
+  'a': new Game({
+       id: 'a',
+       name: 'Gibbons Academy Awards Party 2017',
+       questions: List(['a', 'b', 'c'])
+     })
+})

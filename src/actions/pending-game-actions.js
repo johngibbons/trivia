@@ -10,9 +10,10 @@ import {
   DELETE_POSSIBLE_ANSWER
 } from './action-types';
 
-export function createNewGame() {
+export function createNewGame(id) {
   return {
-    type: CREATE_NEW_GAME
+    type: CREATE_NEW_GAME,
+    payload: { id }
   }
 }
 
@@ -49,11 +50,12 @@ export function updatePendingQuestion(pending_question) {
   }
 }
 
-export function savePendingQuestion(pending_question) {
+export function savePendingQuestion(pending_question, gameId) {
   return {
     type: SAVE_PENDING_QUESTION,
     payload: {
-      pending_question
+      pending_question,
+      gameId
     }
   }
 }
