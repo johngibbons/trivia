@@ -1,4 +1,6 @@
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS'
+export const CHECK_AUTH_STATUS = 'CHECK_AUTH_STATUS'
 export const CREATE_USER = 'CREATE_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'

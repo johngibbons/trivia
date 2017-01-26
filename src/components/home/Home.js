@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 
 import { createNewGame } from '../../actions/pending-game-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
-import shortid from 'shortid';
+import { Link } from 'react-router';
 
 const Home = ({
   onClickNewGame
@@ -22,6 +23,7 @@ const Home = ({
           }}
           onClick={() => onClickNewGame(shortid.generate())}
         />
+        <Link to='/admin'>Admin</Link>
       </div>
     </div>
   )

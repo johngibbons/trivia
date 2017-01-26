@@ -7,8 +7,7 @@ import {
 } from '../actions/admin-actions';
 import MovieDB from '../moviedb';
 
-import { takeLatest } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 export function* searchSubmit(action) {
   try {
