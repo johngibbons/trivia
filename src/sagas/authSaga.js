@@ -22,7 +22,7 @@ export function* checkAuthStatus(action) {
     yield user ? put(signInSuccess(user)) :
       put(signOutSuccess());
     yield user || !action.payload.requireAuth ?
-      action.payload.next() : put(replace('/'));
+      call(action.payload.next, null) : put(replace('/'));
   } catch(errors) {
 
   }
