@@ -1,5 +1,33 @@
 const state = {
   games: {
+    '2017Oscars': {
+      categories: {
+        bestPicture: {
+          name: 'Best Picture',
+          value: 16,
+          nominees: [
+            { title: 1 },
+            { title: 2 },
+            { title: 3 },
+            { title: 4 },
+            { title: 5 }
+          ]
+        },
+        bestActor: {
+          name: 'Best Actor',
+          value: 8,
+          nominees: [
+            { person: 1 },
+            { person: 2 },
+            { person: 3 },
+            { person: 4 },
+            { person: 5 }
+          ]
+        }
+      }
+    }
+  },
+  groups: {
     1: {
       id: 1,
       name: 'Gibbons Oscar Party',
@@ -45,7 +73,7 @@ const state = {
       games: ['key3', 'key4'],
       username: 'bradv'
     }
-  }
+  },
   nomineesSets: {
     'goldenGlobes2017': {
       'bestMotionPictureDrama': {

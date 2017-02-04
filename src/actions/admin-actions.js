@@ -1,7 +1,9 @@
 import {
   SUBMIT_SEARCH,
   SUBMIT_SEARCH_SUCCESS,
-  SUBMIT_SEARCH_FAILURE
+  SUBMIT_SEARCH_FAILURE,
+  SAVE_TITLE,
+  SAVE_PERSON
 } from './action-types';
 
 export function submitSearch(value) {
@@ -27,6 +29,24 @@ export function submitSearchFailure(errors) {
     type: SUBMIT_SEARCH_FAILURE,
     payload: {
       errors
+    }
+  }
+}
+
+export function saveTitle(title) {
+  return {
+    type: SAVE_TITLE,
+    payload: {
+      title
+    }
+  }
+}
+
+export function savePerson(person) {
+  return {
+    type: SAVE_PERSON,
+    payload: {
+      person
     }
   }
 }

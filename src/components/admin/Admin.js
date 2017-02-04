@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import './Admin.css'
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
 import { updateSearchField } from '../../actions/ui-actions';
-import { submitSearch } from '../../actions/admin-actions';
+import {
+  submitSearch,
+  saveTitle,
+  savePerson
+} from '../../actions/admin-actions';
 import { List } from 'immutable';
 import {
   titleResultsSelector,
@@ -16,6 +19,8 @@ const Admin = ({
   peopleResults,
   titleResults,
   onChangeSearchInput,
+  onSavePerson,
+  onSaveTitle,
   onSubmitSearch
 }) => {
   return (
@@ -45,8 +50,9 @@ const Admin = ({
             <div
               key={i}
               className='Admin-result'
+              onClick={() => onSaveTitle(result)}
             >
-              <img src={`https://image.tmdb.org/t/p/w300${result.get('poster_path')}`} />
+              <img src={ `https://image.tmdb.org/t/p/w300${result.get('poster_path')}` } />
             </div>
           )}
         </div>}
@@ -58,6 +64,7 @@ const Admin = ({
             <div
               key={i}
               className='Admin-result'
+              onClick={() => onSavePerson(result)}
             >
               <img src={`https://image.tmdb.org/t/p/w300${result.get('profile_path')}`} />
             </div>
@@ -70,9 +77,12 @@ const Admin = ({
 
 Admin.propTypes = {
   searchValue: PropTypes.string,
-  searchResults: PropTypes.instanceOf(List),
+  peopleResults: PropTypes.instanceOf(List),
+  titleResults: PropTypes.instanceOf(List),
   onChangeSearchInput: PropTypes.func.isRequired,
-  onSubmitSearch: PropTypes.func.isRequired
+  onSubmitSearch: PropTypes.func.isRequired,
+  onSaveTitle: PropTypes.func.isRequired,
+  onSavePerson: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -86,5 +96,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   onChangeSearchInput: updateSearchField,
-  onSubmitSearch: submitSearch
+  onSubmitSearch: submitSearch,
+  onSaveTitle: saveTitle,
+  onSavePerson: savePerson
 })(Admin)
