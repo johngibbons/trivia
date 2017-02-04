@@ -27,9 +27,9 @@ export function* watchSearchSubmit() {
 
 export function* saveTitle(action) {
   try {
-    const response = yield call(API.saveTitle, action.payload.title);
+    yield call(API.saveTitle, action.payload.title);
   } catch(errors) {
-
+    console.log(errors)
   }
 }
 
@@ -39,9 +39,9 @@ export function* watchSaveTitle() {
 
 export function* savePerson(action) {
   try {
-    const response = yield call(API.savePerson, action.payload.person);
+    yield call(API.savePerson, action.payload.person);
   } catch(errors) {
-
+    console.log(errors)
   }
 }
 

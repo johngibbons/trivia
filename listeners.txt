@@ -1,0 +1,6 @@
+events:
+  -group updated
+  -entry created
+  -entry selection made
+  -winner selected
+  -game created?

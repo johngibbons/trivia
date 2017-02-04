@@ -1,38 +1,59 @@
 const state = {
   games: {
     '2017Oscars': {
+      answeredOrder: [
+        bestActor,
+        bestPicture
+      ],
       categories: {
         bestPicture: {
           name: 'Best Picture',
           value: 16,
-          nominees: [
-            { title: 1 },
-            { title: 2 },
-            { title: 3 },
-            { title: 4 },
-            { title: 5 }
-          ]
+          winner: 1,
+          nominees: {
+            1: true,
+            2: true,
+            3: true,
+            4: true,
+          }
         },
         bestActor: {
           name: 'Best Actor',
           value: 8,
-          nominees: [
-            { person: 1 },
-            { person: 2 },
-            { person: 3 },
-            { person: 4 },
-            { person: 5 }
-          ]
+          winner: 1,
+          nominees: {
+            1: true,
+            2: true,
+            3: true,
+            4: true,
+          }
         }
       }
+    }
+  },
+  nominees: {
+    1: {
+      category: bestPicture,
+      primaryText: 'Moonlight',
+      relatedItem: moonlight
+    },
+    2: {
+      category: bestActor,
+      primaryText: 'Casey Affleck',
+      secondaryText: 'Manchester by the Sea',
+      relatedItem: caseyAffleck
     }
   },
   groups: {
     1: {
       id: 1,
       name: 'Gibbons Oscar Party',
-      entries: [1, 2, 3, 4],
-      questionSet: 1,
+      entries: {
+        1: true,
+        2: true,
+        3: true
+      },
+      game: 1,
       admin: 1
     }
   },
@@ -41,19 +62,19 @@ const state = {
       name: 'John Gibbons Entry',
       game: 1,
       user: 'someUser',
-      selections: [{
+      selections: {
         bestPicture: 'manchesterByTheSea',
         bestActor: 'caseyAffleck'
-      }]
+      }
     },
     'key1': {
       name: 'John Gibbons Entry',
       game: 1,
       user: 'someUser',
-      selections: [{
-        bestPicture: 'manchesterByTheSea',
-        bestActor: 'caseyAffleck'
-      }]
+      selections: {
+        bestPicture: 1,
+        bestActor: 2
+      }
     }
   },
   users: {
@@ -818,7 +839,5 @@ const state = {
     }
   }
 }
-
-import { get } from 'lodash'
 
 console.log(state.nomineesSets.map(set => set.nominees.map(nominee => nominee.title)))

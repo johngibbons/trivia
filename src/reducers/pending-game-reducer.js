@@ -5,7 +5,7 @@ import {
   SAVE_PENDING_GAME
 } from '../actions/action-types';
 
-import { Game } from '../models/Game';
+import Game from '../models/Game';
 
 const initialState = new Game();
 const devInitialState = new Game({id: 'a'})

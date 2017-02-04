@@ -20,7 +20,7 @@ export function startFirebaseUI() {
   const ui = new firebaseui.auth.AuthUI(firebase.auth())
   const uiConfig = {
     callbacks: {
-      signInSuccess(currentUser, cred, redirectUrl) {
+      signInSuccess(currentUser) {
         store.dispatch(signInSuccess(currentUser));
         return false;
       }
