@@ -40,7 +40,7 @@ describe('group saga', () => {
     expect(generator.next(newGroupId).value)
       .toEqual(call(API.createGroup, newGroupId, action.payload, currentUser.id))
     expect(generator.next().value)
-      .toEqual(put(actions.createGroupSuccess(newGroupId, action.payload.name)))
+      .toEqual(put(actions.createGroupSuccess(newGroupId, action.payload)))
     expect(generator.next().value).toEqual(put(push(`/groups/${newGroupId}`)))
   })
 

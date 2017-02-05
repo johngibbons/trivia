@@ -9,6 +9,10 @@ import {
   signInSuccess
 } from '../actions/user-actions';
 
+import {
+  createGroupSuccess
+} from '../actions/group-actions';
+
 import { UI } from '../models/UI';
 import reducer from './ui-reducer';
 
@@ -26,6 +30,14 @@ describe('ui reducer', () => {
 
   it('should close modal', () => {
     const action = closeModal();
+    const expectedResult = new UI();
+
+    expect(reducer(new UI({modal: 'NEW_GROUP'}), action))
+      .toEqual(expectedResult);
+  })
+
+  it('should close modal on create group success', () => {
+    const action = createGroupSuccess();
     const expectedResult = new UI();
 
     expect(reducer(new UI({modal: 'NEW_GROUP'}), action))

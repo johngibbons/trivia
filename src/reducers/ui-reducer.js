@@ -6,6 +6,7 @@ import {
   CLOSE_MODAL,
   UPDATE_SEARCH_FIELD,
   UPDATE_NEW_GROUP_NAME,
+  CREATE_GROUP_SUCCESS,
   SIGN_IN_SUCCESS
 } from '../actions/action-types';
 
@@ -20,6 +21,7 @@ const ui = (state = new UI(), action) => {
   case CLOSE_MODAL:
   case CREATE_GAME:
   case SAVE_PENDING_QUESTION:
+  case CREATE_GROUP_SUCCESS:
   case SIGN_IN_SUCCESS:
     return state.delete('modal');
   case UPDATE_SEARCH_FIELD:

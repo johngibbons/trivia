@@ -26,15 +26,15 @@ describe('group actions', () => {
 
   it('should create an action for create success', () => {
     const id = '123';
-    const name = 'Some Group';
+    const group = { name: 'Some Group', game: 2 };
     const expectedAction = {
       type: CREATE_GROUP_SUCCESS,
       payload: {
         id,
-        name
+        group
       }
     }
-    expect(createGroupSuccess(id, name)).toEqual(expectedAction)
+    expect(createGroupSuccess(id, group)).toEqual(expectedAction)
   })
 
   it('should create an action for fetching a group', () => {

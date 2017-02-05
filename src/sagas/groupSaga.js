@@ -9,7 +9,7 @@ import {
 } from '../actions/game-actions';
 import {
   createGroupSuccess,
-  updateGroup,
+  setGroup,
   addEntryToGroup
 } from '../actions/group-actions';
 import {
@@ -25,7 +25,7 @@ export function* createGroup(action) {
     const currentUser = yield select(currentUserSelector);
     const newGroupId = yield call(API.createGroupId, null)
     yield call(API.createGroup, newGroupId, action.payload, currentUser.id)
-    yield put(createGroupSuccess(newGroupId, action.payload.name))
+    yield put(createGroupSuccess(newGroupId, action.payload))
     yield put(push(`/groups/${newGroupId}`))
   } catch(errors) {
     console.log(errors);
@@ -39,8 +39,8 @@ export function* watchCreateGroup() {
 export function subscribe(database, groupId) {
   return eventChannel(emit => {
     database().ref(`/groups/${groupId}`).on('value', snapshot => {
-      emit(updateGroup(groupId, snapshot.val()))
       const gameId = snapshot.val().game;
+      emit(setGroup(groupId, snapshot.val()));
       database().ref(`/games/${gameId}/categories`).on('child_changed', data => {
         emit(updateCategory(gameId, data.key, data.val()))
       })

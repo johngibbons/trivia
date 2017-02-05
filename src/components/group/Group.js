@@ -1,18 +1,36 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import './Group.css';
-import { List } from 'immutable';
+import { Seq } from 'immutable';
+import GroupModel from '../../models/Group';
+import {
+  groupSelector,
+  groupEntriesSelector
+} from '../../selectors/entries-selector';
 
 const Group = ({
+  group,
   entries
 }) => {
   return (
-    entries.map(entry =>
-      <div>entry.name</div>)
+    <div className='Group'>
+      <h1>{group && group.name}</h1>
+      {entries.map(entry =>
+        <div key={entry.get('id')}>{entry.name}</div>)}
+    </div>
   )
 }
 
 Group.propTypes = {
-  entries: PropTypes.instanceOf(List)
+  group: PropTypes.instanceOf(GroupModel),
+  entries: PropTypes.instanceOf(Seq)
 }
 
-export default Group
+const mapStateToProps = (state, props) => {
+  return {
+    entries: groupEntriesSelector(state, props),
+    group: groupSelector(state, props)
+  }
+}
+
+export default connect(mapStateToProps)(Group)

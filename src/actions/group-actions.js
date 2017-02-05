@@ -1,7 +1,8 @@
 import {
   CREATE_GROUP,
   CREATE_GROUP_SUCCESS,
-  FETCH_GROUP
+  FETCH_GROUP,
+  SET_GROUP
 } from './action-types';
 
 export function createGroup(name, game) {
@@ -14,12 +15,22 @@ export function createGroup(name, game) {
   }
 }
 
-export function createGroupSuccess(id, name) {
+export function createGroupSuccess(id, group) {
   return {
     type: CREATE_GROUP_SUCCESS,
     payload: {
       id,
-      name
+      group
+    }
+  }
+}
+
+export function setGroup(id, group) {
+  return {
+    type: SET_GROUP,
+    payload: {
+      id,
+      group
     }
   }
 }
