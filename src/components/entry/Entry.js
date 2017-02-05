@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import './Entry.css'
-import { Map } from 'immutable'
+import EntryModel from '../../models/Entry';
 import { connect } from 'react-redux';
 import { currentEntrySelector } from '../../selectors/entries-selector';
 
@@ -11,7 +11,7 @@ const Entry = ({ entry }) => {
 }
 
 Entry.propTypes = {
-  entry: PropTypes.instanceOf(Map)
+  entry: PropTypes.instanceOf(EntryModel)
 }
 
 const mapStateToProps = (state, props) => {

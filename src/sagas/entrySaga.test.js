@@ -8,7 +8,7 @@ import {
 } from '../actions/action-types';
 import * as actions from '../actions/entry-actions';
 
-import { fork, takeLatest, call } from 'redux-saga/effects';
+import { fork, takeLatest, call, put } from 'redux-saga/effects';
 import Entry from '../models/Entry';
 import User from '../models/User';
 import API from '../api';
@@ -33,6 +33,6 @@ describe('entry saga', () => {
       newEntryId,
       action.payload
     ))
-    expect(generator.next().value).toEqual(push(`/entries/${newEntryId}`))
+    expect(generator.next().value).toEqual(put(push(`/entries/${newEntryId}`)))
   })
 })

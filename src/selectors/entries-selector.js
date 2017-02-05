@@ -15,4 +15,4 @@ export const groupEntriesSelector = createSelector(
 );
 
 export const currentEntrySelector = (state, props) =>
-  state.entries.get(props.params.id)
+  state.entries.get(props.params.id) || new Entry()

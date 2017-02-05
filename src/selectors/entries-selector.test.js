@@ -98,4 +98,13 @@ describe('entries selector', () => {
     const props = { params: { id: 1 } }
     expect(currentEntrySelector(state, props)).toEqual(currentEntry)
   })
+
+  it('should return empty entry if not yet set', () => {
+    const state = {
+      ...store.getState(),
+      entries: new Map()
+    }
+    const props = { params: { id: 1 } }
+    expect(currentEntrySelector(state, props)).toEqual(new Entry())
+  })
 })

@@ -23,7 +23,7 @@ export function* createEntry(action) {
       newEntryId,
       action.payload
     )
-    yield push(`/entries/${newEntryId}`)
+    yield put(push(`/entries/${newEntryId}`))
   } catch(errors) {
     console.log(errors)
   }
@@ -38,7 +38,7 @@ export function subscribe(database, entryId) {
     database().ref().off();
     database().ref(`/entries/${entryId}`).on('value', snapshot => {
       const gameId = snapshot.val().game;
-      emit(setEntry(entryId, snapshot.val()));
+      emit(setEntry(snapshot.val()));
       database().ref(`/games/${gameId}/categories`).on('child_changed', data => {
         emit(updateCategory(gameId, data.key, data.val()))
       })
