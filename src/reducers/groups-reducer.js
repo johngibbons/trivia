@@ -2,7 +2,7 @@ import {
   CREATE_GROUP_SUCCESS,
   SET_GROUP
 } from '../actions/action-types';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 import Group from '../models/Group';
 
@@ -11,7 +11,7 @@ const groups = (state = new Map(), action) => {
   case CREATE_GROUP_SUCCESS:
   case SET_GROUP: {
     const { id, group } = action.payload;
-    return state.set(action.payload.id, new Group({id, ...group}))
+    return state.set(action.payload.id, new Group(fromJS({ id, ...group })))
   }
   default:
     return state;

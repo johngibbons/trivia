@@ -8,24 +8,22 @@ import {
 } from '../actions/entry-actions'
 import API from '../api'
 import { eventChannel } from 'redux-saga';
-import { select, fork, put, call, takeLatest, take } from 'redux-saga/effects';
-import { currentUserSelector } from '../selectors/current-user-selector';
+import { fork, put, call, takeLatest, take } from 'redux-saga/effects';
 import {
   updateCategory
 } from '../actions/game-actions';
 import { database } from 'firebase'
+import { push } from 'react-router-redux';
 
 export function* createEntry(action) {
   try {
-    const currentUser = yield select(currentUserSelector)
     const newEntryId = yield call(API.createEntryId, null)
     yield call(
       API.createEntry,
       newEntryId,
-      action.payload.entry,
-      currentUser.id,
-      action.payload.groupId
+      action.payload
     )
+    yield push(`/entries/${newEntryId}`)
   } catch(errors) {
     console.log(errors)
   }
@@ -37,6 +35,7 @@ export function* watchCreateEntry() {
 
 export function subscribe(database, entryId) {
   return eventChannel(emit => {
+    database().ref().off();
     database().ref(`/entries/${entryId}`).on('value', snapshot => {
       const gameId = snapshot.val().game;
       emit(setEntry(entryId, snapshot.val()));

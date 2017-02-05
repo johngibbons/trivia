@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/ui-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import NewGroupModal from '../group/newGroupModal/NewGroupModal';
 
 const Home = ({
   onClickNewGroup
@@ -22,6 +23,7 @@ const Home = ({
           onClick={() => onClickNewGroup('NEW_GROUP')}
         />
       </div>
+      <NewGroupModal />
     </div>
   )
 }

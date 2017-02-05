@@ -12,22 +12,22 @@ import {
   setEntry
 } from './entry-actions';
 
-import Entry from '../models/Entry'
+import User from '../models/User';
 
 describe('entry actions', () => {
   it('should create a create entry action', () => {
-    const entry = new Entry({
-      name: 'Some name'
-    })
-    const groupId = 1;
+    const name = 'Some name';
+    const group = 1;
+    const user = new User({ name: 'John' });
     const expectedAction = {
       type: CREATE_ENTRY,
       payload: {
-        entry,
-        groupId
+        name,
+        group,
+        user
       }
-    }
-    expect(createEntry(entry, groupId)).toEqual(expectedAction)
+    };
+    expect(createEntry(name, group, user)).toEqual(expectedAction);
   })
 
   it('should create a fetch entry action', () => {

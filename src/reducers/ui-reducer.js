@@ -6,6 +6,7 @@ import {
   CLOSE_MODAL,
   UPDATE_SEARCH_FIELD,
   UPDATE_NEW_GROUP_NAME,
+  UPDATE_NEW_ENTRY_NAME,
   CREATE_GROUP_SUCCESS,
   SIGN_IN_SUCCESS
 } from '../actions/action-types';
@@ -28,6 +29,8 @@ const ui = (state = new UI(), action) => {
     return state.set('searchValue', action.payload.value);
   case UPDATE_NEW_GROUP_NAME:
     return state.set('newGroupName', action.payload.value);
+  case UPDATE_NEW_ENTRY_NAME:
+    return state.set('newEntryName', action.payload.value);
   default:
     return state;
   }

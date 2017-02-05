@@ -5,8 +5,6 @@ const Entry = Record({
   name: '',
   group: undefined,
   selections: Map(),
-  created_at: undefined,
-  updated_at: undefined,
   user: undefined
 })
 

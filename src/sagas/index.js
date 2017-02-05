@@ -8,6 +8,10 @@ import {
   watchCreateGroup,
   watchFetchGroup
 } from './groupSaga';
+import {
+  watchCreateEntry,
+  watchFetchEntry
+} from './entrySaga';
 
 function* rootSaga() {
   yield [
@@ -16,7 +20,9 @@ function* rootSaga() {
     watchSaveTitle(),
     watchSavePerson(),
     watchCreateGroup(),
-    watchFetchGroup()
+    watchFetchGroup(),
+    watchCreateEntry(),
+    watchFetchEntry()
   ];
 }
 

@@ -1,4 +1,6 @@
 import { database } from 'firebase';
+import Group from './models/Group';
+import Entry from './models/Entry';
 
 export default class API {
   static saveTitle(title) {
@@ -15,8 +17,21 @@ export default class API {
 
   static createGroup(newGroupId, group, userId) {
     const updates = {
-      [`/groups/${newGroupId}`]: group,
+      [`/groups/${newGroupId}`]: new Group({ ...group, id: newGroupId }).toJS(),
       [`/users/${userId}/groups/${newGroupId}`]: { admin: true }
+    }
+    return database().ref().update(updates);
+  }
+
+  static createEntryId() {
+    return database().ref().child('entries').push().key;
+  }
+
+  static createEntry(newEntryId, entry) {
+    const updates = {
+      [`/entries/${newEntryId}`]: new Entry({ ...entry, id: newEntryId }).toJS(),
+      [`/groups/${entry.group}/entries/${newEntryId}`]: true,
+      [`/users/${entry.user}/entries/${newEntryId}`]: true
     }
     return database().ref().update(updates);
   }

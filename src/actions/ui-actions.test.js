@@ -2,14 +2,16 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   UPDATE_SEARCH_FIELD,
-  UPDATE_NEW_GROUP_NAME
+  UPDATE_NEW_GROUP_NAME,
+  UPDATE_NEW_ENTRY_NAME
 } from './action-types';
 
 import {
   openModal,
   closeModal,
   updateSearchField,
-  updateNewGroupName
+  updateNewGroupName,
+  updateNewEntryName
 } from './ui-actions';
 
 describe('ui actions', () => {
@@ -45,5 +47,14 @@ describe('ui actions', () => {
       payload: { value }
     }
     expect(updateNewGroupName(value)).toEqual(expectedAction)
+  })
+
+  it('should create update new entry name action', () => {
+    const value = 'Entry Name';
+    const expectedAction = {
+      type: UPDATE_NEW_ENTRY_NAME,
+      payload: { value }
+    }
+    expect(updateNewEntryName(value)).toEqual(expectedAction)
   })
 })

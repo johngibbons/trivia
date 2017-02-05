@@ -13,12 +13,13 @@ import {
   addEntryToGroup
 } from '../actions/group-actions';
 import {
-  updateEntry
+  setEntry
 } from '../actions/entry-actions';
 import { database } from 'firebase';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
+import { fromJS } from 'immutable';
 
 export function* createGroup(action) {
   try {
@@ -38,17 +39,17 @@ export function* watchCreateGroup() {
 
 export function subscribe(database, groupId) {
   return eventChannel(emit => {
+    database().ref().off()
     database().ref(`/groups/${groupId}`).on('value', snapshot => {
       const gameId = snapshot.val().game;
       emit(setGroup(groupId, snapshot.val()));
       database().ref(`/games/${gameId}/categories`).on('child_changed', data => {
         emit(updateCategory(gameId, data.key, data.val()))
       })
-    })
-    database().ref(`/groups/${groupId}/entries`).on('child_added', data => {
-      emit(addEntryToGroup(groupId, data.key, data.val()))
-      database().ref(`/entries/${data.key}`).on('value', snapshot => {
-        emit(updateEntry(snapshot.val()))
+      database().ref(`/groups/${groupId}/entries`).on('child_added', data => {
+        database().ref(`/entries/${data.key}`).on('value', snapshot => {
+          emit(setEntry(snapshot.val()));
+        })
       })
     })
     return () => {};

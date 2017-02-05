@@ -1,6 +1,6 @@
 import { List, Record } from 'immutable'
 
-export const User = Record({
+const User = Record({
   id: undefined,
   photoURL: '',
   email: '',
@@ -13,3 +13,4 @@ export const User = Record({
   username: ''
 })
 
+export default User;

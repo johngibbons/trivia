@@ -5,12 +5,13 @@ import {
   SET_ENTRY
 } from './action-types';
 
-export function createEntry(entry, groupId) {
+export function createEntry(name, group, user) {
   return {
     type: CREATE_ENTRY,
     payload: {
-      entry,
-      groupId
+      name,
+      group,
+      user
     }
   }
 }
