@@ -3,11 +3,15 @@ import { Route, IndexRoute } from 'react-router'
 
 import Home from './components/home/Home';
 import Game from './components/game/Game';
+import Group from './components/group/Group';
 import NoMatch from './components/noMatch/NoMatch';
 import PageContainer from './components/pageContainer/PageContainer';
 import EditGame from './components/editGame/EditGame';
 import Admin from './components/admin/Admin';
+import Entry from './components/entry/Entry';
 import { checkAuthStatus } from './actions/user-actions';
+import { fetchGroup } from './actions/group-actions';
+import { fetchEntry } from './actions/entry-actions';
 import store from './store'
 
 const requireAuth = (nextState, replace, next) =>
@@ -27,6 +31,28 @@ export default (
     <IndexRoute component={Home} />
     <Route path='games/:id/edit' component={EditGame} />
     <Route path='games/:id' component={Game} />
+    <Route
+      path='groups/:id'
+      component={Group}
+      onEnter={(nextState, replace) =>
+        requireAuth(
+          nextState,
+          replace,
+          () => store.dispatch(fetchGroup(nextState.params.id))
+        )
+      }
+    />
+    <Route
+      path='entries/:id'
+      component={Entry}
+      onEnter={(nextState, replace) =>
+        requireAuth(
+          nextState,
+          replace,
+          () => store.dispatch(fetchEntry(nextState.params.id))
+        )
+      }
+    />
     <Route
       path='admin'
       component={Admin}

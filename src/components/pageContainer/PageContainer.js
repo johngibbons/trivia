@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import './PageContainer.css'
 
 import Navbar from '../navbar/Navbar.js';
-import NewGameModal from '../game/newGameModal/NewGameModal';
 import AuthModal from '../authModal/AuthModal';
 
 const PageContainer = ({children}) => {
@@ -10,7 +9,6 @@ const PageContainer = ({children}) => {
     <div className='PageContainer'>
       <Navbar />
       <AuthModal />
-      <NewGameModal />
       <div className='PageContainer-body'>
         {children}
       </div>

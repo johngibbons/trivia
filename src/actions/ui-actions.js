@@ -1,7 +1,9 @@
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
-  UPDATE_SEARCH_FIELD
+  UPDATE_SEARCH_FIELD,
+  UPDATE_NEW_GROUP_NAME,
+  UPDATE_NEW_ENTRY_NAME
 } from './action-types';
 
 export function openModal(id) {
@@ -20,6 +22,24 @@ export function closeModal() {
 export function updateSearchField(value) {
   return {
     type: UPDATE_SEARCH_FIELD,
+    payload: {
+      value
+    }
+  }
+}
+
+export function updateNewGroupName(value) {
+  return {
+    type: UPDATE_NEW_GROUP_NAME,
+    payload: {
+      value
+    }
+  }
+}
+
+export function updateNewEntryName(value) {
+  return {
+    type: UPDATE_NEW_ENTRY_NAME,
     payload: {
       value
     }

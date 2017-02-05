@@ -1,11 +1,11 @@
-import { Record, List } from 'immutable'
+import { Record, Map } from 'immutable'
 
-export const Entry = Record({
+const Entry = Record({
   id: undefined,
   name: '',
-  game: undefined,
-  selections: List(),
-  created_at: undefined,
-  updated_at: undefined,
+  group: undefined,
+  selections: Map(),
   user: undefined
 })
+
+export default Entry;

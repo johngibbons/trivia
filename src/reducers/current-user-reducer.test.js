@@ -4,7 +4,7 @@ import {
 } from '../actions/user-actions';
 import reducer from '../reducers/current-user-reducer';
 
-import { User } from '../models/User';
+import User from '../models/User';
 
 describe('current user reducer', () => {
 

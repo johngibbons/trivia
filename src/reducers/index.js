@@ -12,6 +12,7 @@ import questions from '../reducers/questions-reducer';
 import answers from '../reducers/possible-answers-reducer';
 import admin from '../reducers/admin-reducer';
 import currentUser from '../reducers/current-user-reducer';
+import groups from '../reducers/groups-reducer';
 
 const rootReducer = combineReducers({
   admin,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   currentUser,
   entries,
   games,
+  groups,
   pendingGame,
   pendingQuestion,
   pendingPossibleAnswer,
