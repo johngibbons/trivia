@@ -2,6 +2,7 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   UPDATE_SEARCH_FIELD,
+  UPDATE_NEW_GAME_NAME,
   UPDATE_NEW_GROUP_NAME,
   UPDATE_NEW_ENTRY_NAME
 } from './action-types';
@@ -22,6 +23,15 @@ export function closeModal() {
 export function updateSearchField(value) {
   return {
     type: UPDATE_SEARCH_FIELD,
+    payload: {
+      value
+    }
+  }
+}
+
+export function updateNewGameName(value) {
+  return {
+    type: UPDATE_NEW_GAME_NAME,
     payload: {
       value
     }

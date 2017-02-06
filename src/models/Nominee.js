@@ -1,10 +1,12 @@
 import { Record } from 'immutable'
 
-export const PossibleAnswer = Record({
+const Nominee = Record({
   id: undefined,
   text: '',
   secondary_text: '',
-  question: undefined,
+  category: undefined,
   created_at: undefined,
   updated_at: undefined
 })
+
+export default Nominee;

@@ -2,6 +2,7 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   UPDATE_SEARCH_FIELD,
+  UPDATE_NEW_GAME_NAME,
   UPDATE_NEW_GROUP_NAME,
   UPDATE_NEW_ENTRY_NAME
 } from './action-types';
@@ -10,6 +11,7 @@ import {
   openModal,
   closeModal,
   updateSearchField,
+  updateNewGameName,
   updateNewGroupName,
   updateNewEntryName
 } from './ui-actions';
@@ -38,6 +40,15 @@ describe('ui actions', () => {
       payload: { value }
     }
     expect(updateSearchField(value)).toEqual(expectedAction)
+  })
+
+  it('should create update new game name action', () => {
+    const value = 'Game Name';
+    const expectedAction = {
+      type: UPDATE_NEW_GAME_NAME,
+      payload: { value }
+    }
+    expect(updateNewGameName(value)).toEqual(expectedAction)
   })
 
   it('should create update new group name action', () => {

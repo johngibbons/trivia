@@ -1,23 +1,23 @@
-import { Question } from '../../models/Question';
+import Category from '../../models/Category';
 import { Map, List } from 'immutable';
 
 export default Map({
-  "a": new Question({
+  "a": new Category({
        id: 'a',
        text: 'Best Picture',
        point_value: 16,
-       possible_answers: List(['k', 'l', 'm', 'n', 'o'])
+       nominees: List(['k', 'l', 'm', 'n', 'o'])
      }),
-  "b": new Question({
+  "b": new Category({
        id: 'b',
        text: 'Best Actor',
        point_value: 8,
-       possible_answers: List(['a', 'b', 'c', 'd', 'e'])
+       nominees: List(['a', 'b', 'c', 'd', 'e'])
      }),
-  "c": new Question({
+  "c": new Category({
        id: 'c',
        text: 'Best Actress',
        point_value: 8,
-       possible_answers: List(['f', 'g', 'h', 'i', 'j'])
+       nominees: List(['f', 'g', 'h', 'i', 'j'])
      })
 })

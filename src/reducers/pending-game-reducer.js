@@ -1,7 +1,7 @@
 import {
   CREATE_NEW_GAME,
   UPDATE_PENDING_GAME,
-  SAVE_PENDING_QUESTION,
+  SAVE_PENDING_CATEGORY,
   SAVE_PENDING_GAME
 } from '../actions/action-types';
 
@@ -16,10 +16,10 @@ const pendingGame = (state = devInitialState, action) => {
     return initialState.set('id', action.payload.id)
   case SAVE_PENDING_GAME:
     return initialState;
-  case SAVE_PENDING_QUESTION:
+  case SAVE_PENDING_CATEGORY:
     return state.set(
-      'questions',
-      state.get('questions').push(action.payload.pending_question)
+      'categories',
+      state.get('categories').push(action.payload.pending_category)
     );
   case UPDATE_PENDING_GAME:
     return state.merge(action.payload.pending_game);

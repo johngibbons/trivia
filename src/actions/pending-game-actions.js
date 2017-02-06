@@ -2,12 +2,12 @@ import {
   CREATE_NEW_GAME,
   UPDATE_PENDING_GAME,
   SAVE_PENDING_GAME,
-  CREATE_NEW_QUESTION,
-  UPDATE_PENDING_QUESTION,
-  SAVE_PENDING_QUESTION,
-  UPDATE_PENDING_POSSIBLE_ANSWER,
-  SAVE_PENDING_POSSIBLE_ANSWER,
-  DELETE_POSSIBLE_ANSWER
+  CREATE_NEW_CATEGORY,
+  UPDATE_PENDING_CATEGORY,
+  SAVE_PENDING_CATEGORY,
+  UPDATE_PENDING_NOMINEE,
+  SAVE_PENDING_NOMINEE,
+  DELETE_NOMINEE
 } from './action-types';
 
 export function createNewGame(id) {
@@ -35,52 +35,52 @@ export function savePendingGame(pending_game) {
   }
 }
 
-export function createNewQuestion() {
+export function createNewCategory() {
   return {
-    type: CREATE_NEW_QUESTION
+    type: CREATE_NEW_CATEGORY
   }
 }
 
-export function updatePendingQuestion(pending_question) {
+export function updatePendingCategory(pending_category) {
   return {
-    type: UPDATE_PENDING_QUESTION,
+    type: UPDATE_PENDING_CATEGORY,
     payload: {
-      pending_question
+      pending_category
     }
   }
 }
 
-export function savePendingQuestion(pending_question, gameId) {
+export function savePendingCategory(pending_category, gameId) {
   return {
-    type: SAVE_PENDING_QUESTION,
+    type: SAVE_PENDING_CATEGORY,
     payload: {
-      pending_question,
+      pending_category,
       gameId
     }
   }
 }
 
-export function updatePendingPossibleAnswer(pending_possible_answer) {
+export function updatePendingNominee(pending_nominee) {
   return {
-    type: UPDATE_PENDING_POSSIBLE_ANSWER,
+    type: UPDATE_PENDING_NOMINEE,
     payload: {
-      pending_possible_answer
+      pending_nominee
     }
   }
 }
 
-export function savePendingPossibleAnswer(possible_answer) {
+export function savePendingNominee(nominee) {
   return {
-    type: SAVE_PENDING_POSSIBLE_ANSWER,
+    type: SAVE_PENDING_NOMINEE,
     payload: {
-      possible_answer
+      nominee
     }
   }
 }
 
-export function deletePossibleAnswer(index) {
+export function deleteNominee(index) {
   return {
-    type: DELETE_POSSIBLE_ANSWER,
+    type: DELETE_NOMINEE,
     payload: {
       index
     }

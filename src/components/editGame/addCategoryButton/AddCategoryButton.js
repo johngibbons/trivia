@@ -1,32 +1,32 @@
 import React, { PropTypes } from 'react'
-import './AddQuestionButton.css'
+import './AddCategoryButton.css'
 
 import { connect } from 'react-redux';
-import { createNewQuestion } from '../../../actions/pending-game-actions';
+import { createNewCategory } from '../../../actions/pending-game-actions';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import PlusIcon from 'material-ui/svg-icons/content/add';
-import PendingQuestionModal from '../pendingQuestionModal/PendingQuestionModal';
+import PendingCategoryModal from '../pendingCategoryModal/PendingCategoryModal';
 
-const AddQuestionButton = ({
+const AddCategoryButton = ({
   onClick
 }) => {
   return (
-    <span className='AddQuestionButton'>
+    <span className='AddCategoryButton'>
       <FloatingActionButton
         onClick={onClick}
       >
         <PlusIcon />
       </FloatingActionButton>
-      <PendingQuestionModal />
+      <PendingCategoryModal />
     </span>
   )
 }
 
-AddQuestionButton.propTypes = {
+AddCategoryButton.propTypes = {
   onClick: PropTypes.func.isRequired
 }
 
 export default connect(undefined, {
-  onClick: createNewQuestion
-})(AddQuestionButton)
+  onClick: createNewCategory
+})(AddCategoryButton)

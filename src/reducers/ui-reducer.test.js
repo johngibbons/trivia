@@ -2,7 +2,8 @@ import {
   openModal,
   closeModal,
   updateSearchField,
-  updateNewGroupName
+  updateNewGroupName,
+  updateNewGameName
 } from '../actions/ui-actions';
 
 import {
@@ -52,6 +53,17 @@ describe('ui reducer', () => {
     })
 
     expect(reducer(new UI({searchValue: 'old text'}), action))
+      .toEqual(expectedResult);
+  })
+
+  it('should update new game name', () => {
+    const newGameName = 'Cool Game'
+    const action = updateNewGameName(newGameName)
+    const expectedResult = new UI({
+      newGameName: newGameName
+    })
+
+    expect(reducer(new UI({newGameName: 'old text'}), action))
       .toEqual(expectedResult);
   })
 

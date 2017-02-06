@@ -10,6 +10,7 @@ import EditGame from './components/editGame/EditGame';
 import Admin from './components/admin/Admin';
 import Entry from './components/entry/Entry';
 import { checkAuthStatus } from './actions/user-actions';
+import { fetchGame } from './actions/game-actions';
 import { fetchGroup } from './actions/group-actions';
 import { fetchEntry } from './actions/entry-actions';
 import store from './store'
@@ -29,7 +30,17 @@ export default (
     onEnter={getCurrentUser}
   >
     <IndexRoute component={Home} />
-    <Route path='games/:id/edit' component={EditGame} />
+    <Route
+      path='games/:id/edit'
+      component={EditGame}
+      onEnter={(nextState, replace) =>
+        requireAuth(
+          nextState,
+          replace,
+          () => store.dispatch(fetchGame(nextState.params.id))
+        )
+      }
+    />
     <Route path='games/:id' component={Game} />
     <Route
       path='groups/:id'

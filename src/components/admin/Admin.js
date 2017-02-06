@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react'
 import './Admin.css'
 import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
-import { updateSearchField } from '../../actions/ui-actions';
+import {
+  updateSearchField,
+  openModal
+} from '../../actions/ui-actions';
 import {
   submitSearch,
   saveTitle,
@@ -14,10 +17,14 @@ import {
   peopleResultsSelector
 } from '../../selectors/admin-selector';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import NewGameModal from '../game/newGameModal/NewGameModal';
+
 const Admin = ({
   searchValue,
   peopleResults,
   titleResults,
+  onClickNewGame,
   onChangeSearchInput,
   onSavePerson,
   onSaveTitle,
@@ -25,6 +32,15 @@ const Admin = ({
 }) => {
   return (
     <div className='Admin'>
+        <RaisedButton
+          primary
+          label='Create a Game'
+          labelStyle={{
+            color: '#212121'
+          }}
+          onClick={() => onClickNewGame('NEW_GAME')}
+        />
+        <NewGameModal />
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -79,6 +95,7 @@ Admin.propTypes = {
   searchValue: PropTypes.string,
   peopleResults: PropTypes.instanceOf(List),
   titleResults: PropTypes.instanceOf(List),
+  onClickNewGame: PropTypes.func.isRequired,
   onChangeSearchInput: PropTypes.func.isRequired,
   onSubmitSearch: PropTypes.func.isRequired,
   onSaveTitle: PropTypes.func.isRequired,
@@ -95,6 +112,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
+  onClickNewGame: openModal,
   onChangeSearchInput: updateSearchField,
   onSubmitSearch: submitSearch,
   onSaveTitle: saveTitle,
