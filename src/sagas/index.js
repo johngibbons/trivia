@@ -4,7 +4,10 @@ import {
   watchSavePerson
 } from './adminSaga';
 import { watchCheckAuthStatus } from './authSaga';
-import { watchCreateGame } from './gameSaga';
+import {
+  watchCreateGame,
+  watchFetchGame
+} from './gameSaga';
 import {
   watchCreateGroup,
   watchFetchGroup
@@ -21,6 +24,7 @@ function* rootSaga() {
     watchSaveTitle(),
     watchSavePerson(),
     watchCreateGame(),
+    watchFetchGame(),
     watchCreateGroup(),
     watchFetchGroup(),
     watchCreateEntry(),

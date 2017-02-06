@@ -10,7 +10,7 @@ const initialState = new Nominee();
 const pendingNominee = (state = initialState, action) => {
   switch (action.type) {
   case UPDATE_PENDING_NOMINEE:
-    return state.merge(action.payload.pending_nominee);
+    return state.merge(action.payload.pendingNominee);
   case SAVE_PENDING_NOMINEE:
     return initialState;
   default:

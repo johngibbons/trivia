@@ -8,5 +8,5 @@ export const currentCategorySelector = (state, props) =>
 export const currentCategoriesSelector = createSelector(
   currentGameSelector,
   categorySelector,
-  (game, categories) => game && game.categories.map(id => categories.get(id))
+  (game, categories) => game && game.categories.keySeq().map(id => categories.get(id))
 )

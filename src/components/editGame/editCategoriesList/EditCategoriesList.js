@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './EditCategoriesList.css'
 
-import { List } from 'immutable'
+import { Seq } from 'immutable'
 
 import EditCategory from './editCategory/EditCategory';
 
@@ -21,7 +21,7 @@ const EditCategoriesList = ({
 }
 
 EditCategoriesList.propTypes = {
-  categories: PropTypes.instanceOf(List)
+  categories: PropTypes.instanceOf(Seq)
 }
 
 export default EditCategoriesList

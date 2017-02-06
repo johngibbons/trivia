@@ -43,14 +43,15 @@ const PendingCategoryModal = ({
             type='text'
             autoFocus
             className='PendingCategoryModal-text PendingCategoryModal-input'
-            value={pendingCategory.text}
+            value={pendingCategory.name}
             floatingLabelText='Category'
             hintText="What's the category?"
-            onChange={(e, val) => onChangeCategory({text: val})}
+            onChange={(e, val) => onChangeCategory({name: val})}
           />
           <TextField
             type='number'
-            className='PendingCategoryModal-point-value PendingCategoryModal-input'
+            className='PendingCategoryModal-point-value
+              PendingCategoryModal-input'
             value={pendingCategory.point_value}
             floatingLabelText='Point Value'
             hintText="How much is this Category worth?"
@@ -61,8 +62,9 @@ const PendingCategoryModal = ({
           <h5 className='PendingCategoryModal-section-title'>Nominees</h5>
           <TextField
             type='text'
-            id='PendingCategoryModal--nominee-input'
-            className='PendingCategoryModal--nominee-input PendingCategoryModal-input'
+            id='PendingCategoryModal-nominee-input'
+            className='PendingCategoryModal-nominee-input
+              PendingCategoryModal-input'
             value={pendingNominee.text}
             floatingLabelText='Nominee'
             hintText="Enter a nominee and hit return to save"
@@ -70,13 +72,15 @@ const PendingCategoryModal = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
-                pendingNominee.text && onSaveNominee(pendingNominee.set('id', shortid.generate()));
+                pendingNominee.text &&
+                  onSaveNominee(pendingNominee.set('id', shortid.generate()));
               }
             }}
           />
           <TextField
             type='text'
-            className='PendingCategoryModal--nominee-secondary-input PendingCategoryModal-input'
+            className='PendingCategoryModal-nominee-secondary-input
+              PendingCategoryModal-input'
             value={pendingNominee.secondary_text}
             floatingLabelText='Secondary Text (Optional)'
             hintText="Enter any secondary text, like a subtitle or hint"
@@ -84,8 +88,10 @@ const PendingCategoryModal = ({
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
-                pendingNominee.text && onSaveNominee(pendingNominee.set('id', shortid.generate()));
-                document.getElementById('PendingCategoryModal--nominee-input').focus();
+                pendingNominee.text &&
+                  onSaveNominee(pendingNominee.set('id', shortid.generate()));
+                document.getElementById('PendingCategoryModal-nominee-input')
+                  .focus();
               }
             }}
           />
@@ -96,10 +102,13 @@ const PendingCategoryModal = ({
             primary
             type='submit'
             label='save'
-            disabled={!pendingCategory.text || !pendingCategory.nominees.size || !pendingCategory.point_value}
+            disabled={!pendingCategory.name
+              || !pendingCategory.nominees.size
+              || !pendingCategory.point_value}
             onClick={(e) => {
               e.preventDefault();
-              onClickSave(pendingCategory.set('id', shortid.generate()), gameId);
+              onClickSave(pendingCategory
+                .set('id', shortid.generate()), gameId);
             }}
           />
           <RaisedButton

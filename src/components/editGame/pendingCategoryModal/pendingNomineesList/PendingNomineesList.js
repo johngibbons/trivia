@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './PendingNomineesList.css'
 
-import { List } from 'immutable';
+import { Map } from 'immutable';
 
 import MuiList from 'material-ui/List';
 import PendingNominee from './pendingNominee/PendingNominee';
@@ -23,7 +23,7 @@ const PendingNomineesList = ({
 }
 
 PendingNomineesList.propTypes = {
-  nominees: PropTypes.instanceOf(List)
+  nominees: PropTypes.instanceOf(Map)
 }
 
 export default PendingNomineesList

@@ -25,9 +25,8 @@ const games = (state = new Map(), action) => {
     return state.setIn([
       action.payload.gameId,
       'categories',
-      action.payload.pending_category.id,
-      true
-    ]);
+      action.payload.pendingCategory.id
+    ], true);
   case DELETE_GAME:
     return state.delete(action.payload.id);
   default:

@@ -16,11 +16,10 @@ const pendingGame = (state = devInitialState, action) => {
     return initialState.set('id', action.payload.id)
   case SAVE_PENDING_GAME:
     return initialState;
-  case SAVE_PENDING_CATEGORY:
-    return state.set(
-      'categories',
-      state.get('categories').push(action.payload.pending_category)
-    );
+  case SAVE_PENDING_CATEGORY: {
+    const { pendingCategory } = action.payload;
+    return state.setIn(['categories', pendingCategory.id], pendingCategory);
+  }
   case UPDATE_PENDING_GAME:
     return state.merge(action.payload.pending_game);
   default:

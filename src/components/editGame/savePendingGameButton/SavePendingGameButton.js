@@ -18,7 +18,7 @@ const SavePendingGameButton = ({
 )
 
 SavePendingGameButton.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   disabled: PropTypes.bool
 }
 

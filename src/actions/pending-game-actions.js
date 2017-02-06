@@ -50,21 +50,21 @@ export function updatePendingCategory(pending_category) {
   }
 }
 
-export function savePendingCategory(pending_category, gameId) {
+export function savePendingCategory(pendingCategory, gameId) {
   return {
     type: SAVE_PENDING_CATEGORY,
     payload: {
-      pending_category,
+      pendingCategory,
       gameId
     }
   }
 }
 
-export function updatePendingNominee(pending_nominee) {
+export function updatePendingNominee(pendingNominee) {
   return {
     type: UPDATE_PENDING_NOMINEE,
     payload: {
-      pending_nominee
+      pendingNominee
     }
   }
 }
@@ -78,11 +78,11 @@ export function savePendingNominee(nominee) {
   }
 }
 
-export function deleteNominee(index) {
+export function deleteNominee(nominee) {
   return {
     type: DELETE_NOMINEE,
     payload: {
-      index
+      nominee
     }
   }
 }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import './EditGame.css'
-import { Record, List } from 'immutable';
+import { Record, Seq } from 'immutable';
 import { connect } from 'react-redux';
 import { updateGame } from '../../actions/game-actions';
 import { currentGameSelector } from '../../selectors/games-selector'
@@ -32,7 +32,7 @@ const EditGame = ({
 
 EditGame.propTypes = {
   game: PropTypes.instanceOf(Record),
-  categories: PropTypes.instanceOf(List),
+  categories: PropTypes.instanceOf(Seq),
   onChange: PropTypes.func.isRequired
 }
 

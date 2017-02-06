@@ -7,7 +7,6 @@ import {
 } from '../actions/action-types';
 
 import Category from '../models/Category';
-import Nominee from '../models/Nominee';
 
 const initialState = new Category();
 
@@ -20,7 +19,7 @@ const pendingCategory = (state = initialState, action) => {
     return state.merge(action.payload.pending_category);
   case SAVE_PENDING_NOMINEE: {
     const { nominee } = action.payload;
-    return state.setIn(['nominees', nominee.id, new Nominee(nominee)]);
+    return state.setIn(['nominees', nominee.id], nominee);
   }
   case DELETE_NOMINEE:
     return state.deleteIn(['nominees', action.payload.nominee.id]);

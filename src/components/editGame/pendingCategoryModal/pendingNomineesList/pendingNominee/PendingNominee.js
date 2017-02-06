@@ -12,7 +12,6 @@ import DeleteButton from './deleteButton/DeleteButton';
 
 const PendingNominee = ({
   nominee,
-  index,
   onDelete
 }) => {
   return (
@@ -21,14 +20,13 @@ const PendingNominee = ({
       className='PendingNominee'
       primaryText={nominee.text}
       secondaryText={nominee.secondary_text}
-      rightIconButton={ <DeleteButton onClick={() => onDelete(index)} /> }
+      rightIconButton={ <DeleteButton onClick={() => onDelete(nominee)} /> }
     />
   )
 }
 
 PendingNominee.propTypes = {
   nominee: PropTypes.instanceOf(Record).isRequired,
-  index: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired
 }
 

@@ -19,12 +19,12 @@
   margin-left: 10px;
 }
 
-.PendingCategoryModal-possible-nominee-input {
+.PendingCategoryModal-nominee-input {
   width: 100% !important;
   margin-bottom: 0 !important;
 }
 
-.PendingCategoryModal-possible-nominee-secondary-input {
+.PendingCategoryModal-nominee-secondary-input {
   font-size: 12px !important;
   width: 80% !important;
 }
