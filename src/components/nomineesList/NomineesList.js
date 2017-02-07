@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './NomineesList.css'
 
-import { List } from 'immutable'
+import { Seq } from 'immutable'
 
 import MuiList from 'material-ui/List';
 import Nominee from './nominee/Nominee';
@@ -23,7 +23,7 @@ const NomineesList = ({
 }
 
 NomineesList.propTypes = {
-  nominees: PropTypes.instanceOf(List),
+  nominees: PropTypes.instanceOf(Seq),
   answerable: PropTypes.bool
 }
 

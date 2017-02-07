@@ -1,7 +1,4 @@
 import {
-  CREATE_NEW_GAME,
-  UPDATE_PENDING_GAME,
-  SAVE_PENDING_GAME,
   CREATE_NEW_CATEGORY,
   UPDATE_PENDING_CATEGORY,
   SAVE_PENDING_CATEGORY,
@@ -10,42 +7,17 @@ import {
   DELETE_NOMINEE
 } from './action-types';
 
-export function createNewGame(id) {
-  return {
-    type: CREATE_NEW_GAME,
-    payload: { id }
-  }
-}
-
-export function updatePendingGame(pending_game) {
-  return {
-    type: UPDATE_PENDING_GAME,
-    payload: {
-      pending_game
-    }
-  }
-}
-
-export function savePendingGame(pending_game) {
-  return {
-    type: SAVE_PENDING_GAME,
-    payload: {
-      pending_game
-    }
-  }
-}
-
 export function createNewCategory() {
   return {
     type: CREATE_NEW_CATEGORY
   }
 }
 
-export function updatePendingCategory(pending_category) {
+export function updatePendingCategory(pendingCategory) {
   return {
     type: UPDATE_PENDING_CATEGORY,
     payload: {
-      pending_category
+      pendingCategory
     }
   }
 }

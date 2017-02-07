@@ -19,7 +19,7 @@ const EditGame = ({
   return (
     <div className='EditGame'>
       <PageHeading text={game.name}>
-        <AddCategoryButton />
+        <AddCategoryButton game={game} />
       </PageHeading>
       <SavePendingGameButton
         id={game.id}
@@ -36,10 +36,10 @@ EditGame.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, props) => {
   return {
-    game: currentGameSelector(state, ownProps),
-    categories: currentCategoriesSelector(state, ownProps)
+    game: currentGameSelector(state, props),
+    categories: currentCategoriesSelector(state, props)
   }
 }
 

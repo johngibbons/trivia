@@ -12,7 +12,7 @@ const Nominee = ({
     <ListItem
       disabled={disabled}
       primaryText={nominee.text}
-      secondaryText={nominee.secondary_text}
+      secondaryText={nominee.secondaryText}
     />
   )
 }

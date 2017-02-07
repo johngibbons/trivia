@@ -3,7 +3,7 @@ import { Record } from 'immutable'
 const Nominee = Record({
   id: undefined,
   text: '',
-  secondary_text: '',
+  secondaryText: '',
   category: undefined
 })
 

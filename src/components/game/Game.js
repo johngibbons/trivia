@@ -15,7 +15,7 @@ Game.propTypes = {
 }
 
 const mapStateToProps = ({ games }, ownProps) => ({
-  game: games.get(ownProps.params.id)
+  game: games.get(ownProps.routeParams.id)
 });
 
 export default connect(mapStateToProps)(Game)

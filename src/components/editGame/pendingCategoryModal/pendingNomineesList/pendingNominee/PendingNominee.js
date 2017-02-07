@@ -19,7 +19,7 @@ const PendingNominee = ({
       disabled
       className='PendingNominee'
       primaryText={nominee.text}
-      secondaryText={nominee.secondary_text}
+      secondaryText={nominee.secondaryText}
       rightIconButton={ <DeleteButton onClick={() => onDelete(nominee)} /> }
     />
   )

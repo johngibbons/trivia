@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
-import { currentCategorySelector } from './categories-selector';
+import { givenCategorySelector } from './categories-selector';
 
-const nomineesSelector = state => state.nominees;
+export const nomineesSelector = state => state.nominees;
 
-export const currentPossibleNomineesSelector = createSelector(
-  currentCategorySelector,
+export const currentNomineesSelector = createSelector(
+  givenCategorySelector,
   nomineesSelector,
-  (category, nominees) => category.possible_nominees.map(id => nominees.get(id))
+  (category, nominees) => category.nominees.keySeq().map(id => nominees.get(id))
 );

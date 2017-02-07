@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import './EditCategory.css'
-import { Record, List } from 'immutable';
+import { Record, Seq } from 'immutable';
 import { connect } from 'react-redux';
 import { currentNomineesSelector } from '../../../../selectors/nominees-selector';
 
@@ -9,14 +9,13 @@ import NomineesList from '../../../nomineesList/NomineesList';
 
 const EditCategory = ({
   category,
-  nominees,
-  index
+  nominees
 }) => {
   return (
     <Card className='EditCategory' >
       <CardHeader
         title={category.text}
-        subtitle={`${category.point_value} points`}
+        subtitle={`${category.pointValue} points`}
       />
       <NomineesList nominees={nominees} />
     </Card>
@@ -25,12 +24,11 @@ const EditCategory = ({
 
 EditCategory.propTypes = {
   category: PropTypes.instanceOf(Record).isRequired,
-  nominees: PropTypes.instanceOf(List).isRequired,
+  nominees: PropTypes.instanceOf(Seq).isRequired,
   index: PropTypes.number.isRequired
 }
 
 const mapStateToProps = (state, props) => {
-  console.log('state', state)
   return {
     nominees: currentNomineesSelector(state, props)
   }

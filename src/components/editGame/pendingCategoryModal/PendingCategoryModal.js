@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react'
 import './PendingCategoryModal.css'
 import { connect } from 'react-redux';
-import { Record } from 'immutable';
+import { Record, Seq } from 'immutable';
 import shortid from 'shortid';
+
+import Game from '../../../models/Game';
 
 import {
   updatePendingCategory,
@@ -20,7 +22,7 @@ import PendingNomineesList from './pendingNomineesList/PendingNomineesList';
 
 const PendingCategoryModal = ({
   open,
-  gameId,
+  game,
   pendingNominee,
   pendingCategory,
   onChangeCategory,
@@ -52,10 +54,10 @@ const PendingCategoryModal = ({
             type='number'
             className='PendingCategoryModal-point-value
               PendingCategoryModal-input'
-            value={pendingCategory.point_value}
+            value={pendingCategory.pointValue}
             floatingLabelText='Point Value'
             hintText="How much is this Category worth?"
-            onChange={(e, val) => onChangeCategory({point_value: val})}
+            onChange={(e, val) => onChangeCategory({pointValue: val})}
           />
         </section>
         <section className='PendingCategoryModal-section'>
@@ -81,10 +83,10 @@ const PendingCategoryModal = ({
             type='text'
             className='PendingCategoryModal-nominee-secondary-input
               PendingCategoryModal-input'
-            value={pendingNominee.secondary_text}
+            value={pendingNominee.secondaryText}
             floatingLabelText='Secondary Text (Optional)'
             hintText="Enter any secondary text, like a subtitle or hint"
-            onChange={(e, val) => onChangeNominee({secondary_text: val})}
+            onChange={(e, val) => onChangeNominee({secondaryText: val})}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
@@ -95,7 +97,7 @@ const PendingCategoryModal = ({
               }
             }}
           />
-          <PendingNomineesList nominees={pendingCategory.nominees} />
+          <PendingNomineesList nominees={pendingCategory.nominees.toIndexedSeq()} />
         </section>
         <div>
           <RaisedButton
@@ -104,11 +106,11 @@ const PendingCategoryModal = ({
             label='save'
             disabled={!pendingCategory.name
               || !pendingCategory.nominees.size
-              || !pendingCategory.point_value}
+              || !pendingCategory.pointValue}
             onClick={(e) => {
               e.preventDefault();
               onClickSave(pendingCategory
-                .set('id', shortid.generate()), gameId);
+                .set('id', shortid.generate()), game.id);
             }}
           />
           <RaisedButton
@@ -124,9 +126,10 @@ const PendingCategoryModal = ({
 
 PendingCategoryModal.propTypes = {
   open: PropTypes.bool,
-  gameId: PropTypes.string.isRequired,
+  game: PropTypes.instanceOf(Game),
   pendingCategory: PropTypes.instanceOf(Record),
   pendingNominee: PropTypes.instanceOf(Record),
+  nominees: PropTypes.instanceOf(Seq),
   onChangeCategory: PropTypes.func.isRequired,
   onChangeNominee: PropTypes.func.isRequired,
   onSaveNominee: PropTypes.func.isRequired,
@@ -134,17 +137,16 @@ PendingCategoryModal.propTypes = {
   onClose: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({
-  ui,
-  pendingCategory,
-  pendingNominee,
-  pendingGame
-}) => {
+const mapStateToProps = (state) => {
+  const {
+    ui,
+    pendingCategory,
+    pendingNominee
+  } = state;
   return {
     open: ui.modal === 'NEW_CATEGORY',
     pendingNominee,
-    pendingCategory,
-    gameId: pendingGame.id
+    pendingCategory
   }
 }
 

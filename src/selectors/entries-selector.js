@@ -9,10 +9,10 @@ export const groupEntriesSelector = createSelector(
   entriesSelector,
   currentGroupSelector,
   (entries, group) => group ?
-    group.entries.keySeq().map((key) => entries.get(key) ?
+    group.entries.keySeq().map(key => entries.get(key) ?
       entries.get(key) : new Entry()) :
       new Seq()
 );
 
 export const currentEntrySelector = (state, props) =>
-  state.entries.get(props.params.id) || new Entry()
+  state.entries.get(props.routeParams.id) || new Entry()
