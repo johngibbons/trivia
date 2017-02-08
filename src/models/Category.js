@@ -5,8 +5,7 @@ const Category = Record({
   name: '',
   game: undefined,
   nominees: new Map(),
-  pointValue: 0,
-  winner: undefined
+  value: 0
 });
 
 export default Category;

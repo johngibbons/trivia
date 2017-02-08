@@ -54,10 +54,10 @@ const PendingCategoryModal = ({
             type='number'
             className='PendingCategoryModal-point-value
               PendingCategoryModal-input'
-            value={pendingCategory.pointValue}
+            value={pendingCategory.value}
             floatingLabelText='Point Value'
             hintText="How much is this Category worth?"
-            onChange={(e, val) => onChangeCategory({pointValue: val})}
+            onChange={(e, val) => onChangeCategory({value: val})}
           />
         </section>
         <section className='PendingCategoryModal-section'>
@@ -106,7 +106,7 @@ const PendingCategoryModal = ({
             label='save'
             disabled={!pendingCategory.name
               || !pendingCategory.nominees.size
-              || !pendingCategory.pointValue}
+              || !pendingCategory.value}
             onClick={(e) => {
               e.preventDefault();
               onClickSave(pendingCategory

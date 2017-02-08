@@ -31,7 +31,7 @@ const oscars = {
       name: 'Actress in a Leading Role',
       nominees: [
         { text: 'Isabelle Huppert', secondaryText: 'Elle' },
-        { text: 'ruthNegga', secondaryText: 'Loving' },
+        { text: 'Ruth Negga', secondaryText: 'Loving' },
         { text: 'Natalie Portman', secondaryText: 'Jackie' },
         { text: 'Emma Stone', secondaryText: 'La La Land' },
         { text: 'Merryl Streep', secondaryText: 'Florence Foster Jenkins' }
@@ -267,4 +267,60 @@ const oscars = {
       ]
     },
   }
+}
+
+import { database } from 'firebase';
+import Nominee from '../models/Nominee';
+import Category from '../models/Category';
+
+export function save() {
+  Object.keys(oscars.categories).map(key => {
+    const categoryKey = database().ref().child('categories').push().key;
+    const updates = {
+      [`/categories/${categoryKey}`]: new Category({
+        id: categoryKey,
+        value: oscars.categories[key].value,
+        name: oscars.categories[key].name,
+        game: '2017Oscars'
+      }).toJS(),
+      [`/games/2017Oscars/categories/${categoryKey}`]: true
+    }
+    database().ref().update(updates);
+
+    oscars.categories[key].nominees.map(nominee => {
+      const nomineeKey = database().ref().child('nominees').push().key;
+      const updates = {
+        [`/nominees/${nomineeKey}`]: new Nominee({
+          ...nominee,
+          id: nomineeKey,
+          category: categoryKey
+        }).toJS(),
+        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true
+      }
+      database().ref().update(updates);
+    })
+  });
+}
+
+export function saveImages() {
+  const titles = [];
+  const people = [];
+  database().ref('/titles').once('value', snapshot => {
+    Object.keys(snapshot.val()).map(key => titles.push(snapshot.val()[key]))
+    database().ref('/people').once('value', snapshot => {
+      Object.keys(snapshot.val()).forEach(key => people.push(snapshot.val()[key]))
+      const all = [...titles, ...people];
+      database().ref('/nominees').once('value', snapshot => {
+        Object.keys(snapshot.val()).forEach(key => {
+          const nominee = snapshot.val()[key];
+          const match = all.filter(item => {
+            return item.name === nominee.text || item.title === nominee.text
+          })[0];
+          console.log(match)
+          const image = match && (match.profile_path ? match.profile_path : match.poster_path);
+          image && database().ref().update({ [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}` })
+        })
+      })
+    })
+  })
 }

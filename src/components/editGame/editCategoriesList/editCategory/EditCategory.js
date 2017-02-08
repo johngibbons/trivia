@@ -15,7 +15,7 @@ const EditCategory = ({
     <Card className='EditCategory' >
       <CardHeader
         title={category.text}
-        subtitle={`${category.pointValue} points`}
+        subtitle={`${category.value} points`}
       />
       <NomineesList nominees={nominees} />
     </Card>
