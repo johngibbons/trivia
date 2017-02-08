@@ -1,4 +1,5 @@
 import { database } from 'firebase';
+import Game from './models/Game';
 import Group from './models/Group';
 import Entry from './models/Entry';
 
@@ -9,6 +10,17 @@ export default class API {
 
   static savePerson(person) {
     return database().ref(`/people/${person.get('id')}`).set(person.toJS());
+  }
+
+  static createGameId() {
+    return database().ref().child('games').push().key;
+  }
+
+  static createGame(newGameId, game) {
+    const updates = {
+      [`/games/${newGameId}`]: new Game({ ...game, id: newGameId }).toJS(),
+    }
+    return database().ref().update(updates);
   }
 
   static createGroupId() {

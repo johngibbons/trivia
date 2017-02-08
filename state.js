@@ -839,5 +839,3 @@ const state = {
     }
   }
 }
-
-console.log(state.nomineesSets.map(set => set.nominees.map(nominee => nominee.title)))

@@ -1,0 +1,34 @@
+.PendingCategoryModal-section {
+  padding: 20px 0;
+}
+
+.PendingCategoryModal-section-title {
+  margin-bottom: 0;
+}
+
+.PendingCategoryModal-input {
+  margin-bottom: 10px;
+}
+
+.PendingCategoryModal-text {
+  width: 80% !important;
+}
+
+.PendingCategoryModal-point-value {
+  width: calc(20% - 10px) !important;
+  margin-left: 10px;
+}
+
+.PendingCategoryModal-nominee-input {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+.PendingCategoryModal-nominee-secondary-input {
+  font-size: 12px !important;
+  width: 80% !important;
+}
+
+.PendingCategoryModal-cancel-button {
+  margin-left: 20px;
+}

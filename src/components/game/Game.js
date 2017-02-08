@@ -1,39 +1,21 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
-
-import {
-  createGame,
-  updateGame
-} from '../../actions/game-actions';
+import GameModel from '../../models/Game';
 
 const Game = ({
-  params,
-  title,
-  onCreate,
-  onChange
+  game
 }) => {
   return (
-    <input
-      type='text'
-      value={title}
-      onChange={(e) => onChange({
-        id: params.id,
-        title: e.target.value
-      })}
-    />
+    <h1>{game.name}</h1>
   )
 }
 
 Game.propTypes = {
-  title: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  game: PropTypes.instanceOf(GameModel)
 }
 
 const mapStateToProps = ({ games }, ownProps) => ({
-  games: games.get(ownProps.params.id)
+  game: games.get(ownProps.routeParams.id)
 });
 
-export default connect(mapStateToProps, {
-  onCreate: createGame,
-  onChange: updateGame
-})(Game)
+export default connect(mapStateToProps)(Game)

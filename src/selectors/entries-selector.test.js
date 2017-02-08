@@ -38,7 +38,7 @@ describe('entries selector', () => {
       entries: groupEntries.set(3, new Entry({ name: 'Not in group' })),
       groups: new Map().set(1, group)
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     const expectedResult = groupEntries.toIndexedSeq()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(2)
@@ -52,7 +52,7 @@ describe('entries selector', () => {
       entries: new Map().set(3, new Entry({ name: 'Not in group' })),
       groups: new Map().set(1, group)
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     const expectedResult = new Seq()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(0)
@@ -68,7 +68,7 @@ describe('entries selector', () => {
       ...store.getState(),
       groups: new Map().set(1, group)
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     const expectedResult = new Seq([new Entry(), new Entry()]);
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(2)
@@ -80,7 +80,7 @@ describe('entries selector', () => {
       ...store.getState(),
       entries: new Map().set(3, new Entry({ name: 'Not in group' }))
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     const expectedResult = new Seq()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(0)
@@ -95,7 +95,7 @@ describe('entries selector', () => {
         .set(1, currentEntry)
         .set(2, new Entry({ name: 'Other Entry' }))
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     expect(currentEntrySelector(state, props)).toEqual(currentEntry)
   })
 
@@ -104,7 +104,7 @@ describe('entries selector', () => {
       ...store.getState(),
       entries: new Map()
     }
-    const props = { params: { id: 1 } }
+    const props = { routeParams: { id: 1 } }
     expect(currentEntrySelector(state, props)).toEqual(new Entry())
   })
 })

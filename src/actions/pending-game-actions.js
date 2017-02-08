@@ -1,88 +1,60 @@
 import {
-  CREATE_NEW_GAME,
-  UPDATE_PENDING_GAME,
-  SAVE_PENDING_GAME,
-  CREATE_NEW_QUESTION,
-  UPDATE_PENDING_QUESTION,
-  SAVE_PENDING_QUESTION,
-  UPDATE_PENDING_POSSIBLE_ANSWER,
-  SAVE_PENDING_POSSIBLE_ANSWER,
-  DELETE_POSSIBLE_ANSWER
+  CREATE_NEW_CATEGORY,
+  UPDATE_PENDING_CATEGORY,
+  SAVE_PENDING_CATEGORY,
+  UPDATE_PENDING_NOMINEE,
+  SAVE_PENDING_NOMINEE,
+  DELETE_NOMINEE
 } from './action-types';
 
-export function createNewGame(id) {
+export function createNewCategory() {
   return {
-    type: CREATE_NEW_GAME,
-    payload: { id }
+    type: CREATE_NEW_CATEGORY
   }
 }
 
-export function updatePendingGame(pending_game) {
+export function updatePendingCategory(pendingCategory) {
   return {
-    type: UPDATE_PENDING_GAME,
+    type: UPDATE_PENDING_CATEGORY,
     payload: {
-      pending_game
+      pendingCategory
     }
   }
 }
 
-export function savePendingGame(pending_game) {
+export function savePendingCategory(pendingCategory, gameId) {
   return {
-    type: SAVE_PENDING_GAME,
+    type: SAVE_PENDING_CATEGORY,
     payload: {
-      pending_game
-    }
-  }
-}
-
-export function createNewQuestion() {
-  return {
-    type: CREATE_NEW_QUESTION
-  }
-}
-
-export function updatePendingQuestion(pending_question) {
-  return {
-    type: UPDATE_PENDING_QUESTION,
-    payload: {
-      pending_question
-    }
-  }
-}
-
-export function savePendingQuestion(pending_question, gameId) {
-  return {
-    type: SAVE_PENDING_QUESTION,
-    payload: {
-      pending_question,
+      pendingCategory,
       gameId
     }
   }
 }
 
-export function updatePendingPossibleAnswer(pending_possible_answer) {
+export function updatePendingNominee(pendingNominee) {
   return {
-    type: UPDATE_PENDING_POSSIBLE_ANSWER,
+    type: UPDATE_PENDING_NOMINEE,
     payload: {
-      pending_possible_answer
+      pendingNominee
     }
   }
 }
 
-export function savePendingPossibleAnswer(possible_answer) {
+export function savePendingNominee(nominee) {
   return {
-    type: SAVE_PENDING_POSSIBLE_ANSWER,
+    type: SAVE_PENDING_NOMINEE,
     payload: {
-      possible_answer
+      nominee
     }
   }
 }
 
-export function deletePossibleAnswer(index) {
+export function deleteNominee(nominee) {
   return {
-    type: DELETE_POSSIBLE_ANSWER,
+    type: DELETE_NOMINEE,
     payload: {
-      index
+      nominee
     }
   }
 }

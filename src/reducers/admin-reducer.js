@@ -9,7 +9,6 @@ import { fromJS } from 'immutable';
 const admin = (state = new Admin(), action) => {
   switch (action.type) {
   case SUBMIT_SEARCH_SUCCESS:
-    console.log(action.payload.response.results)
     return state.set('searchResults', fromJS(action.payload.response.results))
   default:
     return state;
