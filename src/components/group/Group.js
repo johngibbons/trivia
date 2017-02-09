@@ -9,6 +9,8 @@ import { openModal } from '../../actions/ui-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import NewEntryModal from '../../components/entry/newEntryModal/NewEntryModal';
+import PageHeading from '../pageHeading/PageHeading';
+import EntriesTable from './entriesTable/EntriesTable';
 
 const Group = ({
   group,
@@ -18,7 +20,10 @@ const Group = ({
 }) => {
   return (
     <div className='Group'>
-      <h1>{group.name}</h1>
+      <PageHeading
+        text={group.name}
+      >
+      </PageHeading>
       <RaisedButton
         primary
         label='Create your entry'
@@ -27,8 +32,7 @@ const Group = ({
         }}
         onClick={() => onClickNewEntry('NEW_ENTRY')}
       />
-    {entries.map((entry, i) =>
-      <div key={entry.get('id') || i}>{entry.name}</div>)}
+      <EntriesTable entries={entries} />
     {group.id &&
       <NewEntryModal
         groupId={params.id}

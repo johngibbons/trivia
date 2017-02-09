@@ -1,0 +1,21 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "categories": {
+      ".indexOn": [
+        "game"
+      ]
+    },
+    "nominees": {
+      ".indexOn": [
+        "game"
+      ]
+    },
+    "entries": {
+      ".indexOn": [
+        "group"
+      ]
+    }
+  }
+}

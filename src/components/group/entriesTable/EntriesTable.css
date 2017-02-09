@@ -1,0 +1,45 @@
+.EntriesTable--table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.EntriesTable--header {
+  font-size: 12px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.EntriesTable--headerRow {
+  height: 48px;
+}
+
+.EntriesTable--headerCol {
+  padding: 0 24px;
+  height: 48px;
+  font-weight: normal;
+  color: rgb(158, 158, 158);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.EntriesTable--row {
+  cursor: pointer;
+  height: 48px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  transition: background-color 0.3s ease;
+}
+
+.EntriesTable--row:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.EntriesTable--col {
+  padding: 0 24px;
+  height: 48px;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
