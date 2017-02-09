@@ -9,13 +9,13 @@ import { selectNominee } from '../../../../../actions/entry-actions';
 const Nominee = ({
   router,
   nominee,
-  selected,
+  notSelected,
   onClickNominee
 }) => {
 
   const nomineeClasses = classNames(
     'Nominee',
-    { 'Nominee--selected': selected }
+    { 'Nominee--not-selected': notSelected }
   );
 
   return (
@@ -40,7 +40,7 @@ const Nominee = ({
 Nominee.propTypes = {
   router: PropTypes.object,
   nominee: PropTypes.instanceOf(Record),
-  selected: PropTypes.bool.isRequired,
+  notSelected: PropTypes.bool.isRequired,
   onClickNominee: PropTypes.func.isRequired
 };
 

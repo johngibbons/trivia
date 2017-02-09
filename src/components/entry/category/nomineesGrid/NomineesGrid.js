@@ -9,7 +9,6 @@ const NomineesGrid = ({
   nominees,
   selectedNomineeId
 }) => {
-  console.log(selectedNomineeId)
   return (
     <div className='NomineesGrid'>
       <div
@@ -20,7 +19,7 @@ const NomineesGrid = ({
           <Nominee
             key={nominee.id}
             nominee={nominee}
-            selected={selectedNomineeId === nominee.id}
+            notSelected={selectedNomineeId && selectedNomineeId !== nominee.id}
           />
         )
       })}

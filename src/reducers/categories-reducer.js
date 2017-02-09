@@ -2,7 +2,7 @@ import {
   SAVE_PENDING_CATEGORY,
   SET_CATEGORIES
 } from '../actions/action-types'
-import { Map, fromJS, Iterable } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import Category from '../models/Category';
 
 const categories = (state = new Map(), action) => {
@@ -21,7 +21,6 @@ const categories = (state = new Map(), action) => {
   case SET_CATEGORIES: {
     const { categories } = action.payload;
     fromJS(categories, (k, v) => {
-      console.log(k)
       return k !== "nominees" && k !== "" ? new Category(v) : v
     })
     return state.merge(

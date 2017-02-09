@@ -34,7 +34,7 @@ const oscars = {
         { text: 'Ruth Negga', secondaryText: 'Loving' },
         { text: 'Natalie Portman', secondaryText: 'Jackie' },
         { text: 'Emma Stone', secondaryText: 'La La Land' },
-        { text: 'Merryl Streep', secondaryText: 'Florence Foster Jenkins' }
+        { text: 'Meryl Streep', secondaryText: 'Florence Foster Jenkins' }
       ]
     },
     bestSupportingActor: {
@@ -205,7 +205,7 @@ const oscars = {
       name: 'Short Film (Live Action)',
       nominees: [
         { text: 'Ennemis Intérieurs' },
-        { text: 'La Femme et le TGV' },
+        { text: 'La femme et le TGV' },
         { text: 'Silent Nights' },
         { text: 'Sing' },
         { text: 'Timecode' }
@@ -315,7 +315,8 @@ export function saveImages() {
         Object.keys(snapshot.val()).forEach(key => {
           const nominee = snapshot.val()[key];
           const match = all.filter(item => {
-            return item.name === nominee.text || item.title === nominee.text
+            if(!item.title || !nominee.text) return;
+            return item.original_title.toLowerCase() === nominee.text.toLowerCase()
           })[0];
           const image = match && (match.profile_path ? match.profile_path : match.poster_path);
           image && database().ref().update({

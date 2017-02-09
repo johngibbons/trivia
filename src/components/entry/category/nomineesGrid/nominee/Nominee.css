@@ -9,6 +9,7 @@
   color: white;
   margin: 0 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .Nominee:first-child {
@@ -25,7 +26,7 @@
   flex-wrap: wrap;
   width: 100%;
   padding: 10px;
-  background-color: rgba(55, 55, 55, 0.7);
+  background-color: rgba(25, 25, 25, 0.7);
   height: 48px;
 }
 
@@ -39,7 +40,6 @@
   width: 100%;
 }
 
-.Nominee--selected {
-  height: 400px;
-  width: 300px;
+.Nominee--not-selected {
+  filter: saturate(0) contrast(50%);
 }

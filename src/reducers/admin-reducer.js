@@ -1,6 +1,5 @@
 import {
-  SUBMIT_SEARCH_SUCCESS,
-  SUBMIT_SEARCH_FAILURE
+  SUBMIT_SEARCH_SUCCESS
 } from '../actions/action-types';
 
 import { Admin } from '../models/Admin';
