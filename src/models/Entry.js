@@ -4,6 +4,7 @@ const Entry = Record({
   id: undefined,
   name: '',
   group: undefined,
+  game: undefined,
   selections: Map(),
   user: undefined
 })

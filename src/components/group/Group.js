@@ -19,17 +19,21 @@ const Group = ({
   return (
     <div className='Group'>
       <h1>{group.name}</h1>
-        <RaisedButton
-          primary
-          label='Create your entry'
-          labelStyle={{
-            color: '#212121'
-          }}
-          onClick={() => onClickNewEntry('NEW_ENTRY')}
-        />
-      {entries.map((entry, i) =>
-        <div key={entry.get('id') || i}>{entry.name}</div>)}
-      <NewEntryModal groupId={params.id} />
+      <RaisedButton
+        primary
+        label='Create your entry'
+        labelStyle={{
+          color: '#212121'
+        }}
+        onClick={() => onClickNewEntry('NEW_ENTRY')}
+      />
+    {entries.map((entry, i) =>
+      <div key={entry.get('id') || i}>{entry.name}</div>)}
+    {group.id &&
+      <NewEntryModal
+        groupId={params.id}
+        gameId={group.game}
+      />}
     </div>
   )
 }

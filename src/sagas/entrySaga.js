@@ -1,19 +1,21 @@
 import {
   CREATE_ENTRY,
-  FETCH_ENTRY
+  FETCH_ENTRY,
+  SELECT_NOMINEE
 } from '../actions/action-types'
 
 import {
-  setEntry
+  setEntry,
+  selectNomineeSuccess
 } from '../actions/entry-actions'
+import { setGame } from '../actions/game-actions';
+import { setCategories } from '../actions/category-actions';
+import { setNominees } from '../actions/nominee-actions';
 import API from '../api'
-import { eventChannel } from 'redux-saga';
-import { fork, put, call, takeLatest, take } from 'redux-saga/effects';
-import {
-  updateCategory
-} from '../actions/game-actions';
+import { fork, put, call, takeLatest } from 'redux-saga/effects';
 import { database } from 'firebase'
 import { push } from 'react-router-redux';
+import { get } from './firebase-saga';
 
 export function* createEntry(action) {
   try {
@@ -33,28 +35,36 @@ export function* watchCreateEntry() {
   yield fork(takeLatest, CREATE_ENTRY, createEntry)
 }
 
-export function subscribe(database, entryId) {
-  return eventChannel(emit => {
-    database().ref().off();
-    database().ref(`/entries/${entryId}`).on('value', snapshot => {
-      const gameId = snapshot.val().game;
-      emit(setEntry(snapshot.val()));
-      database().ref(`/games/${gameId}/categories`).on('child_changed', data => {
-        emit(updateCategory(gameId, data.key, data.val()))
-      })
-    })
-    return () => {};
-  })
-}
-
 export function* fetchEntry(action) {
-  const channel = yield call(subscribe, database, action.payload.id);
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
+  try {
+    const entry = yield call(get, 'entries', action.payload.id)
+    yield put(setEntry(entry))
+    const game = yield call(get, 'games', entry.game)
+    yield put(setGame(game))
+    const ref = database().ref('categories').orderByChild('game').equalTo(game.id)
+    const categories = yield call([ref, ref.once], 'value');
+    yield put(setCategories(categories.val()))
+    const nomineesRef = database().ref('nominees').orderByChild('game').equalTo(game.id)
+    const nominees = yield call([nomineesRef, nomineesRef.once], 'value');
+    yield put(setNominees(nominees.val()))
+  } catch(errors) {
+    console.log(errors)
   }
 }
 
 export function* watchFetchEntry() {
   yield fork(takeLatest, FETCH_ENTRY, fetchEntry)
+}
+
+export function* selectNominee(action) {
+  try {
+    yield call(API.selectNominee, action.payload.entryId, action.payload.nominee);
+    yield put(selectNomineeSuccess(action.payload.entryId, action.payload.nominee))
+  } catch(errors) {
+    console.log(errors)
+  }
+}
+
+export function* watchSelectNominee() {
+  yield fork(takeLatest, SELECT_NOMINEE, selectNominee)
 }

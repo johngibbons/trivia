@@ -12,12 +12,16 @@ const NomineesList = ({
 }) => {
   return (
     <MuiList>
-    {nominees.map((nominee, i) =>
-      <Nominee
-        key={i}
-        nominee={nominee}
-        disabled={!answerable}
-      />)}
+      {nominees.map((nominee, i) => {
+        console.log(nominee)
+        return (
+          <Nominee
+            key={i}
+            nominee={nominee}
+            disabled={!answerable}
+          />
+        )
+      })}
     </MuiList>
   )
 }

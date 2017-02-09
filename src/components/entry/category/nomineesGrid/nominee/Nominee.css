@@ -1,0 +1,45 @@
+.Nominee {
+  display: flex;
+  align-items: flex-end;
+  flex: 0 0 auto;
+  height: 300px;
+  width: 200px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.Nominee:first-child {
+  margin-left: 0;
+}
+
+.Nominee:last-child {
+  margin-right: 0;
+}
+
+.Nominee--text-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(55, 55, 55, 0.7);
+  height: 48px;
+}
+
+.Nominee--text {
+  font-size: 16px;
+  width: 100%;
+}
+
+.Nominee--secondary-text {
+  font-size: 12px;
+  width: 100%;
+}
+
+.Nominee--selected {
+  height: 400px;
+  width: 300px;
+}

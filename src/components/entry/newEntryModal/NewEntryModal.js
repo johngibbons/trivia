@@ -13,6 +13,7 @@ const NewEntryModal = ({
   open,
   name,
   groupId,
+  gameId,
   currentUser,
   onClose,
   onChange,
@@ -42,7 +43,7 @@ const NewEntryModal = ({
             disabled={!name}
             onClick={(e) => {
               e.preventDefault();
-              onClickCreate(name, groupId, currentUser.id);
+              onClickCreate(name, groupId, gameId, currentUser.id);
             }}
           />
         </div>
@@ -55,6 +56,7 @@ NewEntryModal.propTypes = {
   open: PropTypes.bool,
   name: PropTypes.string,
   groupId: PropTypes.string.isRequired,
+  gameId: PropTypes.string.isRequired,
   currentUser: PropTypes.instanceOf(User),
   onClose: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,

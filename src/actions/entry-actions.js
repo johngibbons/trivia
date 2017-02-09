@@ -2,15 +2,18 @@ import {
   CREATE_ENTRY,
   UPDATE_ENTRY,
   FETCH_ENTRY,
-  SET_ENTRY
+  SET_ENTRY,
+  SELECT_NOMINEE,
+  SELECT_NOMINEE_SUCCESS
 } from './action-types';
 
-export function createEntry(name, group, user) {
+export function createEntry(name, group, game, user) {
   return {
     type: CREATE_ENTRY,
     payload: {
       name,
       group,
+      game,
       user
     }
   }
@@ -39,6 +42,26 @@ export function updateEntry(entry) {
     type: UPDATE_ENTRY,
     payload: {
       entry
+    }
+  }
+}
+
+export function selectNominee(entryId, nominee) {
+  return {
+    type: SELECT_NOMINEE,
+    payload: {
+      entryId,
+      nominee
+    }
+  }
+}
+
+export function selectNomineeSuccess(entryId, nominee) {
+  return {
+    type: SELECT_NOMINEE_SUCCESS,
+    payload: {
+      entryId,
+      nominee
     }
   }
 }

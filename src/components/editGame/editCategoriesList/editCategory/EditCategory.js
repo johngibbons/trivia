@@ -24,8 +24,7 @@ const EditCategory = ({
 
 EditCategory.propTypes = {
   category: PropTypes.instanceOf(Record).isRequired,
-  nominees: PropTypes.instanceOf(Seq).isRequired,
-  index: PropTypes.number.isRequired
+  nominees: PropTypes.instanceOf(Seq).isRequired
 }
 
 const mapStateToProps = (state, props) => {

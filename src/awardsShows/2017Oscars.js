@@ -293,7 +293,8 @@ export function save() {
         [`/nominees/${nomineeKey}`]: new Nominee({
           ...nominee,
           id: nomineeKey,
-          category: categoryKey
+          category: categoryKey,
+          game: '2017Oscars'
         }).toJS(),
         [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true
       }
@@ -316,9 +317,10 @@ export function saveImages() {
           const match = all.filter(item => {
             return item.name === nominee.text || item.title === nominee.text
           })[0];
-          console.log(match)
           const image = match && (match.profile_path ? match.profile_path : match.poster_path);
-          image && database().ref().update({ [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}` })
+          image && database().ref().update({
+            [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
+          })
         })
       })
     })

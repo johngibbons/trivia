@@ -9,11 +9,19 @@ const Nominee = ({
   disabled
 }) => {
   return (
-    <ListItem
-      disabled={disabled}
-      primaryText={nominee.text}
-      secondaryText={nominee.secondaryText}
-    />
+    <div>
+      <ListItem
+        disabled={disabled}
+        primaryText={nominee.text}
+        secondaryText={nominee.secondaryText}
+      />
+      <img
+        src={nominee.imageUrl}
+        style={{
+          maxWidth: '100%'
+        }}
+      />
+    </div>
   )
 }
 

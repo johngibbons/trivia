@@ -5,7 +5,7 @@ import Entry from './models/Entry';
 
 export default class API {
   static saveTitle(title) {
-    return database().ref(`/titles/${title.get('id')}`).set(title.toJS()).then(title => console.log('TITLE', title));
+    return database().ref(`/titles/${title.get('id')}`).set(title.toJS());
   }
 
   static savePerson(person) {
@@ -29,8 +29,13 @@ export default class API {
 
   static createGroup(newGroupId, group, userId) {
     const updates = {
-      [`/groups/${newGroupId}`]: new Group({ ...group, id: newGroupId }).toJS(),
-      [`/users/${userId}/groups/${newGroupId}`]: { admin: true }
+      [`/groups/${newGroupId}`]: new Group({
+        ...group,
+        id: newGroupId,
+        admin: userId
+      }).toJS(),
+      [`/users/${userId}/groups/${newGroupId}`]: { admin: true },
+      [`/games/${group.game}/groups/${newGroupId}`]: true
     }
     return database().ref().update(updates);
   }
@@ -43,8 +48,15 @@ export default class API {
     const updates = {
       [`/entries/${newEntryId}`]: new Entry({ ...entry, id: newEntryId }).toJS(),
       [`/groups/${entry.group}/entries/${newEntryId}`]: true,
+      [`/games/${entry.game}/entries/${newEntryId}`]: true,
       [`/users/${entry.user}/entries/${newEntryId}`]: true
     }
     return database().ref().update(updates);
+  }
+
+  static selectNominee(entryId, nominee) {
+    return database()
+      .ref(`/entries/${entryId}/selections/${nominee.category}`)
+      .set(nominee.id)
   }
 }

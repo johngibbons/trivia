@@ -9,8 +9,7 @@ import {
 } from '../actions/game-actions';
 import {
   createGroupSuccess,
-  setGroup,
-  addEntryToGroup
+  setGroup
 } from '../actions/group-actions';
 import {
   setEntry
@@ -19,7 +18,6 @@ import { database } from 'firebase';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
-import { fromJS } from 'immutable';
 
 export function* createGroup(action) {
   try {

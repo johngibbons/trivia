@@ -2,14 +2,16 @@ import {
   CREATE_ENTRY,
   UPDATE_ENTRY,
   FETCH_ENTRY,
-  SET_ENTRY
+  SET_ENTRY,
+  SELECT_NOMINEE
 } from './action-types';
 
 import {
   createEntry,
   updateEntry,
   fetchEntry,
-  setEntry
+  setEntry,
+  selectNominee
 } from './entry-actions';
 
 import User from '../models/User';
@@ -18,16 +20,18 @@ describe('entry actions', () => {
   it('should create a create entry action', () => {
     const name = 'Some name';
     const group = 1;
+    const game = 2;
     const user = new User({ name: 'John' });
     const expectedAction = {
       type: CREATE_ENTRY,
       payload: {
         name,
         group,
+        game,
         user
       }
     };
-    expect(createEntry(name, group, user)).toEqual(expectedAction);
+    expect(createEntry(name, group, game, user)).toEqual(expectedAction);
   })
 
   it('should create a fetch entry action', () => {
@@ -65,5 +69,22 @@ describe('entry actions', () => {
       }
     }
     expect(updateEntry(entry)).toEqual(expectedAction)
+  })
+
+  it('should create a select nominee action', () => {
+    const entryId = 1;
+    const nominee = {
+      id: 1,
+      category: 2,
+      name: 'Some new name'
+    };
+    const expectedAction = {
+      type: SELECT_NOMINEE,
+      payload: {
+        entryId,
+        nominee
+      }
+    };
+    expect(selectNominee(entryId, nominee)).toEqual(expectedAction);
   })
 })

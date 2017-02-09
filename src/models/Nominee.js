@@ -4,7 +4,9 @@ const Nominee = Record({
   id: undefined,
   text: '',
   secondaryText: '',
-  category: undefined
+  category: undefined,
+  game: undefined,
+  imageUrl: ''
 })
 
 export default Nominee;

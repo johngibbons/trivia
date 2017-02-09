@@ -43,7 +43,7 @@ const NewGroupModal = ({
             disabled={!name}
             onClick={(e) => {
               e.preventDefault();
-              onClickCreate(name, '2017_Oscars');
+              onClickCreate(name, '2017Oscars');
             }}
           />
         </div>
