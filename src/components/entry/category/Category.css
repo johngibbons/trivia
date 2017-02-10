@@ -1,3 +1,11 @@
 .Category {
   margin-bottom: 32px;
 }
+
+.Category--correct {
+  background-color: #E8F5E9 !important;
+}
+
+.Category--incorrect {
+  background-color: #FFEBEE !important;
+}

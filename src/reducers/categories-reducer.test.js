@@ -2,6 +2,9 @@ import {
   savePendingCategory
 } from '../actions/pending-game-actions';
 import {
+  selectCorrectNominee
+} from '../actions/game-actions';
+import {
   setCategories
 } from '../actions/category-actions';
 import Category from '../models/Category';
@@ -87,5 +90,21 @@ describe('categories reducer', () => {
     const nominees = reducer(initialState, action).last().nominees;
     expect(reducer(initialState, action)).toEqual(expectedResult)
     expect(is(reducer(initialState, action), expectedResult)).toEqual(true)
+  })
+
+  it('should set correct answer', () => {
+    const nominee = new Nominee({
+      id: 'abc',
+      category: 'category1'
+    })
+    const initialState = new Map()
+      .set('category1', new Category())
+      .set('category2', new Category())
+    const action = selectCorrectNominee(nominee)
+    const expectedResult = new Map()
+      .set('category1', new Category({correctAnswer: nominee.id}))
+      .set('category2', new Category())
+
+    expect(reducer(initialState, action)).toEqual(expectedResult)
   })
 })

@@ -1,6 +1,8 @@
 import {
   SAVE_PENDING_CATEGORY,
-  SET_CATEGORIES
+  SET_CATEGORIES,
+  SET_CATEGORY,
+  SELECT_CORRECT_NOMINEE
 } from '../actions/action-types'
 import { Map, fromJS } from 'immutable';
 import Category from '../models/Category';
@@ -28,6 +30,17 @@ const categories = (state = new Map(), action) => {
         return k !== "nominees" && k !== "" ? new Category(v) : v
       })
     )
+  }
+  case SET_CATEGORY: {
+    const { category } = action.payload;
+    return state.set(category.id, new Category({
+      ...category,
+      nominees: new Map(category.nominees)
+    }));
+  }
+  case SELECT_CORRECT_NOMINEE: {
+    const { nominee } = action.payload;
+    return state.setIn([nominee.category, 'correctAnswer'], nominee.id)
   }
   default:
     return state;

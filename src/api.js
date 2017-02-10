@@ -59,4 +59,14 @@ export default class API {
       .ref(`/entries/${entryId}/selections/${nominee.category}`)
       .set(nominee.id)
   }
+
+  static selectCorrectNominee(nominee) {
+    const key = database()
+      .ref().child(`games/${nominee.game}/answeredOrder`).push().key;
+    const updates = {
+      [`/categories/${nominee.category}/correctAnswer`]: nominee.id,
+      [`/games/${nominee.game}/answeredOrder/${key}`]: nominee.id
+    }
+    return database().ref().update(updates)
+  }
 }

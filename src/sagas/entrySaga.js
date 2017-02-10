@@ -8,14 +8,11 @@ import {
   setEntry,
   selectNomineeSuccess
 } from '../actions/entry-actions'
-import { setGame } from '../actions/game-actions';
-import { setCategories } from '../actions/category-actions';
-import { setNominees } from '../actions/nominee-actions';
 import API from '../api'
 import { fork, put, call, takeLatest } from 'redux-saga/effects';
-import { database } from 'firebase'
 import { push } from 'react-router-redux';
 import { get } from './firebase-saga';
+import { fetchGameAndDependents, syncCategories } from './gameSaga';
 
 export function* createEntry(action) {
   try {
@@ -39,14 +36,8 @@ export function* fetchEntry(action) {
   try {
     const entry = yield call(get, 'entries', action.payload.id)
     yield put(setEntry(entry))
-    const game = yield call(get, 'games', entry.game)
-    yield put(setGame(game))
-    const ref = database().ref('categories').orderByChild('game').equalTo(game.id)
-    const categories = yield call([ref, ref.once], 'value');
-    yield put(setCategories(categories.val()))
-    const nomineesRef = database().ref('nominees').orderByChild('game').equalTo(game.id)
-    const nominees = yield call([nomineesRef, nomineesRef.once], 'value');
-    yield put(setNominees(nominees.val()))
+    yield call(fetchGameAndDependents, entry.game);
+    yield call(syncCategories);
   } catch(errors) {
     console.log(errors)
   }

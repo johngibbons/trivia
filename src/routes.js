@@ -9,6 +9,7 @@ import PageContainer from './components/pageContainer/PageContainer';
 import EditGame from './components/editGame/EditGame';
 import Admin from './components/admin/Admin';
 import Entry from './components/entry/Entry';
+import MasterEntry from './components/entry/MasterEntry';
 import { checkAuthStatus } from './actions/user-actions';
 import { fetchGame } from './actions/game-actions';
 import { fetchGroup } from './actions/group-actions';
@@ -68,7 +69,19 @@ export default (
       path='admin'
       component={Admin}
       onEnter={requireAuth}
-    />
+    >
+      <Route
+        path='games/:id/master'
+        component={MasterEntry}
+        onEnter={(nextState, replace) => {
+          requireAuth(
+            nextState,
+            replace,
+            () => store.dispatch(fetchGame(nextState.params.id))
+          )
+        }}
+      />
+    </Route>
     <Route path="*" component={NoMatch} />
   </Route>
 )

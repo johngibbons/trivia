@@ -3,7 +3,8 @@ import {
   CREATE_GAME_SUCCESS,
   UPDATE_GAME,
   FETCH_GAME,
-  SET_GAME
+  SET_GAME,
+  SELECT_CORRECT_NOMINEE
 } from './action-types';
 
 export function createGame(name) {
@@ -43,5 +44,12 @@ export function setGame(game) {
   return {
     type: SET_GAME,
     payload: { game }
+  }
+}
+
+export function selectCorrectNominee(gameId, nominee) {
+  return {
+    type: SELECT_CORRECT_NOMINEE,
+    payload: { nominee }
   }
 }

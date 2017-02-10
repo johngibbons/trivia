@@ -6,7 +6,8 @@ import {
 import { watchCheckAuthStatus } from './authSaga';
 import {
   watchCreateGame,
-  watchFetchGame
+  watchFetchGame,
+  watchSelectCorrectNominee
 } from './gameSaga';
 import {
   watchCreateGroup,
@@ -30,7 +31,8 @@ function* rootSaga() {
     watchFetchGroup(),
     watchCreateEntry(),
     watchFetchEntry(),
-    watchSelectNominee()
+    watchSelectNominee(),
+    watchSelectCorrectNominee()
   ];
 }
 

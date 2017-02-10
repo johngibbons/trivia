@@ -21,6 +21,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import NewGameModal from '../game/newGameModal/NewGameModal';
 
 const Admin = ({
+  children,
   searchValue,
   peopleResults,
   titleResults,
@@ -86,12 +87,14 @@ const Admin = ({
             </div>
           )}
         </div>}
+        {children}
       </div>
     </div>
   )
 }
 
 Admin.propTypes = {
+  children: PropTypes.node,
   searchValue: PropTypes.string,
   peopleResults: PropTypes.instanceOf(List),
   titleResults: PropTypes.instanceOf(List),

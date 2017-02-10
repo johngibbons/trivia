@@ -3,10 +3,13 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 16px;
+  overflow-y: visible;
 }
 
 .NomineesGrid--list {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  padding: 16px;
+  margin: -16px;
 }

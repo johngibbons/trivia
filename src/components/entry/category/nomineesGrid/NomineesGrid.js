@@ -7,7 +7,8 @@ import Nominee from './nominee/Nominee';
 
 const NomineesGrid = ({
   nominees,
-  selectedNomineeId
+  selectedNomineeId,
+  correctNomineeId
 }) => {
   return (
     <div className='NomineesGrid'>
@@ -20,6 +21,7 @@ const NomineesGrid = ({
             key={nominee.id}
             nominee={nominee}
             notSelected={selectedNomineeId && selectedNomineeId !== nominee.id}
+            correctId={correctNomineeId}
           />
         )
       })}
@@ -30,7 +32,8 @@ const NomineesGrid = ({
 
 NomineesGrid.propTypes = {
   nominees: PropTypes.instanceOf(Seq),
-  selectedNomineeId: PropTypes.string
+  selectedNomineeId: PropTypes.string,
+  correctNomineeId: PropTypes.string
 }
 
 export default NomineesGrid;

@@ -2,14 +2,14 @@
   display: flex;
   align-items: flex-end;
   flex: 0 0 auto;
-  height: 300px;
-  width: 200px;
+  height: 55vh;
+  width: calc(55vh * 2/3);
   background-size: cover;
   background-position: center;
   color: white;
   margin: 0 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
 }
 
 .Nominee:first-child {
@@ -42,4 +42,12 @@
 
 .Nominee--not-selected {
   filter: saturate(0) contrast(50%);
+}
+
+.Nominee--answer {
+  filter: contrast(100%) saturate(100%);
+}
+
+.Nominee--not-selected.Nominee--answer {
+  filter: contrast(150%) brightness(80%) sepia(100%);
 }
