@@ -1,5 +1,6 @@
 import {
   SET_ENTRY,
+  SET_ENTRIES,
   SELECT_NOMINEE
 } from '../actions/action-types';
 import { Map, fromJS } from 'immutable'
@@ -10,6 +11,10 @@ const entries = (state = Map(), action) => {
   case SET_ENTRY: {
     const { entry } = action.payload;
     return state.set(entry.id, new Entry(fromJS(entry)));
+  }
+  case SET_ENTRIES: {
+    const entries = fromJS(action.payload.entries);
+    return state.mergeDeep(entries.map(entry => new Entry(fromJS(entry))));
   }
   case SELECT_NOMINEE: {
     const { entryId, nominee } = action.payload;

@@ -15,4 +15,8 @@ export const groupEntriesSelector = createSelector(
 );
 
 export const currentEntrySelector = (state, props) =>
-  state.entries.get(props.routeParams.id) || new Entry()
+  props.entry && props.entry.id ?
+    state.entries.get(props.entry.id) || new Entry() :
+      props.routeParams ?
+      state.entries.get(props.routeParams.id) || new Entry() :
+        new Entry();

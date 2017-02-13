@@ -45,9 +45,5 @@
 }
 
 .Nominee--answer {
-  filter: contrast(100%) saturate(100%);
-}
-
-.Nominee--not-selected.Nominee--answer {
   filter: contrast(150%) brightness(80%) sepia(100%);
 }

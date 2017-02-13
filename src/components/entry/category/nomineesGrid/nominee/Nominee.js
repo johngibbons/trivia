@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './Nominee.css';
 import { Record } from 'immutable';
 import { selectNominee } from '../../../../../actions/entry-actions';
-import { selectCorrectNominee } from '../../../../../actions/game-actions';
+import { selectCorrectNominee } from '../../../../../actions/category-actions';
 
 const Nominee = ({
   router,
@@ -24,14 +24,12 @@ const Nominee = ({
     { 'Nominee--wrong-selection': !notSelected && !answer }
   );
 
-  const green = 'linear-gradient(rgba(15, 185, 15, 0.5), rgba(15, 185, 15, 0.5)),';
   const red = 'linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)),';
-  const gold = 'linear-gradient(rgba(183, 162, 97, 0.5), rgba(183, 162, 97, 0.5)),';
+  const gold = 'linear-gradient(rgba(183, 162, 97, 0.5), rgba(183, 162, 97, 0.7)),';
 
   const backgroundImage = classNames(
-    {[green]: !notSelected && answer },
     {[red]: correctId && !notSelected && !answer },
-    {[gold]: notSelected && answer },
+    {[gold]: answer },
     `url(${nominee.imageUrl})`
   )
 
@@ -65,8 +63,8 @@ Nominee.propTypes = {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onClickNominee: props.nominee.game === props.router.params.id ?
-    (gameId, nominee) => dispatch(selectCorrectNominee(gameId, nominee)) :
-    (entryId, nominee) => dispatch(selectNominee(entryId, nominee))
+      (_, nominee) => dispatch(selectCorrectNominee(nominee)) :
+        (entryId, nominee) => dispatch(selectNominee(entryId, nominee))
   }
 }
 

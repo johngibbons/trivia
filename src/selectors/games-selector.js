@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import Game from '../models/Game';
-import { currentEntrySelector } from '../selectors/entries-selector';
+import { currentEntrySelector } from './entries-selector';
 
 export const gamesSelector = state => state.games;
 

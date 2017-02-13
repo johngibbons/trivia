@@ -3,9 +3,9 @@
 }
 
 .Category--correct {
-  background-color: #E8F5E9 !important;
+  background-color: rgba(183, 162, 97, 0.3) !important;
 }
 
 .Category--incorrect {
-  background-color: #FFEBEE !important;
+  background-color: rgba(244, 67, 54, 0.3) !important;
 }

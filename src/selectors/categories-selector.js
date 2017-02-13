@@ -4,6 +4,7 @@ import {
   currentGameSelector,
   entryGameSelector
 } from './games-selector.js'
+import { currentEntrySelector } from './entries-selector';
 
 export const givenCategorySelector = (state, props) => props.category
 
@@ -15,7 +16,8 @@ export const currentCategorySelector = (state, props) =>
 export const currentCategoriesSelector = createSelector(
   currentGameSelector,
   categoriesSelector,
-  (game, categories) => game && game.categories.keySeq().map(id => categories.get(id))
+  (game, categories) => game &&
+    game.categories.keySeq().map(id => categories.get(id))
 )
 
 export const entryCategoriesSelector = createSelector(
@@ -23,4 +25,14 @@ export const entryCategoriesSelector = createSelector(
   categoriesSelector,
   (game, categories) => game &&
     game.categories.keySeq().map(id => categories.get(id) || new Category())
+)
+
+export const entryScoreSelector = createSelector(
+  entryCategoriesSelector,
+  currentEntrySelector,
+  (categories, entry) => categories.reduce((acc, category) =>
+      category.correctAnswer === entry.selections.get(category.id) ?
+        acc + category.value :
+        acc
+      , 0)
 )

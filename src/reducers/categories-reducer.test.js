@@ -2,10 +2,8 @@ import {
   savePendingCategory
 } from '../actions/pending-game-actions';
 import {
+  setCategories,
   selectCorrectNominee
-} from '../actions/game-actions';
-import {
-  setCategories
 } from '../actions/category-actions';
 import Category from '../models/Category';
 import Nominee from '../models/Nominee';
@@ -35,16 +33,16 @@ describe('categories reducer', () => {
 
   it('should set retrieved categories', () => {
     const newCategories = {
-      1: {
-        id: 1,
+      category1: {
+        id: 'category1',
         name: 'category 1',
         nominees: {
           nominee1: true,
           nominee2: true
         }
       },
-      2: {
-        id: 2,
+      category2: {
+        id: 'category2',
         name: 'category 2',
         nominees: {
           nominee3: true,
@@ -53,42 +51,39 @@ describe('categories reducer', () => {
       }
     }
     const existingCategories = {
-      2: {
-        id: 2,
+      category2: {
+        id: 'category2',
         name: 'an old name'
       },
-      3: {
-        id: 3,
+      category3: {
+        id: 'category3',
         name: 'different category'
       }
     }
     const initialState = new Map()
-      .set('2', new Category({
-        ...existingCategories[2],
-        nominees: new Map(existingCategories[2].nominees)
+      .set('category2', new Category({
+        ...existingCategories['category2'],
+        nominees: new Map(existingCategories['category2'].nominees)
       }))
-      .set('3', new Category({
-        ...existingCategories[3],
-        nominees: new Map(existingCategories[3].nominees)
+      .set('category3', new Category({
+        ...existingCategories['category3'],
+        nominees: new Map(existingCategories['category3'].nominees)
       }))
     const action = setCategories(newCategories)
     const expectedResult = new Map()
-      .set(1, new Category({
-        ...newCategories[1],
-        nominees: new Map(newCategories[1].nominees)
+      .set('category1', new Category({
+        ...newCategories['category1'],
+        nominees: new Map(newCategories['category1'].nominees)
       }))
-      .set(2, new Category({
-        ...newCategories[2],
-        nominees: new Map(newCategories[2].nominees)
+      .set('category2', new Category({
+        ...newCategories['category2'],
+        nominees: new Map(newCategories['category2'].nominees)
       }))
-      .set(3, new Category({
-        ...existingCategories[3],
-        nominees: new Map(existingCategories[3].nominees)
+      .set('category3', new Category({
+        ...existingCategories['category3'],
+        nominees: new Map(existingCategories['category3'].nominees)
       }))
 
-    console.log(reducer(initialState, action))
-    const nominees = reducer(initialState, action).last().nominees;
-    expect(reducer(initialState, action)).toEqual(expectedResult)
     expect(is(reducer(initialState, action), expectedResult)).toEqual(true)
   })
 

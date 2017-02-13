@@ -1,23 +1,30 @@
-import { eventChannel } from 'redux-saga';
-import { call, put, take, takeLatest, fork, select } from 'redux-saga/effects';
+import { call, put, takeLatest, fork, select } from 'redux-saga/effects';
 import {
   CREATE_GROUP,
   FETCH_GROUP
 } from '../actions/action-types';
 import {
-  updateCategory
-} from '../actions/game-actions';
-import {
   createGroupSuccess,
   setGroup
 } from '../actions/group-actions';
 import {
-  setEntry
+  setEntry,
+  setEntries
 } from '../actions/entry-actions';
 import { database } from 'firebase';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
+import {
+  fetchGameAndDependents,
+  syncCategories
+} from './gameSaga';
+import {
+  get,
+  sync,
+  CHILD_CHANGED,
+  CHILD_ADDED
+} from './firebase-saga';
 
 export function* createGroup(action) {
   try {
@@ -35,31 +42,31 @@ export function* watchCreateGroup() {
   yield fork(takeLatest, CREATE_GROUP, createGroup)
 }
 
-export function subscribe(database, groupId) {
-  return eventChannel(emit => {
-    database().ref().off()
-    database().ref(`/groups/${groupId}`).on('value', snapshot => {
-      const gameId = snapshot.val().game;
-      emit(setGroup(groupId, snapshot.val()));
-      database().ref(`/games/${gameId}/categories`).on('child_changed', data => {
-        emit(updateCategory(gameId, data.key, data.val()))
-      })
-      database().ref(`/groups/${groupId}/entries`).on('child_added', data => {
-        database().ref(`/entries/${data.key}`).on('value', snapshot => {
-          emit(setEntry(snapshot.val()));
-        })
-      })
-    })
-    return () => {};
+export function* fetchGroup(action) {
+  const { id } = action.payload;
+  try {
+    const group = yield call(get, 'groups', id)
+    yield put(setGroup(id, group));
+    const ref = database().ref('entries').orderByChild('group').equalTo(id)
+    const entries = yield call([ref, ref.once], 'value');
+    yield put(setEntries(entries.val()))
+    yield call(fetchGameAndDependents, group.game)
+    yield call(syncGroup, null)
+  } catch(errors) {
+    console.log(errors)
+  }
+}
+
+export function* syncEntries() {
+  yield fork(sync, 'entries', {
+    [CHILD_ADDED]: setEntry,
+    [CHILD_CHANGED]: setEntry
   })
 }
 
-export function* fetchGroup(action) {
-  const channel = yield call(subscribe, database, action.payload.id);
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
-  }
+export function* syncGroup() {
+  yield call(syncCategories, null);
+  yield call(syncEntries, null);
 }
 
 export function* watchFetchGroup() {

@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react'
-import { connect } from 'react-redux';
 import './EntriesTable.css'
 import { Seq } from 'immutable';
-import { push } from 'react-router-redux';
+
+import EntryRow from './entryRow/EntryRow';
 
 
 const EntriesTable = ({
-  entries,
-  onClickEntry
+  entries
 }) => {
   return (
     <div className={'EntriesTable'}>
@@ -21,20 +20,18 @@ const EntriesTable = ({
             <th className={'EntriesTable--headerCol'}>
               Name
             </th>
+            <th className={'EntriesTable--headerCol'}>
+              Score
+            </th>
           </tr>
         </thead>
         <tbody>
-        {entries.map(entry => {
+        {entries.map((entry, i) => {
           return (
-            <tr
-              key={entry.id}
-              className={'EntriesTable--row'}
-              onClick={() => onClickEntry(`/entries/${entry.id}`)}
-            >
-              <td
-                className={'EntriesTable--col'}
-              >{entry.name}</td>
-            </tr>
+            <EntryRow
+              key={entry.id || i}
+              entry={entry}
+            />
           )
         })}
         </tbody>
@@ -45,9 +42,6 @@ const EntriesTable = ({
 
 EntriesTable.propTypes = {
   entries: PropTypes.instanceOf(Seq),
-  onClickEntry: PropTypes.func.isRequired
 }
 
-export default connect(null, {
-  onClickEntry: push
-})(EntriesTable)
+export default EntriesTable;

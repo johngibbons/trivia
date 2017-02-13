@@ -3,6 +3,7 @@ import {
   UPDATE_ENTRY,
   FETCH_ENTRY,
   SET_ENTRY,
+  SET_ENTRIES,
   SELECT_NOMINEE,
   SELECT_NOMINEE_SUCCESS
 } from './action-types';
@@ -33,6 +34,15 @@ export function setEntry(entry) {
     type: SET_ENTRY,
     payload: {
       entry
+    }
+  }
+}
+
+export function setEntries(entries) {
+  return {
+    type: SET_ENTRIES,
+    payload: {
+      entries
     }
   }
 }
