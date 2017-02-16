@@ -23,16 +23,20 @@ export const currentCategoriesSelector = createSelector(
 export const entryCategoriesSelector = createSelector(
   entryGameSelector,
   categoriesSelector,
-  (game, categories) => game &&
-    game.categories.keySeq().map(id => categories.get(id) || new Category())
+  (game, categories) => {
+    return game && game.categories.keySeq()
+      .map(id => categories.get(id) || new Category())
+  }
 )
 
 export const entryScoreSelector = createSelector(
   entryCategoriesSelector,
   currentEntrySelector,
-  (categories, entry) => categories.reduce((acc, category) =>
+  (categories, entry) => {
+    return categories.reduce((acc, category) =>
       category.correctAnswer === entry.selections.get(category.id) ?
         acc + category.value :
         acc
       , 0)
+  }
 )

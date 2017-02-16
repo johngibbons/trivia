@@ -14,9 +14,12 @@ export const groupEntriesSelector = createSelector(
       new Seq()
 );
 
-export const currentEntrySelector = (state, props) =>
-  props.entry && props.entry.id ?
-    state.entries.get(props.entry.id) || new Entry() :
-      props.routeParams ?
-      state.entries.get(props.routeParams.id) || new Entry() :
-        new Entry();
+export const currentEntrySelector = (state, props) => {
+  if (props.entry && props.entry.id) {
+    return state.entries.get(props.entry.id) || new Entry();
+  } else if (props.routeParams) {
+    return state.entries.get(props.routeParams.id) || new Entry();
+  } else {
+    return new Entry();
+  }
+}

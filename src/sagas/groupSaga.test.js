@@ -10,7 +10,6 @@ import * as actions from '../actions/group-actions';
 import {
   watchCreateGroup,
   createGroup,
-  subscribe,
   watchFetchGroup,
   fetchGroup
 } from './groupSaga';
@@ -18,7 +17,7 @@ import {
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
-import { database } from 'firebase';
+import { get } from './firebase-saga';
 
 describe('group saga', () => {
   it('watches for create group action', () => {
@@ -48,16 +47,5 @@ describe('group saga', () => {
     const generator = watchFetchGroup();
     expect(generator.next().value)
       .toEqual(fork(takeLatest, FETCH_GROUP, fetchGroup))
-  })
-
-  it('should fetch group and set up firebase listeners', () => {
-    const groupId = 1;
-    const action = actions.fetchGroup(groupId);
-    const generator = fetchGroup(action);
-
-    expect(generator.next().value).toEqual(call(subscribe, database, groupId))
-    expect(generator.next('CHANNEL').value).toEqual(take('CHANNEL'))
-    const emitAction = { type: 'UPDATE_GAME' };
-    expect(generator.next(emitAction).value).toEqual(put(emitAction))
   })
 })

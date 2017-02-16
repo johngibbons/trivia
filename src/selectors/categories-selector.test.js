@@ -39,6 +39,7 @@ describe('categories selector', () => {
   it('should return entry score', () => {
     const entry = new Entry({
       id: 'entry1',
+      game: 'game1',
       selections: new Map({
         category1: 'nominee1',
         category2: 'nominee2',
@@ -46,27 +47,77 @@ describe('categories selector', () => {
       })
     });
 
-    const categories = new Map({
-      category1: new Category({
+    const categories = new Map()
+      .set('category1', new Category({
+        id: 'category1',
         value: 1,
         correctAnswer: 'nominee1'
-      }),
-      category2: new Category({
+      }))
+      .set('category2', new Category({
+        id: 'category2',
         value: 2,
         correctAnswer: 'nominee2'
-      }),
-      category3: new Category({
+      }))
+      .set('category3', new Category({
+        id: 'category3',
         value: 5,
         correctAnswer: 'nominee3'
-      })
+      }))
+
+    const game = new Game({
+      id: 'game1',
+      categories
     })
 
     const state = {
       ...store.getState(),
       entries: new Map().set('entry1', entry),
-      categories
+      categories,
+      games: new Map().set('game1', game)
     }
     const props = { routeParams: { id: 'entry1' } }
     expect(entryScoreSelector(state, props)).toEqual(3)
+  })
+
+  it('should select category from props', () => {
+    const props = {
+      category: new Category({
+        id: 'category1'
+      })
+    }
+    expect(givenCategorySelector(undefined, props)).toEqual(props.category)
+  })
+
+  it('should select current category', () => {
+    const categories = new Map()
+      .set('category1', new Category({id: 'category1'}))
+      .set('category2', new Category({id: 'category2'}))
+    const state = {
+      ...store.getState(),
+      categories
+    };
+    const props = { category: { id: 'category1' } };
+
+    expect(currentCategorySelector(state, props))
+      .toEqual(categories.get('category1'))
+  })
+
+  it('should get game categories', () => {
+    const gameCategories = new Map()
+      .set('category1', new Category({id: 'category1'}))
+      .set('category2', new Category({id: 'category2'}));
+    const game = new Game({
+      id: 'game1',
+      categories: gameCategories
+    });
+    const state = {
+      ...store.getState(),
+      games: new Map().set('game1', game),
+      categories: gameCategories
+        .set('category3', new Category({id: 'category3'}))
+    };
+    const props = { routeParams: { id: 'game1' } };
+    expect(currentCategoriesSelector(state, props))
+      .toEqual(gameCategories.keySeq().map(id => state.categories.get(id)))
   })
 })
