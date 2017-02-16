@@ -2,10 +2,12 @@ import { createSelector } from 'reselect';
 import { currentGroupSelector } from './group-selector';
 import { Seq } from 'immutable';
 import Entry from '../models/Entry';
+import Game from '../models/Game';
 
 export const entriesSelector = state => state.entries;
 const categoriesSelector = state => state.categories;
 const gamesSelector = state => state.games;
+const currentUserSelector = state => state.currentUser;
 
 const entryScore = (entry, categories, games) => {
   const game = games.get(entry.game)
@@ -50,3 +52,23 @@ export const currentEntrySelector = (state, props) => {
     return new Entry();
   }
 }
+
+const gameStarted = (categoriesSet, categories) => {
+  return categoriesSet.reduce((acc, _, key) => {
+    const category = categories.get(key);
+    return acc || !!(category && category.correctAnswer);
+  }, false)
+}
+
+export const entryVisibleSelector = createSelector(
+  gamesSelector,
+  categoriesSelector,
+  currentEntrySelector,
+  currentUserSelector,
+  (games, categories, entry, currentUser) => {
+    if (currentUser.id && currentUser.id === entry.user) return true;
+    const game = games.get(entry.game) || new Game();
+    const gameCategories = game.categories;
+    return gameStarted(gameCategories, categories);
+  }
+)

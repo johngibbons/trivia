@@ -3,7 +3,10 @@ import './Entry.css'
 import EntryModel from '../../models/Entry';
 import Game from '../../models/Game';
 import { connect } from 'react-redux';
-import { currentEntrySelector } from '../../selectors/entries-selector';
+import {
+  currentEntrySelector,
+  entryVisibleSelector
+} from '../../selectors/entries-selector';
 import { entryGameSelector } from '../../selectors/games-selector';
 import { entryCategoriesSelector } from '../../selectors/categories-selector';
 import { entryScoreSelector } from '../../selectors/categories-selector';
@@ -16,7 +19,8 @@ const Entry = ({
   entry,
   game,
   categories,
-  score
+  score,
+  isVisible
 }) => {
   return (
     <div>
@@ -24,7 +28,7 @@ const Entry = ({
         text={entry.name}
       >{game.name}</PageHeading>
       <h3>{score}</h3>
-      {categories.map((category, i) => {
+      {isVisible ? categories.map((category, i) => {
         return (
           <Category
             key={i}
@@ -32,7 +36,9 @@ const Entry = ({
             entry={entry}
           />
         )
-      })}
+      }) :
+        <h5>Entry not visible until game starts</h5>
+      }
     </div>
   )
 }
@@ -41,7 +47,8 @@ Entry.propTypes = {
   entry: PropTypes.instanceOf(EntryModel),
   game: PropTypes.instanceOf(Game),
   categories: PropTypes.instanceOf(Seq),
-  score: PropTypes.number
+  score: PropTypes.number,
+  isVisible: PropTypes.bool
 }
 
 const mapStateToProps = (state, props) => {
@@ -49,7 +56,8 @@ const mapStateToProps = (state, props) => {
     entry: currentEntrySelector(state, props),
     game: entryGameSelector(state, props),
     categories: entryCategoriesSelector(state, props),
-    score: entryScoreSelector(state, props)
+    score: entryScoreSelector(state, props),
+    isVisible: entryVisibleSelector(state, props)
   }
 }
 

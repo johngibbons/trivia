@@ -22,9 +22,13 @@ export const gameStartedSelector = createSelector(
   (games, categories, nominee) => {
     const game = games.get(nominee.game) || new Game();
     const gameCategories = game.categories;
-    return gameCategories.reduce((acc, _, key) => {
-      const category = categories.get(key);
-      return acc || !!(category && category.correctAnswer);
-    }, false)
+    return gameStarted(gameCategories, categories);
   }
 )
+
+const gameStarted = (categoriesSet, categories) => {
+  return categoriesSet.reduce((acc, _, key) => {
+    const category = categories.get(key);
+    return acc || !!(category && category.correctAnswer);
+  }, false)
+}

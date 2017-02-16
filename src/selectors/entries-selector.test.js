@@ -1,12 +1,14 @@
 import {
   entriesSelector,
   groupEntriesSelector,
-  currentEntrySelector
+  currentEntrySelector,
+  entryVisibleSelector
 } from './entries-selector';
 import { Map, Seq } from 'immutable';
 import Entry from '../models/Entry';
 import Group from '../models/Group';
 import Category from '../models/Category';
+import User from '../models/User';
 import Game from '../models/Game';
 import store from '../store';
 import { is, fromJS } from 'immutable';
@@ -143,5 +145,97 @@ describe('entries selector', () => {
     }
     const props = { routeParams: { id: 1 } }
     expect(currentEntrySelector(state, props)).toEqual(new Entry())
+  })
+
+  describe('entryVisibleSelector', () => {
+    const games = new Map()
+      .set('game1', new Game({
+        id: 'game1',
+        categories: fromJS({
+          'category1': true,
+          'category2': true
+        })
+      }))
+
+    const entries = new Map()
+      .set('entry1', new Entry({
+        id: 'entry1',
+        game: 'game1'
+      }))
+
+    const props = {
+      entry: entries.get('entry1')
+    }
+
+    it('should return false if game not started', () => {
+      const games = new Map()
+        .set('game1', new Game({
+          id: 'game1',
+          categories: fromJS({
+            'category1': true,
+            'category2': true
+          })
+        }))
+
+      const categories = new Map()
+        .set('category1', new Category({ id: 'category1' }))
+        .set('category2', new Category({ id: 'category2' }))
+      const entries = new Map()
+        .set('entry1', new Entry({
+          id: 'entry1',
+          game: 'game1'
+        }))
+
+      const state = {
+        ...store.getState(),
+        games,
+        categories,
+        entries
+      };
+      const props = {
+        entry: entries.get('entry1')
+      }
+
+      expect(entryVisibleSelector(state, props)).toEqual(false)
+    })
+
+    it('should return true if owner', () => {
+      const currentUser = new User({id: 'user1'})
+
+      const entries = new Map()
+        .set('entry1', new Entry({
+          id: 'entry1',
+          user: currentUser.id,
+          game: 'game1'
+        }))
+
+      const state = {
+        ...store.getState(),
+        currentUser,
+        entries
+      };
+      const props = {
+        entry: entries.get('entry1')
+      }
+
+      expect(entryVisibleSelector(state, props)).toEqual(true)
+    })
+
+    it('should return true if game started', () => {
+      const categories = new Map()
+        .set('category1', new Category({
+          id: 'category1',
+          correctAnswer: 'nominee1'
+        }))
+        .set('category2', new Category({ id: 'category2' }))
+      const state = {
+        ...store.getState(),
+        games,
+        categories,
+        entries
+      };
+
+      expect(entryVisibleSelector(state, props)).toEqual(true)
+    })
   })
 })
