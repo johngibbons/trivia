@@ -10,16 +10,17 @@ import { selectCorrectNominee } from '../../../../../actions/category-actions';
 const Nominee = ({
   router,
   nominee,
-  notSelected,
+  selectedNomineeId,
   correctId,
   onClickNominee
 }) => {
 
   const answer = correctId === nominee.id;
+  const notSelected = !selectedNomineeId || selectedNomineeId !== nominee.id;
 
   const nomineeClasses = classNames(
     'Nominee',
-    { 'Nominee--not-selected': notSelected },
+    { 'Nominee--not-selected': selectedNomineeId && notSelected || correctId },
     { 'Nominee--answer': answer },
     { 'Nominee--wrong-selection': !notSelected && !answer }
   );
@@ -55,8 +56,8 @@ const Nominee = ({
 Nominee.propTypes = {
   router: PropTypes.object,
   nominee: PropTypes.instanceOf(Record),
-  notSelected: PropTypes.bool.isRequired,
-  correctId: PropTypes.bool.isRequired,
+  selectedNomineeId: PropTypes.string,
+  correctId: PropTypes.string,
   onClickNominee: PropTypes.func.isRequired
 };
 

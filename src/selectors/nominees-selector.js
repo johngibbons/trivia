@@ -9,6 +9,8 @@ export const currentNomineesSelector = createSelector(
   givenCategorySelector,
   nomineesSelector,
   (category, nominees) => {
-    return category.id ? category.nominees.keySeq().map(id => nominees.get(id) || new Nominee()) : new Seq()
+    return category.id ?
+      category.nominees.keySeq().map(id => nominees.get(id) || new Nominee()) :
+      new Seq()
   }
 );

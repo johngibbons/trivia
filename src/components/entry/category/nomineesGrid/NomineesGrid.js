@@ -15,12 +15,12 @@ const NomineesGrid = ({
       <div
         className='NomineesGrid--list'
       >
-      {nominees.map(nominee => {
+      {nominees.map((nominee, i) => {
         return (
           <Nominee
-            key={nominee.id}
+            key={nominee.id || i}
             nominee={nominee}
-            notSelected={selectedNomineeId && selectedNomineeId !== nominee.id}
+            selectedNomineeId={selectedNomineeId}
             correctId={correctNomineeId}
           />
         )

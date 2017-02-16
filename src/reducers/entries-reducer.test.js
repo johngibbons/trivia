@@ -1,5 +1,6 @@
 import {
   setEntry,
+  setEntries,
   selectNominee
 } from '../actions/entry-actions';
 import { Map } from 'immutable';
@@ -39,5 +40,34 @@ describe('entries reducer', () => {
         selections: new Map().set('category1', 'nominee1')
       }))
     expect(reducer(undefined, action)).toEqual(expectedResult)
+  })
+
+  it('should set entries', () => {
+    const entries = {
+      'entry1': {
+        id: 'entry1',
+        name: 'some entry'
+      },
+      'entry2': {
+        id: 'entry2',
+        name: 'some other entry'
+      }
+    }
+    const action = setEntries(entries);
+    expect(reducer(undefined, action)).toEqual(new Map()
+      .set('entry1', new Entry({
+        id: 'entry1',
+        name: 'some entry'
+      }))
+      .set('entry2', new Entry({
+        id: 'entry2',
+        name: 'some other entry'
+      }))
+    )
+  })
+
+  it('should handle set entries null', () => {
+    const action = setEntries(null);
+    expect(reducer(undefined, action)).toEqual(new Map())
   })
 })

@@ -6,8 +6,10 @@ import {
 import { Map, Seq } from 'immutable';
 import Entry from '../models/Entry';
 import Group from '../models/Group';
+import Category from '../models/Category';
+import Game from '../models/Game';
 import store from '../store';
-import { is } from 'immutable';
+import { is, fromJS } from 'immutable';
 
 describe('entries selector', () => {
   it('should select all entries', () => {
@@ -25,21 +27,56 @@ describe('entries selector', () => {
     expect(entriesSelector(state)).toEqual(entries);
   })
 
-  it('should select the entries from a group', () => {
+  it('should select the entries from a group ordered by score', () => {
+    const games = new Map()
+      .set('game1', new Game({
+        id: 'game1',
+        categories: new Map()
+          .set('category1', true)
+          .set('category2', true)
+      }))
+    const categories = new Map()
+      .set('category1', new Category({
+        id: 'category1',
+        correctAnswer: 'nominee1',
+        value: 2
+      }))
+      .set('category2', new Category({
+        id: 'category2',
+        correctAnswer: 'nominee2',
+        value: 1
+      }))
     const groupEntries = new Map()
-      .set(1, new Entry({ name: 'Entry 1' }))
-      .set(2, new Entry({ name: 'Entry 2' }))
+      .set('entry1', new Entry({
+        id: 'entry1',
+        game: 'game1',
+        name: 'Entry 1',
+        selections: fromJS({
+          'category2': 'nominee2'
+        })
+      }))
+      .set('entry2', new Entry({
+        id: 'entry2',
+        game: 'game1',
+        name: 'Entry 2',
+        selections: fromJS({
+          'category1': 'nominee1',
+          'category2': 'nominee2'
+        })
+      }))
     const group = new Group({
       name: 'My Group',
-      entries: new Map().set(1, true).set(2, true)
+      entries: fromJS({entry1: true, entry2: true})
     })
     const state = {
       ...store.getState(),
       entries: groupEntries.set(3, new Entry({ name: 'Not in group' })),
-      groups: new Map().set(1, group)
+      groups: new Map().set(1, group),
+      categories,
+      games
     }
     const props = { routeParams: { id: 1 } }
-    const expectedResult = groupEntries.toIndexedSeq()
+    const expectedResult = groupEntries.toIndexedSeq().reverse()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(2)
     expect(state.entries.size).toEqual(3)

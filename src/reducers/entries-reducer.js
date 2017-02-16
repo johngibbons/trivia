@@ -14,7 +14,9 @@ const entries = (state = Map(), action) => {
   }
   case SET_ENTRIES: {
     const entries = fromJS(action.payload.entries);
-    return state.mergeDeep(entries.map(entry => new Entry(fromJS(entry))));
+    return entries ?
+      state.mergeDeep(entries.map(entry => new Entry(fromJS(entry)))) :
+      state;
   }
   case SELECT_NOMINEE: {
     const { entryId, nominee } = action.payload;

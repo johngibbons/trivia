@@ -36,17 +36,7 @@ describe('categories selector', () => {
     expect(is(entryCategoriesSelector(state, props), expectedResult)).toEqual(true)
   })
 
-  it('should return entry score', () => {
-    const entry = new Entry({
-      id: 'entry1',
-      game: 'game1',
-      selections: new Map({
-        category1: 'nominee1',
-        category2: 'nominee2',
-        category3: 'nominee5',
-      })
-    });
-
+  describe('entryScoreSelector', () => {
     const categories = new Map()
       .set('category1', new Category({
         id: 'category1',
@@ -63,20 +53,55 @@ describe('categories selector', () => {
         value: 5,
         correctAnswer: 'nominee3'
       }))
+      .set('category4', new Category({
+        id: 'category4',
+        value: 4
+      }))
 
     const game = new Game({
       id: 'game1',
       categories
     })
 
-    const state = {
-      ...store.getState(),
-      entries: new Map().set('entry1', entry),
-      categories,
-      games: new Map().set('game1', game)
-    }
     const props = { routeParams: { id: 'entry1' } }
-    expect(entryScoreSelector(state, props)).toEqual(3)
+
+    it('should return entry score', () => {
+      const entry = new Entry({
+        id: 'entry1',
+        game: 'game1',
+        selections: new Map({
+          category1: 'nominee1',
+          category2: 'nominee2',
+          category3: 'nominee5',
+        })
+      });
+
+      const state = {
+        ...store.getState(),
+        entries: new Map().set('entry1', entry),
+        categories,
+        games: new Map().set('game1', game)
+      }
+
+      expect(entryScoreSelector(state, props)).toEqual(3)
+    })
+
+    it('should return 0 when no selections', () => {
+      const entry = new Entry({
+        id: 'entry1',
+        game: 'game1',
+        selections: new Map()
+      });
+
+      const state = {
+        ...store.getState(),
+        entries: new Map().set('entry1', entry),
+        categories,
+        games: new Map().set('game1', game)
+      }
+
+      expect(entryScoreSelector(state, props)).toEqual(0)
+    })
   })
 
   it('should select category from props', () => {

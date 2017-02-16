@@ -34,6 +34,7 @@ export const entryScoreSelector = createSelector(
   currentEntrySelector,
   (categories, entry) => {
     return categories.reduce((acc, category) =>
+      category.correctAnswer &&
       category.correctAnswer === entry.selections.get(category.id) ?
         acc + category.value :
         acc
