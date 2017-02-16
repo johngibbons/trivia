@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import {
   CREATE_GAME,
   FETCH_GAME,
-  SELECT_CORRECT_NOMINEE
+  TOGGLE_CORRECT_NOMINEE
 } from '../actions/action-types';
 import {
   createGameSuccess,
@@ -14,7 +14,7 @@ import { setNominees } from '../actions/nominee-actions';
 import API from '../api';
 import { push } from 'react-router-redux';
 import { database } from 'firebase';
-import { get, sync, CHILD_CHANGED } from './firebase-saga';
+import { get, sync, remove, CHILD_CHANGED } from './firebase-saga';
 
 export function* createGame(action) {
   const newGameId = yield call(API.createGameId, null)
@@ -60,19 +60,25 @@ export function* watchFetchGame() {
   yield fork(takeLatest, FETCH_GAME, fetchGame)
 }
 
-export function* selectCorrectNominee(action) {
+export function* toggleCorrectNominee(action) {
+  const { nominee } = action.payload;
   try {
-    yield call(
-      API.selectCorrectNominee,
-      action.payload.nominee
-    );
+    const currentId = yield call(get, `categories/${nominee.category}`, 'correctAnswer')
+    if(nominee.id === currentId) {
+      yield call(remove, `/categories/${nominee.category}`, 'correctAnswer')
+    } else {
+      yield call(
+        API.selectCorrectNominee,
+        nominee
+      );
+    }
   } catch(errors) {
     console.log(errors)
   }
 }
 
 export function* watchSelectCorrectNominee() {
-  yield fork(takeLatest, SELECT_CORRECT_NOMINEE, selectCorrectNominee)
+  yield fork(takeLatest, TOGGLE_CORRECT_NOMINEE, toggleCorrectNominee)
 }
 
 export function* syncCategories() {

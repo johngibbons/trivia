@@ -1,7 +1,7 @@
 import {
   SET_CATEGORIES,
   SET_CATEGORY,
-  SELECT_CORRECT_NOMINEE
+  TOGGLE_CORRECT_NOMINEE
 } from './action-types';
 
 export function setCategories(categories) {
@@ -18,9 +18,9 @@ export function setCategory({ value }) {
   }
 }
 
-export function selectCorrectNominee(nominee) {
+export function toggleCorrectNominee(nominee) {
   return {
-    type: SELECT_CORRECT_NOMINEE,
+    type: TOGGLE_CORRECT_NOMINEE,
     payload: { nominee }
   }
 }

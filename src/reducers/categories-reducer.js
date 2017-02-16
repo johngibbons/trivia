@@ -2,7 +2,7 @@ import {
   SAVE_PENDING_CATEGORY,
   SET_CATEGORIES,
   SET_CATEGORY,
-  SELECT_CORRECT_NOMINEE
+  TOGGLE_CORRECT_NOMINEE
 } from '../actions/action-types'
 import { Map, fromJS } from 'immutable';
 import Category from '../models/Category';
@@ -38,9 +38,13 @@ const categories = (state = new Map(), action) => {
       nominees: new Map(category.nominees)
     }));
   }
-  case SELECT_CORRECT_NOMINEE: {
+  case TOGGLE_CORRECT_NOMINEE: {
     const { nominee } = action.payload;
-    return state.setIn([nominee.category, 'correctAnswer'], nominee.id)
+    if (state.getIn([nominee.category, 'correctAnswer']) === nominee.id) {
+      return state.deleteIn([nominee.category, 'correctAnswer'])
+    } else {
+      return state.setIn([nominee.category, 'correctAnswer'], nominee.id)
+    }
   }
   default:
     return state;

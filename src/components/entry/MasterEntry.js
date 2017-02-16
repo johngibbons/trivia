@@ -9,6 +9,7 @@ import { Seq } from 'immutable';
 
 import PageHeading from '../pageHeading/PageHeading';
 import Category from './category/Category';
+import CategoryModel from '../../models/Category';
 
 const MasterEntry = ({
   game,
@@ -20,12 +21,11 @@ const MasterEntry = ({
         text='Master Entry'
       >{game.name}</PageHeading>
       {categories.map((category, i) => {
-        console.log(category.correctAnswer)
         return (
           <Category
             key={i}
-            category={category}
-            selectedNomineeId={category.correctAnswer}
+            category={category || new CategoryModel()}
+            selectedNomineeId={category && category.correctAnswer}
           />
         )
       })}

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './Nominee.css';
 import { Record } from 'immutable';
 import { selectNominee } from '../../../../../actions/entry-actions';
-import { selectCorrectNominee } from '../../../../../actions/category-actions';
+import { toggleCorrectNominee } from '../../../../../actions/category-actions';
 
 const Nominee = ({
   router,
@@ -20,7 +20,7 @@ const Nominee = ({
 
   const nomineeClasses = classNames(
     'Nominee',
-    { 'Nominee--not-selected': selectedNomineeId && notSelected || correctId },
+    { 'Nominee--not-selected': (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId) },
     { 'Nominee--answer': answer },
     { 'Nominee--wrong-selection': !notSelected && !answer }
   );
@@ -64,7 +64,7 @@ Nominee.propTypes = {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onClickNominee: props.nominee.game === props.router.params.id ?
-      (_, nominee) => dispatch(selectCorrectNominee(nominee)) :
+      (_, nominee) => dispatch(toggleCorrectNominee(nominee)) :
         (entryId, nominee) => dispatch(selectNominee(entryId, nominee))
   }
 }
