@@ -1,5 +1,6 @@
 .Category {
   margin-bottom: 32px;
+  transition: all 1s ease !important;
 }
 
 .Category--correct {

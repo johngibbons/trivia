@@ -6,12 +6,15 @@ import './Nominee.css';
 import { Record } from 'immutable';
 import { selectNominee } from '../../../../../actions/entry-actions';
 import { toggleCorrectNominee } from '../../../../../actions/category-actions';
+import { gameStartedSelector } from '../../../../../selectors/games-selector';
 
 const Nominee = ({
   router,
   nominee,
   selectedNomineeId,
   correctId,
+  hasGameStarted,
+  isMaster,
   onClickNominee
 }) => {
 
@@ -40,7 +43,8 @@ const Nominee = ({
       style={{
         backgroundImage
       }}
-      onClick={() => onClickNominee(router.params.id, nominee)}
+      onClick={() => (!hasGameStarted || isMaster) &&
+        onClickNominee(router.params.id, nominee)}
     >
       <div className='Nominee--text-container'>
         <div>
@@ -58,8 +62,17 @@ Nominee.propTypes = {
   nominee: PropTypes.instanceOf(Record),
   selectedNomineeId: PropTypes.string,
   correctId: PropTypes.string,
+  hasGameStarted: PropTypes.bool,
+  isMaster: PropTypes.bool,
   onClickNominee: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state, props) => {
+  return {
+    hasGameStarted: gameStartedSelector(state, props),
+    isMaster: props.nominee.game === props.router.params.id
+  }
+}
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
@@ -69,4 +82,4 @@ const mapDispatchToProps = (dispatch, props) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Nominee));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nominee));

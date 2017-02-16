@@ -3,7 +3,7 @@ import {
 } from '../actions/pending-game-actions';
 import {
   setCategories,
-  selectCorrectNominee
+  toggleCorrectNominee
 } from '../actions/category-actions';
 import Category from '../models/Category';
 import Nominee from '../models/Nominee';
@@ -95,7 +95,7 @@ describe('categories reducer', () => {
     const initialState = new Map()
       .set('category1', new Category())
       .set('category2', new Category())
-    const action = selectCorrectNominee(nominee)
+    const action = toggleCorrectNominee(nominee)
     const expectedResult = new Map()
       .set('category1', new Category({correctAnswer: nominee.id}))
       .set('category2', new Category())
