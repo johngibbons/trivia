@@ -1,7 +1,15 @@
 .PageHeading {
   display: flex;
   align-items: center;
-  padding-bottom: 20px;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  width: 100%;
 }
 
-.PageHeading-text {}
+.PageHeading-text {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 35px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}

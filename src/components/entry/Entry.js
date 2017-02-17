@@ -5,7 +5,8 @@ import Game from '../../models/Game';
 import { connect } from 'react-redux';
 import {
   currentEntrySelector,
-  entryVisibleSelector
+  entryVisibleSelector,
+  entryCompleteSelector
 } from '../../selectors/entries-selector';
 import { entryGameSelector } from '../../selectors/games-selector';
 import { entryCategoriesSelector } from '../../selectors/categories-selector';
@@ -20,14 +21,22 @@ const Entry = ({
   game,
   categories,
   score,
-  isVisible
+  isVisible,
+  isComplete
 }) => {
   return (
     <div>
-      <PageHeading
-        text={entry.name}
-      >{game.name}</PageHeading>
-      <h3>{score}</h3>
+      <h5 className='Entry--game-name'>{game.name}</h5>
+      <div className='Entry--title-container'>
+        <PageHeading
+          text={entry.name}
+        >
+        {isComplete ?
+          <h3 className='Entry--score'>{score} points</h3>
+            :
+          <h3 className='Entry--incomplete'>incomplete</h3>}
+        </PageHeading>
+      </div>
       {isVisible ? categories.map((category, i) => {
         return (
           <Category
@@ -48,7 +57,8 @@ Entry.propTypes = {
   game: PropTypes.instanceOf(Game),
   categories: PropTypes.instanceOf(Seq),
   score: PropTypes.number,
-  isVisible: PropTypes.bool
+  isVisible: PropTypes.bool,
+  isComplete: PropTypes.bool
 }
 
 const mapStateToProps = (state, props) => {
@@ -57,7 +67,8 @@ const mapStateToProps = (state, props) => {
     game: entryGameSelector(state, props),
     categories: entryCategoriesSelector(state, props),
     score: entryScoreSelector(state, props),
-    isVisible: entryVisibleSelector(state, props)
+    isVisible: entryVisibleSelector(state, props),
+    isComplete: entryCompleteSelector(state, props)
   }
 }
 

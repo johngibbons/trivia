@@ -1,0 +1,20 @@
+.Entry--game-name {
+  color: #757575;
+  margin-bottom: 0;
+}
+
+.Entry--title-container {
+  display: flex;
+  align-items: center;
+}
+
+.Entry--score {
+  margin-left: 50px;
+  margin-bottom: 0;
+  margin-top: 0;
+  color: #b7a261;
+}
+
+.Entry--incomplete {
+  color: #D32F2F;
+}

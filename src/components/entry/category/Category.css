@@ -1,6 +1,12 @@
 .Category {
   margin-bottom: 32px;
-  transition: all 1s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.Category--selected {
+  margin-left: -16px;
+  margin-right: -16px;
+  box-shadow: none !important;
 }
 
 .Category--correct {

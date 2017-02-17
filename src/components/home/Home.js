@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
+import { Set } from 'immutable';
 
 import { openModal } from '../../actions/ui-actions';
 
@@ -32,6 +32,7 @@ const Home = ({
         {nominees.map(image => {
           return (
             <div
+              key={image}
               className='Home-nominee-poster'
               style={{
                 backgroundImage: `url(${image})`
@@ -47,7 +48,7 @@ const Home = ({
 }
 
 Home.propTypes = {
-  nominees: PropTypes.instanceOf(Map),
+  nominees: PropTypes.instanceOf(Set),
   onClickNewGroup: PropTypes.func.isRequired
 }
 

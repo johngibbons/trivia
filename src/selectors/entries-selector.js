@@ -72,3 +72,12 @@ export const entryVisibleSelector = createSelector(
     return gameStarted(gameCategories, categories);
   }
 )
+
+export const entryCompleteSelector = createSelector(
+  currentEntrySelector,
+  gamesSelector,
+  (entry, games) => {
+    const game = games.get(entry.game);
+    return entry && game && entry.selections.count() === game.categories.count()
+  }
+)

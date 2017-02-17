@@ -42,7 +42,7 @@
   position: absolute;
   transform: translate3d(0, 0, 0);
   left: 0;
-  animation: slideshow 500s linear infinite;
+  animation: slideshow 900s linear infinite;
 }
 
 @keyframes slideshow {

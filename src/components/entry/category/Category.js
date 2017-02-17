@@ -20,6 +20,7 @@ const Category = ({
   const categoryClasses = classNames(
     'Category',
     {
+      ['Category--selected']: !!selectedNomineeId,
       ['Category--correct']: category.correctAnswer && !incorrect,
       ['Category--incorrect']: incorrect
     }

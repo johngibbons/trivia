@@ -22,8 +22,7 @@ const Group = ({
     <div className='Group'>
       <PageHeading
         text={group.name}
-      >
-      </PageHeading>
+      />
       <RaisedButton
         primary
         label='Create your entry'
