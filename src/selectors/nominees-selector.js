@@ -14,3 +14,11 @@ export const currentNomineesSelector = createSelector(
       new Seq()
   }
 );
+
+export const gameNomineesSelector = createSelector(
+  nomineesSelector,
+  nominees => nominees
+    .filter(nominee => nominee.game === '2017Oscars')
+    .map(nominee => nominee.imageUrl)
+    .toSet()
+)

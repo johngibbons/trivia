@@ -1,27 +1,45 @@
 import React, { PropTypes } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 import { openModal } from '../../actions/ui-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import NewGroupModal from '../group/newGroupModal/NewGroupModal';
+import { gameNomineesSelector } from '../../selectors/nominees-selector';
 
 const Home = ({
+  nominees,
   onClickNewGroup
 }) => {
   return (
     <div className="Home">
       <div className="Home-header">
-        <h2>Welcome to Awards Season</h2>
+        <h5 className='Home-awards-title'>The 2017 Academy Awards</h5>
+        <h1 className='Home-main-title'>Pick the <span className='Home-gold-text'>winners</span>.  Beat your friends.</h1>
         <RaisedButton
           primary
-          label='Create a group'
+          label='Start a group'
           labelStyle={{
-            color: '#212121'
+            color: '#424242'
           }}
           onClick={() => onClickNewGroup('NEW_GROUP')}
         />
+      </div>
+      <div className='Home-movie-carousel'>
+        <div className='Home-movie-images'>
+        {nominees.map(image => {
+          return (
+            <div
+              className='Home-nominee-poster'
+              style={{
+                backgroundImage: `url(${image})`
+              }}
+            />
+          )
+        })}
+        </div>
       </div>
       <NewGroupModal />
     </div>
@@ -29,9 +47,16 @@ const Home = ({
 }
 
 Home.propTypes = {
+  nominees: PropTypes.instanceOf(Map),
   onClickNewGroup: PropTypes.func.isRequired
 }
 
-export default connect(null, {
+const mapStateToProps = state => {
+  return {
+    nominees: gameNomineesSelector(state)
+  }
+}
+
+export default connect(mapStateToProps, {
   onClickNewGroup: openModal
 })(Home);

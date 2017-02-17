@@ -10,7 +10,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#b7a261',
-    textColor: '#212121',
+    textColor: '#424242',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell","Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
   }
 });

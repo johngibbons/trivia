@@ -30,7 +30,10 @@ export default (
     component={PageContainer}
     onEnter={getCurrentUser}
   >
-    <IndexRoute component={Home} />
+    <IndexRoute
+      component={Home}
+      onEnter={() => store.dispatch(fetchGame('2017Oscars'))}
+    />
     <Route
       path='games/:id/edit'
       component={EditGame}

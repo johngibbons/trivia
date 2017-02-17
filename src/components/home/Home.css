@@ -1,26 +1,59 @@
 .Home {
-  text-align: center;
-  margin-left: -20px;
-  margin-right: -20px;
-  margin-top: -20px;
-}
-
-.Home-logo {
-  animation: Home-logo-spin infinite 20s linear;
-  height: 80px;
+  text-align: left;
 }
 
 .Home-header {
-  background-color: #222;
   padding: 20px;
-  color: white;
+  margin-bottom: 50px;
 }
 
-.Home-intro {
-  font-size: large;
+.Home-awards-title {
+  margin-bottom: 0;
+  color: #757575;
 }
 
-@keyframes Home-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Home-main-title {
+  font-size: 45px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: #424242;
+  margin-top: 0;
+}
+
+.Home-sub-title {
+  font-size: 25px;
+  font-weight: 400;
+  color: #212121;
+}
+
+.Home-gold-text {
+  color: #b7a261;
+}
+
+.Home-movie-carousel {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: auto;
+}
+
+.Home-movie-images {
+  display: flex;
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  left: 0;
+  animation: slideshow 500s linear infinite;
+}
+
+@keyframes slideshow {
+  100% { transform: translateX(-100%) }
+}
+
+.Home-nominee-poster {
+  flex: 0 0 auto;
+  height: 350px;
+  margin: 0 5px;
+  width: calc(350px * 2/3);
+  background-size: cover;
+  background-position: center;
 }

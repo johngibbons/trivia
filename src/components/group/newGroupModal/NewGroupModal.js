@@ -32,7 +32,7 @@ const NewGroupModal = ({
           className='NewGroupModal-name'
           value={name}
           floatingLabelText='Name'
-          hintText='What do you want to call your group?'
+          hintText='Name your group'
           onChange={(e, val) => onChange(val)}
         />
         <div>
