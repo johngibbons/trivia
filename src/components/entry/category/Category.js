@@ -33,6 +33,12 @@ const Category = ({
       <CardHeader
         title={category.name}
         subtitle={`${category.value} points`}
+        titleStyle={{
+          fontSize: '18px'
+        }}
+        subtitleStyle={{
+          fontSize: '15px'
+        }}
       />
       <NomineesGrid
         nominees={nominees}

@@ -26,6 +26,17 @@ export const gameStartedSelector = createSelector(
   }
 )
 
+export const entryGameStartedSelector = createSelector(
+  gamesSelector,
+  categoriesSelector,
+  currentEntrySelector,
+  (games, categories, entry) => {
+    const game = games.get(entry.game) || new Game();
+    const gameCategories = game.categories;
+    return gameStarted(gameCategories, categories);
+  }
+)
+
 const gameStarted = (categoriesSet, categories) => {
   return categoriesSet.reduce((acc, _, key) => {
     const category = categories.get(key);

@@ -41,3 +41,11 @@ export const entryScoreSelector = createSelector(
       , 0)
   }
 )
+
+export const entryPossibleScoreSelector = createSelector(
+  entryCategoriesSelector,
+  categories => categories
+    .filter(category => category.correctAnswer)
+    .reduce((acc, category) => acc + category.value, 0)
+
+)

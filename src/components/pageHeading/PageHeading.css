@@ -1,7 +1,11 @@
 .PageHeading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  @media(min-width: 668px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   margin-bottom: 50px;
   width: 100%;
 }

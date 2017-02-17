@@ -9,7 +9,6 @@
 }
 
 .Entry--score {
-  margin-left: 50px;
   margin-bottom: 0;
   margin-top: 0;
   color: #b7a261;
@@ -17,4 +16,17 @@
 
 .Entry--incomplete {
   color: #D32F2F;
+}
+
+.Entry--group-link {
+  font-size: 12px;
+  display: block;
+  color: #b7a261;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateY(-12px);
+}
+
+.Entry--group-link:hover {
+  filter: brightness(75%);
 }

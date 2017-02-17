@@ -2,14 +2,18 @@
   display: flex;
   align-items: flex-end;
   flex: 0 0 auto;
-  height: 55vh;
-  width: calc(55vh * 2/3);
+  height: 60vh;
+  width: calc(60vh * 2/3);
   background-size: cover;
   background-position: center;
   color: white;
   margin: 0 5px;
   cursor: pointer;
   transition: all 1s ease;
+}
+
+.Nominee--unselectable {
+  cursor: default;
 }
 
 .Nominee:first-child {

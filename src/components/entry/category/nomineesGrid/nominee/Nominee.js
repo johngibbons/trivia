@@ -13,7 +13,7 @@ const Nominee = ({
   nominee,
   selectedNomineeId,
   correctId,
-  hasGameStarted,
+  hasStarted,
   isMaster,
   onClickNominee
 }) => {
@@ -23,6 +23,7 @@ const Nominee = ({
 
   const nomineeClasses = classNames(
     'Nominee',
+    { 'Nominee--unselectable': hasStarted && !isMaster },
     { 'Nominee--not-selected': (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId) },
     { 'Nominee--answer': answer },
     { 'Nominee--wrong-selection': !notSelected && !answer }
@@ -43,7 +44,7 @@ const Nominee = ({
       style={{
         backgroundImage
       }}
-      onClick={() => (!hasGameStarted || isMaster) &&
+      onClick={() => (!hasStarted || isMaster) &&
         onClickNominee(router.params.id, nominee)}
     >
       <div className='Nominee--text-container'>
@@ -62,14 +63,14 @@ Nominee.propTypes = {
   nominee: PropTypes.instanceOf(Record),
   selectedNomineeId: PropTypes.string,
   correctId: PropTypes.string,
-  hasGameStarted: PropTypes.bool,
+  hasStarted: PropTypes.bool,
   isMaster: PropTypes.bool,
   onClickNominee: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, props) => {
   return {
-    hasGameStarted: gameStartedSelector(state, props),
+    hasStarted: gameStartedSelector(state, props),
     isMaster: props.nominee.game === props.router.params.id
   }
 }

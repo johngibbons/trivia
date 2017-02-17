@@ -13,7 +13,6 @@ import { fork, put, call, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { get } from './firebase-saga';
 import { fetchGameAndDependents, syncCategories } from './gameSaga';
-import { closeModal } from '../actions/ui-actions';
 
 export function* createEntry(action) {
   try {
@@ -23,7 +22,6 @@ export function* createEntry(action) {
       newEntryId,
       action.payload
     )
-    yield put(push(closeModal()))
     yield put(push(`/entries/${newEntryId}`))
   } catch(errors) {
     console.log(errors)

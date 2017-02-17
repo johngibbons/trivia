@@ -43,6 +43,7 @@ const NewEntryModal = ({
             disabled={!name}
             onClick={(e) => {
               e.preventDefault();
+              onClose();
               onClickCreate(name, groupId, gameId, currentUser.id);
             }}
           />

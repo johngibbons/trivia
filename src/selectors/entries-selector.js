@@ -3,11 +3,13 @@ import { currentGroupSelector } from './group-selector';
 import { Seq } from 'immutable';
 import Entry from '../models/Entry';
 import Game from '../models/Game';
+import Group from '../models/Group';
 
 export const entriesSelector = state => state.entries;
 const categoriesSelector = state => state.categories;
 const gamesSelector = state => state.games;
 const currentUserSelector = state => state.currentUser;
+const gropusSelector = state => state.groups;
 
 const entryScore = (entry, categories, games) => {
   const game = games.get(entry.game)
@@ -80,4 +82,10 @@ export const entryCompleteSelector = createSelector(
     const game = games.get(entry.game);
     return entry && game && entry.selections.count() === game.categories.count()
   }
+)
+
+export const entryGroupSelector = createSelector(
+  gropusSelector,
+  currentEntrySelector,
+  (groups, entry) => groups.get(entry.group) || new Group()
 )
