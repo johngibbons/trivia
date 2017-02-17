@@ -36,6 +36,7 @@ const store = createStore(
       },
       deserialize(data) {
         const jsObj = JSON.parse(data);
+        if (!jsObj) return;
         return Object.keys(jsObj).reduce((acc, key) => {
           switch(key) {
           case 'nominees': {

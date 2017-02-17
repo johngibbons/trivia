@@ -5,13 +5,12 @@ import {
 } from '../actions/action-types';
 import {
   createGroupSuccess,
-  setGroup
+  setGroup,
+  setGroupAttr
 } from '../actions/group-actions';
 import {
-  setEntry,
-  setEntries
+  syncEntry
 } from '../actions/entry-actions';
-import { database } from 'firebase';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
@@ -23,7 +22,8 @@ import {
   get,
   sync,
   CHILD_CHANGED,
-  CHILD_ADDED
+  CHILD_ADDED,
+  CHILD_REMOVED
 } from './firebase-saga';
 
 export function* createGroup(action) {
@@ -46,27 +46,33 @@ export function* fetchGroup(action) {
   const { id } = action.payload;
   try {
     const group = yield call(get, 'groups', id)
-    yield put(setGroup(id, group));
-    const ref = database().ref('entries').orderByChild('group').equalTo(id)
-    const entries = yield call([ref, ref.once], 'value');
-    yield put(setEntries(entries.val()))
+    yield put(setGroup(group));
     yield call(fetchGameAndDependents, group.game)
-    yield call(syncGroup, null)
+    yield call(syncGroupAndDependents, null)
   } catch(errors) {
     console.log(errors)
   }
 }
 
-export function* syncEntries() {
-  yield fork(sync, 'entries', {
-    [CHILD_ADDED]: setEntry,
-    [CHILD_CHANGED]: setEntry
+export function* syncGroup() {
+  yield fork(sync, `groups`, {
+    [CHILD_ADDED]: setGroupAttr,
+    [CHILD_CHANGED]: setGroupAttr,
+    [CHILD_REMOVED]: setGroupAttr
   })
 }
 
-export function* syncGroup() {
-  yield call(syncCategories, null);
-  yield call(syncEntries, null);
+export function* syncEntries() {
+  yield fork(sync, 'entries', {
+    [CHILD_ADDED]: syncEntry,
+    [CHILD_CHANGED]: syncEntry
+  })
+}
+
+export function* syncGroupAndDependents() {
+  yield fork(syncGroup, null);
+  yield fork(syncCategories, null);
+  yield fork(syncEntries, null);
 }
 
 export function* watchFetchGroup() {

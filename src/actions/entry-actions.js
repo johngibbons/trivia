@@ -38,6 +38,15 @@ export function setEntry(entry) {
   }
 }
 
+export function syncEntry({ value }) {
+  return {
+    type: SET_ENTRY,
+    payload: {
+      entry: value
+    }
+  }
+}
+
 export function setEntries(entries) {
   return {
     type: SET_ENTRIES,

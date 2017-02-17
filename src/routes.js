@@ -32,7 +32,10 @@ export default (
   >
     <IndexRoute
       component={Home}
-      onEnter={() => store.dispatch(fetchGame('2017Oscars'))}
+      onEnter={() => {
+        if (store.getState().nominees.size) return;
+        store.dispatch(fetchGame('2017Oscars'))}
+      }
     />
     <Route
       path='games/:id/edit'

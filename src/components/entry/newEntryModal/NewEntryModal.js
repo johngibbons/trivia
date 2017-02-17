@@ -44,6 +44,7 @@ const NewEntryModal = ({
             onClick={(e) => {
               e.preventDefault();
               onClose();
+              onChange('');
               onClickCreate(name, groupId, gameId, currentUser.id);
             }}
           />

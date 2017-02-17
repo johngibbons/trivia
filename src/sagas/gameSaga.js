@@ -1,5 +1,4 @@
 import { takeLatest, fork, call, put } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
 import {
   CREATE_GAME,
   FETCH_GAME,
@@ -25,16 +24,6 @@ export function* createGame(action) {
 
 export function* watchCreateGame() {
   yield fork(takeLatest, CREATE_GAME, createGame)
-}
-
-export function subscribe(database, gameId) {
-  return eventChannel(emit => {
-    database().ref().off();
-    database().ref(`/games/${gameId}`).once('value', snapshot => {
-      emit(setGame(snapshot.val()));
-    })
-    return () => {};
-  })
 }
 
 export function* fetchGameAndDependents(gameId) {
