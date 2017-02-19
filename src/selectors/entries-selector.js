@@ -101,8 +101,6 @@ export const entryUserSelector = createSelector(
   currentEntrySelector,
   usersSelector,
   (entry, users) => {
-    console.log('entry', entry)
-    console.log('users', users)
     return entry && entry.user ? users.get(entry.user) : new User()
   }
 )

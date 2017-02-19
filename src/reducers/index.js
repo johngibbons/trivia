@@ -13,8 +13,9 @@ import nominees from '../reducers/nominees-reducer';
 import admin from '../reducers/admin-reducer';
 import currentUser from '../reducers/current-user-reducer';
 import groups from '../reducers/groups-reducer';
+import { SIGN_OUT_SUCCESS } from '../actions/action-types';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   admin,
   nominees,
   currentUser,
@@ -29,5 +30,13 @@ const rootReducer = combineReducers({
   ui,
   users
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === SIGN_OUT_SUCCESS) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+}
 
 export default rootReducer;

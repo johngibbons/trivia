@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import './AuthModal.css'
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/ui-actions';
-import { startFirebaseUI } from '../../firebase';
 
 import Dialog from 'material-ui/Dialog';
 import FirebaseContainer from './FirebaseContainer';

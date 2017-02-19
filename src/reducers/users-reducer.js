@@ -9,7 +9,6 @@ const users = (state = Map(), action) => {
   switch (action.type) {
   case SYNC_USER: {
     const { user } = action.payload;
-    console.log(user)
     return state.set(user.id, new User(fromJS(user)));
   }
   default:

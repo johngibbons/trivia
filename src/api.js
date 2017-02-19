@@ -1,9 +1,13 @@
-import { database } from 'firebase';
+import { database, auth } from 'firebase';
 import Game from './models/Game';
 import Group from './models/Group';
 import Entry from './models/Entry';
 
 export default class API {
+  static signOut() {
+    return auth().signOut()
+  }
+
   static saveTitle(title) {
     return database().ref(`/titles/${title.get('id')}`).set(title.toJS());
   }
@@ -28,7 +32,6 @@ export default class API {
   }
 
   static createGroup(newGroupId, group, user) {
-    console.log(user.toJS())
     const updates = {
       [`/groups/${newGroupId}`]: new Group({
         ...group,

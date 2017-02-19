@@ -2,7 +2,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_OUT_SUCCESS,
   CHECK_AUTH_STATUS,
-  SYNC_USER
+  SYNC_USER,
+  SIGN_OUT
 } from './action-types';
 
 export function signInSuccess(currentUser) {
@@ -11,6 +12,12 @@ export function signInSuccess(currentUser) {
     payload: {
       currentUser
     }
+  }
+}
+
+export function signOut() {
+  return {
+    type: SIGN_OUT
   }
 }
 

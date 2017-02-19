@@ -2,15 +2,20 @@
   "rules": {
     ".read": "auth != null",
     ".write": "auth != null",
+    "games": {
+      ".read": true
+    },
     "categories": {
       ".indexOn": [
         "game"
-      ]
+      ],
+      ".read": true
     },
     "nominees": {
       ".indexOn": [
         "game"
-      ]
+      ],
+      ".read": true
     },
     "entries": {
       ".indexOn": [

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import './AccountDropdown.css'
 import { connect } from 'react-redux'
 import { Record } from 'immutable'
+import { signOut } from '../../../actions/user-actions';
 
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -9,7 +10,8 @@ import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 
 const AccountDropdown = ({
-  currentUser
+  currentUser,
+  onClickSignOut
 }) => {
   return (
     <IconMenu
@@ -29,15 +31,19 @@ const AccountDropdown = ({
         </IconButton>
       )}
     >
-      <MenuItem primaryText="My Games" />
+      <MenuItem primaryText="My Groups" />
       <MenuItem primaryText="Account" />
-      <MenuItem primaryText="Sign out" />
+      <MenuItem
+        primaryText="Sign out"
+        onClick={onClickSignOut}
+      />
     </IconMenu>
   )
 }
 
 AccountDropdown.propTypes = {
-  currentUser: PropTypes.instanceOf(Record)
+  currentUser: PropTypes.instanceOf(Record),
+  onClickSignOut: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ currentUser }) => {
@@ -46,4 +52,6 @@ const mapStateToProps = ({ currentUser }) => {
   };
 }
 
-export default connect(mapStateToProps)(AccountDropdown)
+export default connect(mapStateToProps, {
+  onClickSignOut: signOut
+})(AccountDropdown)

@@ -1,11 +1,15 @@
 import firebase from 'firebase';
-import { CHECK_AUTH_STATUS } from '../actions/action-types'
+import {
+  CHECK_AUTH_STATUS,
+  SIGN_OUT
+} from '../actions/action-types'
 import {
   signInSuccess,
   signOutSuccess
 } from '../actions/user-actions';
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
-import { replace } from 'react-router-redux';
+import { replace, push } from 'react-router-redux';
+import API from '../api';
 
 export function getCurrentUser() {
   return new Promise((resolve, reject) => {
@@ -30,4 +34,18 @@ export function* checkAuthStatus(action) {
 
 export function* watchCheckAuthStatus() {
   yield fork(takeLatest, CHECK_AUTH_STATUS, checkAuthStatus)
+}
+
+export function* signOut() {
+  try {
+    yield call(API.signOut, null);
+    yield put(signOutSuccess());
+    yield put(push('/'));
+  } catch(errors) {
+    console.log(errors)
+  }
+}
+
+export function* watchSignOut() {
+  yield fork(takeLatest, SIGN_OUT, signOut)
 }

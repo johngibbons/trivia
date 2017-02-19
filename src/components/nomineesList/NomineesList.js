@@ -13,7 +13,6 @@ const NomineesList = ({
   return (
     <MuiList>
       {nominees.map((nominee, i) => {
-        console.log(nominee)
         return (
           <Nominee
             key={i}
