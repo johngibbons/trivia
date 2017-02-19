@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import './EntriesTable.css'
-import { Seq } from 'immutable';
+import { List } from 'immutable';
 
 import EntryRow from './entryRow/EntryRow';
 
@@ -17,8 +17,12 @@ const EntriesTable = ({
           className={'EntriesTable--header'}
         >
           <tr className={'EntriesTable--headerRow'}>
+            <th className={'EntriesTable--headerCol rank'}>
+            </th>
+            <th className={'EntriesTable--headerCol avatar'}>
+            </th>
             <th className={'EntriesTable--headerCol'}>
-              Name
+              Entry Name
             </th>
             <th className={'EntriesTable--headerCol'}>
               Score
@@ -41,7 +45,7 @@ const EntriesTable = ({
 }
 
 EntriesTable.propTypes = {
-  entries: PropTypes.instanceOf(Seq),
+  entries: PropTypes.instanceOf(List)
 }
 
 export default EntriesTable;

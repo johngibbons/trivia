@@ -1,15 +1,17 @@
 import { createSelector } from 'reselect';
 import { currentGroupSelector } from './group-selector';
-import { Seq } from 'immutable';
+import { Seq, List } from 'immutable';
 import Entry from '../models/Entry';
 import Game from '../models/Game';
 import Group from '../models/Group';
+import User from '../models/User';
 
 export const entriesSelector = state => state.entries;
 const categoriesSelector = state => state.categories;
 const gamesSelector = state => state.games;
 const currentUserSelector = state => state.currentUser;
-const gropusSelector = state => state.groups;
+const groupsSelector = state => state.groups;
+const usersSelector = state => state.users;
 
 const entryScore = (entry, categories, games) => {
   const game = games.get(entry.game)
@@ -24,12 +26,11 @@ const entryScore = (entry, categories, games) => {
   }, 0)
 }
 
-const scoreComparator = (entryA, entryB, categories, games) => {
-  const scoreA = entryScore(entryA, categories, games);
-  const scoreB = entryScore(entryB, categories, games);
-  if (scoreA > scoreB) return -1;
-  else if (scoreB > scoreA) return 1;
-  else return 0;
+const entryRankReducer = (entries, curr) => {
+  const withSameRank = entries.filter(entry => entry.score === entries.last().score).size;
+  return entries.last() && entries.last().score > curr.score ?
+    entries.push(curr.set('rank', entries.last().rank + withSameRank)) :
+    entries.push(curr.set('rank', entries.last() ? entries.last().rank : 1))
 }
 
 export const groupEntriesSelector = createSelector(
@@ -40,8 +41,14 @@ export const groupEntriesSelector = createSelector(
   (entries, group, categories, games) => {
     if(!group) return new Seq();
     return group.entries.keySeq()
-      .map(key => entries.get(key) || new Entry())
-      .sort((entryA, entryB) => scoreComparator(entryA, entryB, categories, games))
+      .map(key => {
+        const entry = entries.get(key)
+        return entry ?
+          entry.set('score', entryScore(entry, categories, games)) :
+          new Entry();
+      })
+      .sort((entryA, entryB) => entryB.score - entryA.score)
+      .reduce(entryRankReducer, new List())
   }
 );
 
@@ -85,7 +92,17 @@ export const entryCompleteSelector = createSelector(
 )
 
 export const entryGroupSelector = createSelector(
-  gropusSelector,
+  groupsSelector,
   currentEntrySelector,
   (groups, entry) => groups.get(entry.group) || new Group()
+)
+
+export const entryUserSelector = createSelector(
+  currentEntrySelector,
+  usersSelector,
+  (entry, users) => {
+    console.log('entry', entry)
+    console.log('users', users)
+    return entry && entry.user ? users.get(entry.user) : new User()
+  }
 )

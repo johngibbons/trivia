@@ -27,14 +27,21 @@ export default class API {
     return database().ref().child('groups').push().key;
   }
 
-  static createGroup(newGroupId, group, userId) {
+  static createGroup(newGroupId, group, user) {
+    console.log(user.toJS())
     const updates = {
       [`/groups/${newGroupId}`]: new Group({
         ...group,
         id: newGroupId,
-        admin: userId
+        admin: user.id
       }).toJS(),
-      [`/users/${userId}/groups/${newGroupId}`]: { admin: true },
+      [`/users/${user.id}`]: {
+        ...user.toJS(),
+        groups: {
+          ...user.groups,
+          [newGroupId]: { admin: true }
+        }
+      },
       [`/games/${group.game}/groups/${newGroupId}`]: true
     }
     return database().ref().update(updates);
@@ -44,12 +51,18 @@ export default class API {
     return database().ref().child('entries').push().key;
   }
 
-  static createEntry(newEntryId, entry) {
+  static createEntry(newEntryId, entry, user) {
     const updates = {
       [`/entries/${newEntryId}`]: new Entry({ ...entry, id: newEntryId }).toJS(),
       [`/groups/${entry.group}/entries/${newEntryId}`]: true,
       [`/games/${entry.game}/entries/${newEntryId}`]: true,
-      [`/users/${entry.user}/entries/${newEntryId}`]: true
+      [`/users/${user.id}`]: {
+        ...user.toJS(),
+        entries: {
+          ...user.toJS().entries,
+          [newEntryId]: true
+        }
+      },
     }
     return database().ref().update(updates);
   }

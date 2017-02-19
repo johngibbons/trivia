@@ -2,9 +2,10 @@ import {
   entriesSelector,
   groupEntriesSelector,
   currentEntrySelector,
-  entryVisibleSelector
+  entryVisibleSelector,
+  entryUserSelector
 } from './entries-selector';
-import { Map, Seq } from 'immutable';
+import { Map, List } from 'immutable';
 import Entry from '../models/Entry';
 import Group from '../models/Group';
 import Category from '../models/Category';
@@ -55,7 +56,9 @@ describe('entries selector', () => {
         name: 'Entry 1',
         selections: fromJS({
           'category2': 'nominee2'
-        })
+        }),
+        score: 1,
+        rank: 2
       }))
       .set('entry2', new Entry({
         id: 'entry2',
@@ -64,7 +67,9 @@ describe('entries selector', () => {
         selections: fromJS({
           'category1': 'nominee1',
           'category2': 'nominee2'
-        })
+        }),
+        score: 3,
+        rank: 1
       }))
     const group = new Group({
       name: 'My Group',
@@ -78,13 +83,13 @@ describe('entries selector', () => {
       games
     }
     const props = { routeParams: { id: 1 } }
-    const expectedResult = groupEntries.toIndexedSeq().reverse()
+    const expectedResult = groupEntries.toList().reverse()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(2)
     expect(state.entries.size).toEqual(3)
   })
 
-  it('should return empty seq if no entries', () => {
+  it('should return empty List if no entries', () => {
     const group = new Group({ name: 'My Group' })
     const state = {
       ...store.getState(),
@@ -92,7 +97,7 @@ describe('entries selector', () => {
       groups: new Map().set(1, group)
     }
     const props = { routeParams: { id: 1 } }
-    const expectedResult = new Seq()
+    const expectedResult = new List()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(0)
     expect(state.entries.size).toEqual(1)
@@ -108,7 +113,7 @@ describe('entries selector', () => {
       groups: new Map().set(1, group)
     }
     const props = { routeParams: { id: 1 } }
-    const expectedResult = new Seq([new Entry(), new Entry()]);
+    const expectedResult = new List([new Entry(), new Entry()]);
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(2)
     expect(state.entries.size).toEqual(0)
@@ -120,7 +125,7 @@ describe('entries selector', () => {
       entries: new Map().set(3, new Entry({ name: 'Not in group' }))
     }
     const props = { routeParams: { id: 1 } }
-    const expectedResult = new Seq()
+    const expectedResult = new List()
     expect(is(groupEntriesSelector(state, props), expectedResult)).toEqual(true)
     expect(groupEntriesSelector(state, props).size).toEqual(0)
     expect(state.entries.size).toEqual(1)
@@ -236,6 +241,33 @@ describe('entries selector', () => {
       };
 
       expect(entryVisibleSelector(state, props)).toEqual(true)
+    })
+
+    describe('entryUserSelctor', () => {
+      it('should select entry user', () => {
+        const users = new Map().set('user1', new User({
+          id: 'user1',
+          name: 'john gibbons'
+        }));
+        const entries = new Map().set('entry1', new Entry({
+          id: 'entry1',
+          user: 'user1'
+        }))
+
+        const state = {
+          entries,
+          users
+        }
+
+        const props = { entry: new Entry({id: 'entry1'}) }
+
+        expect(entryUserSelector(state, props)).toEqual(users.get('user1'))
+      })
+
+      it('should handle empty users', () => {
+        const state = store.getState();
+        expect(entryUserSelector(state, props)).toEqual(new User())
+      })
     })
   })
 })

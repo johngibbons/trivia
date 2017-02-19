@@ -1,7 +1,8 @@
 import {
   SIGN_IN_SUCCESS,
   SIGN_OUT_SUCCESS,
-  CHECK_AUTH_STATUS
+  CHECK_AUTH_STATUS,
+  SYNC_USER
 } from './action-types';
 
 export function signInSuccess(currentUser) {
@@ -25,6 +26,15 @@ export function checkAuthStatus(next, requireAuth) {
     payload: {
       next,
       requireAuth
+    }
+  }
+}
+
+export function syncUser({ value }) {
+  return {
+    type: SYNC_USER,
+    payload: {
+      user: value
     }
   }
 }

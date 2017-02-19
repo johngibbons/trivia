@@ -25,6 +25,30 @@
   text-align: left;
 }
 
+.EntriesTable--col.avatar {
+  width: 40px;
+  padding: 0 5px;
+}
+
+.EntriesTable--avatar {
+  margin-top: 4px;
+}
+
+.EntriesTable--col.rank {
+  width: 5px;
+  padding: 0 15px;
+}
+
+.EntriesTable--headerCol.avatar {
+  width: 40px;
+  padding: 0 5px;
+}
+
+.EntriesTable--headerCol.rank {
+  width: 5px;
+  padding: 0 15px;
+}
+
 .EntriesTable--row {
   cursor: pointer;
   height: 48px;

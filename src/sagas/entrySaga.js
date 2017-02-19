@@ -8,19 +8,22 @@ import {
   setEntry,
   selectNomineeSuccess
 } from '../actions/entry-actions'
+import { currentUserSelector } from '../selectors/current-user-selector';
 import API from '../api'
-import { fork, put, call, takeLatest } from 'redux-saga/effects';
+import { fork, put, call, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { get } from './firebase-saga';
 import { fetchGameAndDependents, syncCategories } from './gameSaga';
 
 export function* createEntry(action) {
   try {
+    const currentUser = yield select(currentUserSelector);
     const newEntryId = yield call(API.createEntryId, null)
     yield call(
       API.createEntry,
       newEntryId,
-      action.payload
+      action.payload,
+      currentUser
     )
     yield put(push(`/entries/${newEntryId}`))
   } catch(errors) {

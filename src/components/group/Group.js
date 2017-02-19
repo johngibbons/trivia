@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import './Group.css';
-import { Seq } from 'immutable';
+import { List } from 'immutable';
 import GroupModel from '../../models/Group';
 import { groupEntriesSelector } from '../../selectors/entries-selector';
 import { currentGroupSelector } from '../../selectors/group-selector';
@@ -43,7 +43,7 @@ const Group = ({
 
 Group.propTypes = {
   group: PropTypes.instanceOf(GroupModel),
-  entries: PropTypes.instanceOf(Seq),
+  entries: PropTypes.instanceOf(List),
   params: PropTypes.object,
   onClickNewEntry: PropTypes.func.isRequired
 }

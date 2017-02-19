@@ -11,6 +11,9 @@ import {
 import {
   syncEntry
 } from '../actions/entry-actions';
+import {
+  syncUser
+} from '../actions/user-actions';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import { push } from 'react-router-redux';
@@ -30,7 +33,7 @@ export function* createGroup(action) {
   try {
     const currentUser = yield select(currentUserSelector);
     const newGroupId = yield call(API.createGroupId, null)
-    yield call(API.createGroup, newGroupId, action.payload, currentUser.id)
+    yield call(API.createGroup, newGroupId, action.payload, currentUser)
     yield put(createGroupSuccess(newGroupId, action.payload))
     yield put(push(`/groups/${newGroupId}`))
   } catch(errors) {
@@ -69,10 +72,17 @@ export function* syncEntries() {
   })
 }
 
+export function* syncUsers() {
+  yield fork(sync, 'users', {
+    [CHILD_ADDED]: syncUser
+  })
+}
+
 export function* syncGroupAndDependents() {
   yield fork(syncGroup, null);
   yield fork(syncCategories, null);
   yield fork(syncEntries, null);
+  yield fork(syncUsers, null);
 }
 
 export function* watchFetchGroup() {

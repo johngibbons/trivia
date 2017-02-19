@@ -2,14 +2,22 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
 import './EntryRow.css'
 import Entry from '../../../../models/Entry';
+import User from '../../../../models/User';
 import { push } from 'react-router-redux';
-import { entryScoreSelector } from '../../../../selectors/categories-selector';
+import {
+  entryPossibleScoreSelector
+} from '../../../../selectors/categories-selector';
+import {
+  entryUserSelector
+} from '../../../../selectors/entries-selector';
+import Avatar from 'material-ui/Avatar';
 
 
 const EntryRow = ({
   entry,
-  score,
-  onClickEntry
+  possibleScore,
+  onClickEntry,
+  user
 }) => {
   return (
     <tr
@@ -18,24 +26,37 @@ const EntryRow = ({
       onClick={() => onClickEntry(`/entries/${entry.id}`)}
     >
       <td
+        className={'EntriesTable--col rank'}
+      >{entry.rank}</td>
+      <td
+        className={'EntriesTable--col avatar'}
+      >
+        <Avatar
+          src={user.photoURL}
+          className='EntriesTable--avatar'
+        />
+      </td>
+      <td
         className={'EntriesTable--col'}
       >{entry.name}</td>
       <td
         className={'EntriesTable--col'}
-      >{score}</td>
+      >{entry.score} / {possibleScore}</td>
     </tr>
   )
 }
 
 EntryRow.propTypes = {
+  user: PropTypes.instanceOf(User),
   entry: PropTypes.instanceOf(Entry),
-  score: PropTypes.number,
+  possibleScore: PropTypes.number,
   onClickEntry: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, props) => {
   return {
-    score: entryScoreSelector(state, props)
+    possibleScore: entryPossibleScoreSelector(state, props),
+    user: entryUserSelector(state, props)
   }
 }
 

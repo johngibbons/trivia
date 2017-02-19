@@ -6,10 +6,8 @@ const User = Record({
   email: '',
   entries: List(),
   games: List(),
-  last_logged_in: undefined,
   name: '',
-  provider: undefined,
-  updated_at: undefined,
+  provider: '',
   username: ''
 })
 
