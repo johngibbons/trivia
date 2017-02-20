@@ -3,6 +3,7 @@ import './AccountDropdown.css'
 import { connect } from 'react-redux'
 import { Record } from 'immutable'
 import { signOut } from '../../../actions/user-actions';
+import { push } from 'react-router-redux';
 
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -11,7 +12,8 @@ import Avatar from 'material-ui/Avatar';
 
 const AccountDropdown = ({
   currentUser,
-  onClickSignOut
+  onClickSignOut,
+  onClickMyGroups
 }) => {
   return (
     <IconMenu
@@ -31,7 +33,10 @@ const AccountDropdown = ({
         </IconButton>
       )}
     >
-      <MenuItem primaryText="My Groups" />
+      <MenuItem
+        primaryText="My Entries"
+        onClick={() => onClickMyGroups(currentUser.id)}
+      />
       <MenuItem primaryText="Account" />
       <MenuItem
         primaryText="Sign out"
@@ -43,7 +48,8 @@ const AccountDropdown = ({
 
 AccountDropdown.propTypes = {
   currentUser: PropTypes.instanceOf(Record),
-  onClickSignOut: PropTypes.func.isRequired
+  onClickSignOut: PropTypes.func.isRequired,
+  onClickMyGroups: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ currentUser }) => {
@@ -53,5 +59,6 @@ const mapStateToProps = ({ currentUser }) => {
 }
 
 export default connect(mapStateToProps, {
-  onClickSignOut: signOut
+  onClickSignOut: signOut,
+  onClickMyGroups: (id) => push(`/users/${id}/entries`)
 })(AccountDropdown)

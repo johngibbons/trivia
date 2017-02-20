@@ -10,10 +10,16 @@ import EditGame from './components/editGame/EditGame';
 import Admin from './components/admin/Admin';
 import Entry from './components/entry/Entry';
 import MasterEntry from './components/entry/MasterEntry';
+import UserEntries from './components/users/userEntries/UserEntries';
 import { checkAuthStatus } from './actions/user-actions';
 import { fetchGame } from './actions/game-actions';
-import { fetchGroup } from './actions/group-actions';
-import { fetchEntry } from './actions/entry-actions';
+import {
+  fetchGroup
+} from './actions/group-actions';
+import {
+  fetchEntry,
+  fetchUserEntries
+} from './actions/entry-actions';
 import store from './store'
 
 const requireAuth = (nextState, replace, next) =>
@@ -68,6 +74,17 @@ export default (
           nextState,
           replace,
           () => store.dispatch(fetchEntry(nextState.params.id))
+        )
+      }
+    />
+    <Route
+      path='users/:id/entries'
+      component={UserEntries}
+      onEnter={(nextState, replace) =>
+        requireAuth(
+          nextState,
+          replace,
+          () => store.dispatch(fetchUserEntries(nextState.params.id))
         )
       }
     />

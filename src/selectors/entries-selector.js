@@ -12,6 +12,7 @@ const gamesSelector = state => state.games;
 const currentUserSelector = state => state.currentUser;
 const groupsSelector = state => state.groups;
 const usersSelector = state => state.users;
+const userFromParamsSelector = (state, props) => state.users.get(props.routeParams.id)
 
 const entryScore = (entry, categories, games) => {
   const game = games.get(entry.game)
@@ -103,4 +104,10 @@ export const entryUserSelector = createSelector(
   (entry, users) => {
     return entry && entry.user ? users.get(entry.user) : new User()
   }
+)
+
+export const userEntriesSelector = createSelector(
+  userFromParamsSelector,
+  entriesSelector,
+  (user, entries) => entries.toSeq().filter(entry => entry.user === user.id)
 )

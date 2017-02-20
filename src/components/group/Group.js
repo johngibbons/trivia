@@ -5,6 +5,7 @@ import { List } from 'immutable';
 import GroupModel from '../../models/Group';
 import { groupEntriesSelector } from '../../selectors/entries-selector';
 import { currentGroupSelector } from '../../selectors/group-selector';
+import { groupGameStartedSelector } from '../../selectors/games-selector';
 import { openModal } from '../../actions/ui-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -16,6 +17,7 @@ const Group = ({
   group,
   entries,
   params,
+  gameStarted,
   onClickNewEntry
 }) => {
   return (
@@ -31,7 +33,10 @@ const Group = ({
         }}
         onClick={() => onClickNewEntry('NEW_ENTRY')}
       />
-      <EntriesTable entries={entries} />
+      <EntriesTable
+        entries={entries}
+        gameStarted={gameStarted}
+      />
     {group.id &&
       <NewEntryModal
         groupId={params.id}
@@ -45,13 +50,15 @@ Group.propTypes = {
   group: PropTypes.instanceOf(GroupModel),
   entries: PropTypes.instanceOf(List),
   params: PropTypes.object,
+  gameStarted: PropTypes.bool,
   onClickNewEntry: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, props) => {
   return {
     entries: groupEntriesSelector(state, props),
-    group: currentGroupSelector(state, props)
+    group: currentGroupSelector(state, props),
+    gameStarted: groupGameStartedSelector(state, props)
   }
 }
 

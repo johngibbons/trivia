@@ -1,6 +1,9 @@
+.EntriesTable {
+  margin-top: 50px;
+}
+
 .EntriesTable--table {
   width: 100%;
-  margin-top: 50px;
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
@@ -67,4 +70,37 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.EntriesTable--entry-complete-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #D32F2F;
+}
+
+.EntriesTable--entry-complete-indicator.complete {
+  background-color: #689F38;
+}
+
+.EntriesTable--legend span {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.EntriesTable--legend span:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.EntriesTable--legend span.complete:before {
+  background-color: #689F38;
+}
+
+.EntriesTable--legend span.incomplete:before {
+  background-color: #D32F2F;
 }

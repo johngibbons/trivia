@@ -41,7 +41,7 @@ export default class API {
       [`/users/${user.id}`]: {
         ...user.toJS(),
         groups: {
-          ...user.groups,
+          ...user.toJS().groups,
           [newGroupId]: { admin: true }
         }
       },
@@ -64,6 +64,10 @@ export default class API {
         entries: {
           ...user.toJS().entries,
           [newEntryId]: true
+        },
+        groups: {
+          ...user.toJS().groups,
+          [entry.group]: true
         }
       },
     }

@@ -5,6 +5,7 @@ import { currentEntrySelector } from './entries-selector';
 export const gamesSelector = state => state.games;
 const currentNomineeSelector = (_, props) => props.nominee;
 const categoriesSelector = state => state.categories;
+const currentGroupSelector = (state, props) => state.groups.get(props.routeParams.id)
 
 export const currentGameSelector = (state, props) =>
   state.games.get(props.routeParams.id) || new Game();
@@ -32,6 +33,17 @@ export const entryGameStartedSelector = createSelector(
   currentEntrySelector,
   (games, categories, entry) => {
     const game = games.get(entry.game) || new Game();
+    const gameCategories = game.categories;
+    return gameStarted(gameCategories, categories);
+  }
+)
+
+export const groupGameStartedSelector = createSelector(
+  gamesSelector,
+  categoriesSelector,
+  currentGroupSelector,
+  (games, categories, group) => {
+    const game = games.get(group.game) || new Game();
     const gameCategories = game.categories;
     return gameStarted(gameCategories, categories);
   }

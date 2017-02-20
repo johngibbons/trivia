@@ -19,7 +19,8 @@
     },
     "entries": {
       ".indexOn": [
-        "group"
+        "group",
+        "user"
       ]
     }
   }

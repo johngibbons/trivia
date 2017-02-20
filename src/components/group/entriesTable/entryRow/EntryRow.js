@@ -8,17 +8,30 @@ import {
   entryPossibleScoreSelector
 } from '../../../../selectors/categories-selector';
 import {
-  entryUserSelector
+  entryUserSelector,
+  entryCompleteSelector
 } from '../../../../selectors/entries-selector';
+import {
+  entryGameStartedSelector
+} from '../../../../selectors/games-selector';
+import classNames from 'classnames';
+
 import Avatar from 'material-ui/Avatar';
 
 
 const EntryRow = ({
   entry,
   possibleScore,
+  entryComplete,
+  gameStarted,
   onClickEntry,
   user
 }) => {
+  const entryCompleteClasses = classNames(
+    'EntriesTable--entry-complete-indicator',
+    { ['complete']: entryComplete }
+  )
+
   return (
     <tr
       key={entry.id}
@@ -27,7 +40,9 @@ const EntryRow = ({
     >
       <td
         className={'EntriesTable--col rank'}
-      >{entry.rank}</td>
+      >{gameStarted ? entry.rank :
+          <div className={entryCompleteClasses} />
+      }</td>
       <td
         className={'EntriesTable--col avatar'}
       >
@@ -50,13 +65,17 @@ EntryRow.propTypes = {
   user: PropTypes.instanceOf(User),
   entry: PropTypes.instanceOf(Entry),
   possibleScore: PropTypes.number,
+  entryComplete: PropTypes.bool,
+  gameStarted: PropTypes.bool,
   onClickEntry: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, props) => {
   return {
     possibleScore: entryPossibleScoreSelector(state, props),
-    user: entryUserSelector(state, props)
+    user: entryUserSelector(state, props),
+    entryComplete: entryCompleteSelector(state, props),
+    gameStarted: entryGameStartedSelector(state, props)
   }
 }
 

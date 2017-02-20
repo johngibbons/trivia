@@ -19,7 +19,8 @@ import {
 import {
   watchCreateEntry,
   watchFetchEntry,
-  watchSelectNominee
+  watchSelectNominee,
+  watchUserEntries
 } from './entrySaga';
 
 function* rootSaga() {
@@ -36,7 +37,8 @@ function* rootSaga() {
     watchCreateEntry(),
     watchFetchEntry(),
     watchSelectNominee(),
-    watchSelectCorrectNominee()
+    watchSelectCorrectNominee(),
+    watchUserEntries()
   ];
 }
 

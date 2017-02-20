@@ -1,12 +1,14 @@
 import {
   CREATE_ENTRY,
   FETCH_ENTRY,
-  SELECT_NOMINEE
+  SELECT_NOMINEE,
+  FETCH_USER_ENTRIES
 } from '../actions/action-types'
 
 import {
   setEntry,
-  selectNomineeSuccess
+  selectNomineeSuccess,
+  setEntries
 } from '../actions/entry-actions'
 import { currentUserSelector } from '../selectors/current-user-selector';
 import API from '../api'
@@ -14,6 +16,7 @@ import { fork, put, call, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { get } from './firebase-saga';
 import { fetchGameAndDependents, syncCategories } from './gameSaga';
+import { database } from 'firebase';
 
 export function* createEntry(action) {
   try {
@@ -61,4 +64,19 @@ export function* selectNominee(action) {
 
 export function* watchSelectNominee() {
   yield fork(takeLatest, SELECT_NOMINEE, selectNominee)
+}
+
+export function* fetchUserEntries(action) {
+  try {
+    const user = yield call(get, 'users', action.payload.userId);
+    const ref = database().ref('entries').orderByChild('user').equalTo(user.id)
+    const entries = yield call([ref, ref.once], 'value');
+    yield put(setEntries(entries.val()))
+  } catch(errors) {
+
+  }
+}
+
+export function* watchUserEntries() {
+  yield fork(takeLatest, FETCH_USER_ENTRIES, fetchUserEntries)
 }

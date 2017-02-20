@@ -1,5 +1,6 @@
 import {
-  SYNC_USER
+  SYNC_USER,
+  SET_USER
 } from '../actions/action-types';
 
 import { Map, fromJS } from 'immutable'
@@ -7,9 +8,11 @@ import User from '../models/User';
 
 const users = (state = Map(), action) => {
   switch (action.type) {
+  case SET_USER:
   case SYNC_USER: {
     const { user } = action.payload;
-    return state.set(user.id, new User(fromJS(user)));
+    const usersWithSet = new Map().set(user.id, new User(fromJS(user)));
+    return state.mergeDeep(usersWithSet);
   }
   default:
     return state;

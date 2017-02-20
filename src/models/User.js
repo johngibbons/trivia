@@ -1,11 +1,11 @@
-import { List, Record } from 'immutable'
+import { Map, Record } from 'immutable'
 
 const User = Record({
   id: undefined,
   photoURL: '',
   email: '',
-  entries: List(),
-  games: List(),
+  entries: Map(),
+  groups: Map(),
   name: '',
   provider: '',
   username: ''

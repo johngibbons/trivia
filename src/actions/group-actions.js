@@ -2,6 +2,7 @@ import {
   CREATE_GROUP,
   CREATE_GROUP_SUCCESS,
   FETCH_GROUP,
+  FETCH_USER_GROUPS,
   SET_GROUP,
   SET_GROUP_ATTR
 } from './action-types';
@@ -49,6 +50,15 @@ export function fetchGroup(id) {
     type: FETCH_GROUP,
     payload: {
       id
+    }
+  }
+}
+
+export function fetchUserGroups(userId) {
+  return {
+    type: FETCH_USER_GROUPS,
+    payload: {
+      userId
     }
   }
 }

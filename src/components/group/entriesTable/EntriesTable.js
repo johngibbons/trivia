@@ -6,25 +6,27 @@ import EntryRow from './entryRow/EntryRow';
 
 
 const EntriesTable = ({
-  entries
+  entries,
+  gameStarted
 }) => {
   return (
-    <div className={'EntriesTable'}>
-      <table
-        className={'EntriesTable--table'}
-      >
-        <thead
-          className={'EntriesTable--header'}
-        >
-          <tr className={'EntriesTable--headerRow'}>
-            <th className={'EntriesTable--headerCol rank'}>
+    <div className='EntriesTable'>
+      {!gameStarted &&
+      <div className='EntriesTable--legend'>
+        <span className='complete'>Complete</span>
+        <span className='incomplete'>Incomplete</span>
+      </div>}
+      <table className='EntriesTable--table' >
+        <thead className='EntriesTable--header' >
+          <tr className='EntriesTable--headerRow'>
+            <th className='EntriesTable--headerCol rank'>
             </th>
-            <th className={'EntriesTable--headerCol avatar'}>
+            <th className='EntriesTable--headerCol avatar'>
             </th>
-            <th className={'EntriesTable--headerCol'}>
+            <th className='EntriesTable--headerCol'>
               Entry Name
             </th>
-            <th className={'EntriesTable--headerCol'}>
+            <th className='EntriesTable--headerCol'>
               Score
             </th>
           </tr>
@@ -45,7 +47,8 @@ const EntriesTable = ({
 }
 
 EntriesTable.propTypes = {
-  entries: PropTypes.instanceOf(List)
+  entries: PropTypes.instanceOf(List),
+  gameStarted: PropTypes.bool
 }
 
 export default EntriesTable;

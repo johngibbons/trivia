@@ -3,6 +3,7 @@ import {
   SIGN_OUT_SUCCESS,
   CHECK_AUTH_STATUS,
   SYNC_USER,
+  SET_USER,
   SIGN_OUT
 } from './action-types';
 
@@ -33,6 +34,15 @@ export function checkAuthStatus(next, requireAuth) {
     payload: {
       next,
       requireAuth
+    }
+  }
+}
+
+export function setUser(user) {
+  return {
+    type: SET_USER,
+    payload: {
+      user
     }
   }
 }

@@ -5,7 +5,8 @@ import {
   SET_ENTRY,
   SET_ENTRIES,
   SELECT_NOMINEE,
-  SELECT_NOMINEE_SUCCESS
+  SELECT_NOMINEE_SUCCESS,
+  FETCH_USER_ENTRIES
 } from './action-types';
 
 export function createEntry(name, group, game, user) {
@@ -81,6 +82,15 @@ export function selectNomineeSuccess(entryId, nominee) {
     payload: {
       entryId,
       nominee
+    }
+  }
+}
+
+export function fetchUserEntries(userId) {
+  return {
+    type: FETCH_USER_ENTRIES,
+    payload: {
+      userId
     }
   }
 }

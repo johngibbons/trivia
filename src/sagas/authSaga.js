@@ -9,6 +9,8 @@ import {
 } from '../actions/user-actions';
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { replace, push } from 'react-router-redux';
+import { get } from './firebase-saga';
+import { setUser } from '../actions/user-actions';
 import API from '../api';
 
 export function getCurrentUser() {
@@ -25,6 +27,10 @@ export function* checkAuthStatus(action) {
     const user = yield call(getCurrentUser, null);
     yield user ? put(signInSuccess(user)) :
       put(signOutSuccess());
+    if (user) {
+      const userModel = yield call(get, 'users', user.uid);
+      yield put(setUser(userModel))
+    }
     yield user || !action.payload.requireAuth ?
       call(action.payload.next, null) : put(replace('/'));
   } catch(errors) {
