@@ -1,6 +1,6 @@
 .Entry--score-progress-bar {
   position: absolute;
-  top: 0;
+  top: 64px;
   left: 0;
   height: 10px;
   background-color: rgba(183,162,97, 0.5);
