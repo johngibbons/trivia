@@ -49,3 +49,8 @@ export const entryPossibleScoreSelector = createSelector(
     .reduce((acc, category) => acc + category.value, 0)
 
 )
+
+export const gameTotalPossibleSelector = createSelector(
+  entryCategoriesSelector,
+  categories => categories.reduce((acc, category) => acc + category.value , 0)
+)

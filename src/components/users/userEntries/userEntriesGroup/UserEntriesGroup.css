@@ -1,0 +1,31 @@
+.UserEntriesGroup {
+  margin: 0 10px 20px;
+  padding: 10px;
+}
+
+@media(min-width: 668px) {
+  .UserEntriesGroup {
+    width: calc(50% - 20px);
+  }
+}
+
+.UserEntriesGroup--group-name {
+  display: block;
+  color: #757575;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.UserEntriesGroup--group-name:hover {
+  color: #424242;
+}
+
+.UserEntriesGroup--game-name {
+  color: #b7a261;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.UserEntriesGroup--entries-container {
+  margin-top: 10px;
+}

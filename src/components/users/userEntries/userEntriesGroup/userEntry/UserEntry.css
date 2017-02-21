@@ -1,0 +1,11 @@
+.UserEntry {
+  color: #424242;
+  text-decoration: none;
+  line-height: 1.5;
+  font-size: 18px;
+  display: block;
+}
+
+.UserEntry:hover {
+  color: #757575;
+}

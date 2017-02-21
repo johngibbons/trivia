@@ -1,17 +1,49 @@
+.Entry--score-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10px;
+  background-color: rgba(183,162,97, 0.5);
+  transition: width 0.5s ease;
+}
+
+.Entry--score-progress-bar.entry {
+  background-color: rgba(55,55,55, 0.5);
+}
+
 .Entry--game-name {
-  color: #757575;
+  color: #b7a261;
   margin-bottom: 0;
 }
 
 .Entry--title-container {
-  display: flex;
-  align-items: center;
+  margin-bottom: 50px;
+}
+
+@media(min-width: 668px) {
+  .Entry--title-container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.Entry--title-container .PageHeading {
+  margin-bottom: 25px;
+}
+
+@media(min-width: 668px) {
+  .Entry--title-container .PageHeading {
+    margin-bottom: 0;
+  }
 }
 
 .Entry--score {
   margin-bottom: 0;
   margin-top: 0;
   color: #b7a261;
+  border: 1px solid #b7a261;
+  padding: 20px;
+  white-space: nowrap;
 }
 
 .Entry--incomplete {
@@ -19,12 +51,11 @@
 }
 
 .Entry--group-link {
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 20px;
   display: block;
-  color: #b7a261;
+  color: #757575;
   text-decoration: none;
-  text-transform: uppercase;
-  transform: translateY(-12px);
 }
 
 .Entry--group-link:hover {

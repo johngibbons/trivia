@@ -109,5 +109,8 @@ export const entryUserSelector = createSelector(
 export const userEntriesSelector = createSelector(
   userFromParamsSelector,
   entriesSelector,
-  (user, entries) => entries.toSeq().filter(entry => entry.user === user.id)
+  (user, entries) => entries
+    .filter(entry => entry.user === user.id)
+    .groupBy(entry => entry.get('group'))
+    .toKeyedSeq()
 )

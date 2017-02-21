@@ -25,8 +25,7 @@ const Nominee = ({
     'Nominee',
     { 'Nominee--unselectable': hasStarted && !isMaster },
     { 'Nominee--not-selected': (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId) },
-    { 'Nominee--answer': answer },
-    { 'Nominee--wrong-selection': !notSelected && !answer }
+    { 'Nominee--answer': answer }
   );
 
   const red = 'linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)),';

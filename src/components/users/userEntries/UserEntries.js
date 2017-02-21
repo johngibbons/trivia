@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react'
 import './UserEntries.css'
 import { connect } from 'react-redux';
-import { Seq } from 'immutable';
+import { Map } from 'immutable';
 
 import { userEntriesSelector } from '../../../selectors/entries-selector';
 
 import PageHeading from '.././../pageHeading/PageHeading';
-import UserEntry from './userEntry/UserEntry';
+import UserEntriesGroup from './userEntriesGroup/UserEntriesGroup';
 
 const UserEntries = ({
-  entries
+  entriesByGroup
 }) => {
   return (
     <div className='UserEntries'>
       <PageHeading text='My Entries' />
       <div className='UserEntries--entries-container'>
-        {entries.map(entry => {
+        {entriesByGroup.map((group, key) => {
           return (
-            <UserEntry
-              key={entry.id}
-              entry={entry}
+            <UserEntriesGroup
+              key={key}
+              group={group}
             />
           )
         })}
@@ -29,12 +29,12 @@ const UserEntries = ({
 }
 
 UserEntries.propTypes = {
-  entries: PropTypes.instanceOf(Seq)
+  entriesByGroup: PropTypes.instanceOf(Map)
 }
 
 const mapStateToProps = (state, props) => {
   return {
-    entries: userEntriesSelector(state, props)
+    entriesByGroup: userEntriesSelector(state, props)
   }
 }
 

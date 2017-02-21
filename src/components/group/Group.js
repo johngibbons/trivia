@@ -25,6 +25,7 @@ const Group = ({
       <PageHeading
         text={group.name}
       />
+      {!gameStarted &&
       <RaisedButton
         primary
         label='Create your entry'
@@ -32,7 +33,7 @@ const Group = ({
           color: '#212121'
         }}
         onClick={() => onClickNewEntry('NEW_ENTRY')}
-      />
+      />}
       <EntriesTable
         entries={entries}
         gameStarted={gameStarted}

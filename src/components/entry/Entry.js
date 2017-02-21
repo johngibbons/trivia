@@ -17,7 +17,8 @@ import {
 import { entryCategoriesSelector } from '../../selectors/categories-selector';
 import {
   entryScoreSelector,
-  entryPossibleScoreSelector
+  entryPossibleScoreSelector,
+  gameTotalPossibleSelector
 } from '../../selectors/categories-selector';
 import { Seq } from 'immutable';
 
@@ -34,24 +35,39 @@ const Entry = ({
   possible,
   isVisible,
   isComplete,
-  hasStarted
+  hasStarted,
+  totalPossible
 }) => {
   return (
     <div>
-      <Link
-        to={`/groups/${entry.group}`}
-        className={'Entry--group-link'}
-      >back to {group.name}</Link>
+      <div
+        className='Entry--score-progress-bar'
+        style={{
+          width: `calc(${possible}/${totalPossible} * 100%)`
+        }}
+      />
+      <div
+        className='Entry--score-progress-bar entry'
+        style={{
+          width: `calc(${score}/${totalPossible} * 100%)`
+        }}
+      />
       <h5 className='Entry--game-name'>{game.name}</h5>
       <div className='Entry--title-container'>
         <PageHeading
           text={entry.name}
         >
+          <Link
+            to={`/groups/${entry.group}`}
+            className={'Entry--group-link'}
+          >{group.name}</Link>
+        </PageHeading>
+        <div className='Entry--score-container'>
         {isComplete || hasStarted ?
-            <h3 className='Entry--score'>{score}/{possible} points</h3>
+            <h3 className='Entry--score'>{`${score}/${possible} points`}</h3>
             :
           <h3 className='Entry--incomplete'>incomplete</h3>}
-        </PageHeading>
+        </div>
       </div>
       {isVisible ? categories.map((category, i) => {
         return (
@@ -74,6 +90,7 @@ Entry.propTypes = {
   group: PropTypes.instanceOf(Group),
   categories: PropTypes.instanceOf(Seq),
   possible: PropTypes.number,
+  totalPossible: PropTypes.number,
   score: PropTypes.number,
   isVisible: PropTypes.bool,
   isComplete: PropTypes.bool,
@@ -90,7 +107,8 @@ const mapStateToProps = (state, props) => {
     isVisible: entryVisibleSelector(state, props),
     isComplete: entryCompleteSelector(state, props),
     hasStarted: entryGameStartedSelector(state, props),
-    group: entryGroupSelector(state, props)
+    group: entryGroupSelector(state, props),
+    totalPossible: gameTotalPossibleSelector(state, props)
   }
 }
 

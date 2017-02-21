@@ -1,5 +1,10 @@
 .UserEntries--entries-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin: 0 -10px;
+}
+
+@media(min-width: 668px) {
+  .UserEntries--entries-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

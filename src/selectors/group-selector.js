@@ -24,3 +24,7 @@ export const entryGroupSelector = createSelector(
   groupsSelector,
   (entry, groups) => groups.get(entry.group)
 )
+
+export const groupFromPropsSelector = (state, props) => {
+  return state.groups.get(props.group.first().group);
+}
