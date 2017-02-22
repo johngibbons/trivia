@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import './UserEntry.css'
 
 import Entry from '../../../../../models/Entry';
-import Group from '../../../../../models/Group';
 
 import { Link } from 'react-router';
 
@@ -20,8 +19,7 @@ const UserEntry = ({
 }
 
 UserEntry.propTypes = {
-  entry: PropTypes.instanceOf(Entry),
-  group: PropTypes.instanceOf(Group)
+  entry: PropTypes.instanceOf(Entry)
 }
 
 export default UserEntry;

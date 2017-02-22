@@ -26,5 +26,6 @@ export const entryGroupSelector = createSelector(
 )
 
 export const groupFromPropsSelector = (state, props) => {
-  return state.groups.get(props.group.first().group);
+  if (!state.groups.size) return new Group();
+  return state.groups.get(props.group.first().group) || new Group();
 }

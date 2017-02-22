@@ -8,6 +8,7 @@ import {
   currentEntrySelector,
   entryVisibleSelector,
   entryCompleteSelector,
+  isEntryOwnerSelector,
   entryGroupSelector
 } from '../../selectors/entries-selector';
 import {
@@ -34,6 +35,7 @@ const Entry = ({
   score,
   possible,
   isVisible,
+  isOwner,
   isComplete,
   hasStarted,
   totalPossible
@@ -93,6 +95,7 @@ Entry.propTypes = {
   totalPossible: PropTypes.number,
   score: PropTypes.number,
   isVisible: PropTypes.bool,
+  isOwner: PropTypes.bool,
   isComplete: PropTypes.bool,
   hasStarted: PropTypes.bool
 }
@@ -106,6 +109,7 @@ const mapStateToProps = (state, props) => {
     possible: entryPossibleScoreSelector(state, props),
     isVisible: entryVisibleSelector(state, props),
     isComplete: entryCompleteSelector(state, props),
+    isOwner: isEntryOwnerSelector(state, props),
     hasStarted: entryGameStartedSelector(state, props),
     group: entryGroupSelector(state, props),
     totalPossible: gameTotalPossibleSelector(state, props)

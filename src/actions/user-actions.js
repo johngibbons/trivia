@@ -4,8 +4,18 @@ import {
   CHECK_AUTH_STATUS,
   SYNC_USER,
   SET_USER,
-  SIGN_OUT
+  SIGN_OUT,
+  FETCH_USER
 } from './action-types';
+
+export function fetchUser(id) {
+  return {
+    type: FETCH_USER,
+    payload: {
+      id
+    }
+  }
+}
 
 export function signInSuccess(currentUser) {
   return {

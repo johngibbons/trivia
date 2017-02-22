@@ -83,6 +83,12 @@ export const entryVisibleSelector = createSelector(
   }
 )
 
+export const isEntryOwnerSelector = createSelector(
+  currentUserSelector,
+  currentEntrySelector,
+  (user, entry) => user.id && user.id === entry.user
+)
+
 export const entryCompleteSelector = createSelector(
   currentEntrySelector,
   gamesSelector,
@@ -110,7 +116,8 @@ export const userEntriesSelector = createSelector(
   userFromParamsSelector,
   entriesSelector,
   (user, entries) => entries
-    .filter(entry => entry.user === user.id)
+    .toList()
+    .filter(entry => user && entry.user === user.id)
     .groupBy(entry => entry.get('group'))
-    .toKeyedSeq()
+    .toList()
 )

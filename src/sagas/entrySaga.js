@@ -10,6 +10,8 @@ import {
   selectNomineeSuccess,
   setEntries
 } from '../actions/entry-actions'
+import { setGroup } from '../actions/group-actions';
+import { setGame } from '../actions/game-actions';
 import { currentUserSelector } from '../selectors/current-user-selector';
 import API from '../api'
 import { fork, put, call, takeLatest, select } from 'redux-saga/effects';
@@ -66,14 +68,29 @@ export function* watchSelectNominee() {
   yield fork(takeLatest, SELECT_NOMINEE, selectNominee)
 }
 
+function* getAndSetGroup(id) {
+  try {
+    const group = yield call(get, 'groups', id)
+    yield put(setGroup(group))
+    const game = yield call(get, 'games', group.game)
+    yield put(setGame(game))
+  } catch(errors) {
+    console.log(errors);
+  }
+}
+
 export function* fetchUserEntries(action) {
   try {
     const user = yield call(get, 'users', action.payload.userId);
     const ref = database().ref('entries').orderByChild('user').equalTo(user.id)
-    const entries = yield call([ref, ref.once], 'value');
-    yield put(setEntries(entries.val()))
+    const response = yield call([ref, ref.once], 'value');
+    const entries = response.val();
+    yield put(setEntries(entries))
+    for (const key of Object.keys(entries)) {
+      yield fork(getAndSetGroup, entries[key].group)
+    }
   } catch(errors) {
-
+    console.log(errors)
   }
 }
 

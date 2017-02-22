@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import { ui } from './index';
-import { signInSuccess } from './actions/user-actions';
+import { signInSuccess, fetchUser } from './actions/user-actions';
 import store from './store';
 
 export function startFirebase() {
@@ -22,6 +22,7 @@ export function startFirebaseUI() {
     callbacks: {
       signInSuccess(currentUser) {
         store.dispatch(signInSuccess(currentUser));
+        store.dispatch(fetchUser(currentUser.uid))
         return false;
       }
     },

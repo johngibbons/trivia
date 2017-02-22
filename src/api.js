@@ -38,13 +38,7 @@ export default class API {
         id: newGroupId,
         admin: user.id
       }).toJS(),
-      [`/users/${user.id}`]: {
-        ...user.toJS(),
-        groups: {
-          ...user.toJS().groups,
-          [newGroupId]: { admin: true }
-        }
-      },
+      [`/users/${user.id}/groups/${newGroupId}`]: { admin: true },
       [`/games/${group.game}/groups/${newGroupId}`]: true
     }
     return database().ref().update(updates);
@@ -55,21 +49,20 @@ export default class API {
   }
 
   static createEntry(newEntryId, entry, user) {
-    const updates = {
+    const updates = user.groups.get(entry.group) ?
+    {
       [`/entries/${newEntryId}`]: new Entry({ ...entry, id: newEntryId }).toJS(),
       [`/groups/${entry.group}/entries/${newEntryId}`]: true,
       [`/games/${entry.game}/entries/${newEntryId}`]: true,
-      [`/users/${user.id}`]: {
-        ...user.toJS(),
-        entries: {
-          ...user.toJS().entries,
-          [newEntryId]: true
-        },
-        groups: {
-          ...user.toJS().groups,
-          [entry.group]: true
-        }
-      },
+      [`/users/${user.id}/entries/${newEntryId}`]: true
+    }
+    :
+    {
+      [`/entries/${newEntryId}`]: new Entry({ ...entry, id: newEntryId }).toJS(),
+      [`/groups/${entry.group}/entries/${newEntryId}`]: true,
+      [`/games/${entry.game}/entries/${newEntryId}`]: true,
+      [`/users/${user.id}/groups/${entry.group}`]: true,
+      [`/users/${user.id}/entries/${newEntryId}`]: true
     }
     return database().ref().update(updates);
   }

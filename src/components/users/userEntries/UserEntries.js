@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import './UserEntries.css'
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 import { userEntriesSelector } from '../../../selectors/entries-selector';
 
@@ -15,10 +15,10 @@ const UserEntries = ({
     <div className='UserEntries'>
       <PageHeading text='My Entries' />
       <div className='UserEntries--entries-container'>
-        {entriesByGroup.map((group, key) => {
+        {entriesByGroup.map((group) => {
           return (
             <UserEntriesGroup
-              key={key}
+              key={group.first().group}
               group={group}
             />
           )
@@ -29,7 +29,7 @@ const UserEntries = ({
 }
 
 UserEntries.propTypes = {
-  entriesByGroup: PropTypes.instanceOf(Map)
+  entriesByGroup: PropTypes.instanceOf(List)
 }
 
 const mapStateToProps = (state, props) => {

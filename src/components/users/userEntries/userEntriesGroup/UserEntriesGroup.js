@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import './UserEntriesGroup.css';
-import { Seq } from 'immutable';
+import { List } from 'immutable';
 import { connect } from 'react-redux';
 import Group from '../../../../models/Group';
 import Game from '../../../../models/Game';
@@ -8,7 +8,6 @@ import Game from '../../../../models/Game';
 import { groupFromPropsSelector } from '../../../../selectors/group-selector';
 import { entriesGameSelector } from '../../../../selectors/games-selector';
 
-import { List } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import UserEntry from './userEntry/UserEntry';
 import { Link } from 'react-router';
@@ -45,7 +44,7 @@ const UserEntriesGroup = ({
 };
 
 UserEntriesGroup.propTypes = {
-  group: PropTypes.instanceOf(Seq),
+  group: PropTypes.instanceOf(List),
   groupObject: PropTypes.instanceOf(Group),
   game: PropTypes.instanceOf(Game)
 };

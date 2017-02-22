@@ -1,8 +1,7 @@
 import { call, put, takeLatest, fork, select } from 'redux-saga/effects';
 import {
   CREATE_GROUP,
-  FETCH_GROUP,
-  FETCH_USER_GROUPS
+  FETCH_GROUP
 } from '../actions/action-types';
 import {
   createGroupSuccess,
