@@ -6,9 +6,7 @@ const User = Record({
   email: '',
   entries: Map(),
   groups: Map(),
-  name: '',
-  provider: '',
-  username: ''
+  name: ''
 })
 
 export default User;

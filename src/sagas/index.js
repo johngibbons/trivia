@@ -7,7 +7,10 @@ import {
   watchCheckAuthStatus,
   watchSignOut
 } from './authSaga';
-import { watchFetchUser } from './userSaga';
+import {
+  watchFetchUser,
+  watchFetchOrCreateUser
+} from './userSaga';
 import {
   watchCreateGame,
   watchFetchGame,
@@ -32,6 +35,7 @@ function* rootSaga() {
     watchSavePerson(),
     watchSignOut(),
     watchFetchUser(),
+    watchFetchOrCreateUser(),
     watchCreateGame(),
     watchFetchGame(),
     watchCreateGroup(),

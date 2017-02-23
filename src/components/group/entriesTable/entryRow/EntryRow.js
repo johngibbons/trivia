@@ -16,7 +16,7 @@ import {
 } from '../../../../selectors/games-selector';
 import classNames from 'classnames';
 
-import Avatar from 'material-ui/Avatar';
+import UserAvatar from '../../../users/userAvatar/UserAvatar';
 
 
 const EntryRow = ({
@@ -46,10 +46,7 @@ const EntryRow = ({
       <td
         className={'EntriesTable--col avatar'}
       >
-        <Avatar
-          src={user.photoURL}
-          className='EntriesTable--avatar'
-        />
+        <UserAvatar user={user} />
       </td>
       <td
         className={'EntriesTable--col'}

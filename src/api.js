@@ -16,6 +16,10 @@ export default class API {
     return database().ref(`/people/${person.get('id')}`).set(person.toJS());
   }
 
+  static createUser(user) {
+    return database().ref(`/users/${user.id}`).set(user.toJS());
+  }
+
   static createGameId() {
     return database().ref().child('games').push().key;
   }

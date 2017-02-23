@@ -8,6 +8,7 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const DELETE_USER = 'DELETE_USER'
 export const SYNC_USER = 'SYNC_USER'
 export const SET_USER = 'SET_USER'
+export const FETCH_OR_CREATE_USER = 'FETCH_OR_CREATE_USER'
 
 export const CREATE_GAME = 'CREATE_GAME'
 export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS'

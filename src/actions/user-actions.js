@@ -5,7 +5,8 @@ import {
   SYNC_USER,
   SET_USER,
   SIGN_OUT,
-  FETCH_USER
+  FETCH_USER,
+  FETCH_OR_CREATE_USER
 } from './action-types';
 
 export function fetchUser(id) {
@@ -62,6 +63,15 @@ export function syncUser({ value }) {
     type: SYNC_USER,
     payload: {
       user: value
+    }
+  }
+}
+
+export function fetchOrCreateUser(user) {
+  return {
+    type: FETCH_OR_CREATE_USER,
+    payload: {
+      user
     }
   }
 }

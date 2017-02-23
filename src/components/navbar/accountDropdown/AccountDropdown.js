@@ -8,7 +8,7 @@ import { push } from 'react-router-redux';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
-import Avatar from 'material-ui/Avatar';
+import UserAvatar from '../../users/userAvatar/UserAvatar';
 
 const AccountDropdown = ({
   currentUser,
@@ -29,7 +29,7 @@ const AccountDropdown = ({
         <IconButton
           className='AccountDropdown-icon'
         >
-          <Avatar src={currentUser.photoURL} />
+          <UserAvatar user={currentUser} />
         </IconButton>
       )}
     >
