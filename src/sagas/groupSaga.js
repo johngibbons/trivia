@@ -28,12 +28,27 @@ import {
   CHILD_ADDED,
   CHILD_REMOVED
 } from './firebase-saga';
+import { database } from 'firebase';
 
 export function* createGroup(action) {
   try {
     const currentUser = yield select(currentUserSelector);
     const newGroupId = yield call(API.createGroupId, null)
-    yield call(API.createGroup, newGroupId, action.payload, currentUser)
+    const ref = database()
+      .ref('categories')
+      .orderByChild('game')
+      .equalTo(action.payload.game);
+    const response = yield call([ref, ref.once], 'value');
+    const categories = response.val();
+    const categoryValues = Object.keys(categories)
+      .reduce((acc, key) => ({ ...acc, [key]: categories[key].value }), {})
+    yield call(
+      API.createGroup,
+      newGroupId,
+      action.payload,
+      currentUser,
+      categoryValues
+    )
     yield put(createGroupSuccess(newGroupId, action.payload))
     yield put(push(`/groups/${newGroupId}`))
   } catch(errors) {

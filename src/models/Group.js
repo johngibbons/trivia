@@ -5,7 +5,8 @@ const Group = Record({
   name: '',
   admin: undefined,
   entries: Map(),
-  game: undefined
+  game: undefined,
+  values: Map()
 });
 
 export default Group;

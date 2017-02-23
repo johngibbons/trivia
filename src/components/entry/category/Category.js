@@ -12,6 +12,7 @@ import NomineesGrid from './nomineesGrid/NomineesGrid';
 
 const Category = ({
   category,
+  value,
   nominees,
   selectedNomineeId
 }) => {
@@ -32,7 +33,7 @@ const Category = ({
     >
       <CardHeader
         title={category.name}
-        subtitle={`${category.value} points`}
+        subtitle={`${value} points`}
         titleStyle={{
           fontSize: '18px'
         }}
@@ -52,6 +53,7 @@ const Category = ({
 Category.propTypes = {
   entry: PropTypes.instanceOf(Record),
   category: PropTypes.instanceOf(Record).isRequired,
+  value: PropTypes.number,
   nominees: PropTypes.instanceOf(Seq).isRequired,
   selectedNomineeId: PropTypes.string
 }

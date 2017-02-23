@@ -1,4 +1,5 @@
 import { database, auth } from 'firebase';
+import { Map } from 'immutable';
 import Game from './models/Game';
 import Group from './models/Group';
 import Entry from './models/Entry';
@@ -35,12 +36,13 @@ export default class API {
     return database().ref().child('groups').push().key;
   }
 
-  static createGroup(newGroupId, group, user) {
+  static createGroup(newGroupId, group, user, categoryValues) {
     const updates = {
       [`/groups/${newGroupId}`]: new Group({
         ...group,
         id: newGroupId,
-        admin: user.id
+        admin: user.id,
+        values: new Map(categoryValues)
       }).toJS(),
       [`/users/${user.id}/groups/${newGroupId}`]: { admin: true },
       [`/games/${group.game}/groups/${newGroupId}`]: true

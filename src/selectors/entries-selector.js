@@ -14,7 +14,7 @@ const groupsSelector = state => state.groups;
 const usersSelector = state => state.users;
 const userFromParamsSelector = (state, props) => state.users.get(props.routeParams.id)
 
-const entryScore = (entry, categories, games) => {
+const entryScore = (entry, categories, games, group) => {
   const game = games.get(entry.game)
   const gameCategories = game ? game.categories : [];
   return gameCategories.reduce((acc, _, categoryId) => {
@@ -22,7 +22,7 @@ const entryScore = (entry, categories, games) => {
     return category &&
       category.correctAnswer &&
       category.correctAnswer === entry.selections.get(category.id) ?
-        acc + category.value :
+        acc + group.values.get(category.id) :
         acc
   }, 0)
 }
@@ -45,7 +45,7 @@ export const groupEntriesSelector = createSelector(
       .map(key => {
         const entry = entries.get(key)
         return entry ?
-          entry.set('score', entryScore(entry, categories, games)) :
+          entry.set('score', entryScore(entry, categories, games, group)) :
           new Entry();
       })
       .sort((entryA, entryB) => entryB.score - entryA.score)

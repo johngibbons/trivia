@@ -18,7 +18,8 @@ const Navbar = ({
         color: '#212121',
         fontSize: '14px',
         fontWeight: 500,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        flex: 'none'
       }}
       className='Navbar'
       iconElementRight={loggedIn ? <AccountDropdown /> : <LoginButton />}

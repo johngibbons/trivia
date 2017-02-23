@@ -9,6 +9,7 @@ import { currentEntrySelector } from './entries-selector';
 export const givenCategorySelector = (state, props) => props.category
 
 const categoriesSelector = state => state.categories;
+const groupsSelector = state => state.groups;
 
 export const currentCategorySelector = (state, props) =>
   state.categories.get(props.category.id)
@@ -29,14 +30,21 @@ export const entryCategoriesSelector = createSelector(
   }
 )
 
+const entryGroupSelector = createSelector(
+  currentEntrySelector,
+  groupsSelector,
+  (entry, groups) => groups.get(entry.group)
+);
+
 export const entryScoreSelector = createSelector(
   entryCategoriesSelector,
   currentEntrySelector,
-  (categories, entry) => {
+  entryGroupSelector,
+  (categories, entry, group) => {
     return categories.reduce((acc, category) =>
       category.correctAnswer &&
       category.correctAnswer === entry.selections.get(category.id) ?
-        acc + category.value :
+        acc + group.values.get(category.id) :
         acc
       , 0)
   }
@@ -44,13 +52,16 @@ export const entryScoreSelector = createSelector(
 
 export const entryPossibleScoreSelector = createSelector(
   entryCategoriesSelector,
-  categories => categories
-    .filter(category => category.correctAnswer)
-    .reduce((acc, category) => acc + category.value, 0)
+  entryGroupSelector,
+  (categories, group) => {
+    return categories
+      .filter(category => category.correctAnswer)
+      .reduce((acc, category) => acc + group.values.get(category.id), 0)
+  }
 
 )
 
 export const gameTotalPossibleSelector = createSelector(
-  entryCategoriesSelector,
-  categories => categories.reduce((acc, category) => acc + category.value , 0)
+  entryGroupSelector,
+  group => group.values.reduce((acc, value) => acc + value , 0)
 )

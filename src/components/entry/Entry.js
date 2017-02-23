@@ -35,7 +35,6 @@ const Entry = ({
   score,
   possible,
   isVisible,
-  isOwner,
   isComplete,
   hasStarted,
   totalPossible
@@ -76,6 +75,7 @@ const Entry = ({
           <Category
             key={i}
             category={category}
+            value={group.values.get(category.id)}
             entry={entry}
           />
         )
