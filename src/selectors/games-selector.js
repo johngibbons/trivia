@@ -16,6 +16,12 @@ export const entryGameSelector = createSelector(
   (entry, games) => games.get(entry.game) || new Game()
 )
 
+export const groupGameSelector = createSelector(
+  currentGroupSelector,
+  gamesSelector,
+  (group, games) => group && games.get(group.game)
+)
+
 const gameStarted = (categoriesSet, categories) => {
   return categoriesSet.reduce((acc, _, key) => {
     const category = categories.get(key);

@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import './Group.css';
 import { List } from 'immutable';
 import GroupModel from '../../models/Group';
+import Game from '../../models/Game';
 import { groupEntriesSelector } from '../../selectors/entries-selector';
 import { currentGroupSelector } from '../../selectors/group-selector';
-import { groupGameStartedSelector } from '../../selectors/games-selector';
+import {
+  groupGameStartedSelector,
+  groupGameSelector
+} from '../../selectors/games-selector';
 import { openModal } from '../../actions/ui-actions';
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,6 +19,7 @@ import EntriesTable from './entriesTable/EntriesTable';
 
 const Group = ({
   group,
+  game,
   entries,
   params,
   gameStarted,
@@ -22,6 +27,7 @@ const Group = ({
 }) => {
   return (
     <div className='Group'>
+      <h5 className='Group--game-name'>{game.name}</h5>
       <PageHeading
         text={group.name}
       />
@@ -48,6 +54,7 @@ const Group = ({
 }
 
 Group.propTypes = {
+  game: PropTypes.instanceOf(Game),
   group: PropTypes.instanceOf(GroupModel),
   entries: PropTypes.instanceOf(List),
   params: PropTypes.object,
@@ -59,7 +66,8 @@ const mapStateToProps = (state, props) => {
   return {
     entries: groupEntriesSelector(state, props),
     group: currentGroupSelector(state, props),
-    gameStarted: groupGameStartedSelector(state, props)
+    gameStarted: groupGameStartedSelector(state, props),
+    game: groupGameSelector(state, props)
   }
 }
 
