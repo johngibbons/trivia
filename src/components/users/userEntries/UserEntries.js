@@ -14,6 +14,7 @@ const UserEntries = ({
   return (
     <div className='UserEntries'>
       <PageHeading text='My Entries' />
+      {entriesByGroup.size ?
       <div className='UserEntries--entries-container'>
         {entriesByGroup.map((group) => {
           return (
@@ -24,6 +25,8 @@ const UserEntries = ({
           )
         })}
       </div>
+          :
+      <div>No entries yet.</div>}
     </div>
   )
 }

@@ -52,6 +52,15 @@
   padding: 0 15px;
 }
 
+.EntriesTable--entry-name {
+
+}
+
+.EntriesTable--user-name {
+  font-size: 10px;
+  color: rgb(158, 158, 158);
+}
+
 .EntriesTable--row {
   cursor: pointer;
   height: 48px;

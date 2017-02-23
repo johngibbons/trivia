@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { startFirebaseUI, stopFirebaseUI } from '../../firebase';
 
 class FirebaseContainer extends Component {
@@ -15,10 +15,6 @@ class FirebaseContainer extends Component {
       <div id='firebase-auth-container' />
     )
   }
-}
-
-FirebaseContainer.propTypes = {
-
 }
 
 export default FirebaseContainer

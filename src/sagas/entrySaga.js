@@ -86,8 +86,10 @@ export function* fetchUserEntries(action) {
     const response = yield call([ref, ref.once], 'value');
     const entries = response.val();
     yield put(setEntries(entries))
-    for (const key of Object.keys(user.groups)) {
-      yield fork(getAndSetGroup, key)
+    if (user.groups) {
+      for (const key of Object.keys(user.groups)) {
+        yield fork(getAndSetGroup, key)
+      }
     }
   } catch(errors) {
     console.log(errors)

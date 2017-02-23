@@ -24,7 +24,7 @@ const UserEntriesGroup = ({
       <div className='UserEntriesGroup--game-name'>{game && game.name}</div>
       <Link
         className='UserEntriesGroup--group-name'
-        to={`groups/${groupObject.id}`}
+        to={`/groups/${groupObject.id}`}
       >
         {groupObject.name}
       </Link>

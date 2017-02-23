@@ -29,7 +29,7 @@ const EntryRow = ({
 }) => {
   const entryCompleteClasses = classNames(
     'EntriesTable--entry-complete-indicator',
-    { ['complete']: entryComplete }
+    { 'complete': entryComplete }
   )
 
   return (
@@ -53,7 +53,10 @@ const EntryRow = ({
       </td>
       <td
         className={'EntriesTable--col'}
-      >{entry.name}</td>
+      >
+        <div className='EntriesTable--entry-name'>{entry.name}</div>
+        <div className='EntriesTable--user-name'>{user.name}</div>
+      </td>
       <td
         className={'EntriesTable--col'}
       >{entry.score} / {possibleScore}</td>
