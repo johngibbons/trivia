@@ -35,6 +35,7 @@ const Group = ({
       />
       {!gameStarted &&
       <RaisedButton
+        className='Group--create-entry-button'
         primary
         label='Create your entry'
         labelStyle={{
@@ -44,7 +45,6 @@ const Group = ({
       />}
       {currentUser.id === group.admin &&
       <RaisedButton
-        primary
         label='Edit Category Values'
         labelStyle={{
           color: '#212121'

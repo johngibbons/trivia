@@ -25,7 +25,7 @@ const EditValuesModal = ({
       onRequestClose={onClose}
       autoScrollBodyContent
     >
-      <form>
+      <form className='EditValuesModal--form-container'>
       {categories.map((category, i) => {
         return (
           <EditValueField
@@ -37,6 +37,7 @@ const EditValuesModal = ({
       })}
         <RaisedButton
           primary
+          className='EditValuesModal--save'
           type='submit'
           label='save'
           onClick={(e) => {

@@ -1,0 +1,11 @@
+.EditValueField {
+  width: 100% !important;
+}
+
+@media(min-width: 680px) {
+  .EditValueField {
+    margin-right: 25px;
+    width: calc(33.3% - 25px) !important;
+  }
+}
+
