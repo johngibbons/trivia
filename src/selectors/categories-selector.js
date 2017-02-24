@@ -10,6 +10,7 @@ export const givenCategorySelector = (state, props) => props.category
 
 const categoriesSelector = state => state.categories;
 const groupsSelector = state => state.groups;
+const groupFromPropsSelector = (state, props) => props.group;
 
 export const currentCategorySelector = (state, props) =>
   state.categories.get(props.category.id)
@@ -64,4 +65,14 @@ export const entryPossibleScoreSelector = createSelector(
 export const gameTotalPossibleSelector = createSelector(
   entryGroupSelector,
   group => group.values.reduce((acc, value) => acc + value , 0)
+)
+
+export const groupCategoriesSelector = createSelector(
+  groupFromPropsSelector,
+  categoriesSelector,
+  (group, categories) => {
+    return group.values.toKeyedSeq().map((val, key) => {
+      return categories.get(key).set('value', val);
+    })
+  }
 )

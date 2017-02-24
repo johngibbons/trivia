@@ -1,7 +1,8 @@
 import {
   CREATE_GROUP_SUCCESS,
   SET_GROUP,
-  SET_GROUP_ATTR
+  SET_GROUP_ATTR,
+  SAVE_GROUP_VALUES_SUCCESS
 } from '../actions/action-types';
 import { Map, fromJS } from 'immutable';
 
@@ -17,6 +18,10 @@ const groups = (state = new Map(), action) => {
   case SET_GROUP: {
     const { group } = action.payload;
     return state.set(group.id, new Group(fromJS(group)))
+  }
+  case SAVE_GROUP_VALUES_SUCCESS: {
+    const { groupId, newValues } = action.payload;
+    return state.mergeIn([groupId, 'values'], new Map(newValues))
   }
   default:
     return state;

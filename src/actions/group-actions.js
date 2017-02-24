@@ -4,7 +4,9 @@ import {
   FETCH_GROUP,
   FETCH_USER_GROUPS,
   SET_GROUP,
-  SET_GROUP_ATTR
+  SET_GROUP_ATTR,
+  SAVE_GROUP_VALUES,
+  SAVE_GROUP_VALUES_SUCCESS
 } from './action-types';
 
 export function createGroup(name, game) {
@@ -59,6 +61,25 @@ export function fetchUserGroups(userId) {
     type: FETCH_USER_GROUPS,
     payload: {
       userId
+    }
+  }
+}
+
+export function saveGroupValues(groupId) {
+  return {
+    type: SAVE_GROUP_VALUES,
+    payload: {
+      groupId
+    }
+  }
+}
+
+export function saveGroupValuesSuccess(groupId, newValues) {
+  return {
+    type: SAVE_GROUP_VALUES_SUCCESS,
+    payload: {
+      groupId,
+      newValues
     }
   }
 }

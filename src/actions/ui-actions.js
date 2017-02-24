@@ -4,7 +4,8 @@ import {
   UPDATE_SEARCH_FIELD,
   UPDATE_NEW_GAME_NAME,
   UPDATE_NEW_GROUP_NAME,
-  UPDATE_NEW_ENTRY_NAME
+  UPDATE_NEW_ENTRY_NAME,
+  UPDATE_VALUE_FIELD
 } from './action-types';
 
 export function openModal(id) {
@@ -51,6 +52,16 @@ export function updateNewEntryName(value) {
   return {
     type: UPDATE_NEW_ENTRY_NAME,
     payload: {
+      value
+    }
+  }
+}
+
+export function updateValueField(categoryId, value) {
+  return {
+    type: UPDATE_VALUE_FIELD,
+    payload: {
+      categoryId,
       value
     }
   }

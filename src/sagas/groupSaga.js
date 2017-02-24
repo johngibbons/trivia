@@ -1,12 +1,14 @@
 import { call, put, takeLatest, fork, select } from 'redux-saga/effects';
 import {
   CREATE_GROUP,
-  FETCH_GROUP
+  FETCH_GROUP,
+  SAVE_GROUP_VALUES
 } from '../actions/action-types';
 import {
   createGroupSuccess,
   setGroup,
-  setGroupAttr
+  setGroupAttr,
+  saveGroupValuesSuccess
 } from '../actions/group-actions';
 import {
   syncEntry
@@ -16,6 +18,7 @@ import {
 } from '../actions/user-actions';
 import API from '../api';
 import { currentUserSelector } from '../selectors/current-user-selector';
+import { pendingValuesSelector } from '../selectors/ui-selector.js'
 import { push } from 'react-router-redux';
 import {
   fetchGameAndDependents,
@@ -24,11 +27,14 @@ import {
 import {
   get,
   sync,
+  update,
   CHILD_CHANGED,
   CHILD_ADDED,
   CHILD_REMOVED
 } from './firebase-saga';
 import { database } from 'firebase';
+import { Map } from 'immutable';
+import Group from '../models/Group';
 
 export function* createGroup(action) {
   try {
@@ -49,7 +55,12 @@ export function* createGroup(action) {
       currentUser,
       categoryValues
     )
-    yield put(createGroupSuccess(newGroupId, action.payload))
+    yield put(createGroupSuccess(newGroupId, new Group({
+      ...action.payload,
+      id: newGroupId,
+      admin: currentUser.id,
+      values: new Map(categoryValues)
+    }).toJS()))
     yield put(push(`/groups/${newGroupId}`))
   } catch(errors) {
     console.log(errors);
@@ -102,4 +113,18 @@ export function* syncGroupAndDependents() {
 
 export function* watchFetchGroup() {
   yield fork(takeLatest, FETCH_GROUP, fetchGroup)
+}
+
+export function* saveGroupValues(action) {
+  try {
+    const newValues = yield select(pendingValuesSelector)
+    yield call(update, `groups/${action.payload.groupId}`, 'values', newValues.toJS())
+    yield put(saveGroupValuesSuccess(action.payload.groupId, newValues))
+  } catch(errors) {
+    console.log(errors)
+  }
+}
+
+export function* watchSaveGroupValues() {
+  yield fork(takeLatest, SAVE_GROUP_VALUES, saveGroupValues)
 }

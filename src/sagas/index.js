@@ -18,7 +18,8 @@ import {
 } from './gameSaga';
 import {
   watchCreateGroup,
-  watchFetchGroup
+  watchFetchGroup,
+  watchSaveGroupValues
 } from './groupSaga';
 import {
   watchCreateEntry,
@@ -40,6 +41,7 @@ function* rootSaga() {
     watchFetchGame(),
     watchCreateGroup(),
     watchFetchGroup(),
+    watchSaveGroupValues(),
     watchCreateEntry(),
     watchFetchEntry(),
     watchSelectNominee(),

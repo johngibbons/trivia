@@ -16,8 +16,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import NewEntryModal from '../../components/entry/newEntryModal/NewEntryModal';
 import PageHeading from '../pageHeading/PageHeading';
 import EntriesTable from './entriesTable/EntriesTable';
+import EditValuesModal from './editValuesModal/EditValuesModal';
 
 const Group = ({
+  currentUser,
   group,
   game,
   entries,
@@ -40,6 +42,15 @@ const Group = ({
         }}
         onClick={() => onClickNewEntry('NEW_ENTRY')}
       />}
+      {currentUser.id === group.admin &&
+      <RaisedButton
+        primary
+        label='Edit Category Values'
+        labelStyle={{
+          color: '#212121'
+        }}
+        onClick={() => onClickNewEntry('EDIT_VALUES')}
+      />}
       <EntriesTable
         entries={entries}
         gameStarted={gameStarted}
@@ -49,11 +60,14 @@ const Group = ({
         groupId={params.id}
         gameId={group.game}
       />}
+      {currentUser.id === group.admin &&
+        <EditValuesModal group={group} />}
     </div>
   )
 }
 
 Group.propTypes = {
+  currentUser: PropTypes.object.isRequired,
   game: PropTypes.instanceOf(Game),
   group: PropTypes.instanceOf(GroupModel),
   entries: PropTypes.instanceOf(List),
@@ -64,6 +78,7 @@ Group.propTypes = {
 
 const mapStateToProps = (state, props) => {
   return {
+    currentUser: state.currentUser,
     entries: groupEntriesSelector(state, props),
     group: currentGroupSelector(state, props),
     gameStarted: groupGameStartedSelector(state, props),

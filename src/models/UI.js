@@ -1,10 +1,11 @@
-import { Record } from 'immutable';
+import { Record, Map } from 'immutable';
 
 export const UI = Record({
   modal: undefined,
   searchValue: '',
   newGameName: '',
   newGroupName: '',
-  newEntryName: ''
+  newEntryName: '',
+  values: new Map()
 });
 
