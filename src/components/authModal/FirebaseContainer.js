@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import { startFirebaseUI, stopFirebaseUI } from '../../firebase';
 
 class FirebaseContainer extends Component {
+  constructor() {
+    super();
+    this.state = { ui: undefined };
+  }
+
   componentDidMount(){
-    startFirebaseUI();
+    this.setState({ ui: startFirebaseUI() });
   }
 
   componentWillUnmount() {
-    stopFirebaseUI();
+    stopFirebaseUI(this.state.ui);
   }
 
   render() {

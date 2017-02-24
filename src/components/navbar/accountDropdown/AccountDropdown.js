@@ -37,7 +37,6 @@ const AccountDropdown = ({
         primaryText="My Entries"
         onClick={() => onClickMyGroups(currentUser.id)}
       />
-      <MenuItem primaryText="Account" />
       <MenuItem
         primaryText="Sign out"
         onClick={onClickSignOut}

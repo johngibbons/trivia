@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
-import { ui } from './index';
 import { signInSuccess, fetchOrCreateUser } from './actions/user-actions';
 import store from './store';
 
@@ -35,8 +34,9 @@ export function startFirebaseUI() {
     ]
   }
   ui.start('#firebase-auth-container', uiConfig);
+  return ui;
 }
 
-export function stopFirebaseUI() {
+export function stopFirebaseUI(ui) {
   ui.reset();
 }

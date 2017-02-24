@@ -27,6 +27,8 @@ const Group = ({
   gameStarted,
   onClickNewEntry
 }) => {
+  console.log(currentUser.toJS().id)
+  console.log(group.admin)
   return (
     <div className='Group'>
       <h5 className='Group--game-name'>{game.name}</h5>
