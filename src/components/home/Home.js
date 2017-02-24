@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
 import { Set } from 'immutable';
+import User from '../../models/User';
 
 import { openModal } from '../../actions/ui-actions';
 
@@ -10,6 +11,7 @@ import NewGroupModal from '../group/newGroupModal/NewGroupModal';
 import { gameNomineesSelector } from '../../selectors/nominees-selector';
 
 const Home = ({
+  currentUser,
   nominees,
   onClickNewGroup
 }) => {
@@ -24,7 +26,11 @@ const Home = ({
           labelStyle={{
             color: '#424242'
           }}
-          onClick={() => onClickNewGroup('NEW_GROUP')}
+          onClick={() => {
+            currentUser.id ?
+              onClickNewGroup('NEW_GROUP') :
+              onClickNewGroup('AUTH')
+          }}
         />
       </div>
       <div className='Home-movie-carousel'>
@@ -48,12 +54,14 @@ const Home = ({
 }
 
 Home.propTypes = {
+  currentUser: PropTypes.instanceOf(User),
   nominees: PropTypes.instanceOf(Set),
   onClickNewGroup: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
   return {
+    currentUser: state.currentUser,
     nominees: gameNomineesSelector(state)
   }
 }

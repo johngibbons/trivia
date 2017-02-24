@@ -19,7 +19,7 @@ export const entryGameSelector = createSelector(
 export const groupGameSelector = createSelector(
   currentGroupSelector,
   gamesSelector,
-  (group, games) => group && games.get(group.game)
+  (group, games) => group && games.get(group.game) || new Game()
 )
 
 const gameStarted = (categoriesSet, categories) => {
