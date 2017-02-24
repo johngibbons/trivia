@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import makeStore from '../src/store';
+import makeStore from '../src/store/configureStore';
 
 describe('store', () => {
 

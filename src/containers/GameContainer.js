@@ -199,7 +199,7 @@ function setContext(path) {
 }
 
 function setLeader(entries) {
-  if (entries[0]) {
+  if (entries[0] && entries[1]) {
     return entries[0].currScore === entries[1].currScore ? {...entries[0], name: 'multiple'} : entries[0];
   } else {
     return {};
