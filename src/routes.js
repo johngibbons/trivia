@@ -21,6 +21,7 @@ import {
   fetchUserEntries
 } from './actions/entry-actions';
 import store from './store'
+import Auth from './components/auth/Auth';
 
 const requireAuth = (nextState, replace, next) =>
   store.getState().currentUser.get('id') ?
@@ -105,6 +106,10 @@ export default (
         }}
       />
     </Route>
+    <Route
+      path="/login"
+      component={Auth}
+    />
     <Route path="*" component={NoMatch} />
   </Route>
 )

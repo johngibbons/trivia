@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import { signInSuccess, fetchOrCreateUser } from './actions/user-actions';
 import store from './store';
+import { browserHistory } from 'react-router';
 
 export function startFirebase() {
   const config = {
@@ -21,7 +22,8 @@ export function startFirebaseUI() {
     callbacks: {
       signInSuccess(currentUser) {
         store.dispatch(signInSuccess(currentUser));
-        store.dispatch(fetchOrCreateUser(currentUser))
+        store.dispatch(fetchOrCreateUser(currentUser));
+        browserHistory.push('/');
         return false;
       }
     },

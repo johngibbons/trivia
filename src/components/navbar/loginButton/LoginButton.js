@@ -2,17 +2,17 @@ import React, { PropTypes } from 'react'
 import './LoginButton.css'
 import { connect } from 'react-redux';
 import { openModal } from '../../../actions/ui-actions';
+import { browserHistory } from 'react-router';
 
 import FlatButton from 'material-ui/FlatButton'
 
 const LoginButton = ({
-  onClick
 }) => {
   return (
     <FlatButton
       label='login'
       className='LoginButton'
-      onClick={() => onClick('AUTH')}
+      onClick={() => browserHistory.push('/login')}
     />
   )
 }

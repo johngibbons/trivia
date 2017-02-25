@@ -8,7 +8,6 @@ const PageContainer = ({children}) => {
   return (
     <div className='PageContainer'>
       <Navbar />
-      <AuthModal />
       <div className='PageContainer-body'>
         {children}
       </div>
