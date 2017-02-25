@@ -12,7 +12,8 @@ const gamesSelector = state => state.games;
 const currentUserSelector = state => state.currentUser;
 const groupsSelector = state => state.groups;
 const usersSelector = state => state.users;
-const userFromParamsSelector = (state, props) => state.users.get(props.routeParams.id)
+const userFromParamsSelector = (state, props) => state.users
+  .get(props.routeParams.id)
 
 const entryScore = (entry, categories, games, group) => {
   const game = games.get(entry.game)
@@ -28,7 +29,8 @@ const entryScore = (entry, categories, games, group) => {
 }
 
 const entryRankReducer = (entries, curr) => {
-  const withSameRank = entries.filter(entry => entry.score === entries.last().score).size;
+  const withSameRank = entries.filter(entry =>
+    entry.score === entries.last().score).size;
   return entries.last() && entries.last().score > curr.score ?
     entries.push(curr.set('rank', entries.last().rank + withSameRank)) :
     entries.push(curr.set('rank', entries.last() ? entries.last().rank : 1))

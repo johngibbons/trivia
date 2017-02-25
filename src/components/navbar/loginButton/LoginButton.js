@@ -6,8 +6,7 @@ import { browserHistory } from 'react-router';
 
 import FlatButton from 'material-ui/FlatButton'
 
-const LoginButton = ({
-}) => {
+const LoginButton = () => {
   return (
     <FlatButton
       label='login'

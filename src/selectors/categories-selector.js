@@ -1,4 +1,5 @@
 import Category from '../models/Category';
+import Group from '../models/Group';
 import { createSelector } from 'reselect';
 import {
   currentGameSelector,
@@ -28,6 +29,7 @@ export const entryCategoriesSelector = createSelector(
   (game, categories) => {
     return game && game.categories.keySeq()
       .map(id => categories.get(id) || new Category())
+      .sort((c1, c2) => c1.order - c2.order)
   }
 )
 
@@ -64,7 +66,7 @@ export const entryPossibleScoreSelector = createSelector(
 
 export const gameTotalPossibleSelector = createSelector(
   entryGroupSelector,
-  group => group.values.reduce((acc, value) => acc + value , 0)
+  group => group ? group.values.reduce((acc, value) => acc + value , 0) : new Group()
 )
 
 export const groupCategoriesSelector = createSelector(

@@ -19,7 +19,7 @@ const EditValueField = ({
       floatingLabelText={category.name}
       className='EditValueField'
       value={value}
-      onChange={(e) => onChange(category.id, parseInt(e.target.value), 10)}
+      onChange={(e) => onChange(category.id, parseInt(e.target.value, 10))}
     />
   )
 }

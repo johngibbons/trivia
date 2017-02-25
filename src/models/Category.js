@@ -6,6 +6,7 @@ const Category = Record({
   game: undefined,
   nominees: new Map(),
   correctAnswer: undefined,
+  order: 0,
   value: 0
 });
 

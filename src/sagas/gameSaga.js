@@ -1,4 +1,4 @@
-import { takeLatest, fork, call, put, select } from 'redux-saga/effects';
+import { takeLatest, fork, call, put } from 'redux-saga/effects';
 import {
   CREATE_GAME,
   FETCH_GAME,
@@ -14,7 +14,6 @@ import API from '../api';
 import { push } from 'react-router-redux';
 import { database } from 'firebase';
 import { get, sync, remove, CHILD_CHANGED } from './firebase-saga';
-import { gamesSelector } from '../selectors/games-selector';
 
 export function* createGame(action) {
   const newGameId = yield call(API.createGameId, null)
@@ -52,7 +51,6 @@ export function* watchFetchGame() {
 
 export function* toggleCorrectNominee(action) {
   const { nominee } = action.payload;
-  const games = yield select(gamesSelector);
   try {
     const currentId = yield call(get, `categories/${nominee.category}`, 'correctAnswer')
     if(nominee.id === currentId) {

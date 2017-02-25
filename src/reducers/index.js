@@ -33,7 +33,10 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === SIGN_OUT_SUCCESS) {
-    state = undefined;
+    state = {
+      ...state,
+      currentUser: undefined
+    }
   }
 
   return appReducer(state, action);

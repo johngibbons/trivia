@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import './PageContainer.css'
 
 import Navbar from '../navbar/Navbar.js';
-import AuthModal from '../authModal/AuthModal';
 
 const PageContainer = ({children}) => {
   return (
