@@ -8,6 +8,8 @@ import { selectNominee } from '../../../../../actions/entry-actions';
 import { toggleCorrectNominee } from '../../../../../actions/category-actions';
 import { gameStartedSelector } from '../../../../../selectors/games-selector';
 
+import CheckIcon from 'material-ui/svg-icons/action/check-circle';
+
 const Nominee = ({
   router,
   nominee,
@@ -23,6 +25,7 @@ const Nominee = ({
 
   const nomineeClasses = classNames(
     'Nominee',
+    { 'Nominee--selected': selectedNomineeId === nominee.id },
     { 'Nominee--unselectable': hasStarted && !isMaster },
     { 'Nominee--not-selected': (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId) },
     { 'Nominee--answer': answer }
@@ -46,6 +49,10 @@ const Nominee = ({
       onClick={() => (!hasStarted || isMaster) &&
         onClickNominee(router.params.id, nominee)}
     >
+      <CheckIcon
+        className='Nominee--selected-icon'
+        color='#fff'
+      />
       <div className='Nominee--text-container'>
         <div>
           <div className='Nominee--text'>{nominee.text}</div>

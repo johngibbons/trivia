@@ -35,7 +35,12 @@ const rootReducer = (state, action) => {
   if (action.type === SIGN_OUT_SUCCESS) {
     state = {
       ...state,
-      currentUser: undefined
+      currentUser: undefined,
+      groups: undefined,
+      entries: undefined,
+      users: undefined,
+      admin: undefined,
+      ui: undefined
     }
   }
 
