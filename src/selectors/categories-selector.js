@@ -12,6 +12,7 @@ export const givenCategorySelector = (state, props) => props.category
 const categoriesSelector = state => state.categories;
 const groupsSelector = state => state.groups;
 const groupFromPropsSelector = (state, props) => props.group;
+const groupFromParamsSelector = (state, props) => state.groups.get(props.routeParams.id)
 
 export const currentCategorySelector = (state, props) =>
   state.categories.get(props.category.id)
@@ -20,7 +21,9 @@ export const currentCategoriesSelector = createSelector(
   currentGameSelector,
   categoriesSelector,
   (game, categories) => game &&
-    game.categories.keySeq().map(id => categories.get(id))
+    game.categories.keySeq()
+      .map(id => categories.get(id))
+      .sort((catA, catB) => catB.value - catA.value)
 )
 
 export const entryCategoriesSelector = createSelector(
@@ -76,5 +79,16 @@ export const groupCategoriesSelector = createSelector(
     return group.values.toKeyedSeq().map((val, key) => {
       return categories.get(key).set('value', val);
     })
+  }
+)
+
+export const currentGroupCategoriesSelector = createSelector(
+  groupFromParamsSelector,
+  categoriesSelector,
+  (group, categories) => {
+    return group.values.toKeyedSeq().map((val, key) => {
+      return categories.get(key).set('value', val);
+    })
+    .sort((catA, catB) => catA.order - catB.order)
   }
 )

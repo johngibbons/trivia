@@ -1,24 +1,31 @@
 .EntriesTable {
-  margin-top: 50px;
+  padding-top: 65px;
+  overflow: auto;
 }
 
 .EntriesTable--table {
-  width: 100%;
+  display: table;
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
+  width: 100%;
+  padding-top: 97px;
+  overflow-x: auto;
 }
 
-.EntriesTable--header {
+.EntriesTable--table-header {
   font-size: 12px;
+  display: table-header-group;
+  vertical-align: middle;
   border-bottom: 1px solid rgb(224, 224, 224);
 }
 
-.EntriesTable--headerRow {
-  height: 48px;
+.EntriesTable--table-header-row {
+  display: table-row;
 }
 
 .EntriesTable--headerCol {
+  display: table-cell;
   padding: 0 24px;
   height: 48px;
   font-weight: normal;
@@ -28,40 +35,40 @@
   text-align: left;
 }
 
-.EntriesTable--col.avatar {
+.EntriesTable--headerCol-diagonal {
+  width: 5px;
+  transform: rotate(-45deg);
+  transform-origin: 30px 31px;;
+  padding: 0 13px;
+}
+
+.EntriesTable--headerCol-avatar {
   width: 40px;
   padding: 0 5px;
 }
 
-.EntriesTable--avatar {
-  margin-top: 4px;
+.EntriesTable--headerCol-entry-name {
+  width: 125px;
 }
 
-.EntriesTable--col.rank {
+.EntriesTable--headerCol-rank {
   width: 5px;
-  padding: 0 15px;
-}
-
-.EntriesTable--headerCol.avatar {
-  width: 40px;
   padding: 0 5px;
 }
 
-.EntriesTable--headerCol.rank {
-  width: 5px;
+.EntriesTable--headerCol-score {
+  width: 50px;
   padding: 0 15px;
 }
 
-.EntriesTable--entry-name {
-
-}
-
-.EntriesTable--user-name {
-  font-size: 10px;
-  color: rgb(158, 158, 158);
+.EntriesTable--table-body {
+  display: table-row-group;
+  vertical-align: middle;
+  border-collapse: collapse;
 }
 
 .EntriesTable--row {
+  display: table-row;
   cursor: pointer;
   height: 48px;
   border-bottom: 1px solid rgb(224, 224, 224);
@@ -73,12 +80,64 @@
 }
 
 .EntriesTable--col {
+  display: table-cell;
   padding: 0 24px;
   height: 48px;
   font-size: 13px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.EntriesTable--col-score {
+  padding: 0 15px;
+  border-right: 1px #E0E0E0 solid;
+}
+
+.EntriesTable--col-category{
+  border-right: 1px #E0E0E0 solid;
+  min-width: 49px;
+  padding: 0;
+}
+
+.EntriesTable--col-correct{
+  background-color: rgba(183, 162, 97, 0.4);
+  border-right: 1px #b7a261 solid;
+  border-bottom: 1px #b7a261 solid;
+}
+
+.EntriesTable--col-incorrect{
+  background-color: #FFCDD2;
+  border-right: 1px #EF9A9A solid;
+  border-bottom: 1px #EF9A9A solid;
+}
+
+.EntriesTable--col-avatar {
+  width: 40px;
+  padding: 0 5px;
+}
+
+.EntriesTable--avatar {
+  margin-top: 4px;
+}
+
+.EntriesTable--col-entry-name {
+}
+
+.EntriesTable--entry-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.EntriesTable--user-name {
+  font-size: 10px;
+  color: rgb(158, 158, 158);
+}
+
+.EntriesTable--col-rank {
+  width: 5px;
+  padding: 0 5px;
 }
 
 .EntriesTable--entry-complete-indicator {
@@ -88,16 +147,16 @@
   background-color: #D32F2F;
 }
 
-.EntriesTable--entry-complete-indicator.complete {
+.EntriesTable--entry-complete-indicator-complete {
   background-color: #689F38;
 }
 
-.EntriesTable--legend span {
+.EntriesTable--legend-icon {
   padding: 5px;
   font-size: 12px;
 }
 
-.EntriesTable--legend span:before {
+.EntriesTable--legend-icon:before {
   content: '';
   margin-right: 10px;
   display: inline-block;
@@ -106,10 +165,10 @@
   border-radius: 100%;
 }
 
-.EntriesTable--legend span.complete:before {
+.EntriesTable--legend-icon-complete:before {
   background-color: #689F38;
 }
 
-.EntriesTable--legend span.incomplete:before {
+.EntriesTable--legend-icon-incomplete:before {
   background-color: #D32F2F;
 }
