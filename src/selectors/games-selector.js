@@ -62,6 +62,20 @@ export const groupGameStartedSelector = createSelector(
   }
 )
 
+export const groupGameEndedSelector = createSelector(
+  gamesSelector,
+  categoriesSelector,
+  currentGroupSelector,
+  (games, categories, group) => {
+    const game = (group && games.get(group.game)) || new Game();
+    const gameCategories = game.categories;
+    return gameCategories.reduce((acc, value, key) => {
+      const category = categories.get(key);
+      return acc && category && !!category.correctAnswer;
+    }, true);
+  }
+)
+
 export const entriesGameSelector = (state, props) => {
   return state.games.get(props.group.first().game);
 }

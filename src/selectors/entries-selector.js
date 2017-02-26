@@ -41,13 +41,17 @@ export const groupEntriesSelector = createSelector(
   currentGroupSelector,
   categoriesSelector,
   gamesSelector,
-  (entries, group, categories, games) => {
+  usersSelector,
+  (entries, group, categories, games, users) => {
     if(!group) return new Seq();
     return group.entries.keySeq()
       .map(key => {
         const entry = entries.get(key)
         return entry ?
-          entry.set('score', entryScore(entry, categories, games, group)) :
+          entry
+          .set('score', entryScore(entry, categories, games, group))
+          .set('user', users.get(entry.user))
+          :
           new Entry();
       })
       .sort((entryA, entryB) => entryB.score - entryA.score)
@@ -122,4 +126,9 @@ export const userEntriesSelector = createSelector(
     .filter(entry => user && entry.user === user.id)
     .groupBy(entry => entry.get('group'))
     .toList()
+)
+
+export const winningEntriesSelector = createSelector(
+  groupEntriesSelector,
+  entries => entries.filter(entry => entry.rank === 1)
 )

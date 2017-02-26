@@ -4,10 +4,14 @@ import './Group.css';
 import { List } from 'immutable';
 import GroupModel from '../../models/Group';
 import Game from '../../models/Game';
-import { groupEntriesSelector } from '../../selectors/entries-selector';
+import {
+  groupEntriesSelector,
+  winningEntriesSelector
+} from '../../selectors/entries-selector';
 import { currentGroupSelector } from '../../selectors/group-selector';
 import {
   groupGameStartedSelector,
+  groupGameEndedSelector,
   groupGameSelector
 } from '../../selectors/games-selector';
 import { openModal } from '../../actions/ui-actions';
@@ -17,22 +21,23 @@ import NewEntryModal from '../../components/entry/newEntryModal/NewEntryModal';
 import PageHeading from '../pageHeading/PageHeading';
 import EntriesTable from './entriesTable/EntriesTable';
 import EditValuesModal from './editValuesModal/EditValuesModal';
+import WinnerBanner from './winnerBanner/WinnerBanner';
 
 const Group = ({
   currentUser,
   group,
   game,
   entries,
+  winningEntries,
   params,
   gameStarted,
+  gameEnded,
   onClickNewEntry
 }) => {
   return (
     <div className='Group'>
       <h5 className='Group--game-name'>{game.name}</h5>
-      <PageHeading
-        text={group.name}
-      />
+      <PageHeading text={group.name} />
       {!gameStarted &&
       <RaisedButton
         className='Group--create-entry-button'
@@ -43,7 +48,7 @@ const Group = ({
         }}
         onClick={() => onClickNewEntry('NEW_ENTRY')}
       />}
-      {currentUser.id === group.admin &&
+      {!gameStarted && currentUser.id === group.admin &&
       <RaisedButton
         label='Edit Category Values'
         labelStyle={{
@@ -51,6 +56,8 @@ const Group = ({
         }}
         onClick={() => onClickNewEntry('EDIT_VALUES')}
       />}
+      {gameEnded &&
+        <WinnerBanner winningEntries={winningEntries} />}
       <EntriesTable
         entries={entries}
         gameStarted={gameStarted}
@@ -71,8 +78,10 @@ Group.propTypes = {
   game: PropTypes.instanceOf(Game),
   group: PropTypes.instanceOf(GroupModel),
   entries: PropTypes.instanceOf(List),
+  winningEntries: PropTypes.instanceOf(List),
   params: PropTypes.object,
   gameStarted: PropTypes.bool,
+  gameEnded: PropTypes.bool,
   onClickNewEntry: PropTypes.func.isRequired
 }
 
@@ -82,7 +91,9 @@ const mapStateToProps = (state, props) => {
     entries: groupEntriesSelector(state, props),
     group: currentGroupSelector(state, props),
     gameStarted: groupGameStartedSelector(state, props),
-    game: groupGameSelector(state, props)
+    gameEnded: groupGameEndedSelector(state, props),
+    game: groupGameSelector(state, props),
+    winningEntries: winningEntriesSelector(state, props)
   }
 }
 

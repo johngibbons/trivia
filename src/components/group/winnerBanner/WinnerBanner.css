@@ -1,0 +1,51 @@
+.WinnerBanner {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #EEEEEE;
+  background-image: url("https://www.transparenttextures.com/patterns/subtle-dots.png");
+  text-align: center;
+}
+
+.WinnerBanner--title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.WinnerBanner--spacer {
+  opacity: 0;
+  height: 600px;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.WinnerBanner--winner {
+  margin-bottom: 25px;
+}
+
+.WinnerBanner--winner:last-child {
+  margin-bottom: 0;
+}
+
+.WinnerBanner--winner-entry-name {
+  font-size: 36px;
+  font-weight: 300;
+  color: #b7a261;
+}
+
+.WinnerBanner--winner-user-name {
+  font-size: 14px;
+  font-weight: 300;
+  color: #757575;
+}
+
+.WinnerBanner--winner-avatar {
+  width: 75px !important;
+  height: 75px !important;
+}
