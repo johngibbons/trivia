@@ -9,6 +9,7 @@ import { openModal } from '../../actions/ui-actions';
 import RaisedButton from 'material-ui/RaisedButton';
 import NewGroupModal from '../group/newGroupModal/NewGroupModal';
 import { gameNomineesSelector } from '../../selectors/nominees-selector';
+import { browserHistory } from 'react-router';
 
 const Home = ({
   currentUser,
@@ -29,7 +30,7 @@ const Home = ({
           onClick={() => {
             currentUser.id ?
               onClickNewGroup('NEW_GROUP') :
-              onClickNewGroup('AUTH')
+              browserHistory.push('/login')
           }}
         />
       </div>
