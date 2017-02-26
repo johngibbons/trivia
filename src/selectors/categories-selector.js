@@ -21,7 +21,9 @@ export const currentCategoriesSelector = createSelector(
   currentGameSelector,
   categoriesSelector,
   (game, categories) => game &&
-    game.categories.keySeq().map(id => categories.get(id))
+    game.categories.keySeq()
+      .map(id => categories.get(id))
+      .sort((catA, catB) => catB.value - catA.value)
 )
 
 export const entryCategoriesSelector = createSelector(
