@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import './Group.css';
-import { List } from 'immutable';
+import { List, Seq } from 'immutable';
 import GroupModel from '../../models/Group';
 import Game from '../../models/Game';
 import {
@@ -9,6 +9,7 @@ import {
   winningEntriesSelector
 } from '../../selectors/entries-selector';
 import { currentGroupSelector } from '../../selectors/group-selector';
+import { currentGroupCategoriesSelector } from '../../selectors/categories-selector';
 import {
   groupGameStartedSelector,
   groupGameEndedSelector,
@@ -26,6 +27,7 @@ import WinnerBanner from './winnerBanner/WinnerBanner';
 const Group = ({
   currentUser,
   group,
+  categories,
   game,
   entries,
   winningEntries,
@@ -60,6 +62,7 @@ const Group = ({
         <WinnerBanner winningEntries={winningEntries} />}
       <EntriesTable
         entries={entries}
+        categories={categories}
         gameStarted={gameStarted}
       />
     {group.id &&
@@ -76,6 +79,7 @@ const Group = ({
 Group.propTypes = {
   currentUser: PropTypes.object.isRequired,
   game: PropTypes.instanceOf(Game),
+  categories: PropTypes.instanceOf(Seq),
   group: PropTypes.instanceOf(GroupModel),
   entries: PropTypes.instanceOf(List),
   winningEntries: PropTypes.instanceOf(List),
@@ -90,6 +94,7 @@ const mapStateToProps = (state, props) => {
     currentUser: state.currentUser,
     entries: groupEntriesSelector(state, props),
     group: currentGroupSelector(state, props),
+    categories: currentGroupCategoriesSelector(state, props),
     gameStarted: groupGameStartedSelector(state, props),
     gameEnded: groupGameEndedSelector(state, props),
     game: groupGameSelector(state, props),

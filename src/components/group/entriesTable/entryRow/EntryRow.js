@@ -15,6 +15,7 @@ import {
   entryGameStartedSelector
 } from '../../../../selectors/games-selector';
 import classNames from 'classnames';
+import { Seq } from 'immutable';
 
 import UserAvatar from '../../../users/userAvatar/UserAvatar';
 
@@ -22,6 +23,7 @@ import UserAvatar from '../../../users/userAvatar/UserAvatar';
 const EntryRow = ({
   entry,
   possibleScore,
+  categories,
   entryComplete,
   gameStarted,
   onClickEntry,
@@ -29,7 +31,7 @@ const EntryRow = ({
 }) => {
   const entryCompleteClasses = classNames(
     'EntriesTable--entry-complete-indicator',
-    { 'complete': entryComplete }
+    { 'EntriesTable--entry-complete-indicator-complete': entryComplete }
   )
 
   return (
@@ -39,24 +41,41 @@ const EntryRow = ({
       onClick={() => onClickEntry(`/entries/${entry.id}`)}
     >
       <td
-        className={'EntriesTable--col rank'}
+        className={'EntriesTable--col EntriesTable--col-rank'}
       >{gameStarted ? entry.rank :
           <div className={entryCompleteClasses} />
       }</td>
       <td
-        className={'EntriesTable--col avatar'}
+        className={'EntriesTable--col EntriesTable--col-avatar'}
       >
         <UserAvatar user={user} />
       </td>
       <td
-        className={'EntriesTable--col'}
+        className={'EntriesTable--col EntriesTable--col-entry-name'}
       >
-        <div className='EntriesTable--entry-name'>{entry.name}</div>
-        <div className='EntriesTable--user-name'>{user.name}</div>
+        <div className='EntriesTable--entry-name-container'>
+          <div className='EntriesTable--entry-name'>{entry.name}</div>
+          <div className='EntriesTable--user-name'>{user.name}</div>
+        </div>
       </td>
       <td
-        className={'EntriesTable--col'}
+        className={'EntriesTable--col EntriesTable--col-score'}
       >{entry.score} / {possibleScore}</td>
+      {gameStarted && categories.map(category => {
+        const categoryClasses = classNames(
+          'EntriesTable--col',
+          'EntriesTable--col-category',
+          { 'EntriesTable--col-correct': category.correctAnswer &&
+            category.correctAnswer === entry.selections.get(category.id) },
+          { 'EntriesTable--col-incorrect': category.correctAnswer &&
+            category.correctAnswer !== entry.selections.get(category.id) }
+        )
+        return (
+          <td className={categoryClasses}>
+            <div className='EntriesTable--col-category-content' />
+          </td>
+        );
+      })}
     </tr>
   )
 }
@@ -64,6 +83,7 @@ const EntryRow = ({
 EntryRow.propTypes = {
   user: PropTypes.instanceOf(User),
   entry: PropTypes.instanceOf(Entry),
+  categories: PropTypes.instanceOf(Seq),
   possibleScore: PropTypes.number,
   entryComplete: PropTypes.bool,
   gameStarted: PropTypes.bool,
