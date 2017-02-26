@@ -23,7 +23,7 @@ export const currentCategoriesSelector = createSelector(
   (game, categories) => game &&
     game.categories.keySeq()
       .map(id => categories.get(id))
-      .sort((catA, catB) => catB.value - catA.value)
+      .sort((catA, catB) => catA.presentationOrder - catB.presentationOrder)
 )
 
 export const entryCategoriesSelector = createSelector(
@@ -89,6 +89,6 @@ export const currentGroupCategoriesSelector = createSelector(
     return group.values.toKeyedSeq().map((val, key) => {
       return categories.get(key).set('value', val);
     })
-    .sort((catA, catB) => catA.order - catB.order)
+    .sort((catA, catB) => catA.presentationOrder - catB.presentationOrder)
   }
 )
