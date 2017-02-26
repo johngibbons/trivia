@@ -32,7 +32,7 @@ export const entryCategoriesSelector = createSelector(
   (game, categories) => {
     return game && game.categories.keySeq()
       .map(id => categories.get(id) || new Category())
-      .sort((c1, c2) => c1.order - c2.order)
+      .sort((c1, c2) => c1.presentationOrder - c2.presentationOrder)
   }
 )
 
