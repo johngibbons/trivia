@@ -6,6 +6,7 @@ export const UI = Record({
   newGameName: '',
   newGroupName: '',
   newEntryName: '',
-  values: new Map()
+  values: new Map(),
+  nextLocation: ''
 });
 

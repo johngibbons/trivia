@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signOutSuccess
 } from '../actions/user-actions';
+import{ setNextLocation } from '../actions/ui-actions';
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { replace, push } from 'react-router-redux';
 import { get } from './firebase-saga';
@@ -24,6 +25,8 @@ export function getCurrentUser() {
 
 export function* checkAuthStatus(action) {
   try {
+    const { nextState } = action.payload;
+    const nextLocation = nextState && nextState.location.pathname;
     const user = yield call(getCurrentUser, null);
     yield user ? put(signInSuccess(user)) :
       put(signOutSuccess());
@@ -31,8 +34,12 @@ export function* checkAuthStatus(action) {
       const userModel = yield call(get, 'users', user.uid);
       yield put(setUser(userModel))
     }
-    yield user || !action.payload.requireAuth ?
-      call(action.payload.next, null) : put(replace('/'));
+    if (user || !action.payload.requireAuth) {
+      yield call(action.payload.next, null);
+    } else {
+      yield put(setNextLocation(nextLocation));
+      yield put(replace('/login'));
+    }
   } catch(errors) {
 
   }
