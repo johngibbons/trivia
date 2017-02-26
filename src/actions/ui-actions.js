@@ -5,7 +5,8 @@ import {
   UPDATE_NEW_GAME_NAME,
   UPDATE_NEW_GROUP_NAME,
   UPDATE_NEW_ENTRY_NAME,
-  UPDATE_VALUE_FIELD
+  UPDATE_VALUE_FIELD,
+  SET_NEXT_LOCATION
 } from './action-types';
 
 export function openModal(id) {
@@ -63,6 +64,15 @@ export function updateValueField(categoryId, value) {
     payload: {
       categoryId,
       value
+    }
+  }
+}
+
+export function setNextLocation(nextLocation) {
+  return {
+    type: SET_NEXT_LOCATION,
+    payload: {
+      nextLocation
     }
   }
 }

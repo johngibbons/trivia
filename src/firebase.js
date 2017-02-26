@@ -23,7 +23,8 @@ export function startFirebaseUI() {
       signInSuccess(currentUser) {
         store.dispatch(signInSuccess(currentUser));
         store.dispatch(fetchOrCreateUser(currentUser));
-        browserHistory.push('/');
+        const nextLocation = store.getState().ui.nextLocation;
+        nextLocation ? browserHistory.push(nextLocation) : browserHistory.push('/');
         return false;
       }
     },

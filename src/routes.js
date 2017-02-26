@@ -23,13 +23,15 @@ import {
 import store from './store'
 import Auth from './components/auth/Auth';
 
-const requireAuth = (nextState, replace, next) =>
-  store.getState().currentUser.get('id') ?
-    next() : store.dispatch(checkAuthStatus(next, true))
+const requireAuth = (nextState, replace, next) => {
+  return store.getState().currentUser.get('id') ?
+    next() : store.dispatch(checkAuthStatus(next, true, nextState))
+
+}
 
 const getCurrentUser = (nextState, replace, next) =>
   store.getState().currentUser.get('id') ?
-    next() : store.dispatch(checkAuthStatus(next))
+    next() : store.dispatch(checkAuthStatus(next, false, nextState))
 
 export default (
   <Route

@@ -39,12 +39,13 @@ export function signOutSuccess() {
   }
 }
 
-export function checkAuthStatus(next, requireAuth) {
+export function checkAuthStatus(next, requireAuth, nextState) {
   return {
     type: CHECK_AUTH_STATUS,
     payload: {
       next,
-      requireAuth
+      requireAuth,
+      nextState
     }
   }
 }

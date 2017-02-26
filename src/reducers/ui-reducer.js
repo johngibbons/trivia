@@ -12,6 +12,7 @@ import {
   SIGN_IN_SUCCESS,
   SAVE_GROUP_VALUES_SUCCESS,
   UPDATE_VALUE_FIELD,
+  SET_NEXT_LOCATION
 } from '../actions/action-types';
 
 import { UI } from '../models/UI';
@@ -44,6 +45,8 @@ const ui = (state = new UI(), action) => {
   case SAVE_GROUP_VALUES_SUCCESS:
     return state.delete('modal')
       .mergeIn(['values'], new Map(action.payload.newValues))
+  case SET_NEXT_LOCATION:
+    return state.set('nextLocation', action.payload.nextLocation);
   default:
     return state;
   }
