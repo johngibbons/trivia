@@ -24,6 +24,7 @@ const EntryRow = ({
   entry,
   possibleScore,
   categories,
+  nominees,
   entryComplete,
   gameStarted,
   onClickEntry,
@@ -70,9 +71,11 @@ const EntryRow = ({
           { 'EntriesTable--col-incorrect': category.correctAnswer &&
             category.correctAnswer !== entry.selections.get(category.id) }
         )
+        const selectedNomineeId = entry.selections.get(category.id);
+        const nominee = nominees.get(selectedNomineeId);
         return (
           <td className={categoryClasses}>
-            <div className='EntriesTable--col-category-content' />
+            <div className='EntriesTable--col-category-content'>{nominee.text}</div>
           </td>
         );
       })}
@@ -95,7 +98,8 @@ const mapStateToProps = (state, props) => {
     possibleScore: entryPossibleScoreSelector(state, props),
     user: entryUserSelector(state, props),
     entryComplete: entryCompleteSelector(state, props),
-    gameStarted: entryGameStartedSelector(state, props)
+    gameStarted: entryGameStartedSelector(state, props),
+    nominees: state.nominees
   }
 }
 

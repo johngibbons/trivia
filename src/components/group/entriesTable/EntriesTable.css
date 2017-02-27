@@ -36,10 +36,13 @@
 }
 
 .EntriesTable--headerCol-diagonal {
-  width: 5px;
-  transform: rotate(-45deg);
+  text-align: center;
+  width: 75px;
   transform-origin: 30px 31px;;
-  padding: 0 13px;
+  padding: 5px;
+  vertical-align: bottom;
+  overflow: hidden;
+  white-space: normal;
 }
 
 .EntriesTable--headerCol-avatar {
@@ -70,13 +73,12 @@
 .EntriesTable--row {
   display: table-row;
   cursor: pointer;
-  height: 48px;
   border-bottom: 1px solid rgb(224, 224, 224);
   transition: background-color 0.3s ease;
 }
 
 .EntriesTable--row:hover {
-  background-color: rgb(245, 245, 245);
+  background-color: rgba(245, 245, 245, 0.9);
 }
 
 .EntriesTable--col {
@@ -97,19 +99,23 @@
 .EntriesTable--col-category{
   border-right: 1px #E0E0E0 solid;
   min-width: 49px;
-  padding: 0;
+  padding: 5px;
+  text-align: center;
+  white-space: normal;
 }
 
 .EntriesTable--col-correct{
   background-color: rgba(183, 162, 97, 0.4);
   border-right: 1px #b7a261 solid;
   border-bottom: 1px #b7a261 solid;
+  color: #b7a261;
 }
 
 .EntriesTable--col-incorrect{
-  background-color: #FFCDD2;
+  background-color: rgba(239,154,154, 0.4);
   border-right: 1px #EF9A9A solid;
   border-bottom: 1px #EF9A9A solid;
+  color: #EF9A9A;
 }
 
 .EntriesTable--col-avatar {
