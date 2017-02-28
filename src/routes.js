@@ -26,7 +26,6 @@ import Auth from './components/auth/Auth';
 const requireAuth = (nextState, replace, next) => {
   return store.getState().currentUser.get('id') ?
     next() : store.dispatch(checkAuthStatus(next, true, nextState))
-
 }
 
 const getCurrentUser = (nextState, replace, next) =>

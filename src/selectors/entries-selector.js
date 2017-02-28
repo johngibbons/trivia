@@ -50,9 +50,9 @@ export const groupEntriesSelector = createSelector(
         return entry ?
           entry
           .set('score', entryScore(entry, categories, games, group))
-          .set('user', users.get(entry.user))
+          .set('user', users.get(entry.user) || new User())
           :
-          new Entry();
+          new Entry({ user: new User() });
       })
       .sort((entryA, entryB) => entryB.score - entryA.score)
       .reduce(entryRankReducer, new List())

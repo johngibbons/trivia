@@ -7,12 +7,8 @@ class FirebaseContainer extends Component {
     this.state = { ui: undefined };
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setState({ ui: startFirebaseUI() });
-  }
-
-  componentWillUnmount() {
-    stopFirebaseUI(this.state.ui);
   }
 
   render() {

@@ -6,6 +6,7 @@ import {
   entryGameSelector
 } from './games-selector.js'
 import { currentEntrySelector } from './entries-selector';
+import { Seq } from 'immutable';
 
 export const givenCategorySelector = (state, props) => props.category
 
@@ -86,9 +87,10 @@ export const currentGroupCategoriesSelector = createSelector(
   groupFromParamsSelector,
   categoriesSelector,
   (group, categories) => {
-    return group.values.toKeyedSeq().map((val, key) => {
+    return group ? group.values.toKeyedSeq().map((val, key) => {
       return categories.get(key).set('value', val);
     })
-    .sort((catA, catB) => catA.presentationOrder - catB.presentationOrder)
+    .sort((catA, catB) => catA.presentationOrder - catB.presentationOrder) :
+    new Seq()
   }
 )

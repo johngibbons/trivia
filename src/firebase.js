@@ -1,8 +1,8 @@
-import firebase from 'firebase';
-import firebaseui from 'firebaseui';
 import { signInSuccess, fetchOrCreateUser } from './actions/user-actions';
+import firebase from 'firebase';
 import store from './store';
 import { browserHistory } from 'react-router';
+import { ui } from './index';
 
 export function startFirebase() {
   const config = {
@@ -17,7 +17,6 @@ export function startFirebase() {
 }
 
 export function startFirebaseUI() {
-  const ui = new firebaseui.auth.AuthUI(firebase.auth())
   const uiConfig = {
     callbacks: {
       signInSuccess(currentUser) {
@@ -28,7 +27,6 @@ export function startFirebaseUI() {
         return false;
       }
     },
-    signInSuccessUrl: '/',
     signInFlow: 'popup',
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,

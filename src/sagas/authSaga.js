@@ -28,12 +28,15 @@ export function* checkAuthStatus(action) {
     const { nextState } = action.payload;
     const nextLocation = nextState && nextState.location.pathname;
     const user = yield call(getCurrentUser, null);
-    yield user ? put(signInSuccess(user)) :
-      put(signOutSuccess());
+
     if (user) {
+      yield put(signInSuccess(user))
       const userModel = yield call(get, 'users', user.uid);
       yield put(setUser(userModel))
+    } else {
+      yield put(signOutSuccess());
     }
+
     if (user || !action.payload.requireAuth) {
       yield call(action.payload.next, null);
     } else {
@@ -41,7 +44,7 @@ export function* checkAuthStatus(action) {
       yield put(replace('/login'));
     }
   } catch(errors) {
-
+    console.log(errors)
   }
 }
 
