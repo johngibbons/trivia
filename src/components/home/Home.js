@@ -21,6 +21,7 @@ const Home = ({
       <div className="Home-header">
         <h5 className='Home-awards-title'>The 2017 Academy Awards</h5>
         <h1 className='Home-main-title'>Pick the <span className='Home-gold-text'>winners</span>.  Beat your friends.</h1>
+      {false ?
         <RaisedButton
           primary
           label='Start a group'
@@ -32,7 +33,9 @@ const Home = ({
               onClickNewGroup('NEW_GROUP') :
               browserHistory.push('/login')
           }}
-        />
+        /> :
+        <div className='Home-game-complete-message'>Note: The 2017 Oscars are complete!  Please check back for the next event.</div>
+      }
       </div>
       <div className='Home-movie-carousel'>
         <div className='Home-movie-images'>

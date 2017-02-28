@@ -20,6 +20,11 @@
   margin-top: 0;
 }
 
+.Home-game-complete-message {
+  font-weight: 700;
+  color: #b7a261;
+}
+
 .Home-sub-title {
   font-size: 25px;
   font-weight: 400;

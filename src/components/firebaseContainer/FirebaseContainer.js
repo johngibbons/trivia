@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { startFirebaseUI, stopFirebaseUI } from '../../firebase';
+import { startFirebaseUI } from '../../firebase';
 
 class FirebaseContainer extends Component {
   constructor() {

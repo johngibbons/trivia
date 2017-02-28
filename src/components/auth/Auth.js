@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import './Auth.css'
 import FirebaseContainer from '../firebaseContainer/FirebaseContainer';
 import PageHeading from '../pageHeading/PageHeading';
@@ -12,10 +12,6 @@ const Auth = () => {
       <FirebaseContainer />
     </div>
   )
-}
-
-Auth.propTypes = {
-
 }
 
 export default Auth
