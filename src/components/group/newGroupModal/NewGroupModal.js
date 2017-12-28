@@ -1,30 +1,17 @@
 import React, { PropTypes } from 'react'
 import './NewGroupModal.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import {
-  closeModal,
-  updateNewGroupName
-} from '../../../actions/ui-actions';
-import { createGroup } from '../../../actions/group-actions';
+import { closeModal, updateNewGroupName } from '../../../actions/ui-actions'
+import { createGroup } from '../../../actions/group-actions'
 
-import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
 
-const NewGroupModal = ({
-  open,
-  name,
-  onChange,
-  onClose,
-  onClickCreate
-}) => {
+const NewGroupModal = ({ open, name, onChange, onClose, onClickCreate }) => {
   return (
-    <Dialog
-      open={open}
-      title='Create New Group'
-      onRequestClose={onClose}
-    >
+    <Dialog open={open} title='Create New Group' onRequestClose={onClose}>
       <form>
         <TextField
           type='text'
@@ -41,9 +28,9 @@ const NewGroupModal = ({
             type='submit'
             label='create'
             disabled={!name}
-            onClick={(e) => {
-              e.preventDefault();
-              onClickCreate(name, '2017Oscars');
+            onClick={e => {
+              e.preventDefault()
+              onClickCreate(name, '2018GoldenGlobes')
             }}
           />
         </div>

@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import { startFirebaseUI } from '../../firebase';
+import { startFirebaseUI } from '../../firebaseSetup'
 
 class FirebaseContainer extends Component {
-  constructor() {
-    super();
-    this.state = { ui: undefined };
+  constructor () {
+    super()
+    this.state = { ui: undefined }
   }
 
-  componentDidMount(){
-    this.setState({ ui: startFirebaseUI() });
+  componentDidMount () {
+    this.setState({ ui: startFirebaseUI() })
   }
 
-  render() {
-    return (
-      <div id='firebase-auth-container' />
-    )
+  render () {
+    return <div id='firebase-auth-container' />
   }
 }
 
