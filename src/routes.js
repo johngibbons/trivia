@@ -17,6 +17,7 @@ import { fetchGroup } from './actions/group-actions'
 import { fetchEntry, fetchUserEntries } from './actions/entry-actions'
 import store from './store'
 import Auth from './components/auth/Auth'
+import { CURRENT_GAME } from './constants'
 
 const requireAuth = (nextState, replace, next) => {
   return store.getState().currentUser.get('id')
@@ -34,7 +35,7 @@ export default (
     <IndexRoute
       component={Home}
       onEnter={() => {
-        store.dispatch(fetchGame('2018GoldenGlobes'))
+        store.dispatch(fetchGame(CURRENT_GAME))
       }}
     />
     <Route

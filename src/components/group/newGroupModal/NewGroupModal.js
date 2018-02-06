@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { closeModal, updateNewGroupName } from '../../../actions/ui-actions'
 import { createGroup } from '../../../actions/group-actions'
+import { CURRENT_GAME } from '../../../constants'
 
 import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
@@ -30,7 +31,7 @@ const NewGroupModal = ({ open, name, onChange, onClose, onClickCreate }) => {
             disabled={!name}
             onClick={e => {
               e.preventDefault()
-              onClickCreate(name, '2018GoldenGlobes')
+              onClickCreate(name, CURRENT_GAME)
             }}
           />
         </div>

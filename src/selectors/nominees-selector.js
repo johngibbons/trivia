@@ -2,6 +2,7 @@ import { createSelector } from 'reselect'
 import { givenCategorySelector } from './categories-selector'
 import { Seq } from 'immutable'
 import Nominee from '../models/Nominee'
+import { CURRENT_GAME } from '../constants'
 
 export const nomineesSelector = state => state.nominees
 
@@ -17,7 +18,7 @@ export const currentNomineesSelector = createSelector(
 
 export const gameNomineesSelector = createSelector(nomineesSelector, nominees =>
   nominees
-    .filter(nominee => nominee.game === '2018GoldenGlobes')
+    .filter(nominee => nominee.game === CURRENT_GAME)
     .map(nominee => nominee)
     .toSet()
 )

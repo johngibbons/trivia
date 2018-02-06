@@ -15,7 +15,7 @@ const Home = ({ currentUser, nominees, onClickNewGroup }) => {
   return (
     <div className='Home'>
       <div className='Home-header'>
-        <h5 className='Home-awards-title'>The 2018 Golden Globes</h5>
+        <h5 className='Home-awards-title'>The 2018 Academy Awards</h5>
         <h1 className='Home-main-title'>
           Pick the
           {' '}
@@ -36,7 +36,7 @@ const Home = ({ currentUser, nominees, onClickNewGroup }) => {
             }}
             />
           : <div className='Home-game-complete-message'>
-              Note: The 2017 Oscars are complete!  Please check back for the next event.
+              Note: The 2018 Oscars are complete!  Please check back for the next event.
             </div>}
       </div>
       <div className='Home-movie-carousel'>
