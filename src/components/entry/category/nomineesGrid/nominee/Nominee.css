@@ -3,17 +3,14 @@
   display: flex;
   align-items: flex-end;
   flex: 0 0 auto;
-  height: 60vh;
-  width: calc(60vh * 2/3);
+  height: 375px;
+  width: 250px;
   background-size: cover;
   background-position: center;
   color: white;
   margin: 0 5px;
   cursor: pointer;
-  transition: all 1s ease;
-}
-
-.Nominee--selected {
+  transition: filter 1s ease;
 }
 
 .Nominee--selected-icon {
@@ -25,7 +22,6 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   opacity: 0;
-  transform: ;
   animation: checkPop 1s ease;
   z-index: 10;
 }
@@ -39,11 +35,9 @@
     transform: translate(-50%, -50%) scale(0.1);
     opacity: 1;
   }
-
   50% {
     opacity: 0.6;
   }
-
   100% {
     transform: translate(-50%, -50%) scale(3);
     opacity: 0;
