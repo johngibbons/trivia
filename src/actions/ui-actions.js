@@ -6,23 +6,25 @@ import {
   UPDATE_NEW_GROUP_NAME,
   UPDATE_NEW_ENTRY_NAME,
   UPDATE_VALUE_FIELD,
-  SET_NEXT_LOCATION
-} from './action-types';
+  SET_NEXT_LOCATION,
+  SHOW_ALERT_BAR,
+  HIDE_ALERT_BAR
+} from './action-types'
 
-export function openModal(id) {
+export function openModal (id) {
   return {
     type: OPEN_MODAL,
     payload: { id }
   }
 }
 
-export function closeModal() {
+export function closeModal () {
   return {
     type: CLOSE_MODAL
   }
 }
 
-export function updateSearchField(value) {
+export function updateSearchField (value) {
   return {
     type: UPDATE_SEARCH_FIELD,
     payload: {
@@ -31,7 +33,7 @@ export function updateSearchField(value) {
   }
 }
 
-export function updateNewGameName(value) {
+export function updateNewGameName (value) {
   return {
     type: UPDATE_NEW_GAME_NAME,
     payload: {
@@ -40,7 +42,7 @@ export function updateNewGameName(value) {
   }
 }
 
-export function updateNewGroupName(value) {
+export function updateNewGroupName (value) {
   return {
     type: UPDATE_NEW_GROUP_NAME,
     payload: {
@@ -49,7 +51,7 @@ export function updateNewGroupName(value) {
   }
 }
 
-export function updateNewEntryName(value) {
+export function updateNewEntryName (value) {
   return {
     type: UPDATE_NEW_ENTRY_NAME,
     payload: {
@@ -58,7 +60,7 @@ export function updateNewEntryName(value) {
   }
 }
 
-export function updateValueField(categoryId, value) {
+export function updateValueField (categoryId, value) {
   return {
     type: UPDATE_VALUE_FIELD,
     payload: {
@@ -68,11 +70,26 @@ export function updateValueField(categoryId, value) {
   }
 }
 
-export function setNextLocation(nextLocation) {
+export function setNextLocation (nextLocation) {
   return {
     type: SET_NEXT_LOCATION,
     payload: {
       nextLocation
     }
+  }
+}
+
+export function showAlertBar (message) {
+  return {
+    type: SHOW_ALERT_BAR,
+    payload: {
+      message
+    }
+  }
+}
+
+export function hideAlertBar () {
+  return {
+    type: HIDE_ALERT_BAR
   }
 }
