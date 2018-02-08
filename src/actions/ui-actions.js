@@ -79,11 +79,12 @@ export function setNextLocation (nextLocation) {
   }
 }
 
-export function showAlertBar (message) {
+export function showAlertBar (message, isError) {
   return {
     type: SHOW_ALERT_BAR,
     payload: {
-      message
+      message,
+      isError
     }
   }
 }

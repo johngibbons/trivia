@@ -57,12 +57,14 @@ const ui = (state = new UI(), action) => {
     case SHOW_ALERT_BAR:
       return state.merge({
         isAlertBarOpen: true,
-        alertBarMessage: action.payload.message
+        alertBarMessage: action.payload.message,
+        isAlertBarError: action.payload.isError
       })
     case HIDE_ALERT_BAR:
       return state.merge({
         isAlertBarOpen: false,
-        alertBarMessage: ''
+        alertBarMessage: '',
+        isAlertBarError: false
       })
     default:
       return state

@@ -5,7 +5,7 @@ import { hideAlertBar } from '../../actions/ui-actions'
 
 import Snackbar from 'material-ui/Snackbar'
 
-const AlertBar = ({ isOpen, message, onClose }) => {
+const AlertBar = ({ isOpen, message, onClose, isError }) => {
   return (
     <Snackbar
       open={isOpen}
@@ -13,14 +13,18 @@ const AlertBar = ({ isOpen, message, onClose }) => {
       autoHideDuration={3000}
       onRequestClose={onClose}
       bodyStyle={{
-        backgroundColor: '#b7a261'
+        backgroundColor: isError ? 'rgb(220, 0, 0)' : '#b7a261'
       }}
     />
   )
 }
 
 const mapStateToProps = ({ ui }) => {
-  return { isOpen: ui.isAlertBarOpen, message: ui.alertBarMessage }
+  return {
+    isOpen: ui.isAlertBarOpen,
+    message: ui.alertBarMessage,
+    isError: ui.isAlertBarError
+  }
 }
 
 export default connect(mapStateToProps, {

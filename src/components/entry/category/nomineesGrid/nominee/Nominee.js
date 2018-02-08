@@ -90,7 +90,6 @@ const mapDispatchToProps = (dispatch, props) => {
       ? (_, nominee) => dispatch(toggleCorrectNominee(nominee))
       : (entryId, nominee) => {
         dispatch(selectNominee(entryId, nominee))
-        dispatch(showAlertBar('Selection Saved!'))
       }
   }
 }
