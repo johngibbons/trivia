@@ -8,9 +8,10 @@
   background-size: cover;
   background-position: center;
   color: white;
-  margin: 0 5px;
+  margin: 0;
   cursor: pointer;
-  transition: filter 1s ease;
+  transform: scale(0.9);
+  transition: filter 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
 }
 
 .Nominee--selected-icon {
@@ -76,8 +77,13 @@
   width: 100%;
 }
 
+.Nominee--selected {
+  transform: scale(1);
+}
+
 .Nominee--not-selected {
   filter: saturate(0) contrast(50%);
+  opacity: 0.5;
 }
 
 .Nominee--answer {

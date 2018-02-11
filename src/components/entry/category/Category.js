@@ -1,36 +1,24 @@
 import React, { PropTypes } from 'react'
 import './Category.css'
-import { Record, Seq } from 'immutable';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
-import {
-  currentNomineesSelector
-} from '../../../selectors/nominees-selector';
+import { Record, Seq } from 'immutable'
+import { connect } from 'react-redux'
+import classNames from 'classnames'
+import { currentNomineesSelector } from '../../../selectors/nominees-selector'
 
-import { Card, CardHeader } from 'material-ui/Card';
-import NomineesGrid from './nomineesGrid/NomineesGrid';
+import { Card, CardHeader } from 'material-ui/Card'
+import NomineesGrid from './nomineesGrid/NomineesGrid'
 
-const Category = ({
-  category,
-  value,
-  nominees,
-  selectedNomineeId
-}) => {
-  const incorrect = category.correctAnswer &&
-    category.correctAnswer !== selectedNomineeId;
-  const categoryClasses = classNames(
-    'Category',
-    {
-      'Category--selected': !!selectedNomineeId,
-      'Category--correct': category.correctAnswer && !incorrect,
-      'Category--incorrect': incorrect
-    }
-  )
+const Category = ({ category, value, nominees, selectedNomineeId }) => {
+  const incorrect =
+    category.correctAnswer && category.correctAnswer !== selectedNomineeId
+  const categoryClasses = classNames('Category', {
+    'Category--selected': !!selectedNomineeId,
+    'Category--correct': category.correctAnswer && !incorrect,
+    'Category--incorrect': incorrect
+  })
 
   return (
-    <Card
-      className={categoryClasses}
-    >
+    <Card className={categoryClasses}>
       <CardHeader
         title={category.name}
         subtitle={`${value} points`}
@@ -61,10 +49,9 @@ Category.propTypes = {
 const mapStateToProps = (state, props) => {
   return {
     nominees: currentNomineesSelector(state, props),
-    selectedNomineeId: props.entry ?
-      props.entry.getIn(['selections', props.category.id]) :
-      props.category.correctAnswer
+    selectedNomineeId: props.entry
+      ? props.entry.getIn(['selections', props.category.id])
+      : props.category.correctAnswer
   }
-
 }
 export default connect(mapStateToProps)(Category)

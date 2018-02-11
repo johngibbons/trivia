@@ -53,7 +53,6 @@ const Nominee = ({
       onClick={() =>
         (!hasStarted || isMaster) && onClickNominee(router.params.id, nominee)}
     >
-      <CheckIcon className='Nominee--selected-icon' color='#fff' />
       <div className='Nominee--text-container'>
         <div>
           <div className='Nominee--text'>{nominee.text}</div>

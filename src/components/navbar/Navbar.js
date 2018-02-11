@@ -1,15 +1,13 @@
 import React, { PropTypes } from 'react'
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 import './Navbar.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import AppBar from 'material-ui/AppBar';
-import LoginButton from './loginButton/LoginButton';
-import AccountDropdown from './accountDropdown/AccountDropdown';
+import AppBar from 'material-ui/AppBar'
+import LoginButton from './loginButton/LoginButton'
+import AccountDropdown from './accountDropdown/AccountDropdown'
 
-const Navbar = ({
-  loggedIn
-}) => {
+const Navbar = ({ loggedIn }) => {
   return (
     <AppBar
       title='trvia'
@@ -19,14 +17,18 @@ const Navbar = ({
         fontSize: '14px',
         fontWeight: 500,
         textTransform: 'uppercase',
-        flex: 'none'
+        marginLeft: '24px'
       }}
       className='Navbar'
       iconElementRight={loggedIn ? <AccountDropdown /> : <LoginButton />}
       showMenuIconButton={false}
       onTitleTouchTap={() => browserHistory.push('/')}
       iconStyleRight={{
-        marginTop: 0
+        marginTop: 0,
+        marginRight: '12px'
+      }}
+      style={{
+        padding: 0
       }}
     />
   )

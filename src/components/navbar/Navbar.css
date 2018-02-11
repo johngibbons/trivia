@@ -1,4 +1,6 @@
 .Navbar {
+  max-width: 100%;
   align-items: center;
   background-color: white !important;
+  flex-wrap: nowrap;
 }
