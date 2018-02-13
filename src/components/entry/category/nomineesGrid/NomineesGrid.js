@@ -3,28 +3,39 @@ import './NomineesGrid.css'
 
 import { Seq } from 'immutable'
 
-import Nominee from './nominee/Nominee';
-
+import Nominee from './nominee/Nominee'
 const NomineesGrid = ({
   nominees,
   selectedNomineeId,
-  correctNomineeId
+  correctNomineeId,
+  isIncorrect
 }) => {
+  const nomineeEl = (nominee, i) => (
+    <Nominee
+      key={nominee.id || i}
+      nominee={nominee}
+      selectedNomineeId={selectedNomineeId}
+      correctId={correctNomineeId}
+    />
+  )
+
+  const selectableNominees = nominees.map(nomineeEl)
+
+  const selectedNominee = nominees.filter(
+    (nominee, i) => nominee.id === selectedNomineeId
+  )
+  const correctNominee = nominees.filter(
+    (nominee, i) => nominee.id === correctNomineeId
+  )
+
+  const unselectableNominees = selectedNomineeId === correctNomineeId
+    ? correctNominee.map(nomineeEl)
+    : [...selectedNominee, ...correctNominee].map(nomineeEl)
+
   return (
     <div className='NomineesGrid'>
-      <div
-        className='NomineesGrid--list'
-      >
-      {nominees.map((nominee, i) => {
-        return (
-          <Nominee
-            key={nominee.id || i}
-            nominee={nominee}
-            selectedNomineeId={selectedNomineeId}
-            correctId={correctNomineeId}
-          />
-        )
-      })}
+      <div className='NomineesGrid--list'>
+        {correctNomineeId ? unselectableNominees : selectableNominees}
       </div>
     </div>
   )
@@ -36,4 +47,4 @@ NomineesGrid.propTypes = {
   correctNomineeId: PropTypes.string
 }
 
-export default NomineesGrid;
+export default NomineesGrid

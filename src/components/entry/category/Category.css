@@ -6,16 +6,9 @@
   margin-right: -16px;
 }
 
-.Category--selected {
-  box-shadow: none !important;
-}
-
-.Category--correct {
-  background-color: rgba(183, 162, 97, 0.4) !important;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px, rgba(0, 0, 0, 0.3) 0px 4px 8px !important;
-}
-
-.Category--incorrect {
-  background-color: rgba(244, 67, 54, 0.3) !important;
-  box-shadow: none !important;
+.Category__status-icon {
+  flex: 0 0 auto;
+  width: 30px !important;
+  height: 30px !important;
+  margin-right: 5px !important;
 }

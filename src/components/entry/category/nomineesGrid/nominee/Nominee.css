@@ -8,45 +8,21 @@
   background-size: cover;
   background-position: center;
   color: white;
-  margin: 0;
+  margin: 0 10px;
   cursor: pointer;
-  transform: scale(0.9);
-  transition: filter 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
-}
-
-.Nominee--selected-icon {
-  display: none !important;
-  position: absolute;
-  width: 75px !important;
-  height: 75px !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 0;
-  animation: checkPop 1s ease;
-  z-index: 10;
-}
-
-.Nominee--selected .Nominee--selected-icon {
-  display: inline-block !important;
-}
-
-@keyframes checkPop {
-  0% {
-    transform: translate(-50%, -50%) scale(0.1);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(3);
-    opacity: 0;
-  }
+  transition: all 0.5s ease;
 }
 
 .Nominee--unselectable {
   cursor: default;
+}
+
+.Nominee--unselectable.Nominee--not-selected {
+  display: none;
+}
+
+.Nominee--unselectable.Nominee--answer {
+  display: flex;
 }
 
 .Nominee:first-child {
@@ -78,7 +54,8 @@
 }
 
 .Nominee--selected {
-  transform: scale(1);
+  width: calc(250px * 1.1);
+  height: calc(375px * 1.1);
 }
 
 .Nominee--not-selected {
@@ -88,4 +65,5 @@
 
 .Nominee--answer {
   filter: contrast(150%) brightness(80%) sepia(100%);
+  opacity: 1;
 }

@@ -1,15 +1,17 @@
 .NomineesGrid {
   display: flex;
-  flex-wrap: wrap;
-  padding: 16px;
+  flex-wrap: nowrap;
+  padding: 8px;
   overflow-y: visible;
+  align-items: center;
 }
 
 .NomineesGrid--list {
   display: flex;
+  align-items: center;
   flex-wrap: nowrap;
   overflow-x: auto;
-  margin: 0 -16px;
+  margin: 0;
   -webkit-overflow-scrolling: touch;
 }
 
