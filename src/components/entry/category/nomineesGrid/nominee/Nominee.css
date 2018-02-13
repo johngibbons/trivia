@@ -17,14 +17,6 @@
   cursor: default;
 }
 
-.Nominee--unselectable.Nominee--not-selected {
-  display: none;
-}
-
-.Nominee--unselectable.Nominee--answer {
-  display: flex;
-}
-
 .Nominee:first-child {
   margin-left: 0;
 }
