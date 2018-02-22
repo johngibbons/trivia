@@ -38,7 +38,8 @@
 .EntriesTable--headerCol-diagonal {
   text-align: center;
   width: 75px;
-  transform-origin: 30px 31px;;
+  transform-origin: 30px 31px;
+  ;
   padding: 5px;
   vertical-align: bottom;
   overflow: hidden;
@@ -86,9 +87,6 @@
   padding: 0 24px;
   height: 48px;
   font-size: 13px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .EntriesTable--col-score {
@@ -96,7 +94,7 @@
   border-right: 1px #E0E0E0 solid;
 }
 
-.EntriesTable--col-category{
+.EntriesTable--col-category {
   border-right: 1px #E0E0E0 solid;
   min-width: 49px;
   padding: 5px;
@@ -104,15 +102,15 @@
   white-space: normal;
 }
 
-.EntriesTable--col-correct{
+.EntriesTable--col-correct {
   background-color: rgba(183, 162, 97, 0.4);
   border-right: 1px #b7a261 solid;
   border-bottom: 1px #b7a261 solid;
   color: #b7a261;
 }
 
-.EntriesTable--col-incorrect{
-  background-color: rgba(239,154,154, 0.4);
+.EntriesTable--col-incorrect {
+  background-color: rgba(239, 154, 154, 0.4);
   border-right: 1px #EF9A9A solid;
   border-bottom: 1px #EF9A9A solid;
   color: #EF9A9A;
@@ -127,8 +125,7 @@
   margin-top: 4px;
 }
 
-.EntriesTable--col-entry-name {
-}
+.EntriesTable--col-entry-name {}
 
 .EntriesTable--entry-name {
   overflow: hidden;
