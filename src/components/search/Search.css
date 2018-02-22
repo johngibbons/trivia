@@ -1,0 +1,9 @@
+.Search__results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Search__result {
+  margin: 10px;
+  cursor: pointer;
+}

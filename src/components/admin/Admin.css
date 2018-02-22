@@ -1,9 +1,0 @@
-.Admin-results {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Admin-result {
-  margin: 10px;
-  cursor: pointer;
-}

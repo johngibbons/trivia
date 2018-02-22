@@ -10,6 +10,7 @@ import EditGame from './components/editGame/EditGame'
 import Admin from './components/admin/Admin'
 import Entry from './components/entry/Entry'
 import MasterEntry from './components/entry/MasterEntry'
+import Search from './components/search/Search'
 import UserEntries from './components/users/userEntries/UserEntries'
 import { checkAuthStatus } from './actions/user-actions'
 import { fetchGame } from './actions/game-actions'
@@ -72,6 +73,10 @@ export default (
         )}
     />
     <Route path='admin' component={Admin} onEnter={requireAuth}>
+      <Route
+        path='search'
+        component={Search}
+      />
       <Route
         path='games/:id/master'
         component={MasterEntry}
