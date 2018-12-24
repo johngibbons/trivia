@@ -1,1 +1,1 @@
-export const CURRENT_GAME = '2018Oscars'
+export const CURRENT_GAME = "2019GoldenGlobes";

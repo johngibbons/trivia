@@ -6,6 +6,7 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "blueimp-md5": "^2.7.0",
     "classnames": "^2.2.5",
     "firebase": "^3.6.7",
     "firebase-tools": "^3.2.1",
