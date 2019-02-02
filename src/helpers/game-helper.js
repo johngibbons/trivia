@@ -55,7 +55,7 @@ export async function save(overwrite = false) {
   });
 }
 
-export async function saveImages() {
+export async function saveImages(overwrite) {
   const titlesReq = await database()
     .ref("/titles")
     .once("value");
@@ -76,10 +76,12 @@ export async function saveImages() {
   const all = [...titlesArr, ...peopleArr];
 
   nomineesArr.forEach(nominee => {
-    if (nominee.imageUrl) return;
+    if (!overwrite && nominee.imageUrl) return;
     const match = findMatch(all, nominee);
     if (!match) {
-      console.log("nominee without match:", nominee.text);
+      if (!nominee.imageUrl) {
+        console.log("nominee without match:", nominee.text);
+      }
       return;
     }
     const isPerson = match.media_type === "person";
@@ -89,13 +91,16 @@ export async function saveImages() {
 }
 
 function findMatch(arr, toFind) {
-  return arr.filter(item => {
+  const matches = arr.filter(item => {
     const itemName = item.title || item.name;
     return (
       itemName.toLowerCase() === toFind.text.toLowerCase() ||
       itemName.toLowerCase() === toFind.secondaryText.toLowerCase()
     );
-  })[0];
+  });
+  const personMatch =
+    matches && matches.filter(match => match.media_type === "person");
+  return personMatch && personMatch.length ? personMatch[0] : matches[0];
 }
 
 function setImage(nominee, image) {

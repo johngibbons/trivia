@@ -3,6 +3,7 @@ import "./Home.css";
 import { connect } from "react-redux";
 import { Set } from "immutable";
 import User from "../../models/User";
+import { CURRENT_TITLE } from "../../constants";
 
 import { openModal } from "../../actions/ui-actions";
 
@@ -15,11 +16,11 @@ const Home = ({ currentUser, nominees, onClickNewGroup }) => {
   return (
     <div className="Home">
       <div className="Home-header">
-        <h5 className="Home-awards-title">The 2019 Golden Globes</h5>
-        <h1 className="Home-main-title">
+        <h1 className="Home-awards-title">{CURRENT_TITLE}</h1>
+        <h2 className="Home-main-title">
           Pick the <span className="Home-gold-text">winners</span>. Beat your
           friends.
-        </h1>
+        </h2>
         {true ? (
           <RaisedButton
             primary
