@@ -75,13 +75,7 @@ const EntryRow = ({
             const selectedNomineeId = entry.selections[category.id];
             const nominee = nominees[selectedNomineeId];
             return (
-              nominee && (
-                <td className={categoryClasses}>
-                  <div className="EntriesTable--col-category-content">
-                    {nominee.text}
-                  </div>
-                </td>
-              )
+              nominee && <td className={categoryClasses}>{nominee.text}</td>
             );
           })}
     </tr>
