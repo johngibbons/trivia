@@ -13,6 +13,8 @@ import {
 import { entryGameStartedSelector } from "../../../../selectors/games-selector";
 import classNames from "classnames";
 import { Seq } from "immutable";
+import WarningIcon from "material-ui/svg-icons/alert/warning";
+import CheckIcon from "material-ui/svg-icons/action/check-circle";
 
 import UserAvatar from "../../../users/userAvatar/UserAvatar";
 
@@ -27,11 +29,6 @@ const EntryRow = ({
   onClickEntry,
   user
 }) => {
-  const entryCompleteClasses = classNames(
-    "EntriesTable--entry-complete-indicator",
-    { "EntriesTable--entry-complete-indicator-complete": entryComplete }
-  );
-
   return (
     <tr
       key={entry.id}
@@ -39,7 +36,23 @@ const EntryRow = ({
       onClick={() => onClickEntry(`/entries/${entry.id}`)}
     >
       <td className={"EntriesTable--col EntriesTable--col-rank"}>
-        {gameStarted ? entry.rank : <div className={entryCompleteClasses} />}
+        {gameStarted ? (
+          entry.rank
+        ) : entryComplete ? (
+          <CheckIcon
+            className="EntriesTable__status-icon"
+            height="20px"
+            width="20px"
+            color="#689F38"
+          />
+        ) : (
+          <WarningIcon
+            className="EntriesTable__status-icon"
+            height="20px"
+            width="20px"
+            color="#D32F2F"
+          />
+        )}
       </td>
       <td className={"EntriesTable--col EntriesTable--col-avatar"}>
         <UserAvatar user={user} />

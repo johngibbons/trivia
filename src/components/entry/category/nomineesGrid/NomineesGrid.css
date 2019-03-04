@@ -1,9 +1,11 @@
 .NomineesGrid {
   display: flex;
   flex-wrap: nowrap;
-  padding: 8px;
+  padding: 8px 8px 100px 20px;
+  margin-left: 30px;
   overflow-y: visible;
   align-items: center;
+  border-left: 2px solid rgb(220, 220, 220);
 }
 
 .NomineesGrid--list {

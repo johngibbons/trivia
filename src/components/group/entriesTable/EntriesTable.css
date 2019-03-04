@@ -21,11 +21,11 @@
 
 .EntriesTable--table-header-row {
   display: table-row;
+  border-bottom: 3px solid rgba(245, 245, 245, 0.9);
 }
 
 .EntriesTable--headerCol {
   display: table-cell;
-  height: 48px;
   font-weight: bold;
   color: rgb(158, 158, 158);
   white-space: nowrap;
@@ -33,6 +33,7 @@
   text-align: left;
   padding-right: 30px;
   padding-bottom: 10px;
+  vertical-align: bottom;
 }
 
 .EntriesTable--headerCol-diagonal {
@@ -73,6 +74,7 @@
   display: table-row;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-bottom: 1px solid rgba(245, 245, 245, 0.9);
 }
 
 .EntriesTable--row:hover {
@@ -85,8 +87,7 @@
   font-size: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 30px;
-  padding-bottom: 10px;
+  padding: 10px 30px 10px 0;
 }
 
 .EntriesTable--col-score {
@@ -132,34 +133,22 @@
 .EntriesTable--col-rank {
   text-align: right;
   padding-right: 10px;
+  font-weight: bold;
 }
 
-.EntriesTable--entry-complete-indicator {
-  height: 10px;
-  border-radius: 100%;
-  background-color: #D32F2F;
-}
-
-.EntriesTable--entry-complete-indicator-complete {
-  background-color: #689F38;
+.EntriesTable--legend {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .EntriesTable--legend-icon {
+  display: flex;
+  align-items: center;
   font-size: 14px;
-}
-
-.EntriesTable--legend-icon:before {
-  content: '';
   margin-right: 10px;
-  display: inline-block;
-  height: 10px;
-  border-radius: 100%;
 }
 
-.EntriesTable--legend-icon-complete:before {
-  background-color: #689F38;
-}
-
-.EntriesTable--legend-icon-incomplete:before {
-  background-color: #D32F2F;
+.EntriesTable__status-icon {
+  margin-right: 5px;
 }

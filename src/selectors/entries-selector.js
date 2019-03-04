@@ -161,6 +161,16 @@ export const entryCompleteSelector = createSelector(
   }
 );
 
+export const entryPercentCompleteSelector = createSelector(
+  currentEntrySelector,
+  gamesSelector,
+  (entry, games) => {
+    const game = games.get(entry.game);
+    if (!entry || !game) return 0;
+    return (entry.selections.count() / game.categories.count()) * 100;
+  }
+);
+
 export const entryGroupSelector = createSelector(
   groupsSelector,
   currentEntrySelector,

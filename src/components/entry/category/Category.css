@@ -1,5 +1,4 @@
 .Category {
-  margin-bottom: 32px;
   transition: all 0.3s ease !important;
   box-shadow: none !important;
   margin-left: -16px;
@@ -7,8 +6,40 @@
 }
 
 .Category__status-icon {
+  box-sizing: border-box;
+  border-radius: 100%;
   flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
   width: 30px !important;
   height: 30px !important;
   margin-right: 5px !important;
+}
+
+.Category__status-icon--correct {
+  border: 3px solid #b7a261;
+}
+
+.Category__oscar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  background-color: #b7a261;
+  border-radius: 100%;
+  border: 2px solid #fff;
+}
+
+.Category__status-icon--incorrect {
+  border: 3px solid rgb(255, 0, 0);
+}
+
+.Category__selection-icon {
+  border: 3px solid rgb(175, 175, 175);
+}
+
+.Category__complete-icon {
+  border: 3px solid #689F38;
 }

@@ -4,15 +4,7 @@ import store from './store';
 import { browserHistory } from 'react-router';
 import { ui } from './index';
 
-export function startFirebase() {
-  const config = {
-    apiKey: "AIzaSyDGkgi0mqNXArVXeP2X9kF421JGP9Yi4bY",
-    authDomain: "awards-season.firebaseapp.com",
-    databaseURL: "https://awards-season.firebaseio.com",
-    storageBucket: "awards-season.appspot.com",
-    messagingSenderId: "829477688648"
-  };
-
+export function startFirebase(config) {
   firebase.initializeApp(config);
 }
 

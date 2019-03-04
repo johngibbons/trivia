@@ -1,7 +1,7 @@
 import { database } from "firebase";
 import Nominee from "../models/Nominee";
 import Category from "../models/Category";
-import data from "../awardsShows/2019Oscars";
+import data from "../awardsShows/test";
 import { CURRENT_GAME } from "../constants";
 
 export async function save(overwrite = false) {
@@ -88,6 +88,48 @@ export async function saveImages(overwrite) {
     const image = match && (isPerson ? match.profile_path : match.poster_path);
     if (image) setImage(nominee, image);
   });
+}
+
+export async function deleteGame(deleteGroups = false) {
+  const categoriesToDelete = database()
+    .ref("categories")
+    .orderByChild("game")
+    .equalTo(CURRENT_GAME);
+
+  const categoriesResponse = await categoriesToDelete.once("value");
+  const categoriesObj = categoriesResponse.val();
+
+  categoriesObj &&
+    Object.values(categoriesObj).forEach(async category => {
+      await database()
+        .ref("nominees")
+        .orderByChild("category")
+        .equalTo(category.id)
+        .ref.remove();
+    });
+
+  await categoriesToDelete.ref.remove();
+
+  if (deleteGroups) {
+    const groupsToDelete = database()
+      .ref("groups")
+      .orderByChild("game")
+      .equalTo(CURRENT_GAME);
+
+    const groupsResponse = await groupsToDelete.once("value");
+    const groupsObj = groupsResponse.val();
+
+    groupsObj &&
+      Object.values(groupsObj).forEach(async group => {
+        await database()
+          .ref("entries")
+          .orderByChild("group")
+          .equalTo(group.id)
+          .ref.remove();
+      });
+
+    await groupsToDelete.ref.remove();
+  }
 }
 
 function findMatch(arr, toFind) {

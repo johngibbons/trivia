@@ -5,8 +5,6 @@
   flex: 0 0 auto;
   height: 375px;
   width: 250px;
-  background-size: cover;
-  background-position: center;
   color: white;
   margin: 0 10px;
   cursor: pointer;
@@ -33,6 +31,7 @@
   padding: 10px;
   background-color: rgba(25, 25, 25, 0.7);
   height: 48px;
+  z-index: 1;
 }
 
 .Nominee--text {
@@ -50,12 +49,33 @@
   height: calc(375px * 1.1);
 }
 
-.Nominee--not-selected {
+.Nominee__image-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.Nominee__image-bg--selected {
+  filter: contrast(50%) brightness(80%) sepia(100%) hue-rotate(50deg) saturate(200%);
+}
+
+.Nominee__image-bg--not-selected {
   filter: saturate(0) contrast(50%);
   opacity: 0.5;
 }
 
-.Nominee--answer {
+.Nominee__image-bg--answer {
   filter: contrast(150%) brightness(80%) sepia(100%);
   opacity: 1;
+}
+
+.Nominee__icon-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 24px));
+  opacity: 0.7;
+  z-index: 1;
 }

@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react";
 import "./EntriesTable.css";
 import { List, Seq } from "immutable";
+import WarningIcon from "material-ui/svg-icons/alert/warning";
+import CheckIcon from "material-ui/svg-icons/action/check-circle";
 
 import EntryRow from "./entryRow/EntryRow";
 
@@ -10,9 +12,21 @@ const EntriesTable = ({ entries, categories, gameStarted }) => {
       {!gameStarted && (
         <div className="EntriesTable--legend">
           <span className="EntriesTable--legend-icon EntriesTable--legend-icon-complete">
+            <CheckIcon
+              className="EntriesTable__status-icon"
+              height="20px"
+              width="20px"
+              color="#689F38"
+            />
             Complete
           </span>
           <span className="EntriesTable--legend-icon EntriesTable--legend-icon-incomplete">
+            <WarningIcon
+              className="EntriesTable__status-icon"
+              height="20px"
+              width="20px"
+              color="#D32F2F"
+            />
             Incomplete
           </span>
         </div>
@@ -23,9 +37,7 @@ const EntriesTable = ({ entries, categories, gameStarted }) => {
             <th className="EntriesTable--headerCol EntriesTable--headerCol-rank" />
             <th className="EntriesTable--headerCol EntriesTable--headerCol-avatar" />
             <th className="EntriesTable--headerCol EntriesTable--headerCol-entry-name">
-              <span className="EntriesTable--entry-name-container">
-                Entry Name
-              </span>
+              Entry Name
             </th>
             <th className="EntriesTable--headerCol EntriesTable--headerCol-score">
               Score
