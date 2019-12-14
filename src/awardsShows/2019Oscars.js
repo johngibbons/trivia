@@ -204,7 +204,7 @@ export default {
         },
         { text: "RBG", secondaryText: "I’ll Fight" },
         {
-          text: "Marry Poppins Returns",
+          text: "Mary Poppins Returns",
           secondaryText: "The Place Where Lost Things Go"
         },
         {

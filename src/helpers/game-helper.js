@@ -1,7 +1,7 @@
 import { database } from "firebase";
 import Nominee from "../models/Nominee";
 import Category from "../models/Category";
-import data from "../awardsShows/test";
+import data from "../awardsShows/2020GoldenGlobes";
 import { CURRENT_GAME } from "../constants";
 
 export async function save(overwrite = false) {
@@ -15,6 +15,8 @@ export async function save(overwrite = false) {
 
   // don't overwrite existing game
   if (isDuplicate && !overwrite) return;
+
+  console.log("overwriting");
 
   Object.keys(data.categories).map(key => {
     const categoryKey = database()
@@ -121,15 +123,29 @@ export async function deleteGame(deleteGroups = false) {
 
     groupsObj &&
       Object.values(groupsObj).forEach(async group => {
-        await database()
+        const entriesToDelete = await database()
           .ref("entries")
           .orderByChild("group")
-          .equalTo(group.id)
-          .ref.remove();
+          .equalTo(group.id);
+
+        const entriesResponse = await entriesToDelete.once("value");
+        const entriesObj = entriesResponse.val();
+        entriesObj &&
+          Object.values(entriesObj).forEach(async entry => {
+            const userWithEntriesToDelete = await database()
+              .ref(`users/${entry.user}/entries/${entry.id}`)
+              .remove();
+          });
+
+        entriesToDelete.ref.remove();
       });
 
     await groupsToDelete.ref.remove();
   }
+
+  await database()
+    .ref(`games/${CURRENT_GAME}`)
+    .remove();
 }
 
 function findMatch(arr, toFind) {
@@ -149,8 +165,6 @@ function setImage(nominee, image) {
   database()
     .ref()
     .update({
-      [`/nominees/${
-        nominee.id
-      }/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
+      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
     });
 }
