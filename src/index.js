@@ -11,7 +11,7 @@ import { STAGING_DATABASE, PROD_DATABASE } from "./constants";
 injectTapEventPlugin();
 startFirebase(PROD_DATABASE);
 save();
-saveImages();
+saveImages(true);
 // deleteGame(true);
 export const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
