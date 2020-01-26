@@ -20,6 +20,7 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
     "Category--correct": correct,
     "Category--incorrect": incorrect
   });
+  const doneColor = "rgb(56, 109, 159)";
 
   return (
     <Card className={categoryClasses}>
@@ -41,13 +42,12 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
           ) : selectedNomineeId ? (
             <CheckIcon
               className="Category__status-icon Category__selection-icon Category__complete-icon"
-              color="#689F38"
+              color={doneColor}
             />
           ) : (
             <div className="Category__status-icon Category__selection-icon Category__incomplete-icon" />
           )
         }
-        backgroundColor="none"
         title={category.name}
         subtitle={`${value} points`}
         titleStyle={{
@@ -59,7 +59,7 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
               ? "#b7a261"
               : "rgb(255, 0, 0)"
             : selectedNomineeId
-            ? "#689F38"
+            ? doneColor
             : "rgba(66, 66, 66, 0.87)"
         }
         subtitleStyle={{
@@ -71,7 +71,7 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
               ? "#b7a261"
               : "rgb(255, 0, 0)"
             : selectedNomineeId
-            ? "#689F38"
+            ? doneColor
             : "rgba(66, 66, 66, 0.54)"
         }
         style={{

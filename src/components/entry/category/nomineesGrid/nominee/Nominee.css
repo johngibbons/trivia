@@ -58,7 +58,8 @@
 }
 
 .Nominee__image-bg--selected {
-  filter: contrast(50%) brightness(80%) sepia(100%) hue-rotate(50deg) saturate(200%);
+  filter: contrast(50%) brightness(80%) sepia(100%) hue-rotate(170deg)
+    saturate(200%);
 }
 
 .Nominee__image-bg--not-selected {

@@ -56,6 +56,7 @@ const Nominee = ({
   const red = "linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)),";
   const gold =
     "linear-gradient(rgba(183, 162, 97, 0.5), rgba(183, 162, 97, 0.7)),";
+  const doneColor = "rgba(56, 109, 159)";
 
   const backgroundImage = classNames(
     { [red]: correctId && !notSelected && !answer },
@@ -72,31 +73,14 @@ const Nominee = ({
     >
       <div className="Nominee__icon-overlay">
         {isSelected &&
-          (isAnswered ? (
-            isCorrect ? (
-              <OscarIcon
-                width="200px"
-                height="200px"
-                fill="hsl(45, 37%, 75%)"
-              />
-            ) : (
-              <XIcon
-                style={{ width: 200, height: 200 }}
-                color="rgb(255, 0, 0)"
-              />
-            )
+          isAnswered &&
+          (isCorrect ? (
+            <OscarIcon width="200px" height="200px" fill="hsl(45, 37%, 75%)" />
           ) : (
-            <CheckIcon
-              style={{ width: 200, height: 200 }}
-              color="hsl(92, 35%, 75%)"
-            />
+            <XIcon style={{ width: 200, height: 200 }} color="rgb(255, 0, 0)" />
           ))}
       </div>
-      <div
-        className="Nominee__image-bg"
-        className={nomineeImageClasses}
-        style={{ backgroundImage }}
-      />
+      <div className={nomineeImageClasses} style={{ backgroundImage }} />
       <div className="Nominee--text-container">
         <div>
           <div className="Nominee--text">{nominee.text}</div>
@@ -140,8 +124,5 @@ const mapDispatchToProps = (dispatch, props) => {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Nominee)
+  connect(mapStateToProps, mapDispatchToProps)(Nominee)
 );

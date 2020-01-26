@@ -163,20 +163,19 @@ function findMatch(titlesAndPeopleArray, nomineeToFind) {
 
     let hasMatch = false;
     for (const titleOrPersonString of titleOrPersonStrings) {
-      if (!titleOrPersonString) {
-        break;
-      }
       if (hasMatch) {
         return true;
       }
       for (const nomineeToFindString of nomineeToFindStrings) {
-        if (!nomineeToFindString) {
-          break;
-        }
         if (hasMatch) {
           return true;
         }
-        if (titleOrPersonString === nomineeToFindString) {
+        const areStringsPresentAndMatch =
+          titleOrPersonString &&
+          nomineeToFindString &&
+          titleOrPersonString === nomineeToFindString;
+
+        if (areStringsPresentAndMatch) {
           hasMatch = true;
         }
       }
@@ -184,8 +183,7 @@ function findMatch(titlesAndPeopleArray, nomineeToFind) {
 
     return hasMatch;
   });
-  const personMatch =
-    matches && matches.filter(match => match.media_type === "person");
+  const personMatch = matches.filter(match => match.media_type === "person");
   return personMatch && personMatch.length ? personMatch[0] : matches[0];
 }
 

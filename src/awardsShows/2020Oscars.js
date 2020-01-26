@@ -109,7 +109,7 @@ export default {
           text: "Once Upon a Time… in Hollywood",
           secondaryText: "Quentin Tarantino"
         },
-        { text: "Parasite", secondaryText: "Bong Joon Ho" }
+        { text: "Parasite", secondaryText: "Bong Joon-Ho" }
       ]
     },
     documentaryFeature: {

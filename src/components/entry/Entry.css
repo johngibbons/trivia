@@ -3,12 +3,12 @@
   top: 64px;
   left: 0;
   height: 10px;
-  background-color: rgb(239,154,154);
+  background-color: rgb(239, 154, 154);
   transition: width 0.5s ease;
 }
 
 .Entry--score-progress-bar.entry {
-  background-color: rgb(183,162,97);
+  background-color: rgb(183, 162, 97);
 }
 
 .Entry--game-name {
@@ -20,7 +20,7 @@
   margin-bottom: 50px;
 }
 
-@media(min-width: 668px) {
+@media (min-width: 668px) {
   .Entry--title-container {
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@
   margin-bottom: 25px;
 }
 
-@media(min-width: 668px) {
+@media (min-width: 668px) {
   .Entry--title-container .PageHeading {
     margin-bottom: 0;
   }
@@ -57,14 +57,14 @@
 }
 
 .Entry__status--complete {
-  color: #689F38;
+  color: rgb(56, 109, 159);
   padding: 0;
 }
 
 .Entry__status--incomplete {
   background-color: hsl(0, 79%, 95%);
-  color: #D32F2F;
-  border: 1px solid #D32F2F;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
 }
 
 .Entry__status--icon {
