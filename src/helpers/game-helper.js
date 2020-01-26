@@ -30,7 +30,8 @@ export async function save(overwrite = false) {
         name: data.categories[key].name,
         game: CURRENT_GAME
       }).toJS(),
-      [`/games/${CURRENT_GAME}/categories/${categoryKey}`]: true
+      [`/games/${CURRENT_GAME}/categories/${categoryKey}`]: true,
+      [`/games/${CURRENT_GAME}/id`]: CURRENT_GAME
     };
     database()
       .ref()
