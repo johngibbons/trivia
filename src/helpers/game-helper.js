@@ -1,7 +1,7 @@
 import { database } from "firebase";
 import Nominee from "../models/Nominee";
 import Category from "../models/Category";
-import data from "../awardsShows/2020GoldenGlobes";
+import data from "../awardsShows/2020Oscars";
 import { CURRENT_GAME } from "../constants";
 
 export async function save(overwrite = false) {
@@ -148,13 +148,41 @@ export async function deleteGame(deleteGroups = false) {
     .remove();
 }
 
-function findMatch(arr, toFind) {
-  const matches = arr.filter(item => {
-    const itemName = item.title || item.name;
-    return (
-      itemName.toLowerCase() === toFind.text.toLowerCase() ||
-      itemName.toLowerCase() === toFind.secondaryText.toLowerCase()
-    );
+function findMatch(titlesAndPeopleArray, nomineeToFind) {
+  const matches = titlesAndPeopleArray.filter(titleOrPerson => {
+    const toOptionalLowercaseText = text => (text ? text.toLowerCase() : "");
+    const titleOrPersonStrings = [
+      titleOrPerson.title,
+      titleOrPerson.original_title,
+      titleOrPerson.name
+    ].map(toOptionalLowercaseText);
+    const nomineeToFindStrings = [
+      nomineeToFind.text,
+      nomineeToFind.secondaryText
+    ].map(toOptionalLowercaseText);
+
+    let hasMatch = false;
+    for (const titleOrPersonString of titleOrPersonStrings) {
+      if (!titleOrPersonString) {
+        break;
+      }
+      if (hasMatch) {
+        return true;
+      }
+      for (const nomineeToFindString of nomineeToFindStrings) {
+        if (!nomineeToFindString) {
+          break;
+        }
+        if (hasMatch) {
+          return true;
+        }
+        if (titleOrPersonString === nomineeToFindString) {
+          hasMatch = true;
+        }
+      }
+    }
+
+    return hasMatch;
   });
   const personMatch =
     matches && matches.filter(match => match.media_type === "person");

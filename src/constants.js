@@ -1,5 +1,5 @@
-export const CURRENT_GAME = "2020goldenglobes";
-export const CURRENT_TITLE = "The 2020 Golden Globes";
+export const CURRENT_GAME = "2020Oscars";
+export const CURRENT_TITLE = "The 2020 Academy Awards";
 export const PROD_DATABASE = {
   apiKey: "AIzaSyDGkgi0mqNXArVXeP2X9kF421JGP9Yi4bY",
   authDomain: "awards-season.firebaseapp.com",
@@ -11,10 +11,11 @@ export const PROD_DATABASE = {
 };
 
 export const STAGING_DATABASE = {
-  apiKey: "AIzaSyDgjLyi-T-4LP5EqJEI4E02oiXcc3VRNl4",
-  authDomain: "fantasy-baseball-196a2.firebaseapp.com",
-  databaseURL: "https://fantasy-baseball-196a2.firebaseio.com",
-  projectId: "fantasy-baseball-196a2",
-  storageBucket: "fantasy-baseball-196a2.appspot.com",
-  messagingSenderId: "26965131422"
+  apiKey: "AIzaSyDrc0t5YtIKDIyqr5pzXSkVINfcahiE8EI",
+  authDomain: "awards-season-staging.firebaseapp.com",
+  databaseURL: "https://awards-season-staging.firebaseio.com",
+  projectId: "awards-season-staging",
+  storageBucket: "awards-season-staging.appspot.com",
+  messagingSenderId: "431816305555",
+  appId: "1:431816305555:web:edbf9b0df745345f181666"
 };
