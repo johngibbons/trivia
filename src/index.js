@@ -9,7 +9,7 @@ import firebaseui from "firebaseui";
 import { save, saveImages, deleteGame } from "./helpers/game-helper";
 import { STAGING_DATABASE, PROD_DATABASE } from "./constants";
 injectTapEventPlugin();
-startFirebase(STAGING_DATABASE);
+startFirebase(PROD_DATABASE);
 save();
 saveImages();
 // deleteGame(true);
