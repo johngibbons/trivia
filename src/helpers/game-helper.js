@@ -1,7 +1,7 @@
 import { database } from "firebase";
 import Nominee from "../models/Nominee";
 import Category from "../models/Category";
-import data from "../awardsShows/2020Oscars";
+import data from "../awardsShows/2021GoldenGlobes";
 import { CURRENT_GAME } from "../constants";
 
 export async function save(overwrite = false) {
@@ -18,67 +18,51 @@ export async function save(overwrite = false) {
 
   console.log("overwriting");
 
-  Object.keys(data.categories).map(key => {
-    const categoryKey = database()
-      .ref()
-      .child("categories")
-      .push().key;
+  Object.keys(data.categories).map((key) => {
+    const categoryKey = database().ref().child("categories").push().key;
     const updates = {
       [`/categories/${categoryKey}`]: new Category({
         id: categoryKey,
         value: data.categories[key].value,
         name: data.categories[key].name,
-        game: CURRENT_GAME
+        game: CURRENT_GAME,
       }).toJS(),
       [`/games/${CURRENT_GAME}/categories/${categoryKey}`]: true,
-      [`/games/${CURRENT_GAME}/id`]: CURRENT_GAME
+      [`/games/${CURRENT_GAME}/id`]: CURRENT_GAME,
     };
-    database()
-      .ref()
-      .update(updates);
+    database().ref().update(updates);
 
-    data.categories[key].nominees.map(nominee => {
-      const nomineeKey = database()
-        .ref()
-        .child("nominees")
-        .push().key;
+    data.categories[key].nominees.map((nominee) => {
+      const nomineeKey = database().ref().child("nominees").push().key;
       const updates = {
         [`/nominees/${nomineeKey}`]: new Nominee({
           ...nominee,
           id: nomineeKey,
           category: categoryKey,
-          game: CURRENT_GAME
+          game: CURRENT_GAME,
         }).toJS(),
-        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true
+        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true,
       };
-      database()
-        .ref()
-        .update(updates);
+      database().ref().update(updates);
     });
   });
 }
 
 export async function saveImages(overwrite) {
-  const titlesReq = await database()
-    .ref("/titles")
-    .once("value");
-  const peopleReq = await database()
-    .ref("/people")
-    .once("value");
-  const nomineesReq = await database()
-    .ref("/nominees")
-    .once("value");
+  const titlesReq = await database().ref("/titles").once("value");
+  const peopleReq = await database().ref("/people").once("value");
+  const nomineesReq = await database().ref("/nominees").once("value");
 
   const titles = titlesReq.val();
   const people = peopleReq.val();
   const nominees = nomineesReq.val();
 
-  const titlesArr = Object.keys(titles).map(key => titles[key]);
-  const peopleArr = Object.keys(people).map(key => people[key]);
-  const nomineesArr = Object.keys(nominees).map(key => nominees[key]);
+  const titlesArr = Object.keys(titles).map((key) => titles[key]);
+  const peopleArr = Object.keys(people).map((key) => people[key]);
+  const nomineesArr = Object.keys(nominees).map((key) => nominees[key]);
   const all = [...titlesArr, ...peopleArr];
 
-  nomineesArr.forEach(nominee => {
+  nomineesArr.forEach((nominee) => {
     if (!overwrite && nominee.imageUrl) return;
     const match = findMatch(all, nominee);
     if (!match) {
@@ -103,7 +87,7 @@ export async function deleteGame(deleteGroups = false) {
   const categoriesObj = categoriesResponse.val();
 
   categoriesObj &&
-    Object.values(categoriesObj).forEach(async category => {
+    Object.values(categoriesObj).forEach(async (category) => {
       await database()
         .ref("nominees")
         .orderByChild("category")
@@ -123,7 +107,7 @@ export async function deleteGame(deleteGroups = false) {
     const groupsObj = groupsResponse.val();
 
     groupsObj &&
-      Object.values(groupsObj).forEach(async group => {
+      Object.values(groupsObj).forEach(async (group) => {
         const entriesToDelete = await database()
           .ref("entries")
           .orderByChild("group")
@@ -132,7 +116,7 @@ export async function deleteGame(deleteGroups = false) {
         const entriesResponse = await entriesToDelete.once("value");
         const entriesObj = entriesResponse.val();
         entriesObj &&
-          Object.values(entriesObj).forEach(async entry => {
+          Object.values(entriesObj).forEach(async (entry) => {
             const userWithEntriesToDelete = await database()
               .ref(`users/${entry.user}/entries/${entry.id}`)
               .remove();
@@ -144,22 +128,20 @@ export async function deleteGame(deleteGroups = false) {
     await groupsToDelete.ref.remove();
   }
 
-  await database()
-    .ref(`games/${CURRENT_GAME}`)
-    .remove();
+  await database().ref(`games/${CURRENT_GAME}`).remove();
 }
 
 function findMatch(titlesAndPeopleArray, nomineeToFind) {
-  const matches = titlesAndPeopleArray.filter(titleOrPerson => {
-    const toOptionalLowercaseText = text => (text ? text.toLowerCase() : "");
+  const matches = titlesAndPeopleArray.filter((titleOrPerson) => {
+    const toOptionalLowercaseText = (text) => (text ? text.toLowerCase() : "");
     const titleOrPersonStrings = [
       titleOrPerson.title,
       titleOrPerson.original_title,
-      titleOrPerson.name
+      titleOrPerson.name,
     ].map(toOptionalLowercaseText);
     const nomineeToFindStrings = [
       nomineeToFind.text,
-      nomineeToFind.secondaryText
+      nomineeToFind.secondaryText,
     ].map(toOptionalLowercaseText);
 
     let hasMatch = false;
@@ -184,7 +166,7 @@ function findMatch(titlesAndPeopleArray, nomineeToFind) {
 
     return hasMatch;
   });
-  const personMatch = matches.filter(match => match.media_type === "person");
+  const personMatch = matches.filter((match) => match.media_type === "person");
   return personMatch && personMatch.length ? personMatch[0] : matches[0];
 }
 
@@ -192,6 +174,6 @@ function setImage(nominee, image) {
   database()
     .ref()
     .update({
-      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
+      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`,
     });
 }
