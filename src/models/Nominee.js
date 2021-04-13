@@ -1,12 +1,12 @@
-import { Record } from 'immutable'
+import { Record } from "immutable";
 
 const Nominee = Record({
   id: undefined,
-  text: '',
-  secondaryText: '',
+  text: "",
+  secondaryText: "",
   category: undefined,
   game: undefined,
-  imageUrl: ''
-})
+  imageUrl: "",
+});
 
 export default Nominee;

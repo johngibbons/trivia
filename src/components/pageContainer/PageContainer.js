@@ -1,23 +1,21 @@
-import React, { PropTypes } from 'react'
-import './PageContainer.css'
+import React, { PropTypes } from "react";
+import "./PageContainer.css";
 
-import Navbar from '../navbar/Navbar.js'
-import AlertBar from '../alertBar/AlertBar.js'
+import Navbar from "../navbar/Navbar.js";
+import AlertBar from "../alertBar/AlertBar.js";
 
 const PageContainer = ({ children }) => {
   return (
-    <div className='PageContainer'>
+    <div className="PageContainer">
       <Navbar />
-      <div className='PageContainer-body'>
-        {children}
-      </div>
+      <div className="PageContainer-body">{children}</div>
       <AlertBar />
     </div>
-  )
-}
+  );
+};
 
 PageContainer.propTypes = {
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
-export default PageContainer
+export default PageContainer;

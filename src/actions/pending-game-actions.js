@@ -4,22 +4,22 @@ import {
   SAVE_PENDING_CATEGORY,
   UPDATE_PENDING_NOMINEE,
   SAVE_PENDING_NOMINEE,
-  DELETE_NOMINEE
-} from './action-types';
+  DELETE_NOMINEE,
+} from "./action-types";
 
 export function createNewCategory() {
   return {
-    type: CREATE_NEW_CATEGORY
-  }
+    type: CREATE_NEW_CATEGORY,
+  };
 }
 
 export function updatePendingCategory(pendingCategory) {
   return {
     type: UPDATE_PENDING_CATEGORY,
     payload: {
-      pendingCategory
-    }
-  }
+      pendingCategory,
+    },
+  };
 }
 
 export function savePendingCategory(pendingCategory, gameId) {
@@ -27,34 +27,34 @@ export function savePendingCategory(pendingCategory, gameId) {
     type: SAVE_PENDING_CATEGORY,
     payload: {
       pendingCategory,
-      gameId
-    }
-  }
+      gameId,
+    },
+  };
 }
 
 export function updatePendingNominee(pendingNominee) {
   return {
     type: UPDATE_PENDING_NOMINEE,
     payload: {
-      pendingNominee
-    }
-  }
+      pendingNominee,
+    },
+  };
 }
 
 export function savePendingNominee(nominee) {
   return {
     type: SAVE_PENDING_NOMINEE,
     payload: {
-      nominee
-    }
-  }
+      nominee,
+    },
+  };
 }
 
 export function deleteNominee(nominee) {
   return {
     type: DELETE_NOMINEE,
     payload: {
-      nominee
-    }
-  }
+      nominee,
+    },
+  };
 }

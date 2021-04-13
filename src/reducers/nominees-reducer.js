@@ -1,7 +1,7 @@
-import { Map } from 'immutable'
-import Nominee from '../models/Nominee'
+import { Map } from "immutable";
+import Nominee from "../models/Nominee";
 
-import { SAVE_PENDING_CATEGORY, SET_NOMINEES } from '../actions/action-types'
+import { SAVE_PENDING_CATEGORY, SET_NOMINEES } from "../actions/action-types";
 
 const nominees = (state = new Map(), action) => {
   switch (action.type) {
@@ -9,14 +9,14 @@ const nominees = (state = new Map(), action) => {
       return action.payload.pendingCategory.nominees.reduce(
         (acc, nominee) => acc.set(nominee.id, new Nominee(nominee)),
         state
-      )
+      );
     case SET_NOMINEES: {
-      const { nominees } = action.payload
-      return new Map(nominees).map(val => new Nominee(val))
+      const { nominees } = action.payload;
+      return new Map(nominees).map((val) => new Nominee(val));
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default nominees
+export default nominees;

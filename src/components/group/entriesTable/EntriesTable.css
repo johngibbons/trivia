@@ -105,7 +105,7 @@
 }
 
 .EntriesTable--col-incorrect {
-  color: #EF9A9A;
+  color: #ef9a9a;
   text-decoration: line-through;
 }
 
@@ -117,7 +117,8 @@
   margin-top: 4px;
 }
 
-.EntriesTable--col-entry-name {}
+.EntriesTable--col-entry-name {
+}
 
 .EntriesTable--entry-name {
   overflow: hidden;

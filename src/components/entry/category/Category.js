@@ -5,22 +5,66 @@ import { connect } from "react-redux";
 import classNames from "classnames";
 import { currentNomineesSelector } from "../../../selectors/nominees-selector";
 
-import { Card, CardHeader } from "material-ui/Card";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
 import NomineesGrid from "./nomineesGrid/NomineesGrid";
-import IncorrectIcon from "material-ui/svg-icons/navigation/cancel";
-import CheckIcon from "material-ui/svg-icons/action/check-circle";
+import IncorrectIcon from "@material-ui/icons/Cancel";
+import CheckIcon from "@material-ui/icons/CheckCircle";
 import OscarIcon from "../../OscarIcon";
+import { makeStyles } from "@material-ui/core/styles";
+
+const selectedColor = "rgb(56, 109, 159)";
+const unselectedColor = "rgba(66, 66, 66, 0.54)";
+const correctColor = "#b7a261";
+const incorrectColor = "rgb(255, 0, 0)";
+
+const getStateColor = ({ correctAnswer, selectedId, isCorrect }) =>
+  correctAnswer
+    ? isCorrect
+      ? correctColor
+      : incorrectColor
+    : selectedId
+    ? selectedColor
+    : unselectedColor;
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: "18px",
+    color: ({ category, selectedNomineeId, isCorrect }) =>
+      getStateColor({
+        correctAnswer: category.correctAnswer,
+        selectedId: selectedNomineeId,
+        isCorrect,
+      }),
+  },
+  subheader: {
+    fontSize: "15px",
+    color: ({ category, selectedNomineeId, isCorrect }) =>
+      getStateColor({
+        correctAnswer: category.correctAnswer,
+        selectedId: selectedNomineeId,
+        isCorrect,
+      }),
+  },
+  content: {
+    paddingRight: 0,
+  },
+});
 
 const Category = ({ category, value, nominees, selectedNomineeId }) => {
   const incorrect =
     category.correctAnswer && category.correctAnswer !== selectedNomineeId;
-  const correct = category.correctAnswer && !incorrect;
+  const isCorrect = category.correctAnswer && !incorrect;
+  const classes = useStyles({ category, selectedNomineeId, isCorrect });
   const categoryClasses = classNames("Category", {
     "Category--selected": !!selectedNomineeId,
-    "Category--correct": correct,
-    "Category--incorrect": incorrect
+    "Category--correct": isCorrect,
+    "Category--incorrect": incorrect,
   });
-  const doneColor = "rgb(56, 109, 159)";
 
   return (
     <Card className={categoryClasses}>
@@ -30,7 +74,7 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
             incorrect ? (
               <IncorrectIcon
                 className="Category__status-icon Category__status-icon--incorrect"
-                color="rgb(255, 0, 0)"
+                color={incorrectColor}
               />
             ) : (
               <div className="Category__status-icon Category__status-icon--correct">
@@ -42,45 +86,15 @@ const Category = ({ category, value, nominees, selectedNomineeId }) => {
           ) : selectedNomineeId ? (
             <CheckIcon
               className="Category__status-icon Category__selection-icon Category__complete-icon"
-              color={doneColor}
+              color={selectedColor}
             />
           ) : (
             <div className="Category__status-icon Category__selection-icon Category__incomplete-icon" />
           )
         }
         title={category.name}
-        subtitle={`${value} points`}
-        titleStyle={{
-          fontSize: "18px"
-        }}
-        titleColor={
-          category.correctAnswer
-            ? correct
-              ? "#b7a261"
-              : "rgb(255, 0, 0)"
-            : selectedNomineeId
-            ? doneColor
-            : "rgba(66, 66, 66, 0.87)"
-        }
-        subtitleStyle={{
-          fontSize: "15px"
-        }}
-        subtitleColor={
-          category.correctAnswer
-            ? correct
-              ? "#b7a261"
-              : "rgb(255, 0, 0)"
-            : selectedNomineeId
-            ? doneColor
-            : "rgba(66, 66, 66, 0.54)"
-        }
-        style={{
-          display: "flex",
-          alignItems: "center"
-        }}
-        textStyle={{
-          paddingRight: 0
-        }}
+        subheader={`${value} points`}
+        classes={classes}
       />
       <NomineesGrid
         categoryId={category.id}
@@ -98,7 +112,7 @@ Category.propTypes = {
   category: PropTypes.instanceOf(Record).isRequired,
   value: PropTypes.number,
   nominees: PropTypes.instanceOf(Seq).isRequired,
-  selectedNomineeId: PropTypes.string
+  selectedNomineeId: PropTypes.string,
 };
 
 const mapStateToProps = (state, props) => {
@@ -106,7 +120,7 @@ const mapStateToProps = (state, props) => {
     nominees: currentNomineesSelector(state, props),
     selectedNomineeId: props.entry
       ? props.entry.getIn(["selections", props.category.id])
-      : props.category.correctAnswer
+      : props.category.correctAnswer,
   };
 };
 export default connect(mapStateToProps)(Category);

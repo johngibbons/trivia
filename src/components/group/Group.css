@@ -7,7 +7,7 @@
   margin-bottom: 10px;
 }
 
-@media(min-width: 680px) {
+@media (min-width: 680px) {
   .Group--create-entry-button {
     margin-top: 0;
     margin-right: 25px;

@@ -1,12 +1,12 @@
-import { Map, Record } from 'immutable'
+import { Map, Record } from "immutable";
 
 const User = Record({
   id: undefined,
-  photoURL: '',
-  email: '',
+  photoURL: "",
+  email: "",
   entries: Map(),
   groups: Map(),
-  name: ''
-})
+  name: "",
+});
 
 export default User;

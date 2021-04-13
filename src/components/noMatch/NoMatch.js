@@ -1,10 +1,8 @@
-import React from 'react'
-import './NoMatch.css'
+import React from "react";
+import "./NoMatch.css";
 
 const NoMatch = () => {
-  return (
-    <div>Not Found</div>
-  )
-}
+  return <div>Not Found</div>;
+};
 
-export default NoMatch
+export default NoMatch;

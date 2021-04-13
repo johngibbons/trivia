@@ -1,14 +1,14 @@
-import React, { PropTypes } from 'react'
-import './NomineesGrid.css'
+import React, { PropTypes } from "react";
+import "./NomineesGrid.css";
 
-import { Seq } from 'immutable'
+import { Seq } from "immutable";
 
-import Nominee from './nominee/Nominee'
+import Nominee from "./nominee/Nominee";
 const NomineesGrid = ({
   nominees,
   selectedNomineeId,
   correctNomineeId,
-  isIncorrect
+  isIncorrect,
 }) => {
   const nomineeEl = (nominee, i) => (
     <Nominee
@@ -17,34 +17,35 @@ const NomineesGrid = ({
       selectedNomineeId={selectedNomineeId}
       correctId={correctNomineeId}
     />
-  )
+  );
 
-  const selectableNominees = nominees.map(nomineeEl)
+  const selectableNominees = nominees.map(nomineeEl);
 
   const selectedNominee = nominees.filter(
     (nominee, i) => nominee.id === selectedNomineeId
-  )
+  );
   const correctNominee = nominees.filter(
     (nominee, i) => nominee.id === correctNomineeId
-  )
+  );
 
-  const unselectableNominees = selectedNomineeId === correctNomineeId
-    ? correctNominee.map(nomineeEl)
-    : [...selectedNominee, ...correctNominee].map(nomineeEl)
+  const unselectableNominees =
+    selectedNomineeId === correctNomineeId
+      ? correctNominee.map(nomineeEl)
+      : [...selectedNominee, ...correctNominee].map(nomineeEl);
 
   return (
-    <div className='NomineesGrid'>
-      <div className='NomineesGrid--list'>
+    <div className="NomineesGrid">
+      <div className="NomineesGrid--list">
         {correctNomineeId ? unselectableNominees : selectableNominees}
       </div>
     </div>
-  )
-}
+  );
+};
 
 NomineesGrid.propTypes = {
   nominees: PropTypes.instanceOf(Seq),
   selectedNomineeId: PropTypes.string,
-  correctNomineeId: PropTypes.string
-}
+  correctNomineeId: PropTypes.string,
+};
 
-export default NomineesGrid
+export default NomineesGrid;

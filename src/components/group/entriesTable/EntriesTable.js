@@ -1,8 +1,8 @@
 import React, { PropTypes } from "react";
 import "./EntriesTable.css";
 import { List, Seq } from "immutable";
-import WarningIcon from "material-ui/svg-icons/alert/warning";
-import CheckIcon from "material-ui/svg-icons/action/check-circle";
+import WarningIcon from "@material-ui/icons/Warning";
+import CheckIcon from "@material-ui/icons/CheckCircle";
 
 import EntryRow from "./entryRow/EntryRow";
 
@@ -46,7 +46,7 @@ const EntriesTable = ({ entries, categories, gameStarted }) => {
               categories
                 .toList()
                 .toJS()
-                .map(category => {
+                .map((category) => {
                   return (
                     <th
                       key={category.id}
@@ -77,7 +77,7 @@ const EntriesTable = ({ entries, categories, gameStarted }) => {
 EntriesTable.propTypes = {
   entries: PropTypes.instanceOf(List),
   categories: PropTypes.instanceOf(Seq),
-  gameStarted: PropTypes.bool
+  gameStarted: PropTypes.bool,
 };
 
 export default EntriesTable;

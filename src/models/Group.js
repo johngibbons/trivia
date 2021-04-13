@@ -1,12 +1,12 @@
-import { Record, Map } from 'immutable';
+import { Record, Map } from "immutable";
 
 const Group = Record({
   id: undefined,
-  name: '',
+  name: "",
   admin: undefined,
   entries: Map(),
   game: undefined,
-  values: Map()
+  values: Map(),
 });
 
 export default Group;

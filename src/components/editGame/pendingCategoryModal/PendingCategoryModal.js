@@ -1,24 +1,25 @@
-import React, { PropTypes } from 'react'
-import './PendingCategoryModal.css'
-import { connect } from 'react-redux';
-import { Record, Seq } from 'immutable';
-import shortid from 'shortid';
+import React, { PropTypes } from "react";
+import "./PendingCategoryModal.css";
+import { connect } from "react-redux";
+import { Record, Seq } from "immutable";
+import shortid from "shortid";
 
-import Game from '../../../models/Game';
+import Game from "../../../models/Game";
 
 import {
   updatePendingCategory,
   updatePendingNominee,
   savePendingCategory,
-  savePendingNominee
-} from '../../../actions/pending-game-actions';
+  savePendingNominee,
+} from "../../../actions/pending-game-actions";
 
-import { closeModal } from '../../../actions/ui-actions';
+import { closeModal } from "../../../actions/ui-actions";
 
-import Dialog from 'material-ui/Dialog'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import PendingNomineesList from './pendingNomineesList/PendingNomineesList';
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import PendingNomineesList from "./pendingNomineesList/PendingNomineesList";
 
 const PendingCategoryModal = ({
   open,
@@ -29,100 +30,107 @@ const PendingCategoryModal = ({
   onChangeNominee,
   onSaveNominee,
   onClickSave,
-  onClose
+  onClose,
 }) => {
   return (
-    <Dialog
-      open={open}
-      title='Create New Category'
-      autoScrollBodyContent
-      onRequestClose={onClose}
-    >
+    <Dialog open={open} aria-labelledby="create-category" onClose={onClose}>
+      <DialogTitle id="create-category">Create New Category</DialogTitle>
       <form>
-        <section className='PendingCategoryModal-section'>
-          <h5 className='PendingCategoryModal-section-title'>Category</h5>
+        <section className="PendingCategoryModal-section">
+          <h5 className="PendingCategoryModal-section-title">Category</h5>
           <TextField
-            type='text'
+            type="text"
             autoFocus
-            className='PendingCategoryModal-text PendingCategoryModal-input'
+            className="PendingCategoryModal-text PendingCategoryModal-input"
             value={pendingCategory.name}
-            floatingLabelText='Category'
-            hintText="What's the category?"
-            onChange={(e, val) => onChangeCategory({name: val})}
+            label="Category"
+            placeholder="Best Actor"
+            onChange={(e, val) => onChangeCategory({ name: val })}
           />
           <TextField
-            type='number'
-            className='PendingCategoryModal-point-value
-              PendingCategoryModal-input'
+            type="number"
+            className="PendingCategoryModal-point-value
+              PendingCategoryModal-input"
             value={pendingCategory.value}
-            floatingLabelText='Point Value'
-            hintText="How much is this Category worth?"
-            onChange={(e, val) => onChangeCategory({value: val})}
+            label="Point Value"
+            placeholder="10"
+            onChange={(e, val) => onChangeCategory({ value: val })}
           />
         </section>
-        <section className='PendingCategoryModal-section'>
-          <h5 className='PendingCategoryModal-section-title'>Nominees</h5>
+        <section className="PendingCategoryModal-section">
+          <h5 className="PendingCategoryModal-section-title">Nominees</h5>
           <TextField
-            type='text'
-            id='PendingCategoryModal-nominee-input'
-            className='PendingCategoryModal-nominee-input
-              PendingCategoryModal-input'
+            type="text"
+            id="PendingCategoryModal-nominee-input"
+            className="PendingCategoryModal-nominee-input
+              PendingCategoryModal-input"
             value={pendingNominee.text}
-            floatingLabelText='Nominee'
-            hintText="Enter a nominee and hit return to save"
-            onChange={(e, val) => onChangeNominee({text: val})}
+            label="Nominee"
+            placeholder="Brad Pitt"
+            onChange={(e, val) => onChangeNominee({ text: val })}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 e.preventDefault();
                 pendingNominee.text &&
-                  onSaveNominee(pendingNominee.set('id', shortid.generate()));
+                  onSaveNominee(pendingNominee.set("id", shortid.generate()));
               }
             }}
           />
           <TextField
-            type='text'
-            className='PendingCategoryModal-nominee-secondary-input
-              PendingCategoryModal-input'
+            type="text"
+            className="PendingCategoryModal-nominee-secondary-input
+              PendingCategoryModal-input"
             value={pendingNominee.secondaryText}
-            floatingLabelText='Secondary Text (Optional)'
-            hintText="Enter any secondary text, like a subtitle or hint"
-            onChange={(e, val) => onChangeNominee({secondaryText: val})}
+            label="Secondary Text (Optional)"
+            placeholder="Once Upon a Time In Hollywood"
+            onChange={(e, val) => onChangeNominee({ secondaryText: val })}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 e.preventDefault();
                 pendingNominee.text &&
-                  onSaveNominee(pendingNominee.set('id', shortid.generate()));
-                document.getElementById('PendingCategoryModal-nominee-input')
+                  onSaveNominee(pendingNominee.set("id", shortid.generate()));
+                document
+                  .getElementById("PendingCategoryModal-nominee-input")
                   .focus();
               }
             }}
           />
-          <PendingNomineesList nominees={pendingCategory.nominees.toIndexedSeq()} />
+          <PendingNomineesList
+            nominees={pendingCategory.nominees.toIndexedSeq()}
+          />
         </section>
         <div>
-          <RaisedButton
-            primary
-            type='submit'
-            label='save'
-            disabled={!pendingCategory.name
-              || !pendingCategory.nominees.size
-              || !pendingCategory.value}
+          <Button
+            color="primary"
+            variant="contained"
+            type="submit"
+            disabled={
+              !pendingCategory.name ||
+              !pendingCategory.nominees.size ||
+              !pendingCategory.value
+            }
             onClick={(e) => {
               e.preventDefault();
-              onClickSave(pendingCategory
-                .set('id', shortid.generate()), game.id);
+              onClickSave(
+                pendingCategory.set("id", shortid.generate()),
+                game.id
+              );
             }}
-          />
-          <RaisedButton
-            label='cancel'
-            className='PendingCategoryModal-cancel-button'
+          >
+            save
+          </Button>
+          <Button
+            variant="contained"
+            className="PendingCategoryModal-cancel-button"
             onClick={onClose}
-          />
+          >
+            cancel
+          </Button>
         </div>
       </form>
     </Dialog>
-  )
-}
+  );
+};
 
 PendingCategoryModal.propTypes = {
   open: PropTypes.bool,
@@ -134,26 +142,22 @@ PendingCategoryModal.propTypes = {
   onChangeNominee: PropTypes.func.isRequired,
   onSaveNominee: PropTypes.func.isRequired,
   onClickSave: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired
-}
+  onClose: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
-  const {
-    ui,
-    pendingCategory,
-    pendingNominee
-  } = state;
+  const { ui, pendingCategory, pendingNominee } = state;
   return {
-    open: ui.modal === 'NEW_CATEGORY',
+    open: ui.modal === "NEW_CATEGORY",
     pendingNominee,
-    pendingCategory
-  }
-}
+    pendingCategory,
+  };
+};
 
 export default connect(mapStateToProps, {
   onChangeCategory: updatePendingCategory,
   onChangeNominee: updatePendingNominee,
   onSaveNominee: savePendingNominee,
   onClickSave: savePendingCategory,
-  onClose: closeModal
-})(PendingCategoryModal)
+  onClose: closeModal,
+})(PendingCategoryModal);

@@ -59,7 +59,7 @@
 
 @keyframes slideshow {
   100% {
-    transform: translateX(-100%)
+    transform: translateX(-100%);
   }
 }
 
@@ -67,7 +67,7 @@
   flex: 0 0 auto;
   height: 350px;
   margin: 0 5px;
-  width: calc(350px * 2/3);
+  width: calc(350px * 2 / 3);
   background-size: cover;
   background-position: center;
 }

@@ -6,8 +6,8 @@ import {
   SET_ENTRIES,
   SELECT_NOMINEE,
   SELECT_NOMINEE_SUCCESS,
-  FETCH_USER_ENTRIES
-} from './action-types';
+  FETCH_USER_ENTRIES,
+} from "./action-types";
 
 export function createEntry(name, group, game, user) {
   return {
@@ -16,54 +16,54 @@ export function createEntry(name, group, game, user) {
       name,
       group,
       game,
-      user
-    }
-  }
+      user,
+    },
+  };
 }
 
 export function fetchEntry(id) {
   return {
     type: FETCH_ENTRY,
     payload: {
-      id
-    }
-  }
+      id,
+    },
+  };
 }
 
 export function setEntry(entry) {
   return {
     type: SET_ENTRY,
     payload: {
-      entry
-    }
-  }
+      entry,
+    },
+  };
 }
 
 export function syncEntry({ value }) {
   return {
     type: SET_ENTRY,
     payload: {
-      entry: value
-    }
-  }
+      entry: value,
+    },
+  };
 }
 
 export function setEntries(entries) {
   return {
     type: SET_ENTRIES,
     payload: {
-      entries
-    }
-  }
+      entries,
+    },
+  };
 }
 
 export function updateEntry(entry) {
   return {
     type: UPDATE_ENTRY,
     payload: {
-      entry
-    }
-  }
+      entry,
+    },
+  };
 }
 
 export function selectNominee(entryId, nominee) {
@@ -71,9 +71,9 @@ export function selectNominee(entryId, nominee) {
     type: SELECT_NOMINEE,
     payload: {
       entryId,
-      nominee
-    }
-  }
+      nominee,
+    },
+  };
 }
 
 export function selectNomineeSuccess(entryId, nominee) {
@@ -81,16 +81,16 @@ export function selectNomineeSuccess(entryId, nominee) {
     type: SELECT_NOMINEE_SUCCESS,
     payload: {
       entryId,
-      nominee
-    }
-  }
+      nominee,
+    },
+  };
 }
 
 export function fetchUserEntries(userId) {
   return {
     type: FETCH_USER_ENTRIES,
     payload: {
-      userId
-    }
-  }
+      userId,
+    },
+  };
 }

@@ -1,10 +1,10 @@
-import { Record, Map, List } from 'immutable'
+import { Record, Map, List } from "immutable";
 
 const Game = Record({
   id: undefined,
-  name: '',
+  name: "",
   answered_order: List(),
-  categories: new Map()
+  categories: new Map(),
 });
 
 export default Game;

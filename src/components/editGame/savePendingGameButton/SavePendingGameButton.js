@@ -1,25 +1,21 @@
-import React, { PropTypes } from 'react'
-import './SavePendingGameButton.css'
+import React, { PropTypes } from "react";
+import "./SavePendingGameButton.css";
 
-import RaisedButton from 'material-ui/RaisedButton';
-import { Link } from 'react-router';
+import Button from "@material-ui/core/Button";
 
-const SavePendingGameButton = ({
-  id,
-  disabled
-}) => (
+import { Link } from "react-router";
+
+const SavePendingGameButton = ({ id, disabled }) => (
   <Link to={`/games/${id}`}>
-    <RaisedButton
-      primary
-      disabled={disabled}
-      label='Done'
-    />
+    <Button variant="contained" color="primary" disabled={disabled}>
+      Done
+    </Button>
   </Link>
-)
+);
 
 SavePendingGameButton.propTypes = {
   id: PropTypes.string,
-  disabled: PropTypes.bool
-}
+  disabled: PropTypes.bool,
+};
 
-export default SavePendingGameButton
+export default SavePendingGameButton;

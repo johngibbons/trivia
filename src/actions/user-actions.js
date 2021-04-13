@@ -6,37 +6,37 @@ import {
   SET_USER,
   SIGN_OUT,
   FETCH_USER,
-  FETCH_OR_CREATE_USER
-} from './action-types';
+  FETCH_OR_CREATE_USER,
+} from "./action-types";
 
 export function fetchUser(id) {
   return {
     type: FETCH_USER,
     payload: {
-      id
-    }
-  }
+      id,
+    },
+  };
 }
 
 export function signInSuccess(currentUser) {
   return {
     type: SIGN_IN_SUCCESS,
     payload: {
-      currentUser
-    }
-  }
+      currentUser,
+    },
+  };
 }
 
 export function signOut() {
   return {
-    type: SIGN_OUT
-  }
+    type: SIGN_OUT,
+  };
 }
 
 export function signOutSuccess() {
   return {
-    type: SIGN_OUT_SUCCESS
-  }
+    type: SIGN_OUT_SUCCESS,
+  };
 }
 
 export function checkAuthStatus(next, requireAuth, nextState) {
@@ -45,34 +45,34 @@ export function checkAuthStatus(next, requireAuth, nextState) {
     payload: {
       next,
       requireAuth,
-      nextState
-    }
-  }
+      nextState,
+    },
+  };
 }
 
 export function setUser(user) {
   return {
     type: SET_USER,
     payload: {
-      user
-    }
-  }
+      user,
+    },
+  };
 }
 
 export function syncUser({ value }) {
   return {
     type: SYNC_USER,
     payload: {
-      user: value
-    }
-  }
+      user: value,
+    },
+  };
 }
 
 export function fetchOrCreateUser(user) {
   return {
     type: FETCH_OR_CREATE_USER,
     payload: {
-      user
-    }
-  }
+      user,
+    },
+  };
 }

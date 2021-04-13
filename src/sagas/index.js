@@ -1,32 +1,26 @@
 import {
   watchSearchSubmit,
   watchSaveTitle,
-  watchSavePerson
-} from './adminSaga';
-import {
-  watchCheckAuthStatus,
-  watchSignOut
-} from './authSaga';
-import {
-  watchFetchUser,
-  watchFetchOrCreateUser
-} from './userSaga';
+  watchSavePerson,
+} from "./adminSaga";
+import { watchCheckAuthStatus, watchSignOut } from "./authSaga";
+import { watchFetchUser, watchFetchOrCreateUser } from "./userSaga";
 import {
   watchCreateGame,
   watchFetchGame,
-  watchSelectCorrectNominee
-} from './gameSaga';
+  watchSelectCorrectNominee,
+} from "./gameSaga";
 import {
   watchCreateGroup,
   watchFetchGroup,
-  watchSaveGroupValues
-} from './groupSaga';
+  watchSaveGroupValues,
+} from "./groupSaga";
 import {
   watchCreateEntry,
   watchFetchEntry,
   watchSelectNominee,
-  watchUserEntries
-} from './entrySaga';
+  watchUserEntries,
+} from "./entrySaga";
 
 function* rootSaga() {
   yield [
@@ -46,8 +40,8 @@ function* rootSaga() {
     watchFetchEntry(),
     watchSelectNominee(),
     watchSelectCorrectNominee(),
-    watchUserEntries()
+    watchUserEntries(),
   ];
 }
 
-export default rootSaga
+export default rootSaga;

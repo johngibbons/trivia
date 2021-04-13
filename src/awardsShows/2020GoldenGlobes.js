@@ -8,8 +8,8 @@ const goldenGlobes = {
         { text: "1917" },
         { text: "The Irishman" },
         { text: "Joker" },
-        { text: "Marriage Story" }
-      ]
+        { text: "Marriage Story" },
+      ],
     },
     bestMotionPictureMusicalComedy: {
       value: 16,
@@ -19,8 +19,8 @@ const goldenGlobes = {
         { text: "Jojo Rabbit" },
         { text: "Knives Out" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "Rocketman" }
-      ]
+        { text: "Rocketman" },
+      ],
     },
     bestTvSeriesDrama: {
       value: 16,
@@ -30,8 +30,8 @@ const goldenGlobes = {
         { text: "Big Little Lies" },
         { text: "The Crown" },
         { text: "Killing Eve" },
-        { text: "The Morning Show" }
-      ]
+        { text: "The Morning Show" },
+      ],
     },
     bestTvSeriesMusicalComedy: {
       value: 16,
@@ -41,8 +41,8 @@ const goldenGlobes = {
         { text: "Fleabag" },
         { text: "The Kominsky Method" },
         { text: "The Marvelous Mrs. Maisel" },
-        { text: "The Politician" }
-      ]
+        { text: "The Politician" },
+      ],
     },
     limitedSeriesTV: {
       value: 16,
@@ -52,8 +52,8 @@ const goldenGlobes = {
         { text: "Chernobyl" },
         { text: "Fosse/Verdon" },
         { text: "The Loudest Voice" },
-        { text: "Unbelievable" }
-      ]
+        { text: "Unbelievable" },
+      ],
     },
     bestActressDrama: {
       value: 8,
@@ -63,8 +63,8 @@ const goldenGlobes = {
         { text: "Scarlett Johansson", secondaryText: "Marriage Story" },
         { text: "Saoirse Ronan", secondaryText: "Little Women" },
         { text: "Charlize Theron", secondaryText: "Bombshell" },
-        { text: "Renée Zellweger", secondaryText: "Judy" }
-      ]
+        { text: "Renée Zellweger", secondaryText: "Judy" },
+      ],
     },
     bestActorDrama: {
       value: 8,
@@ -74,8 +74,8 @@ const goldenGlobes = {
         { text: "Jonathan Pryce", secondaryText: "The Two Popes" },
         { text: "Christian Bale", secondaryText: "Ford v Ferrari" },
         { text: "Antonio Banderas", secondaryText: "Pain and Glory" },
-        { text: "Adam Driver", secondaryText: "Marriage Story" }
-      ]
+        { text: "Adam Driver", secondaryText: "Marriage Story" },
+      ],
     },
     bestActressMusicalComedy: {
       value: 8,
@@ -85,8 +85,8 @@ const goldenGlobes = {
         { text: "Awkwafina", secondaryText: "The Farewell" },
         { text: "Cate Blanchett", secondaryText: "Where'd You Go, Bernadette" },
         { text: "Beanie Feldstein", secondaryText: "Booksmart" },
-        { text: "Emma Thompson", secondaryText: "Late Night" }
-      ]
+        { text: "Emma Thompson", secondaryText: "Late Night" },
+      ],
     },
     bestActorMusicalComedy: {
       value: 8,
@@ -99,9 +99,9 @@ const goldenGlobes = {
         { text: "Roman Griffin Davis", secondaryText: "Jojo Rabbit" },
         {
           text: "Leonardo DiCaprio",
-          secondaryText: "Once Upon a Time… in Hollywood"
-        }
-      ]
+          secondaryText: "Once Upon a Time… in Hollywood",
+        },
+      ],
     },
     bestActressTVDrama: {
       value: 8,
@@ -111,8 +111,8 @@ const goldenGlobes = {
         { text: "Reese Witherspoon", secondaryText: "The Morning Show" },
         { text: "Jennifer Aniston", secondaryText: "The Morning Show" },
         { text: "Olivia Colman", secondaryText: "The Crown" },
-        { text: "Jodie Comer", secondaryText: "Killing Eve" }
-      ]
+        { text: "Jodie Comer", secondaryText: "Killing Eve" },
+      ],
     },
     bestActorTVDrama: {
       value: 8,
@@ -122,8 +122,8 @@ const goldenGlobes = {
         { text: "Billy Porter", secondaryText: "Pose" },
         { text: "Brian Cox", secondaryText: "Succession" },
         { text: "Kit Harington", secondaryText: "Game of Thrones" },
-        { text: "Rami Malek", secondaryText: "Mr. Robot" }
-      ]
+        { text: "Rami Malek", secondaryText: "Mr. Robot" },
+      ],
     },
     bestActressTVMusicalComedy: {
       value: 8,
@@ -132,15 +132,15 @@ const goldenGlobes = {
         { text: "Christina Applegate", secondaryText: "Dead to Me" },
         {
           text: "Rachel Brosnahan",
-          secondaryText: "The Marvelous Mrs. Maisel"
+          secondaryText: "The Marvelous Mrs. Maisel",
         },
         {
           text: "Kirsten Dunst",
-          secondaryText: "On Becoming a God in Central Florida"
+          secondaryText: "On Becoming a God in Central Florida",
         },
         { text: "Natasha Lyonne", secondaryText: "Russian Doll" },
-        { text: "Phoebe Waller-Bridge", secondaryText: "Fleabag" }
-      ]
+        { text: "Phoebe Waller-Bridge", secondaryText: "Fleabag" },
+      ],
     },
     bestActorTVMusicalComedy: {
       value: 8,
@@ -150,8 +150,8 @@ const goldenGlobes = {
         { text: "Michael Douglas", secondaryText: "The Kominsky Method" },
         { text: "Bill Hader", secondaryText: "Barry" },
         { text: "Ben Platt", secondaryText: "The Politician" },
-        { text: "Paul Rudd", secondaryText: "Living with Yourself" }
-      ]
+        { text: "Paul Rudd", secondaryText: "Living with Yourself" },
+      ],
     },
     bestActorLimitedTV: {
       value: 8,
@@ -162,8 +162,8 @@ const goldenGlobes = {
         { text: "Sacha Baron Cohen", secondaryText: "The Spy" },
         { text: "Russell Crowe", secondaryText: "The Loudest Voice" },
         { text: "Jared Harris", secondaryText: "Chernobyl" },
-        { text: "Sam Rockwell", secondaryText: "Fosse/Verdon" }
-      ]
+        { text: "Sam Rockwell", secondaryText: "Fosse/Verdon" },
+      ],
     },
     bestActressLimitedTV: {
       value: 8,
@@ -174,8 +174,8 @@ const goldenGlobes = {
         { text: "Kaitlyn Dever", secondaryText: "Unbelievable" },
         { text: "Joey King", secondaryText: "The Act" },
         { text: "Helen Mirren", secondaryText: "Catherine the Great" },
-        { text: "Merritt Wever", secondaryText: "Unbelievable" }
-      ]
+        { text: "Merritt Wever", secondaryText: "Unbelievable" },
+      ],
     },
     bestSupportingActor: {
       value: 4,
@@ -184,12 +184,12 @@ const goldenGlobes = {
         { text: "Brad Pitt", secondaryText: "Once Upon a Time… in Hollywood" },
         {
           text: "Tom Hanks",
-          secondaryText: "A Beautiful Day in the Neighborhood"
+          secondaryText: "A Beautiful Day in the Neighborhood",
         },
         { text: "Anthony Hopkins", secondaryText: "The Two Popes" },
         { text: "Al Pacino", secondaryText: "The Irishman" },
-        { text: "Joe Pesci", secondaryText: "The Irishman" }
-      ]
+        { text: "Joe Pesci", secondaryText: "The Irishman" },
+      ],
     },
     bestSupportingActress: {
       value: 4,
@@ -199,8 +199,8 @@ const goldenGlobes = {
         { text: "Annette Bening", secondaryText: "The Report" },
         { text: "Laura Dern", secondaryText: "Marriage Story" },
         { text: "Jennifer Lopez", secondaryText: "Hustlers" },
-        { text: "Margot Robbie", secondaryText: "Bombshell" }
-      ]
+        { text: "Margot Robbie", secondaryText: "Bombshell" },
+      ],
     },
     bestSupportingActorTV: {
       value: 4,
@@ -211,8 +211,8 @@ const goldenGlobes = {
         { text: "Kieran Culkin", secondaryText: "Succession" },
         { text: "Andrew Scott", secondaryText: "Fleabag" },
         { text: "Stellan Skarsgård", secondaryText: "Chernobyl" },
-        { text: "Henry Winkler", secondaryText: "Barry" }
-      ]
+        { text: "Henry Winkler", secondaryText: "Barry" },
+      ],
     },
     bestSupportingActressTV: {
       value: 4,
@@ -223,8 +223,8 @@ const goldenGlobes = {
         { text: "Helena Bonham Carter", secondaryText: "The Crown" },
         { text: "Toni Collette", secondaryText: "Unbelievable" },
         { text: "Meryl Streep", secondaryText: "Big Little Lies" },
-        { text: "Emily Watson", secondaryText: "Chernobyl" }
-      ]
+        { text: "Emily Watson", secondaryText: "Chernobyl" },
+      ],
     },
     animatedFeature: {
       value: 4,
@@ -234,8 +234,8 @@ const goldenGlobes = {
         { text: "The Lion King" },
         { text: "Missing Link" },
         { text: "Toy Story 4" },
-        { text: "Frozen II" }
-      ]
+        { text: "Frozen II" },
+      ],
     },
     directing: {
       value: 4,
@@ -247,9 +247,9 @@ const goldenGlobes = {
         { text: "The Irishman", secondaryText: "Martin Scorsese" },
         {
           text: "Once Upon a Time… in Hollywood",
-          secondaryText: "Quentin Tarantino"
-        }
-      ]
+          secondaryText: "Quentin Tarantino",
+        },
+      ],
     },
     foreignLanguageFile: {
       value: 4,
@@ -259,8 +259,8 @@ const goldenGlobes = {
         { text: "Les Misérables" },
         { text: "Pain and Glory" },
         { text: "Parasite" },
-        { text: "Portrait of a Lady on Fire" }
-      ]
+        { text: "Portrait of a Lady on Fire" },
+      ],
     },
     musicOriginalScore: {
       value: 1,
@@ -270,8 +270,8 @@ const goldenGlobes = {
         { text: "Motherless Brooklyn" },
         { text: "Little Women" },
         { text: "Joker" },
-        { text: "Marriage Story" }
-      ]
+        { text: "Marriage Story" },
+      ],
     },
     musicOriginalSong: {
       value: 1,
@@ -281,8 +281,8 @@ const goldenGlobes = {
         { text: "I'm Gonna Love Me Again", secondaryText: "Rocketman" },
         { text: "Into the Unknown", secondaryText: "Frozen II" },
         { text: "Spirit", secondaryText: "The Lion King" },
-        { text: "Stand Up", secondaryText: "Harriet" }
-      ]
+        { text: "Stand Up", secondaryText: "Harriet" },
+      ],
     },
     screenplay: {
       value: 2,
@@ -292,10 +292,10 @@ const goldenGlobes = {
         { text: "Parasite" },
         { text: "The Two Popes" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "The Irishman" }
-      ]
-    }
-  }
+        { text: "The Irishman" },
+      ],
+    },
+  },
 };
 
 import { database } from "firebase";
@@ -306,14 +306,14 @@ function reset() {
   const ref = database().ref("/games/2020GoldenGlobes/categories");
   ref
     .once("value")
-    .then(category => {
-      Object.keys(category.val()).map(categoryKey => {
+    .then((category) => {
+      Object.keys(category.val()).map((categoryKey) => {
         const catRef = database().ref(`/categories/${categoryKey}`);
         const nomineesRef = database().ref(
           `/categories/${categoryKey}/nominees`
         );
-        nomineesRef.once("value").then(nominees => {
-          Object.keys(nominees.val()).map(nomineeKey => {
+        nomineesRef.once("value").then((nominees) => {
+          Object.keys(nominees.val()).map((nomineeKey) => {
             const nomineeRef = database().ref(`/nominees/${nomineeKey}`);
             nomineeRef
               .remove()
@@ -331,41 +331,31 @@ function reset() {
 }
 
 export function save() {
-  Object.keys(goldenGlobes.categories).map(key => {
-    const categoryKey = database()
-      .ref()
-      .child("categories")
-      .push().key;
+  Object.keys(goldenGlobes.categories).map((key) => {
+    const categoryKey = database().ref().child("categories").push().key;
     const updates = {
       [`/categories/${categoryKey}`]: new Category({
         id: categoryKey,
         value: goldenGlobes.categories[key].value,
         name: goldenGlobes.categories[key].name,
-        game: "2019GoldenGlobes"
+        game: "2019GoldenGlobes",
       }).toJS(),
-      [`/games/2019GoldenGlobes/categories/${categoryKey}`]: true
+      [`/games/2019GoldenGlobes/categories/${categoryKey}`]: true,
     };
-    database()
-      .ref()
-      .update(updates);
+    database().ref().update(updates);
 
-    goldenGlobes.categories[key].nominees.map(nominee => {
-      const nomineeKey = database()
-        .ref()
-        .child("nominees")
-        .push().key;
+    goldenGlobes.categories[key].nominees.map((nominee) => {
+      const nomineeKey = database().ref().child("nominees").push().key;
       const updates = {
         [`/nominees/${nomineeKey}`]: new Nominee({
           ...nominee,
           id: nomineeKey,
           category: categoryKey,
-          game: "2019GoldenGlobes"
+          game: "2019GoldenGlobes",
         }).toJS(),
-        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true
+        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true,
       };
-      database()
-        .ref()
-        .update(updates);
+      database().ref().update(updates);
     });
   });
 }
@@ -375,22 +365,24 @@ export function saveImages() {
   const people = [];
   database()
     .ref("/titles")
-    .once("value", snapshot => {
-      Object.keys(snapshot.val()).map(key => titles.push(snapshot.val()[key]));
+    .once("value", (snapshot) => {
+      Object.keys(snapshot.val()).map((key) =>
+        titles.push(snapshot.val()[key])
+      );
       database()
         .ref("/people")
         .orderByChild("name")
-        .once("value", snapshot => {
-          Object.keys(snapshot.val()).forEach(key =>
+        .once("value", (snapshot) => {
+          Object.keys(snapshot.val()).forEach((key) =>
             people.push(snapshot.val()[key])
           );
           const all = [...titles, ...people];
           database()
             .ref("/nominees")
-            .once("value", snapshot => {
-              Object.keys(snapshot.val()).forEach(key => {
+            .once("value", (snapshot) => {
+              Object.keys(snapshot.val()).forEach((key) => {
                 const nominee = snapshot.val()[key];
-                const match = all.filter(item => {
+                const match = all.filter((item) => {
                   const itemName = item.title || item.name;
                   return (
                     itemName.toLowerCase() === nominee.text.toLowerCase() ||
@@ -409,7 +401,7 @@ export function saveImages() {
                   database()
                     .ref()
                     .update({
-                      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
+                      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`,
                     });
               });
             });

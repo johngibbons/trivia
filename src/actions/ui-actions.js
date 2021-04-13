@@ -8,89 +8,89 @@ import {
   UPDATE_VALUE_FIELD,
   SET_NEXT_LOCATION,
   SHOW_ALERT_BAR,
-  HIDE_ALERT_BAR
-} from './action-types'
+  HIDE_ALERT_BAR,
+} from "./action-types";
 
-export function openModal (id) {
+export function openModal(id) {
   return {
     type: OPEN_MODAL,
-    payload: { id }
-  }
+    payload: { id },
+  };
 }
 
-export function closeModal () {
+export function closeModal() {
   return {
-    type: CLOSE_MODAL
-  }
+    type: CLOSE_MODAL,
+  };
 }
 
-export function updateSearchField (value) {
+export function updateSearchField(value) {
   return {
     type: UPDATE_SEARCH_FIELD,
     payload: {
-      value
-    }
-  }
+      value,
+    },
+  };
 }
 
-export function updateNewGameName (value) {
+export function updateNewGameName(value) {
   return {
     type: UPDATE_NEW_GAME_NAME,
     payload: {
-      value
-    }
-  }
+      value,
+    },
+  };
 }
 
-export function updateNewGroupName (value) {
+export function updateNewGroupName(value) {
   return {
     type: UPDATE_NEW_GROUP_NAME,
     payload: {
-      value
-    }
-  }
+      value,
+    },
+  };
 }
 
-export function updateNewEntryName (value) {
+export function updateNewEntryName(value) {
   return {
     type: UPDATE_NEW_ENTRY_NAME,
     payload: {
-      value
-    }
-  }
+      value,
+    },
+  };
 }
 
-export function updateValueField (categoryId, value) {
+export function updateValueField(categoryId, value) {
   return {
     type: UPDATE_VALUE_FIELD,
     payload: {
       categoryId,
-      value
-    }
-  }
+      value,
+    },
+  };
 }
 
-export function setNextLocation (nextLocation) {
+export function setNextLocation(nextLocation) {
   return {
     type: SET_NEXT_LOCATION,
     payload: {
-      nextLocation
-    }
-  }
+      nextLocation,
+    },
+  };
 }
 
-export function showAlertBar (message, isError) {
+export function showAlertBar(message, isError) {
   return {
     type: SHOW_ALERT_BAR,
     payload: {
       message,
-      isError
-    }
-  }
+      isError,
+    },
+  };
 }
 
-export function hideAlertBar () {
+export function hideAlertBar() {
   return {
-    type: HIDE_ALERT_BAR
-  }
+    type: HIDE_ALERT_BAR,
+  };
 }

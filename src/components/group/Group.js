@@ -1,30 +1,28 @@
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import './Group.css'
-import { List, Seq } from 'immutable'
-import GroupModel from '../../models/Group'
-import Game from '../../models/Game'
+import React, { PropTypes } from "react";
+import { connect } from "react-redux";
+import "./Group.css";
+import { List, Seq } from "immutable";
+import GroupModel from "../../models/Group";
+import Game from "../../models/Game";
 import {
   rankedGroupEntriesSelector,
-  winningEntriesSelector
-} from '../../selectors/entries-selector'
-import { currentGroupSelector } from '../../selectors/group-selector'
-import {
-  currentGroupCategoriesSelector
-} from '../../selectors/categories-selector'
+  winningEntriesSelector,
+} from "../../selectors/entries-selector";
+import { currentGroupSelector } from "../../selectors/group-selector";
+import { currentGroupCategoriesSelector } from "../../selectors/categories-selector";
 import {
   groupGameStartedSelector,
   groupGameEndedSelector,
-  groupGameSelector
-} from '../../selectors/games-selector'
-import { openModal } from '../../actions/ui-actions'
+  groupGameSelector,
+} from "../../selectors/games-selector";
+import { openModal } from "../../actions/ui-actions";
 
-import RaisedButton from 'material-ui/RaisedButton'
-import NewEntryModal from '../../components/entry/newEntryModal/NewEntryModal'
-import PageHeading from '../pageHeading/PageHeading'
-import EntriesTable from './entriesTable/EntriesTable'
-import EditValuesModal from './editValuesModal/EditValuesModal'
-import WinnerBanner from './winnerBanner/WinnerBanner'
+import Button from "@material-ui/core/Button";
+import NewEntryModal from "../../components/entry/newEntryModal/NewEntryModal";
+import PageHeading from "../pageHeading/PageHeading";
+import EntriesTable from "./entriesTable/EntriesTable";
+import EditValuesModal from "./editValuesModal/EditValuesModal";
+import WinnerBanner from "./winnerBanner/WinnerBanner";
 
 const Group = ({
   currentUser,
@@ -36,31 +34,32 @@ const Group = ({
   params,
   gameStarted,
   gameEnded,
-  onClickNewEntry
+  onClickNewEntry,
 }) => {
   return (
-    <div className='Group'>
-      <h5 className='Group--game-name'>{game.name}</h5>
+    <div className="Group">
+      <h5 className="Group--game-name">{game.name}</h5>
       <PageHeading text={group.name} />
-      {!gameStarted &&
-        <RaisedButton
-          className='Group--create-entry-button'
-          primary
-          label='Create your entry'
-          labelStyle={{
-            color: '#212121'
+      {!gameStarted && (
+        <Button
+          className="Group--create-entry-button"
+          color="primary"
+          style={{
+            color: "#212121",
           }}
-          onClick={() => onClickNewEntry('NEW_ENTRY')}
-        />}
-      {!gameStarted &&
-        currentUser.id === group.admin &&
-        <RaisedButton
-          label='Edit Category Values'
-          labelStyle={{
-            color: '#212121'
-          }}
-          onClick={() => onClickNewEntry('EDIT_VALUES')}
-        />}
+          onClick={() => onClickNewEntry("NEW_ENTRY")}
+        >
+          Create your entry
+        </Button>
+      )}
+      {!gameStarted && currentUser.id === group.admin && (
+        <Button
+          variant="contained"
+          onClick={() => onClickNewEntry("EDIT_VALUES")}
+        >
+          Edit Category Values
+        </Button>
+      )}
       {gameEnded && <WinnerBanner winningEntries={winningEntries} />}
       <EntriesTable
         entries={entries}
@@ -70,8 +69,8 @@ const Group = ({
       {group.id && <NewEntryModal groupId={params.id} gameId={group.game} />}
       {currentUser.id === group.admin && <EditValuesModal group={group} />}
     </div>
-  )
-}
+  );
+};
 
 Group.propTypes = {
   currentUser: PropTypes.object.isRequired,
@@ -83,8 +82,8 @@ Group.propTypes = {
   params: PropTypes.object,
   gameStarted: PropTypes.bool,
   gameEnded: PropTypes.bool,
-  onClickNewEntry: PropTypes.func.isRequired
-}
+  onClickNewEntry: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state, props) => {
   return {
@@ -95,10 +94,10 @@ const mapStateToProps = (state, props) => {
     gameStarted: groupGameStartedSelector(state, props),
     gameEnded: groupGameEndedSelector(state, props),
     game: groupGameSelector(state, props),
-    winningEntries: winningEntriesSelector(state, props)
-  }
-}
+    winningEntries: winningEntriesSelector(state, props),
+  };
+};
 
 export default connect(mapStateToProps, {
-  onClickNewEntry: openModal
-})(Group)
+  onClickNewEntry: openModal,
+})(Group);

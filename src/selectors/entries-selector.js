@@ -6,12 +6,12 @@ import Game from "../models/Game";
 import Group from "../models/Group";
 import User from "../models/User";
 
-export const entriesSelector = state => state.entries;
-const categoriesSelector = state => state.categories;
-const gamesSelector = state => state.games;
-const currentUserSelector = state => state.currentUser;
-const groupsSelector = state => state.groups;
-const usersSelector = state => state.users;
+export const entriesSelector = (state) => state.entries;
+const categoriesSelector = (state) => state.categories;
+const gamesSelector = (state) => state.games;
+const currentUserSelector = (state) => state.currentUser;
+const groupsSelector = (state) => state.groups;
+const usersSelector = (state) => state.users;
 const userFromParamsSelector = (state, props) =>
   state.users.get(props.routeParams.id);
 
@@ -30,7 +30,7 @@ const entryScore = (entry, categories, games, group) => {
 
 const entryRankReducer = (entries, curr) => {
   const withSameRank = entries.filter(
-    entry => entry.score === entries.last().score
+    (entry) => entry.score === entries.last().score
   ).size;
   return entries.last() && entries.last().score > curr.score
     ? entries.push(curr.set("rank", entries.last().rank + withSameRank))
@@ -48,19 +48,19 @@ export const groupEntriesSelector = createSelector(
 
 export const peoplesChoicesSelector = createSelector(
   groupEntriesSelector,
-  entries => {
+  (entries) => {
     return entries
-      .map(entry => entry.selections)
+      .map((entry) => entry.selections)
       .toList()
       .reduce((acc, selections) => {
         return acc.size === 0
-          ? selections.map(val => new List().push(val))
+          ? selections.map((val) => new List().push(val))
           : acc.mapEntries(([key, val]) => [
               key,
-              val.push(selections.get(key))
+              val.push(selections.get(key)),
             ]);
       }, new Map())
-      .map(selectionsByCategory => {
+      .map((selectionsByCategory) => {
         return selectionsByCategory
           .reduce((acc, selection) => {
             return acc.set(selection, (acc.get(selection) || 0) + 1);
@@ -87,7 +87,7 @@ export const rankedGroupEntriesSelector = createSelector(
     if (!group) return new Seq();
     return group.entries
       .keySeq()
-      .map(key => {
+      .map((key) => {
         const entry = entries.get(key);
         return entry
           ? entry
@@ -115,7 +115,7 @@ export const entryPeoplesChoiceScore = createSelector(
   peoplesChoicesSelector,
   currentGroupSelector,
   (entry, answersWithCounts, group) => {
-    const answersByCategory = answersWithCounts.map(obj => obj.keySeq());
+    const answersByCategory = answersWithCounts.map((obj) => obj.keySeq());
     return answersByCategory.reduce((acc, answers, category) => {
       return answers.includes(entry.selections.get(category))
         ? acc + group.values.get(category)
@@ -193,15 +193,15 @@ export const userEntriesSelector = createSelector(
   (user, entries) =>
     entries
       .toList()
-      .filter(entry => user && entry.user === user.id)
+      .filter((entry) => user && entry.user === user.id)
       .sort((a, b) => {
         return b.get("group").localeCompare(a.get("group"));
       })
-      .groupBy(entry => entry.get("group"))
+      .groupBy((entry) => entry.get("group"))
       .toList()
 );
 
 export const winningEntriesSelector = createSelector(
   rankedGroupEntriesSelector,
-  entries => entries.filter(entry => entry.rank === 1)
+  (entries) => entries.filter((entry) => entry.rank === 1)
 );

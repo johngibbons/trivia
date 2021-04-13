@@ -10,25 +10,24 @@ import {
   entryCompleteSelector,
   isEntryOwnerSelector,
   entryGroupSelector,
-  entryPercentCompleteSelector
+  entryPercentCompleteSelector,
 } from "../../selectors/entries-selector";
 import {
   entryGameSelector,
-  entryGameStartedSelector
+  entryGameStartedSelector,
 } from "../../selectors/games-selector";
 import { entryCategoriesSelector } from "../../selectors/categories-selector";
 import {
   entryScoreSelector,
   entryPossibleScoreSelector,
-  gameTotalPossibleSelector
+  gameTotalPossibleSelector,
 } from "../../selectors/categories-selector";
 import { Seq } from "immutable";
 
 import PageHeading from "../pageHeading/PageHeading";
 import Category from "./category/Category";
 import { Link } from "react-router";
-import WarningIcon from "material-ui/svg-icons/alert/warning";
-import BackArrowIcon from "material-ui/svg-icons/navigation/arrow-back";
+import WarningIcon from "@material-ui/icons/Warning";
 
 const Entry = ({
   entry,
@@ -41,20 +40,20 @@ const Entry = ({
   isVisible,
   isComplete,
   hasStarted,
-  totalPossible
+  totalPossible,
 }) => {
   return (
     <div>
       <div
         className="Entry--score-progress-bar"
         style={{
-          width: `calc(${possible}/${totalPossible} * 100%)`
+          width: `calc(${possible}/${totalPossible} * 100%)`,
         }}
       />
       <div
         className="Entry--score-progress-bar entry"
         style={{
-          width: `calc(${score}/${totalPossible} * 100%)`
+          width: `calc(${score}/${totalPossible} * 100%)`,
         }}
       />
       <h5 className="Entry--game-name">{game.name}</h5>
@@ -78,7 +77,7 @@ const Entry = ({
                   className="Entry__status--icon Entry__status--warning-icon"
                   width={50}
                   height={50}
-                  color="#D32F2F"
+                  htmlColor="#D32F2F"
                 />
                 Entry incomplete. Scroll down to complete your selections
               </div>
@@ -135,7 +134,7 @@ Entry.propTypes = {
   isVisible: PropTypes.bool,
   isOwner: PropTypes.bool,
   isComplete: PropTypes.bool,
-  hasStarted: PropTypes.bool
+  hasStarted: PropTypes.bool,
 };
 
 const mapStateToProps = (state, props) => {
@@ -151,7 +150,7 @@ const mapStateToProps = (state, props) => {
     isOwner: isEntryOwnerSelector(state, props),
     hasStarted: entryGameStartedSelector(state, props),
     group: entryGroupSelector(state, props),
-    totalPossible: gameTotalPossibleSelector(state, props)
+    totalPossible: gameTotalPossibleSelector(state, props),
   };
 };
 

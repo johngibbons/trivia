@@ -3,7 +3,7 @@
   padding: 10px;
 }
 
-@media(min-width: 668px) {
+@media (min-width: 668px) {
   .UserEntriesGroup {
     width: calc(50% - 20px);
   }

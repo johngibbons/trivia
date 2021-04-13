@@ -2,7 +2,7 @@ import { takeLatest, fork, call, put } from "redux-saga/effects";
 import {
   CREATE_GAME,
   FETCH_GAME,
-  TOGGLE_CORRECT_NOMINEE
+  TOGGLE_CORRECT_NOMINEE,
 } from "../actions/action-types";
 import { createGameSuccess, setGame } from "../actions/game-actions";
 import { setCategories, setCategory } from "../actions/category-actions";
@@ -76,6 +76,6 @@ export function* watchSelectCorrectNominee() {
 
 export function* syncCategories() {
   yield fork(sync, "categories", {
-    [CHILD_CHANGED]: setCategory
+    [CHILD_CHANGED]: setCategory,
   });
 }

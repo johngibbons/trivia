@@ -1,21 +1,18 @@
-import React, { PropTypes } from 'react'
-import './PageHeading.css'
+import React, { PropTypes } from "react";
+import "./PageHeading.css";
 
-const PageHeading = ({
-  text,
-  children
-}) => {
+const PageHeading = ({ text, children }) => {
   return (
-    <div className='PageHeading'>
-      <h1 className='PageHeading-text'>{text}</h1>
+    <div className="PageHeading">
+      <h1 className="PageHeading-text">{text}</h1>
       {children}
     </div>
-  )
-}
+  );
+};
 
 PageHeading.propTypes = {
   text: PropTypes.string,
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
-export default PageHeading
+export default PageHeading;

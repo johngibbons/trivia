@@ -8,8 +8,8 @@ const goldenGlobes = {
         { text: "Bohemian Rhapsody" },
         { text: "If Beale Street Could Talk" },
         { text: "A Star Is Born" },
-        { text: "Black Panther" }
-      ]
+        { text: "Black Panther" },
+      ],
     },
     bestMotionPictureMusicalComedy: {
       value: 16,
@@ -19,8 +19,8 @@ const goldenGlobes = {
         { text: "The Favourite" },
         { text: "Green Book" },
         { text: "Mary Poppins Returns" },
-        { text: "Vice" }
-      ]
+        { text: "Vice" },
+      ],
     },
     bestTvSeriesDrama: {
       value: 16,
@@ -30,8 +30,8 @@ const goldenGlobes = {
         { text: "Homecoming" },
         { text: "Killing Eve" },
         { text: "Pose" },
-        { text: "The Americans" }
-      ]
+        { text: "The Americans" },
+      ],
     },
     bestTvSeriesMusicalComedy: {
       value: 16,
@@ -41,8 +41,8 @@ const goldenGlobes = {
         { text: "The Good Place" },
         { text: "Kidding" },
         { text: "The Kominsky Method" },
-        { text: "The Marvelous Mrs. Maisel" }
-      ]
+        { text: "The Marvelous Mrs. Maisel" },
+      ],
     },
     limitedSeriesTV: {
       value: 16,
@@ -52,8 +52,8 @@ const goldenGlobes = {
         { text: "The Assassination of Gianni Versace: American Crime Story" },
         { text: "Escape at Dannemora" },
         { text: "Sharp Objects" },
-        { text: "A Very English Scandal" }
-      ]
+        { text: "A Very English Scandal" },
+      ],
     },
     bestActressDrama: {
       value: 8,
@@ -63,14 +63,14 @@ const goldenGlobes = {
         { text: "Lady Gaga", secondaryText: "A Star Is Born" },
         {
           text: "Nicole Kidman",
-          secondaryText: "Destroyer"
+          secondaryText: "Destroyer",
         },
         { text: "Melissa McCarthy", secondaryText: "Can You Ever Forgive Me?" },
         {
           text: "Rosamund Pike",
-          secondaryText: "A Private War"
-        }
-      ]
+          secondaryText: "A Private War",
+        },
+      ],
     },
     bestActorDrama: {
       value: 8,
@@ -80,8 +80,8 @@ const goldenGlobes = {
         { text: "Willem Dafoe", secondaryText: "At Eternity's Gate" },
         { text: "Lucas Hedges", secondaryText: "Boy Erased" },
         { text: "Rami Malek", secondaryText: "Bohemian Rhapsody" },
-        { text: "John David Washington", secondaryText: "BlacKkKlansman" }
-      ]
+        { text: "John David Washington", secondaryText: "BlacKkKlansman" },
+      ],
     },
     bestActressMusicalComedy: {
       value: 8,
@@ -91,8 +91,8 @@ const goldenGlobes = {
         { text: "Olivia Colman", secondaryText: "The Favourite" },
         { text: "Elsie Fisher", secondaryText: "Eighth Grade" },
         { text: "Charlize Theron", secondaryText: "Tully" },
-        { text: "Constance Wu", secondaryText: "Crazy Rich Asians" }
-      ]
+        { text: "Constance Wu", secondaryText: "Crazy Rich Asians" },
+      ],
     },
     bestActorMusicalComedy: {
       value: 8,
@@ -103,8 +103,8 @@ const goldenGlobes = {
         { text: "Lin-Manuel Miranda", secondaryText: "Mary Poppins Returns" },
         { text: "Viggo Mortensen", secondaryText: "Green Book" },
         { text: "Robert Redford", secondaryText: "The Old Man & the Gun" },
-        { text: "John C. Reilly", secondaryText: "Stan & Ollie" }
-      ]
+        { text: "John C. Reilly", secondaryText: "Stan & Ollie" },
+      ],
     },
     bestActressTVDrama: {
       value: 8,
@@ -114,8 +114,8 @@ const goldenGlobes = {
         { text: "Elisabeth Moss", secondaryText: "The Handmaid's Tale" },
         { text: "Sandra Oh", secondaryText: "Killing Eve" },
         { text: "Julia Roberts", secondaryText: "Homecoming" },
-        { text: "Keri Russell", secondaryText: "The Americans" }
-      ]
+        { text: "Keri Russell", secondaryText: "The Americans" },
+      ],
     },
     bestActorTVDrama: {
       value: 8,
@@ -125,8 +125,8 @@ const goldenGlobes = {
         { text: "Stephan James", secondaryText: "Homecoming" },
         { text: "Richard Madden", secondaryText: "Bodyguard" },
         { text: "Billy Porter", secondaryText: "Pose" },
-        { text: "Matthew Rhys", secondaryText: "The Americans" }
-      ]
+        { text: "Matthew Rhys", secondaryText: "The Americans" },
+      ],
     },
     bestActressTVMusicalComedy: {
       value: 8,
@@ -137,10 +137,10 @@ const goldenGlobes = {
         { text: "Alison Brie", secondaryText: "Glow" },
         {
           text: "Rachel Brosnahan",
-          secondaryText: "The Marvelous Mrs. Maisel"
+          secondaryText: "The Marvelous Mrs. Maisel",
         },
-        { text: "Debra Messing", secondaryText: "Will & Grace" }
-      ]
+        { text: "Debra Messing", secondaryText: "Will & Grace" },
+      ],
     },
     bestActorTVMusicalComedy: {
       value: 8,
@@ -150,8 +150,8 @@ const goldenGlobes = {
         { text: "Michael Douglas", secondaryText: "The Kominsky Method" },
         { text: "Donald Glover", secondaryText: "Atlanta" },
         { text: "Bill Hader", secondaryText: "Barry" },
-        { text: "Sacha Baron Cohen", secondaryText: "Who is America?" }
-      ]
+        { text: "Sacha Baron Cohen", secondaryText: "Who is America?" },
+      ],
     },
     bestActorLimitedTV: {
       value: 8,
@@ -163,11 +163,11 @@ const goldenGlobes = {
         {
           text: "Darren Criss",
           secondaryText:
-            "The Assassination of Gianni Versace: American Crime Story"
+            "The Assassination of Gianni Versace: American Crime Story",
         },
         { text: "Benedict Cumberbatch", secondaryText: "Patrick Melrose" },
-        { text: "Hugh Grant", secondaryText: "A Very English Scandal" }
-      ]
+        { text: "Hugh Grant", secondaryText: "A Very English Scandal" },
+      ],
     },
     bestActressLimitedTV: {
       value: 8,
@@ -178,8 +178,8 @@ const goldenGlobes = {
         { text: "Connie Britton", secondaryText: "Dirty John" },
         { text: "Laura Dern", secondaryText: "The Tale" },
         { text: "Regina King", secondaryText: "Seven Seconds" },
-        { text: "Amy Adams", secondaryText: "Sharp Objects" }
-      ]
+        { text: "Amy Adams", secondaryText: "Sharp Objects" },
+      ],
     },
     bestSupportingActor: {
       value: 4,
@@ -190,13 +190,13 @@ const goldenGlobes = {
         { text: "Adam Driver", secondaryText: "BlacKkKlansman" },
         {
           text: "Richard E. Grant",
-          secondaryText: "Can You Ever Forgive Me?"
+          secondaryText: "Can You Ever Forgive Me?",
         },
         {
           text: "Sam Rockwell",
-          secondaryText: "Vice"
-        }
-      ]
+          secondaryText: "Vice",
+        },
+      ],
     },
     bestSupportingActress: {
       value: 4,
@@ -206,8 +206,8 @@ const goldenGlobes = {
         { text: "Regina King", secondaryText: "If Beale Street Could Talk" },
         { text: "Emma Stone", secondaryText: "The Favourite" },
         { text: "Rachel Weisz", secondaryText: "The Favourite" },
-        { text: "Amy Adams", secondaryText: "Vice" }
-      ]
+        { text: "Amy Adams", secondaryText: "Vice" },
+      ],
     },
     bestSupportingActorTV: {
       value: 4,
@@ -219,11 +219,11 @@ const goldenGlobes = {
         {
           text: "Edgar Ramírez",
           secondaryText:
-            "The Assassination of Gianni Versace: American Crime Story"
+            "The Assassination of Gianni Versace: American Crime Story",
         },
         { text: "Ben Whishaw", secondaryText: "A Very English Scandal" },
-        { text: "Henry Winkler", secondaryText: "Barry" }
-      ]
+        { text: "Henry Winkler", secondaryText: "Barry" },
+      ],
     },
     bestSupportingActressTV: {
       value: 4,
@@ -235,11 +235,11 @@ const goldenGlobes = {
         {
           text: "Penélope Cruz",
           secondaryText:
-            "The Assassination of Gianni Versace: American Crime Story"
+            "The Assassination of Gianni Versace: American Crime Story",
         },
         { text: "Thandie Newton", secondaryText: "Westworld" },
-        { text: "Yvonne Strahovski", secondaryText: "The Handmaid's Tale" }
-      ]
+        { text: "Yvonne Strahovski", secondaryText: "The Handmaid's Tale" },
+      ],
     },
     animatedFeature: {
       value: 4,
@@ -249,8 +249,8 @@ const goldenGlobes = {
         { text: "Mirai" },
         { text: "Ralph Breaks the Internet" },
         { text: "Spider-Man: Into the Spider-Verse" },
-        { text: "Incredibles 2" }
-      ]
+        { text: "Incredibles 2" },
+      ],
     },
     directing: {
       value: 4,
@@ -259,12 +259,12 @@ const goldenGlobes = {
         { text: "A Star Is Born", secondaryText: "Bradley Cooper" },
         {
           text: "Roma",
-          secondaryText: "Alfonso Cuarón"
+          secondaryText: "Alfonso Cuarón",
         },
         { text: "Green Book", secondaryText: "Peter Farrelly" },
         { text: "BlacKkKlansman", secondaryText: "Spike Lee" },
-        { text: "Vice", secondaryText: "Adam McKay" }
-      ]
+        { text: "Vice", secondaryText: "Adam McKay" },
+      ],
     },
     foreignLanguageFile: {
       value: 4,
@@ -274,8 +274,8 @@ const goldenGlobes = {
         { text: "Girl" },
         { text: "Never Look Away" },
         { text: "Roma" },
-        { text: "Shoplifters" }
-      ]
+        { text: "Shoplifters" },
+      ],
     },
     musicOriginalScore: {
       value: 1,
@@ -285,8 +285,8 @@ const goldenGlobes = {
         { text: "Isle of Dogs" },
         { text: "Black Panther" },
         { text: "First Man" },
-        { text: "Mary Poppins Returns" }
-      ]
+        { text: "Mary Poppins Returns" },
+      ],
     },
     musicOriginalSong: {
       value: 1,
@@ -295,15 +295,15 @@ const goldenGlobes = {
         { text: "All The Stars", secondaryText: "Black Panther" },
         {
           text: "Girl in the Movies",
-          secondaryText: "Dumplin'"
+          secondaryText: "Dumplin'",
         },
         {
           text: "Requiem For A Private War",
-          secondaryText: "A Private War"
+          secondaryText: "A Private War",
         },
         { text: "Revelation", secondaryText: "Boy Erased" },
-        { text: "Shallow", secondaryText: "A Star Is Born" }
-      ]
+        { text: "Shallow", secondaryText: "A Star Is Born" },
+      ],
     },
     screenplay: {
       value: 2,
@@ -313,10 +313,10 @@ const goldenGlobes = {
         { text: "The Favourite" },
         { text: "If Beale Street Could Talk" },
         { text: "Vice" },
-        { text: "Green Book" }
-      ]
-    }
-  }
+        { text: "Green Book" },
+      ],
+    },
+  },
 };
 
 import { database } from "firebase";
@@ -327,14 +327,14 @@ function reset() {
   const ref = database().ref("/games/2019GoldenGlobes/categories");
   ref
     .once("value")
-    .then(category => {
-      Object.keys(category.val()).map(categoryKey => {
+    .then((category) => {
+      Object.keys(category.val()).map((categoryKey) => {
         const catRef = database().ref(`/categories/${categoryKey}`);
         const nomineesRef = database().ref(
           `/categories/${categoryKey}/nominees`
         );
-        nomineesRef.once("value").then(nominees => {
-          Object.keys(nominees.val()).map(nomineeKey => {
+        nomineesRef.once("value").then((nominees) => {
+          Object.keys(nominees.val()).map((nomineeKey) => {
             const nomineeRef = database().ref(`/nominees/${nomineeKey}`);
             nomineeRef
               .remove()
@@ -352,41 +352,31 @@ function reset() {
 }
 
 export function save() {
-  Object.keys(goldenGlobes.categories).map(key => {
-    const categoryKey = database()
-      .ref()
-      .child("categories")
-      .push().key;
+  Object.keys(goldenGlobes.categories).map((key) => {
+    const categoryKey = database().ref().child("categories").push().key;
     const updates = {
       [`/categories/${categoryKey}`]: new Category({
         id: categoryKey,
         value: goldenGlobes.categories[key].value,
         name: goldenGlobes.categories[key].name,
-        game: "2019GoldenGlobes"
+        game: "2019GoldenGlobes",
       }).toJS(),
-      [`/games/2019GoldenGlobes/categories/${categoryKey}`]: true
+      [`/games/2019GoldenGlobes/categories/${categoryKey}`]: true,
     };
-    database()
-      .ref()
-      .update(updates);
+    database().ref().update(updates);
 
-    goldenGlobes.categories[key].nominees.map(nominee => {
-      const nomineeKey = database()
-        .ref()
-        .child("nominees")
-        .push().key;
+    goldenGlobes.categories[key].nominees.map((nominee) => {
+      const nomineeKey = database().ref().child("nominees").push().key;
       const updates = {
         [`/nominees/${nomineeKey}`]: new Nominee({
           ...nominee,
           id: nomineeKey,
           category: categoryKey,
-          game: "2019GoldenGlobes"
+          game: "2019GoldenGlobes",
         }).toJS(),
-        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true
+        [`/categories/${categoryKey}/nominees/${nomineeKey}`]: true,
       };
-      database()
-        .ref()
-        .update(updates);
+      database().ref().update(updates);
     });
   });
 }
@@ -396,22 +386,24 @@ export function saveImages() {
   const people = [];
   database()
     .ref("/titles")
-    .once("value", snapshot => {
-      Object.keys(snapshot.val()).map(key => titles.push(snapshot.val()[key]));
+    .once("value", (snapshot) => {
+      Object.keys(snapshot.val()).map((key) =>
+        titles.push(snapshot.val()[key])
+      );
       database()
         .ref("/people")
         .orderByChild("name")
-        .once("value", snapshot => {
-          Object.keys(snapshot.val()).forEach(key =>
+        .once("value", (snapshot) => {
+          Object.keys(snapshot.val()).forEach((key) =>
             people.push(snapshot.val()[key])
           );
           const all = [...titles, ...people];
           database()
             .ref("/nominees")
-            .once("value", snapshot => {
-              Object.keys(snapshot.val()).forEach(key => {
+            .once("value", (snapshot) => {
+              Object.keys(snapshot.val()).forEach((key) => {
                 const nominee = snapshot.val()[key];
-                const match = all.filter(item => {
+                const match = all.filter((item) => {
                   const itemName = item.title || item.name;
                   return (
                     itemName.toLowerCase() === nominee.text.toLowerCase() ||
@@ -430,9 +422,7 @@ export function saveImages() {
                   database()
                     .ref()
                     .update({
-                      [`/nominees/${
-                        nominee.id
-                      }/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`
+                      [`/nominees/${nominee.id}/imageUrl`]: `https://image.tmdb.org/t/p/w500${image}`,
                     });
               });
             });

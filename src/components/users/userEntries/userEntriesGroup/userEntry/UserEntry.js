@@ -1,25 +1,20 @@
-import React, { PropTypes } from 'react'
-import './UserEntry.css'
+import React, { PropTypes } from "react";
+import "./UserEntry.css";
 
-import Entry from '../../../../../models/Entry';
+import Entry from "../../../../../models/Entry";
 
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
-const UserEntry = ({
-  entry
-}) => {
+const UserEntry = ({ entry }) => {
   return (
-    <Link
-      to={`/entries/${entry.id}`}
-      className='UserEntry'
-    >
-        {entry.name}
+    <Link to={`/entries/${entry.id}`} className="UserEntry">
+      {entry.name}
     </Link>
-  )
-}
+  );
+};
 
 UserEntry.propTypes = {
-  entry: PropTypes.instanceOf(Entry)
-}
+  entry: PropTypes.instanceOf(Entry),
+};
 
 export default UserEntry;

@@ -1,63 +1,84 @@
-import React, { PropTypes } from 'react'
-import './AccountDropdown.css'
-import { connect } from 'react-redux'
-import { Record } from 'immutable'
-import { signOut } from '../../../actions/user-actions';
-import { push } from 'react-router-redux';
+import React, { PropTypes } from "react";
+import "./AccountDropdown.css";
+import { connect } from "react-redux";
+import { Record } from "immutable";
+import { signOut } from "../../../actions/user-actions";
+import { push } from "react-router-redux";
 
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
-import MenuItem from 'material-ui/MenuItem';
-import UserAvatar from '../../users/userAvatar/UserAvatar';
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import UserAvatar from "../../users/userAvatar/UserAvatar";
+import Button from "@material-ui/core/Button";
 
-const AccountDropdown = ({
-  currentUser,
-  onClickSignOut,
-  onClickMyGroups
-}) => {
+const AccountDropdown = ({ currentUser, onClickSignOut, onClickMyGroups }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <IconMenu
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right'
-      }}
-      targetOrigin={{
-        vertical: 'top',
-        horizontal: 'right'
-      }}
-      iconButtonElement={(
-        <IconButton
-          className='AccountDropdown-icon'
+    <div>
+      <Button
+        className="AccountDropdown-icon"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <UserAvatar user={currentUser} />
+      </Button>
+      <Menu
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        targetOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem
+          onClick={() => {
+            onClickMyGroups(currentUser.id);
+            handleClose();
+          }}
         >
-          <UserAvatar user={currentUser} />
-        </IconButton>
-      )}
-    >
-      <MenuItem
-        primaryText="My Entries"
-        onClick={() => onClickMyGroups(currentUser.id)}
-      />
-      <MenuItem
-        primaryText="Sign out"
-        onClick={onClickSignOut}
-      />
-    </IconMenu>
-  )
-}
+          My Entries
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            onClickSignOut();
+            handleClose();
+          }}
+        >
+          Sign out
+        </MenuItem>
+      </Menu>
+    </div>
+  );
+};
 
 AccountDropdown.propTypes = {
   currentUser: PropTypes.instanceOf(Record),
   onClickSignOut: PropTypes.func.isRequired,
-  onClickMyGroups: PropTypes.func.isRequired
-}
+  onClickMyGroups: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = ({ currentUser }) => {
   return {
-    currentUser
+    currentUser,
   };
-}
+};
 
 export default connect(mapStateToProps, {
   onClickSignOut: signOut,
-  onClickMyGroups: (id) => push(`/users/${id}/entries`)
-})(AccountDropdown)
+  onClickMyGroups: (id) => push(`/users/${id}/entries`),
+})(AccountDropdown);

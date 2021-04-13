@@ -1,4 +1,4 @@
-import md5 from 'blueimp-md5';
+import md5 from "blueimp-md5";
 
 export function gravatar(email) {
   const emailHash = md5(email.toLowerCase());

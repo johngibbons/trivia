@@ -2,13 +2,13 @@ import {
   CREATE_ENTRY,
   FETCH_ENTRY,
   SELECT_NOMINEE,
-  FETCH_USER_ENTRIES
+  FETCH_USER_ENTRIES,
 } from "../actions/action-types";
 
 import {
   setEntry,
   selectNomineeSuccess,
-  setEntries
+  setEntries,
 } from "../actions/entry-actions";
 import { setGroup } from "../actions/group-actions";
 import { setGame } from "../actions/game-actions";
@@ -86,10 +86,7 @@ function* getAndSetGroup(id) {
 export function* fetchUserEntries(action) {
   try {
     const user = yield call(get, "users", action.payload.userId);
-    const ref = database()
-      .ref("entries")
-      .orderByChild("user")
-      .equalTo(user.id);
+    const ref = database().ref("entries").orderByChild("user").equalTo(user.id);
     const response = yield call([ref, ref.once], "value");
     const entries = response.val();
     yield put(setEntries(entries));

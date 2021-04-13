@@ -1,30 +1,26 @@
-import {
-  signInSuccess,
-  signOutSuccess
-} from '../actions/user-actions';
-import reducer from '../reducers/current-user-reducer';
+import { signInSuccess, signOutSuccess } from "../actions/user-actions";
+import reducer from "../reducers/current-user-reducer";
 
-import User from '../models/User';
+import User from "../models/User";
 
-describe('current user reducer', () => {
-
-  it('should return inital state', () => {
+describe("current user reducer", () => {
+  it("should return inital state", () => {
     const expectedResult = new User();
 
     expect(reducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should set the current user to returned user', () => {
+  it("should set the current user to returned user", () => {
     const response = {
-      displayName: 'John Gibbons',
-      email: 'johngibbons10@gmail.com',
-      photoURL: 'http://john.jpeg'
+      displayName: "John Gibbons",
+      email: "johngibbons10@gmail.com",
+      photoURL: "http://john.jpeg",
     };
 
     const expectedResult = new User({
       name: response.displayName,
       email: response.email,
-      photoURL: response.photoURL
+      photoURL: response.photoURL,
     });
 
     const action = signInSuccess(response);
@@ -32,15 +28,14 @@ describe('current user reducer', () => {
     expect(reducer(undefined, action)).toEqual(expectedResult);
   });
 
-  it('should reset the current user on sign out', () => {
-
+  it("should reset the current user on sign out", () => {
     const currentState = new User({
       id: 1,
-      name: 'John Gibbons'
+      name: "John Gibbons",
     });
     const expectedResult = new User();
     const action = signOutSuccess();
 
     expect(reducer(currentState, action)).toEqual(expectedResult);
   });
-})
+});

@@ -7,7 +7,7 @@ import { CURRENT_TITLE } from "../../constants";
 
 import { openModal } from "../../actions/ui-actions";
 
-import RaisedButton from "material-ui/RaisedButton";
+import Button from "@material-ui/core/Button";
 import NewGroupModal from "../group/newGroupModal/NewGroupModal";
 import { gameNomineesSelector } from "../../selectors/nominees-selector";
 import { browserHistory } from "react-router";
@@ -21,35 +21,27 @@ const Home = ({ currentUser, nominees, onClickNewGroup }) => {
           Pick the <span className="Home-gold-text">winners</span>. Beat your
           friends.
         </h2>
-        {true ? (
-          <RaisedButton
-            primary
-            label="Start a group"
-            labelStyle={{
-              color: "#424242"
-            }}
-            onClick={() => {
-              currentUser.id
-                ? onClickNewGroup("NEW_GROUP")
-                : browserHistory.push("/login");
-            }}
-          />
-        ) : (
-          <div className="Home-game-complete-message">
-            Note: The 2018 Oscars are complete! Please check back for the next
-            event.
-          </div>
-        )}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            currentUser.id
+              ? onClickNewGroup("NEW_GROUP")
+              : browserHistory.push("/login");
+          }}
+        >
+          Start a group
+        </Button>
       </div>
       <div className="Home-movie-carousel">
         <div className="Home-movie-images">
-          {nominees.map(nominee => {
+          {nominees.map((nominee) => {
             return (
               <div
                 key={nominee.get("id")}
                 className="Home-nominee-poster"
                 style={{
-                  backgroundImage: `url(${nominee.get("imageUrl")})`
+                  backgroundImage: `url(${nominee.get("imageUrl")})`,
                 }}
               />
             );
@@ -64,19 +56,16 @@ const Home = ({ currentUser, nominees, onClickNewGroup }) => {
 Home.propTypes = {
   currentUser: PropTypes.instanceOf(User),
   nominees: PropTypes.instanceOf(Set),
-  onClickNewGroup: PropTypes.func.isRequired
+  onClickNewGroup: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
-    nominees: gameNomineesSelector(state)
+    nominees: gameNomineesSelector(state),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    onClickNewGroup: openModal
-  }
-)(Home);
+export default connect(mapStateToProps, {
+  onClickNewGroup: openModal,
+})(Home);

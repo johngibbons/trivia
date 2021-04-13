@@ -3,16 +3,16 @@ import {
   CREATE_GAME_SUCCESS,
   UPDATE_GAME,
   FETCH_GAME,
-  SET_GAME
-} from './action-types';
+  SET_GAME,
+} from "./action-types";
 
 export function createGame(name) {
   return {
     type: CREATE_GAME,
     payload: {
-      name
-    }
-  }
+      name,
+    },
+  };
 }
 
 export function createGameSuccess(gameId, game) {
@@ -20,28 +20,28 @@ export function createGameSuccess(gameId, game) {
     type: CREATE_GAME_SUCCESS,
     payload: {
       gameId,
-      game
-    }
-  }
+      game,
+    },
+  };
 }
 
 export function updateGame(game) {
   return {
     type: UPDATE_GAME,
-    payload: { game }
-  }
+    payload: { game },
+  };
 }
 
 export function fetchGame(id) {
   return {
     type: FETCH_GAME,
-    payload: { id }
-  }
+    payload: { id },
+  };
 }
 
 export function setGame(game) {
   return {
     type: SET_GAME,
-    payload: { game }
-  }
+    payload: { game },
+  };
 }

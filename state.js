@@ -365,7 +365,7 @@ const state = {
             title: 'hellOrHighWater'
           }
         }
-      }
+      },
       'bestAnimated': {
         id: 'bestAnimated',
         category: 'Best Motion Picture - Animated',

@@ -7,8 +7,8 @@ import { Seq } from "immutable";
 
 export const givenCategorySelector = (state, props) => props.category;
 
-const categoriesSelector = state => state.categories;
-const groupsSelector = state => state.groups;
+const categoriesSelector = (state) => state.categories;
+const groupsSelector = (state) => state.groups;
 const groupFromPropsSelector = (state, props) => props.group;
 const groupFromParamsSelector = (state, props) =>
   state.groups.get(props.routeParams.id);
@@ -23,7 +23,7 @@ export const currentCategoriesSelector = createSelector(
     game &&
     game.categories
       .keySeq()
-      .map(id => categories.get(id))
+      .map((id) => categories.get(id))
       .sort((catA, catB) => catA.presentationOrder - catB.presentationOrder)
 );
 
@@ -35,7 +35,7 @@ export const entryCategoriesSelector = createSelector(
       game &&
       game.categories
         .keySeq()
-        .map(id => categories.get(id) || new Category())
+        .map((id) => categories.get(id) || new Category())
         .sort((c1, c2) => c1.presentationOrder - c2.presentationOrder)
     );
   }
@@ -68,14 +68,14 @@ export const entryPossibleScoreSelector = createSelector(
   entryGroupSelector,
   (categories, group) => {
     return categories
-      .filter(category => category.correctAnswer)
+      .filter((category) => category.correctAnswer)
       .reduce((acc, category) => acc + group.values.get(category.id), 0);
   }
 );
 
 export const gameTotalPossibleSelector = createSelector(
   entryGroupSelector,
-  group =>
+  (group) =>
     group ? group.values.reduce((acc, value) => acc + value, 0) : new Group()
 );
 

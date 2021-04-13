@@ -1,19 +1,25 @@
-import { eventChannel } from 'redux-saga';
-import { put, fork, call, take } from 'redux-saga/effects';
-import firebase from 'firebase';
+import { eventChannel } from "redux-saga";
+import { put, fork, call, take } from "redux-saga/effects";
+import firebase from "firebase";
 
-export const CHILD_ADDED = 'child_added';
-export const CHILD_REMOVED = 'child_removed';
-export const CHILD_CHANGED = 'child_changed';
-export const CHILD_MOVED = 'child_moved';
-export const VALUE = 'value';
+export const CHILD_ADDED = "child_added";
+export const CHILD_REMOVED = "child_removed";
+export const CHILD_CHANGED = "child_changed";
+export const CHILD_MOVED = "child_moved";
+export const VALUE = "value";
 
-const EVENT_TYPES = [CHILD_ADDED, CHILD_REMOVED, CHILD_CHANGED, CHILD_MOVED, VALUE];
+const EVENT_TYPES = [
+  CHILD_ADDED,
+  CHILD_REMOVED,
+  CHILD_CHANGED,
+  CHILD_MOVED,
+  VALUE,
+];
 
-const newOpts = (name = 'data') => {
+const newOpts = (name = "data") => {
   const opts = {};
-  const chan = eventChannel(emit => {
-    opts.handler = obj => {
+  const chan = eventChannel((emit) => {
+    opts.handler = (obj) => {
       emit({ [name]: obj });
     };
     return () => {};
@@ -37,7 +43,7 @@ const newKey = (path) => firebase.database().ref().child(path).push().key;
  */
 export function* get(path, key) {
   const ref = firebase.database().ref(`${path}/${key}`);
-  const data = yield call([ref, ref.once], 'value');
+  const data = yield call([ref, ref.once], "value");
 
   return data.val();
 }
@@ -54,7 +60,7 @@ export function* get(path, key) {
  */
 export function* getAll(path) {
   const ref = firebase.database().ref(path);
-  const data = yield call([ref, ref.once], 'value');
+  const data = yield call([ref, ref.once], "value");
 
   return data.val();
 }
@@ -79,11 +85,11 @@ export function* getAll(path) {
 export function* create(path, fn) {
   const key = yield call(newKey, path);
   const payload = yield call(fn, key);
-  const opts = newOpts('error');
+  const opts = newOpts("error");
   const ref = firebase.database().ref();
-  const [ _, { error } ] = yield [
+  const [_, { error }] = yield [
     call([ref, ref.update], payload, opts.handler),
-    take(opts)
+    take(opts),
   ];
   return error;
 }
@@ -100,14 +106,14 @@ export function* create(path, fn) {
  * yield call(update, 'posts', '1234', { 'Second Post', 'My seond post details', +new Date });
  */
 export function* update(path, key, payload) {
-  if (typeof payload === 'function') {
+  if (typeof payload === "function") {
     payload = yield call(payload);
   }
-  const opts = newOpts('error');
+  const opts = newOpts("error");
   const ref = firebase.database().ref(`${path}/${key}`);
-  const [ _, { error } ] = yield [
+  const [_, { error }] = yield [
     call([ref, ref.update], payload, opts.handler),
-    take(opts)
+    take(opts),
   ];
   return error;
 }
@@ -131,14 +137,14 @@ export function* update(path, key, payload) {
 export function* push(path, fn, getKey = false) {
   const key = yield call(newKey, path);
   const payload = yield call(fn, key);
-  const opts = newOpts('error');
+  const opts = newOpts("error");
   const ref = firebase.database().ref(path);
-  const [ _, { error } ] = yield [
+  const [_, { error }] = yield [
     call([ref, ref.push], payload, opts.handler),
-    take(opts)
+    take(opts),
   ];
 
-  if(getKey && error === undefined) {
+  if (getKey && error === undefined) {
     return key;
   }
 
@@ -173,11 +179,11 @@ export function* push(path, fn, getKey = false) {
  * yield call(remove, 'posts', '1234')
  */
 export function* remove(path, key) {
-  const opts = newOpts('error');
+  const opts = newOpts("error");
   const ref = firebase.database().ref(`${path}/${key}`);
-  const [ _, { error } ] = yield [
+  const [_, { error }] = yield [
     call([ref, ref.remove], opts.handler),
-    take(opts)
+    take(opts),
   ];
   return error;
 }
@@ -209,14 +215,15 @@ function* runSync(ref, eventType, actionCreator) {
  *}
  */
 export function* sync(path, mapEventToAction = {}, limit) {
-  const ref = typeof limit === 'number' ?
-    firebase.database().ref(path).limitToLast(limit)
-    : firebase.database().ref(path);
+  const ref =
+    typeof limit === "number"
+      ? firebase.database().ref(path).limitToLast(limit)
+      : firebase.database().ref(path);
 
   for (let type of EVENT_TYPES) {
     const action = mapEventToAction[type];
 
-    if (typeof action === 'function') {
+    if (typeof action === "function") {
       yield fork(runSync, ref, type, action);
     }
   }

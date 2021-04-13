@@ -12,8 +12,8 @@ export default {
         { text: "Marriage Story" },
         { text: "1917" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "Parasite" }
-      ]
+        { text: "Parasite" },
+      ],
     },
     bestActor: {
       value: 8,
@@ -22,12 +22,12 @@ export default {
         { text: "Antonio Banderas", secondaryText: "Pain and Glory" },
         {
           text: "Leonardo DiCaprio",
-          secondaryText: "Once Upon a Time… in Hollywood"
+          secondaryText: "Once Upon a Time… in Hollywood",
         },
         { text: "Adam Driver", secondaryText: "Marriage Story" },
         { text: "Joaquin Phoenix", secondaryText: "Joker" },
-        { text: "Jonathan Pryce", secondaryText: " The Two Popes" }
-      ]
+        { text: "Jonathan Pryce", secondaryText: " The Two Popes" },
+      ],
     },
     bestActress: {
       value: 8,
@@ -37,8 +37,8 @@ export default {
         { text: "Scarlett Johansson", secondaryText: "Marriage Story" },
         { text: "Saoirse Ronan", secondaryText: "Little Women" },
         { text: "Charlize Theron", secondaryText: "Bombshell" },
-        { text: "Renée Zellweger", secondaryText: "Judy" }
-      ]
+        { text: "Renée Zellweger", secondaryText: "Judy" },
+      ],
     },
     bestSupportingActor: {
       value: 4,
@@ -46,13 +46,13 @@ export default {
       nominees: [
         {
           text: "Tom Hanks",
-          secondaryText: "A Beautiful Day in the Neighborhood"
+          secondaryText: "A Beautiful Day in the Neighborhood",
         },
         { text: "Anthony Hopkins", secondaryText: "The Two Popes" },
         { text: "Al Pacino", secondaryText: "The Irishman" },
         { text: "Joe Pesci", secondaryText: "The Irishman" },
-        { text: "Brad Pitt", secondaryText: "Once Upon a Time… in Hollywood" }
-      ]
+        { text: "Brad Pitt", secondaryText: "Once Upon a Time… in Hollywood" },
+      ],
     },
     bestSupportingActress: {
       value: 4,
@@ -62,8 +62,8 @@ export default {
         { text: "Laura Dern", secondaryText: "Marriage Story" },
         { text: "Scarlett Johansson", secondaryText: "Jojo Rabbit" },
         { text: "Florence Pugh", secondaryText: "Little Women" },
-        { text: "Margot Robbie", secondaryText: "Bombshell" }
-      ]
+        { text: "Margot Robbie", secondaryText: "Bombshell" },
+      ],
     },
     animatedFeature: {
       value: 4,
@@ -73,8 +73,8 @@ export default {
         { text: "I Lost My Body" },
         { text: "Klaus" },
         { text: "Missing Link" },
-        { text: "Toy Story 4" }
-      ]
+        { text: "Toy Story 4" },
+      ],
     },
     cinematography: {
       value: 2,
@@ -84,8 +84,8 @@ export default {
         { text: "Joker" },
         { text: "The Lighthouse" },
         { text: "1917" },
-        { text: "Once Upon a Time… in Hollywood" }
-      ]
+        { text: "Once Upon a Time… in Hollywood" },
+      ],
     },
     costumeDesign: {
       value: 1,
@@ -95,8 +95,8 @@ export default {
         { text: "Jojo Rabbit" },
         { text: "Joker" },
         { text: "Little Women" },
-        { text: "Once Upon a Time… in Hollywood" }
-      ]
+        { text: "Once Upon a Time… in Hollywood" },
+      ],
     },
     directing: {
       value: 4,
@@ -107,10 +107,10 @@ export default {
         { text: "1917", secondaryText: "Sam Mendes" },
         {
           text: "Once Upon a Time… in Hollywood",
-          secondaryText: "Quentin Tarantino"
+          secondaryText: "Quentin Tarantino",
         },
-        { text: "Parasite", secondaryText: "Bong Joon-Ho" }
-      ]
+        { text: "Parasite", secondaryText: "Bong Joon-Ho" },
+      ],
     },
     documentaryFeature: {
       value: 4,
@@ -120,8 +120,8 @@ export default {
         { text: "The Cave" },
         { text: "The Edge of Democracy" },
         { text: "For Sama" },
-        { text: "Honeyland" }
-      ]
+        { text: "Honeyland" },
+      ],
     },
     documentaryShort: {
       value: 2,
@@ -131,8 +131,8 @@ export default {
         { text: "Learning to Skateboard in a Warzone (If You're a Girl)" },
         { text: "Life Overtakes Me" },
         { text: "St. Louis Superman" },
-        { text: "Walk Run Cha-Cha" }
-      ]
+        { text: "Walk Run Cha-Cha" },
+      ],
     },
     filmEditing: {
       value: 1,
@@ -142,8 +142,8 @@ export default {
         { text: "The Irishman" },
         { text: "Jojo Rabbit" },
         { text: "Joker" },
-        { text: "Parasite" }
-      ]
+        { text: "Parasite" },
+      ],
     },
     foreignLanguageFile: {
       value: 4,
@@ -153,8 +153,8 @@ export default {
         { text: "Honeyland", secondaryText: "North Macedonia" },
         { text: "Les Misérables", secondaryText: "France" },
         { text: "Pain and Glory", secondaryText: "Spain" },
-        { text: "Parasite", secondaryText: "South Korea" }
-      ]
+        { text: "Parasite", secondaryText: "South Korea" },
+      ],
     },
     makeupAndHairstyling: {
       value: 1,
@@ -164,8 +164,8 @@ export default {
         { text: "Joker" },
         { text: "Judy" },
         { text: "Maleficent: Mistress of Evil" },
-        { text: "1917" }
-      ]
+        { text: "1917" },
+      ],
     },
     musicOriginalScore: {
       value: 1,
@@ -177,9 +177,9 @@ export default {
         { text: "1917", secondaryText: "Thomas Newman" },
         {
           text: "Star Wars: The Rise of Skywalker",
-          secondaryText: "John Williams"
-        }
-      ]
+          secondaryText: "John Williams",
+        },
+      ],
     },
     musicOriginalSong: {
       value: 1,
@@ -187,13 +187,13 @@ export default {
       nominees: [
         {
           text: "Toy Story 4",
-          secondaryText: "I Can't Let You Throw Yourself Away"
+          secondaryText: "I Can't Let You Throw Yourself Away",
         },
         { text: "Rocketman", secondaryText: "(I'm Gonna) Love Me Again" },
         { text: "Breakthrough", secondaryText: "I'm Standing With You" },
         { text: "Frozen II", secondaryText: "Into The Unknown" },
-        { text: "Harriet", secondaryText: "Stand Up" }
-      ]
+        { text: "Harriet", secondaryText: "Stand Up" },
+      ],
     },
     productionDesign: {
       value: 1,
@@ -203,8 +203,8 @@ export default {
         { text: "Jojo Rabbit" },
         { text: "1917" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "Parasite" }
-      ]
+        { text: "Parasite" },
+      ],
     },
     shortFilmAnimated: {
       value: 1,
@@ -214,8 +214,8 @@ export default {
         { text: "Hair Love" },
         { text: "Kitbull" },
         { text: "Memorable" },
-        { text: "Sister" }
-      ]
+        { text: "Sister" },
+      ],
     },
     shortFilmLiveAction: {
       value: 1,
@@ -225,8 +225,8 @@ export default {
         { text: "Nefta Football Club" },
         { text: "The Neighbors' Window" },
         { text: "Saria" },
-        { text: "A Sister" }
-      ]
+        { text: "A Sister" },
+      ],
     },
     soundEditing: {
       value: 1,
@@ -236,8 +236,8 @@ export default {
         { text: "Joker" },
         { text: "1917" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "Star Wars: The Rise of Skywalker" }
-      ]
+        { text: "Star Wars: The Rise of Skywalker" },
+      ],
     },
     soundMixing: {
       value: 1,
@@ -247,8 +247,8 @@ export default {
         { text: "Ford v Ferrari" },
         { text: "Joker" },
         { text: "1917" },
-        { text: "Once Upon a Time… in Hollywood" }
-      ]
+        { text: "Once Upon a Time… in Hollywood" },
+      ],
     },
     visualEffects: {
       value: 1,
@@ -258,8 +258,8 @@ export default {
         { text: "The Irishman" },
         { text: "The Lion King" },
         { text: "1917" },
-        { text: "Star Wars: The Rise of Skywalker" }
-      ]
+        { text: "Star Wars: The Rise of Skywalker" },
+      ],
     },
     writingAdaptedScreenplay: {
       value: 2,
@@ -269,8 +269,8 @@ export default {
         { text: "Jojo Rabbit" },
         { text: "Joker" },
         { text: "Little Women" },
-        { text: "The Two Popes" }
-      ]
+        { text: "The Two Popes" },
+      ],
     },
     writingOriginalScreenplay: {
       value: 2,
@@ -280,10 +280,10 @@ export default {
         { text: "Marriage Story" },
         { text: "1917" },
         { text: "Once Upon a Time… in Hollywood" },
-        { text: "Parasite" }
-      ]
-    }
-  }
+        { text: "Parasite" },
+      ],
+    },
+  },
 };
 
 import { database } from "firebase";
@@ -294,14 +294,14 @@ function reset() {
   const ref = database().ref("/games/2019Oscars/categories");
   ref
     .once("value")
-    .then(category => {
-      Object.keys(category.val()).map(categoryKey => {
+    .then((category) => {
+      Object.keys(category.val()).map((categoryKey) => {
         const catRef = database().ref(`/categories/${categoryKey}`);
         const nomineesRef = database().ref(
           `/categories/${categoryKey}/nominees`
         );
-        nomineesRef.once("value").then(nominees => {
-          Object.keys(nominees.val()).map(nomineeKey => {
+        nomineesRef.once("value").then((nominees) => {
+          Object.keys(nominees.val()).map((nomineeKey) => {
             const nomineeRef = database().ref(`/nominees/${nomineeKey}`);
             nomineeRef
               .remove()

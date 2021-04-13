@@ -6,22 +6,15 @@
       ".read": true
     },
     "categories": {
-      ".indexOn": [
-        "game"
-      ],
+      ".indexOn": ["game"],
       ".read": true
     },
     "nominees": {
-      ".indexOn": [
-        "game"
-      ],
+      ".indexOn": ["game"],
       ".read": true
     },
     "entries": {
-      ".indexOn": [
-        "group",
-        "user"
-      ]
+      ".indexOn": ["group", "user"]
     }
   }
 }

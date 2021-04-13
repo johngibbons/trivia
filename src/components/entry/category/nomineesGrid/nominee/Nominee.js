@@ -7,10 +7,8 @@ import { Record } from "immutable";
 import { selectNominee } from "../../../../../actions/entry-actions";
 import { toggleCorrectNominee } from "../../../../../actions/category-actions";
 import { gameStartedSelector } from "../../../../../selectors/games-selector";
-import { showAlertBar } from "../../../../../actions/ui-actions";
 
-import CheckIcon from "material-ui/svg-icons/navigation/check";
-import XIcon from "material-ui/svg-icons/navigation/close";
+import XIcon from "@material-ui/icons/Close";
 import OscarIcon from "../../../../OscarIcon";
 
 const Nominee = ({
@@ -20,7 +18,7 @@ const Nominee = ({
   correctId,
   hasStarted,
   isMaster,
-  onClickNominee
+  onClickNominee,
 }) => {
   const answer = correctId === nominee.id;
   const notSelected = !selectedNomineeId || selectedNomineeId !== nominee.id;
@@ -34,7 +32,7 @@ const Nominee = ({
     { "Nominee--unselectable": hasStarted && !isMaster },
     {
       "Nominee--not-selected":
-        (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId)
+        (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId),
     },
     { "Nominee--answer": answer }
   );
@@ -43,12 +41,12 @@ const Nominee = ({
     "Nominee__image-bg",
     {
       "Nominee__image-bg--selected":
-        !correctId && selectedNomineeId === nominee.id
+        !correctId && selectedNomineeId === nominee.id,
     },
     { "Nominee__image-bg--unselectable": hasStarted && !isMaster },
     {
       "Nominee__image-bg--not-selected":
-        (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId)
+        (selectedNomineeId && notSelected) || (correctId && !selectedNomineeId),
     },
     { "Nominee__image-bg--answer": answer }
   );
@@ -102,13 +100,13 @@ Nominee.propTypes = {
   correctId: PropTypes.string,
   hasStarted: PropTypes.bool,
   isMaster: PropTypes.bool,
-  onClickNominee: PropTypes.func.isRequired
+  onClickNominee: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => {
   return {
     hasStarted: gameStartedSelector(state, props),
-    isMaster: props.nominee.game === props.router.params.id
+    isMaster: props.nominee.game === props.router.params.id,
   };
 };
 
@@ -119,7 +117,7 @@ const mapDispatchToProps = (dispatch, props) => {
         ? (_, nominee) => dispatch(toggleCorrectNominee(nominee))
         : (entryId, nominee) => {
             dispatch(selectNominee(entryId, nominee));
-          }
+          },
   };
 };
 

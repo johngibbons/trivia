@@ -1,11 +1,11 @@
 import {
   SUBMIT_SEARCH,
   SAVE_TITLE,
-  SAVE_PERSON
+  SAVE_PERSON,
 } from "../actions/action-types";
 import {
   submitSearchSuccess,
-  submitSearchFailure
+  submitSearchFailure,
 } from "../actions/admin-actions";
 import { showAlertBar } from "../actions/ui-actions";
 import MovieDB from "../moviedb";

@@ -1,1 +1,1 @@
-export const pendingValuesSelector = state => state.ui.values
+export const pendingValuesSelector = (state) => state.ui.values;
